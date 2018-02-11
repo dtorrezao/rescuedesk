@@ -30,6 +30,29 @@ namespace RescueDesk.Services
 
         }
 
+
+        public Pedido ObterPedidoDefault()
+        {
+            Pedido pedido = new Pedido();
+            pedido.prioridade = prioridade.Media;
+            pedido.dtpedido = DateTime.Now;
+            return pedido;
+        }
+
+        public bool CreatePedido(Pedido pedido)
+        {
+            string query = "INSERT INTO `pedidos` " +
+               " (`idpedido`, `assunto`, `descricao`, `idatividade`, `dtpedido`, `dtlido`, `dtmarcado`, `prioridade`, `dtresolvido`, `nrcontribuinte`, `idfuncionario`, `obs`) " +
+               "VALUES(NULL, '" + pedido.assunto + "', '" + pedido.descricao + "', '" + pedido.idatividade.ToString() + "', '" + pedido.dtpedido.ToString("yyyy-MM-dd hh:mm:ss") + "', " +
+               "'" + pedido.dtlido.ToString("yyyy-MM-dd hh:mm:ss") + "', '" + pedido.dtmarcado.ToString("yyyy-MM-dd hh:mm:ss") + "', '" + pedido.prioridade.ToString() + "', " +
+               "'" + pedido.dtresolvido.ToString("yyyy-MM-dd hh:mm:ss") + "', '" + pedido.nrcontribuinte + "' ,'" + pedido.idfuncionario + "', '" + pedido.obs + "')";
+            this.Conn.Open();
+            MySqlCommand cmd = new MySqlCommand(query, this.Conn);
+            int resultados = cmd.ExecuteNonQuery();
+            this.Conn.Close();
+            return resultados > 0;
+        }
+
         public bool UpdatePedido(Pedido pedido)
         {
             string query = "UPDATE `pedidos` ";

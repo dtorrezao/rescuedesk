@@ -18,6 +18,27 @@ namespace RescueDesk.Controllers
             return View(servico.ObterPedidos());
         }
 
+        public ActionResult Create()
+        {
+            PedidosService servico = new PedidosService();
+
+            return View(servico.ObterPedidoDefault());
+        }
+
+        [HttpPost]
+        public ActionResult Create(Pedido pedido)
+        {
+            PedidosService servico = new PedidosService();
+            if (servico.CreatePedido(pedido))
+            {
+                return this.RedirectToAction("Index");
+            }
+            else
+            {
+                return View(pedido);
+            }
+        }
+
         public ActionResult Edit(int id)
         {
             PedidosService servico = new PedidosService();
