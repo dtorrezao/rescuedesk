@@ -38,6 +38,28 @@ namespace RescueDesk.Controllers
                 return View(pedido);
             }
         }
+
+    
+        public ActionResult Delete(int id)
+        {
+            PedidosService servico = new PedidosService();
+
+            return View(servico.ObterPedido(id));
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int idpedido)
+        {
+            PedidosService servico = new PedidosService();
+            if (servico.DeletePedido(idpedido))
+            {
+                return this.RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Delete", new { id = idpedido });
+            }
+        }
     }
 
 }

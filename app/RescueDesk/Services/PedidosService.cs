@@ -84,5 +84,14 @@ namespace RescueDesk.Services
             }
             return null;
         }
+
+        public bool DeletePedido(int id)
+        {
+            this.Conn.Open();
+            MySqlCommand cmd = new MySqlCommand("DELETE FROM pedidos where idpedido='" + id.ToString() + "'", this.Conn);
+            int resultados = cmd.ExecuteNonQuery();
+            this.Conn.Close();
+            return resultados > 0;
+        }
     }
 }
