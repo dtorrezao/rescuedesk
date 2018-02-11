@@ -14,7 +14,7 @@ namespace RescueDesk.Services
         public List<Pedido> ObterPedidos()
         {
             List<Pedido> pedidos = new List<Pedido>();
-            MySqlConnection conn = new MySqlConnection("server=localhost;database=gestaodestocks;username=root");
+            MySqlConnection conn = new MySqlConnection("server=localhost;database=rescuedesk;username=root;Convert Zero Datetime=True");
             conn.Open();
             MySqlDataAdapter cmd1 = new MySqlDataAdapter("Select * from pedidos", conn);
             DataTable dados1 = new DataTable();
@@ -24,7 +24,7 @@ namespace RescueDesk.Services
             {
                 Pedido pedido = new Pedido();
                 pedido.idpedido = int.Parse(linha["idpedido"].ToString());
-                pedido.assunto = linha["asssunto"].ToString();
+                pedido.assunto = linha["assunto"].ToString();
                 pedido.descricao = linha["descricao"].ToString();
                 pedido.idatividade = int.Parse(linha["idatividade"].ToString());
                 pedido.dtpedido = DateTime.Parse(linha["dtpedido"].ToString());

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 11-Fev-2018 às 15:29
+-- Generation Time: 11-Fev-2018 às 17:29
 -- Versão do servidor: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -132,7 +132,7 @@ CREATE TABLE `pedidos` (
   `dtpedido` datetime NOT NULL,
   `dtlido` datetime NOT NULL,
   `dtmarcado` datetime NOT NULL,
-  `prioridade` enum('Crítica','Alta','Média','Baixa') NOT NULL,
+  `prioridade` enum('Critica','Alta','Media','Baixa') NOT NULL,
   `dtresolvido` datetime NOT NULL,
   `nrcontribuinte` int(9) NOT NULL,
   `idfuncionario` int(11) NOT NULL,
@@ -145,9 +145,9 @@ CREATE TABLE `pedidos` (
 
 INSERT INTO `pedidos` (`idpedido`, `assunto`, `descricao`, `idatividade`, `dtpedido`, `dtlido`, `dtmarcado`, `prioridade`, `dtresolvido`, `nrcontribuinte`, `idfuncionario`, `obs`) VALUES
 (1, 'Troca Disco Rigido', 'Disco avariou', 4, '2018-02-11 13:54:35', '0000-00-00 00:00:00', '2018-02-15 13:55:39', 'Baixa', '0000-00-00 00:00:00', 657546321, 1, NULL),
-(2, 'Instalação Antivirus', 'Instalaçao AVG', 3, '2018-02-11 14:23:50', '0000-00-00 00:00:00', '2018-02-12 13:56:18', 'Média', '0000-00-00 00:00:00', 657546321, 1, NULL),
-(3, 'Instalação Windows', 'Instalação de Windows 10', 1, '2018-02-11 14:25:21', '0000-00-00 00:00:00', '2018-02-13 14:25:28', 'Baixa', '0000-00-00 00:00:00', 135987321, 2, NULL),
-(4, 'Montagem de servidor', 'Montagem e configuração de servidor', 2, '2018-02-11 14:27:32', '0000-00-00 00:00:00', '2018-02-11 16:27:35', 'Alta', '0000-00-00 00:00:00', 135987321, 2, NULL);
+(2, 'Instalação Antivirus', 'Instalaçao AVG', 3, '2018-02-11 14:23:50', '0000-00-00 00:00:00', '2018-02-12 13:56:18', 'Alta', '0000-00-00 00:00:00', 657546321, 1, NULL),
+(3, 'Instalação Windows', 'Instalação de Windows 10', 1, '2018-02-11 14:25:21', '0000-00-00 00:00:00', '2018-02-13 14:25:28', 'Critica', '0000-00-00 00:00:00', 135987321, 2, NULL),
+(4, 'Montagem de servidor', 'Montagem e configuração de servidor', 2, '2018-02-11 14:27:32', '0000-00-00 00:00:00', '2018-02-11 16:27:35', 'Media', '0000-00-00 00:00:00', 135987321, 2, NULL);
 
 -- --------------------------------------------------------
 

@@ -12,7 +12,37 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.title)
+            @Html.DisplayNameFor(model => model.idpedido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.assunto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idatividade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dtpedido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dtlido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dtmarcado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dtresolvido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nrcontribuinte)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idfuncionario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.obs)
         </th>
         <th></th>
     </tr>
@@ -20,12 +50,42 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.title)
+            @Html.DisplayFor(modelItem => item.idpedido)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.DisplayFor(modelItem => item.assunto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idatividade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dtpedido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dtlido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dtmarcado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dtresolvido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nrcontribuinte)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idfuncionario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.obs)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
         </td>
     </tr>
 }
