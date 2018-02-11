@@ -1,4 +1,5 @@
 ﻿using RescueDesk.Models;
+using RescueDesk.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,14 +13,9 @@ namespace RescueDesk.Controllers
         // GET: Pedidos
         public ActionResult Index()
         {
-            List<Pedido> pedidos = new List<Pedido>();
-            Pedido xpto = new Pedido();
+            PedidosService servico = new PedidosService();
 
-            xpto.id = 1;
-
-            pedidos.Add(xpto);
-
-            return View(pedidos);
+            return View(servico.ObterPedidos());
         }
     }
 }
