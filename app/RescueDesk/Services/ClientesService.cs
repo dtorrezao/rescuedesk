@@ -22,13 +22,32 @@ namespace RescueDesk.Services
             this.Conn.Close();
             foreach (DataRow linha in dados1.Rows)
             {
-                Cliente cliente= ParseCliente(linha);
+                Cliente cliente = ParseCliente(linha);
                 clientes.Add(cliente);
             }
             return clientes;
 
         }
 
+        public Cliente ObterClienteDefault()
+        {
+            Cliente cliente = new Cliente();
+
+            return cliente;
+        }
+
+        public bool CreateCliente(Cliente cliente)
+        {
+            string query = "INSERT INTO `clientes` " +
+                " (`nrcontribuinte`, `nome`, `morada`, `codpostal`, `contacto`, `email`, `obs`)" +
+                " VALUES('" + cliente.nrcontribuinte + "', '" + cliente.nome + "', '" + cliente.morada + "', '" + cliente.codpostal + "', '" + cliente.contacto + "'" +
+                "'" + cliente.email + "', '" + cliente.obs + "')";
+            this.Conn.Open();
+            MySqlCommand cmd = new MySqlCommand(query, this.Conn);
+            int resultados = cmd.ExecuteNonQuery();
+            this.Conn.Close();
+            return resultados > 0;
+        }
 
         private static Cliente ParseCliente(DataRow linha)
         {
@@ -36,7 +55,7 @@ namespace RescueDesk.Services
             cliente.nrcontribuinte = int.Parse(linha["nrcontribuinte"].ToString());
             cliente.nome = linha["nome"].ToString();
             cliente.morada = linha["morada"].ToString();
-            cliente.codpostal =linha["codpostal"].ToString();
+            cliente.codpostal = linha["codpostal"].ToString();
             cliente.contacto = int.Parse(linha["contacto"].ToString());
             cliente.email = linha["email"].ToString();
             cliente.obs = linha["obs"].ToString();
