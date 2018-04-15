@@ -40,7 +40,7 @@ namespace RescueDesk.Services
         {
             string query = "INSERT INTO `clientes` " +
                 " (`nrcontribuinte`, `nome`, `morada`, `codpostal`, `contacto`, `email`, `obs`)" +
-                " VALUES('" + cliente.nrcontribuinte + "', '" + cliente.nome + "', '" + cliente.morada + "', '" + cliente.codpostal + "', '" + cliente.contacto + "'" +
+                " VALUES('" + cliente.nrcontribuinte + "', '" + cliente.nome + "', '" + cliente.morada + "', '" + cliente.codpostal + "', '" + cliente.contacto + "'," +
                 "'" + cliente.email + "', '" + cliente.obs + "')";
             this.Conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, this.Conn);
