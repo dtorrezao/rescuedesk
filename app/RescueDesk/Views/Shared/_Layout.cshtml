@@ -44,5 +44,8 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script>
+        jQuery.validator.methods["date"] = function (value, element) { return true; }
+    </script>
 </body>
 </html>
