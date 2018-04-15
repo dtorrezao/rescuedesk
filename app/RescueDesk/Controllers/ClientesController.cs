@@ -56,5 +56,26 @@ namespace RescueDesk.Controllers
                 return View(cliente);
             }
         }
+
+        public ActionResult Edit(int id)
+        {
+            ClientesService servico = new ClientesService();
+
+            return View(servico.ObterCliente(id));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Cliente cliente)
+        {
+            ClientesService servico = new ClientesService();
+            if (servico.UpdateCliente(cliente))
+            {
+                return this.RedirectToAction("Index");
+            }
+            else
+            {
+                return View(cliente);
+            }
+        }
     }
 }

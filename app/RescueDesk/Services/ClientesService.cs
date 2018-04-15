@@ -61,5 +61,38 @@ namespace RescueDesk.Services
             cliente.obs = linha["obs"].ToString();
             return cliente;
         }
+
+        public bool UpdateCliente(Cliente cliente)
+        {
+
+            string query = "UPDATE `clientes` ";
+            query += "SET `nome` =  '" + cliente.nome + "', " +
+                "`morada` =  '" + cliente.morada + "', " +
+                "`codpostal` =  '" + cliente.codpostal.ToString() + "'," +
+                " `contacto` = '" + cliente.contacto.ToString() + "'," +
+                " `email` = '" + cliente.email + "'," +
+                "`obs` = '" + cliente.obs + "' " +
+                "WHERE `clientes`.`nrcontribuinte` = '" + cliente.nrcontribuinte.ToString() + "'";
+            this.Conn.Open();
+            MySqlCommand cmd = new MySqlCommand(query, this.Conn);
+            int resultados = cmd.ExecuteNonQuery();
+            this.Conn.Close();
+            return resultados > 0;
+        }
+
+        public Cliente ObterCliente(int id)
+        {
+            this.Conn.Open();
+            MySqlDataAdapter cmd1 = new MySqlDataAdapter("Select * from clientes where nrcontribuinte='" + id.ToString() + "'", this.Conn);
+            DataTable dados1 = new DataTable();
+            cmd1.Fill(dados1);
+            this.Conn.Close();
+            foreach (DataRow linha in dados1.Rows)
+            {
+                Cliente cliente = ParseCliente(linha);
+                return cliente;
+            }
+            return null;
+        }
     }
 }
