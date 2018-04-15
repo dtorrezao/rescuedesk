@@ -1,10 +1,10 @@
-﻿using MySql.Data.MySqlClient;
-using RescueDesk.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using MySql.Data.MySqlClient;
+using RescueDesk.Models;
 
 namespace RescueDesk.Services
 {
@@ -29,11 +29,23 @@ namespace RescueDesk.Services
 
         }
 
+        public bool CreateLocalidade(Localidade localidade)
+        {
+            string query = "INSERT INTO localidades " +
+                           "(codpostal, localidade) " +
+                           "VALUES ('" + localidade.codpostal.ToString() + "', '" + localidade.nomeLocalidade.ToString() + "')";
+            this.Conn.Open();
+            MySqlCommand cmd = new MySqlCommand(query, this.Conn);
+            int resultados = cmd.ExecuteNonQuery();
+            this.Conn.Close();
+            return resultados > 0;
+        }
+
         private Localidade ParseLocalidade(DataRow linha)
         {
             Localidade localidade = new Localidade();
             localidade.codpostal = linha["codpostal"].ToString();
-            localidade.localidade = linha["localidade"].ToString();
+            localidade.nomeLocalidade = linha["localidade"].ToString();
 
             return localidade;
         }

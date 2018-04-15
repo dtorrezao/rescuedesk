@@ -8,7 +8,6 @@ namespace RescueDesk.Models
 {
     public class Pedido
     {
-
         public int idpedido { get; set; }
         public string assunto { get; set; }
         public string descricao { get; set; }

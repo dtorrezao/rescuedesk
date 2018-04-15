@@ -1,4 +1,5 @@
-﻿using RescueDesk.Services;
+﻿using RescueDesk.Models;
+using RescueDesk.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +14,81 @@ namespace RescueDesk.Controllers
         public ActionResult Index()
         {
             AddressService addressService = new AddressService();
-                
+
             return View(addressService.ObterLocalidades());
+        }
+
+        // GET: Localidades/Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
+
+        // GET: Localidades/Create
+        public ActionResult Create()
+        {
+            Localidade localidade = new Localidade();
+
+            return View(localidade);
+        }
+
+        // POST: Localidades/Create
+        [HttpPost]
+        public ActionResult Create(Localidade localidade)
+        {
+            AddressService addressService = new AddressService();
+            if (addressService.CreateLocalidade(localidade))
+            {
+                return this.RedirectToAction("Index");
+            }
+            else
+            {
+                return View(localidade);
+            }
+        }
+
+        // GET: Localidades/Edit/5
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        // POST: Localidades/Edit/5
+        [HttpPost]
+        public ActionResult Edit(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add update logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: Localidades/Delete/5
+        public ActionResult Delete(int id)
+        {
+            return View();
+        }
+
+        // POST: Localidades/Delete/5
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
     }
 }
