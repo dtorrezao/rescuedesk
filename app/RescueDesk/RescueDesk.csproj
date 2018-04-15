@@ -159,6 +159,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="Controllers\DepartamentosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocalidadesController.cs" />
     <Compile Include="Controllers\PedidosController.cs" />
@@ -166,6 +167,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\Departamento.cs" />
     <Compile Include="Models\enums\prioridade.cs" />
     <Compile Include="Models\Localidade.cs" />
     <Compile Include="Models\Pedido.cs" />
@@ -173,6 +175,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AddressService.cs" />
     <Compile Include="Services\ClientesService.cs" />
+    <Compile Include="Services\DepartamentosService.cs" />
     <Compile Include="Services\PedidosService.cs" />
     <Compile Include="Services\UtilizadorService.cs" />
   </ItemGroup>
@@ -235,6 +238,7 @@
     <Content Include="Views\Localidades\Index.cshtml" />
     <Content Include="Views\Localidades\Create.cshtml" />
     <Content Include="Views\Localidades\Edit.cshtml" />
+    <Content Include="Views\Departamentos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

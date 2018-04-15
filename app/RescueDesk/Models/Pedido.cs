@@ -13,7 +13,6 @@ namespace RescueDesk.Models
         public string assunto { get; set; }
         public string descricao { get; set; }
         public int idatividade { get; set; }
-        [DisplayFormat(DataFormatString ="{0:dd-MM-yyyy hh:mm}",ApplyFormatInEditMode =true)]
         public DateTime dtpedido { get; set; }
         public DateTime dtlido { get; set; }
         public DateTime dtmarcado { get; set; }
