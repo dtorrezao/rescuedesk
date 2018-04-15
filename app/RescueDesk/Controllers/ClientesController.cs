@@ -36,7 +36,7 @@ namespace RescueDesk.Controllers
             var AvailableAddress = new List<SelectListItem>();
             foreach (var item in address.ObterLocalidades())
             {
-                AvailableAddress.Add(new SelectListItem() { Text = item.codpostal + " - " + item.localidade, Value = item.codpostal });
+                AvailableAddress.Add(new SelectListItem() { Text = item.codpostal + " - " + item.nomeLocalidade, Value = item.codpostal });
             }
             ViewBag.AvailableAddress = AvailableAddress;
 
