@@ -48,24 +48,25 @@ namespace RescueDesk.Controllers
         }
 
         // GET: Localidades/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            return View();
+            AddressService addressService = new AddressService();
+
+            return View(addressService.ObterLocalidade(id));
         }
 
         // POST: Localidades/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Localidade localidade, string oldID)
         {
-            try
+            AddressService addressService = new AddressService();
+            if (addressService.UpdateLocalidade(localidade, oldID))
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                return this.RedirectToAction("Index");
             }
-            catch
+            else
             {
-                return View();
+                return View(localidade);
             }
         }
 
