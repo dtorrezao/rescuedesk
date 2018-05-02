@@ -1,4 +1,5 @@
-﻿using RescueDesk.Services;
+﻿using RescueDesk.Models;
+using RescueDesk.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,44 +28,47 @@ namespace RescueDesk.Controllers
         // GET: Departamentos/Create
         public ActionResult Create()
         {
-            return View();
+            DepartamentosService servico = new DepartamentosService();
+
+            return View(servico.ObterDepartamentoDefault());
         }
 
         // POST: Departamentos/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Departamento departamento)
         {
-            try
+            DepartamentosService servico = new DepartamentosService();
+            if (servico.CreateDepartamento(departamento))
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                return this.RedirectToAction("Index");
             }
-            catch
+            else
             {
-                return View();
+                return View(departamento);
             }
         }
 
         // GET: Departamentos/Edit/5
+
         public ActionResult Edit(int id)
         {
-            return View();
+            DepartamentosService servico = new DepartamentosService();
+
+            return View(servico.ObterDepartamento(id));
         }
 
         // POST: Departamentos/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Departamento departamento)
         {
-            try
+            DepartamentosService servico = new DepartamentosService();
+            if (servico.UpdateDepartamento(departamento))
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                return this.RedirectToAction("Index");
             }
-            catch
+            else
             {
-                return View();
+                return View(departamento);
             }
         }
 
