@@ -186,8 +186,25 @@
     <Compile Include="Services\UtilizadorService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\animate.css" />
+    <Content Include="Content\bootstrap-select.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\cs-skin-elastic.css" />
+    <Content Include="Content\flag-icon.min.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\lib\chosen\chosen-sprite%402x.png" />
+    <Content Include="Content\lib\chosen\chosen-sprite.png" />
+    <Content Include="Content\lib\chosen\chosen.css" />
+    <Content Include="Content\lib\chosen\chosen.min.css" />
+    <Content Include="Content\lib\datatable\buttons.bootstrap.min.css" />
+    <Content Include="Content\lib\datatable\buttons.dataTables.min.css" />
+    <Content Include="Content\lib\datatable\dataTables.bootstrap.min.css" />
+    <Content Include="Content\lib\vector-map\jqvmap.min.css" />
+    <Content Include="Content\normalize.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\themify-icons.css" />
+    <Content Include="Content\variables.css" />
     <Content Include="docs\MySqlCommand.xml" />
     <Content Include="docs\MySqlCommandBuilder.xml" />
     <Content Include="docs\MySqlConnection.xml" />
@@ -200,26 +217,60 @@
     <Content Include="docs\MySqlParameterCollection.xml" />
     <Content Include="docs\MySqlTransaction.xml" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\codropsicons\codropsicons.svg" />
+    <Content Include="fonts\codropsicons\index.html" />
+    <Content Include="fonts\codropsicons\license.txt" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\icomoon\icomoon.svg" />
+    <Content Include="fonts\icomoon\index.html" />
+    <Content Include="fonts\index.html" />
+    <Content Include="fonts\themify.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\style.css.map" />
+    <Content Include="fonts\codropsicons\codropsicons.eot" />
+    <Content Include="fonts\codropsicons\codropsicons.ttf" />
+    <Content Include="fonts\codropsicons\codropsicons.woff" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\icomoon\icomoon.eot" />
+    <Content Include="fonts\icomoon\icomoon.ttf" />
+    <Content Include="fonts\icomoon\icomoon.woff" />
+    <Content Include="fonts\themify.eot" />
+    <Content Include="fonts\themify.ttf" />
+    <Content Include="fonts\themify.woff" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\chart-js\Chart.bundle.js" />
+    <Content Include="Scripts\chart-js\chartjs-init.js" />
+    <Content Include="Scripts\dashboard.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\plugins.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\_references.js" />
+    <Content Include="Scripts\widgets.js" />
+    <None Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -253,6 +304,9 @@
     <Content Include="Views\Departamentos\Edit.cshtml" />
     <Content Include="Views\Localidades\Delete.cshtml" />
     <Content Include="Views\Departamentos\Delete.cshtml" />
+    <Content Include="Views\Shared\_BackOffice.cshtml" />
+    <Content Include="Views\Shared\BackOffice\_NavBar.cshtml" />
+    <Content Include="Views\Shared\BackOffice\_Header.cshtml" />
     <Content Include="Views\TipoUtilizador\Index.cshtml" />
     <Content Include="Views\TipoUtilizador\Create.cshtml" />
     <Content Include="Views\TipoUtilizador\Edit.cshtml" />
@@ -262,12 +316,10 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

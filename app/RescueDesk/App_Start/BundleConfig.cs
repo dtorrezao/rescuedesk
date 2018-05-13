@@ -26,6 +26,38 @@ namespace RescueDesk
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/BackOffice").Include(
+                      "~/Content/animate.css",
+                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-select.css",
+                      "~/Content/cs-skin-elastic.css",
+                      "~/Content/flag-icon.min.css",
+                      "~/Content/font-awesome.min.css",
+                      "~/Content/normalize.css",
+                      "~/Content/style.css",
+                      "~/Content/themify-icons.css",
+                      "~/Content/variables.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/BackOffice").Include(
+                        "~/Scripts/jquery-2.1.4.min.js",
+                        "~/Scripts/plugins.js",
+                        "~/Scripts/main.js",
+                        "~/Scripts/chart-js/Chart.bundle.js",
+                       "~/Scripts/data-table/datatables.min.js",
+                       "~/Scripts/data-table/dataTables.bootstrap.min.js",
+                       "~/Scripts/data-table/dataTables.buttons.min.js",
+                       "~/Scripts/data-table/buttons.bootstrap.min.js",
+                       "~/Scripts/data-table/jszip.min.js",
+                       "~/Scripts/data-table/pdfmake.min.js",
+                       "~/Scripts/data-table/vfs_fonts.js",
+                       "~/Scripts/data-table/buttons.html5.min.js",
+                       "~/Scripts/data-table/buttons.print.min.js",
+                       "~/Scripts/data-table/buttons.colVis.min.js",
+                       "~/Scripts/data-table/datatables-init.js"
+                        //"~/Scripts/dashboard.js",
+                        //"~/Scripts/widgets.js"
+                        ));
         }
     }
 }
