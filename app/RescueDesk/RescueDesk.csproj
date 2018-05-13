@@ -248,6 +248,8 @@
     <Content Include="Views\Atividade\Create.cshtml" />
     <Content Include="Views\Departamentos\Create.cshtml" />
     <Content Include="Views\Departamentos\Edit.cshtml" />
+    <Content Include="Views\Localidades\Delete.cshtml" />
+    <Content Include="Views\Departamentos\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

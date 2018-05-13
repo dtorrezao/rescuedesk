@@ -56,7 +56,7 @@ namespace RescueDesk.Services
         public Localidade ObterLocalidade(string id)
         {
             this.Conn.Open();
-            MySqlDataAdapter cmd1 = new MySqlDataAdapter("Select * from localidades where codpostal='" + id.ToString() + "'", this.Conn);
+            MySqlDataAdapter cmd1 = new MySqlDataAdapter("Select * from localidades where codpostal='" + id + "'", this.Conn);
             DataTable dados1 = new DataTable();
             cmd1.Fill(dados1);
             this.Conn.Close();
@@ -66,6 +66,15 @@ namespace RescueDesk.Services
                 return localidade;
             }
             return null;
+        }
+
+        public bool DeleteLocalidade(string id)
+        {
+            this.Conn.Open();
+            MySqlCommand cmd = new MySqlCommand("DELETE FROM localidades where codpostal='" + id + "'", this.Conn);
+            int resultados = cmd.ExecuteNonQuery();
+            this.Conn.Close();
+            return resultados > 0;
         }
 
         private Localidade ParseLocalidade(DataRow linha)

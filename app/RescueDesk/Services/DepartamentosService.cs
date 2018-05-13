@@ -79,6 +79,17 @@ namespace RescueDesk.Services
             return resultados > 0;
         }
 
+        public bool DeleteDepartamentos(int id)
+        {
+            this.Conn.Open();
+            MySqlCommand cmd = new MySqlCommand("DELETE FROM departamentos where iddept='" + id.ToString() + "'", this.Conn);
+            int resultados = cmd.ExecuteNonQuery();
+            this.Conn.Close();
+            return resultados > 0;
+        }
+
+
+
         private static Departamento ParseDepartamento(DataRow linha)
         {
 

@@ -71,24 +71,25 @@ namespace RescueDesk.Controllers
         }
 
         // GET: Localidades/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
-            return View();
+            AddressService addressService = new AddressService();
+
+            return View(addressService.ObterLocalidade(id));
         }
 
         // POST: Localidades/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(string codpostal)
         {
-            try
+            AddressService addressService = new AddressService();
+            if (addressService.DeleteLocalidade(codpostal))
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                return this.RedirectToAction("Index");
             }
-            catch
+            else
             {
-                return View();
+                return RedirectToAction("Delete", new { id = codpostal });
             }
         }
     }
