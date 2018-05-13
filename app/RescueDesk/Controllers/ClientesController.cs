@@ -24,21 +24,9 @@ namespace RescueDesk.Controllers
             UtilizadorService utilizadorService = new UtilizadorService();
             AddressService address = new AddressService();
 
-            //lsitar emails disponiveis
-            var AvailableEmails = new List<SelectListItem>();
-            foreach (var item in utilizadorService.ObterUtilizadores())
-            {
-                AvailableEmails.Add(new SelectListItem() { Text = item.email, Value = item.email });
-            }
-            ViewBag.AvailableEmails = AvailableEmails;
+            ListaUtilizadores(utilizadorService);
 
-            //listar moradas disponiveis
-            var AvailableAddress = new List<SelectListItem>();
-            foreach (var item in address.ObterLocalidades())
-            {
-                AvailableAddress.Add(new SelectListItem() { Text = item.codpostal + " - " + item.nomeLocalidade, Value = item.codpostal });
-            }
-            ViewBag.AvailableAddress = AvailableAddress;
+            ListaEndereços(address);
 
             return View(servico.ObterClienteDefault());
         }
@@ -53,6 +41,12 @@ namespace RescueDesk.Controllers
             }
             else
             {
+                UtilizadorService utilizadorService = new UtilizadorService();
+                AddressService address = new AddressService();
+
+                ListaUtilizadores(utilizadorService);
+                ListaEndereços(address);
+
                 return View(cliente);
             }
         }
@@ -60,6 +54,11 @@ namespace RescueDesk.Controllers
         public ActionResult Edit(int id)
         {
             ClientesService servico = new ClientesService();
+            UtilizadorService utilizadorService = new UtilizadorService();
+            AddressService address = new AddressService();
+
+            ListaUtilizadores(utilizadorService);
+            ListaEndereços(address);
 
             return View(servico.ObterCliente(id));
         }
@@ -74,8 +73,36 @@ namespace RescueDesk.Controllers
             }
             else
             {
+                UtilizadorService utilizadorService = new UtilizadorService();
+                AddressService address = new AddressService();
+
+                ListaUtilizadores(utilizadorService);
+                ListaEndereços(address);
+
                 return View(cliente);
             }
+        }
+
+        private void ListaUtilizadores(UtilizadorService utilizadorService)
+        {
+            //lsitar emails disponiveis
+            var AvailableEmails = new List<SelectListItem>();
+            foreach (var item in utilizadorService.ObterUtilizadores())
+            {
+                AvailableEmails.Add(new SelectListItem() { Text = item.email, Value = item.email });
+            }
+            ViewBag.AvailableEmails = AvailableEmails;
+        }
+
+        private void ListaEndereços(AddressService address)
+        {
+            //listar moradas disponiveis
+            var AvailableAddress = new List<SelectListItem>();
+            foreach (var item in address.ObterLocalidades())
+            {
+                AvailableAddress.Add(new SelectListItem() { Text = item.codpostal + " - " + item.nomeLocalidade, Value = item.codpostal });
+            }
+            ViewBag.AvailableAddress = AvailableAddress;
         }
     }
 }

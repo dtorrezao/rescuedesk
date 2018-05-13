@@ -1,9 +1,4 @@
-﻿
-@{
-    ViewBag.Title = "_BackOffice";
-}
-
-<!doctype html>
+﻿<!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
@@ -19,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="favicon.ico">
     @Styles.Render("~/Content/BackOffice")
+
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 </head>
@@ -34,24 +30,8 @@
         @Html.Partial("BackOffice/_Header")
         <!-- /header -->
         <!-- Header-->
-        <div class="breadcrumbs">
-            <div class="col-sm-4">
-                <div class="page-header float-left">
-                    <div class="page-title">
-                        <h1>Dashboard</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-8">
-                <div class="page-header float-right">
-                    <div class="page-title">
-                        <ol class="breadcrumb text-right">
-                            <li class="active">Dashboard</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @Html.Partial("BackOffice/_Breadcrumbs")
+
         <div class="content mt-3">
             <div class="col-md-12">
                 @RenderBody()
@@ -63,5 +43,11 @@
     @Scripts.Render("~/bundles/BackOffice")
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
     @RenderSection("scripts", required: false)
+
+    <script>
+        jQuery(document).ready(function () {
+            jQuery(".standardSelect").chosen({});
+        });
+    </script>
 </body>
 </html>

@@ -36,7 +36,11 @@ namespace RescueDesk
                       "~/Content/font-awesome.min.css",
                       "~/Content/normalize.css",
                       "~/Content/style.css",
+                      "~/Content/lib/datatable/buttons.bootstrap.min.css",
+                      "~/Content/lib/datatable/buttons.dataTables.min.css",
+                      "~/Content/lib/datatable/dataTables.bootstrap.min.css",
                       "~/Content/themify-icons.css",
+                      "~/Content/lib/chosen/chosen.min.css",
                       "~/Content/variables.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/BackOffice").Include(
@@ -54,7 +58,8 @@ namespace RescueDesk
                        "~/Scripts/data-table/buttons.html5.min.js",
                        "~/Scripts/data-table/buttons.print.min.js",
                        "~/Scripts/data-table/buttons.colVis.min.js",
-                       "~/Scripts/data-table/datatables-init.js"
+                       "~/Scripts/data-table/datatables-init.js",
+                       "~/Scripts/chosen/chosen.jquery.min.js"
                         //"~/Scripts/dashboard.js",
                         //"~/Scripts/widgets.js"
                         ));
