@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 11-Fev-2018 às 17:29
+-- Generation Time: 13-Maio-2018 às 18:44
 -- Versão do servidor: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -34,7 +34,7 @@ CREATE TABLE `clientes` (
   `morada` varchar(128) NOT NULL,
   `codpostal` varchar(8) NOT NULL,
   `contacto` int(9) NOT NULL,
-  `email` varchar(64) NOT NULL,
+  `email` varchar(64) DEFAULT NULL,
   `obs` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -43,8 +43,18 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`nrcontribuinte`, `nome`, `morada`, `codpostal`, `contacto`, `email`, `obs`) VALUES
+(0, 'Pedro', 'Rua da quinta nova Lote 38 2º Dto', '2130-234', 934235060, 'adminstrador1@gmail.com', ''),
+(23, '123', '123', '2120-011', 123, 'adminstrador1@gmail.com', '123'),
+(5667, '435', '234', '2120-011', 234, 'adminstrador1@gmail.com', '234'),
+(123123, '123123', '1231231', '2120-011', 12313, 'adminstrador1@gmail.com', '12313'),
+(234123, '123', '123', '2120-011', 123, 'adminstrador1@gmail.com', '123'),
+(6234524, '123', '123', '2120-011', 123, 'adminstrador1@gmail.com', '123'),
+(12312334, '123123', '123123', '2120-011', 123123, 'adminstrador1@gmail.com', '123'),
 (135987321, 'José', 'Rua Jacinto', '2135-907', 984646684, 'cliente2@gmail.com', NULL),
-(657546321, 'Manuel', 'Rua Jacinto', '2135-907', 973154645, 'cliente1@gmail.com', NULL);
+(248023993, 'Pedro', 'Torrezao', '2120-011', 934235069, 'adminstrador1@gmail.com', 'asd'),
+(543234234, 'dsfad', 'asda', '2120-011', 1231, 'adminstrador1@gmail.com', 'asd'),
+(657546321, 'Manuel', 'Rua Jacinto', '2135-907', 973154645, 'cliente1@gmail.com', NULL),
+(999666333, 'Carlão', 'Carlão das Pitalhadas', '4760-011', 929292333, 'funcionario2@gmail.com', '');
 
 -- --------------------------------------------------------
 
@@ -113,10 +123,12 @@ CREATE TABLE `localidades` (
 --
 
 INSERT INTO `localidades` (`codpostal`, `localidade`) VALUES
+('2120-011', 'Salvaterra de Magos'),
 ('2120-111', 'Salvaterra de Magos'),
+('2130-234', 'Benavente'),
 ('2135-021', 'Porto Alto'),
 ('2135-907', 'Samora Correia'),
-('4760-007', 'Vila Nova de Famalicão');
+('4760-011', 'Vila Nova de Famalicão');
 
 -- --------------------------------------------------------
 
@@ -200,6 +212,7 @@ INSERT INTO `tipoutilizador` (`idtipo`, `tipouser`) VALUES
 CREATE TABLE `utilizadores` (
   `email` varchar(64) NOT NULL,
   `password` varchar(16) NOT NULL,
+  `nrcontribuinte` int(9) DEFAULT NULL,
   `foto` text,
   `idtipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -208,14 +221,14 @@ CREATE TABLE `utilizadores` (
 -- Extraindo dados da tabela `utilizadores`
 --
 
-INSERT INTO `utilizadores` (`email`, `password`, `foto`, `idtipo`) VALUES
-('adminstrador1@gmail.com', 'adminstrador1', NULL, 1),
-('adminstrador2@gmail.com', 'adminstrador2', NULL, 1),
-('cliente1@gmail.com', 'cliente1', NULL, 3),
-('cliente2@gmail.com', 'cliente2', NULL, 3),
-('funcionario1@gmail.com', 'funcionario1', NULL, 2),
-('funcionario2@gmail.com', 'funcionario2', NULL, 2),
-('funcionario3@gmail.com', 'funcionario3', NULL, 2);
+INSERT INTO `utilizadores` (`email`, `password`, `nrcontribuinte`, `foto`, `idtipo`) VALUES
+('adminstrador1@gmail.com', 'adminstrador1', NULL, NULL, 1),
+('adminstrador2@gmail.com', 'adminstrador2', NULL, NULL, 1),
+('cliente1@gmail.com', 'cliente1', NULL, NULL, 3),
+('cliente2@gmail.com', 'cliente2', NULL, NULL, 3),
+('funcionario1@gmail.com', 'funcionario1', NULL, NULL, 2),
+('funcionario2@gmail.com', 'funcionario2', NULL, NULL, 2),
+('funcionario3@gmail.com', 'funcionario3', NULL, NULL, 2);
 
 --
 -- Indexes for dumped tables
@@ -276,7 +289,8 @@ ALTER TABLE `tipoutilizador`
 --
 ALTER TABLE `utilizadores`
   ADD PRIMARY KEY (`email`),
-  ADD KEY `tipouser` (`idtipo`);
+  ADD KEY `tipouser` (`idtipo`),
+  ADD KEY `nrcontribuinte` (`nrcontribuinte`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -292,7 +306,7 @@ ALTER TABLE `departamentos`
 -- AUTO_INCREMENT for table `funcionarios`
 --
 ALTER TABLE `funcionarios`
-  MODIFY `idfuncionario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idfuncionario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `pedidos`
@@ -320,7 +334,6 @@ ALTER TABLE `tipoutilizador`
 -- Limitadores para a tabela `clientes`
 --
 ALTER TABLE `clientes`
-  ADD CONSTRAINT `clientes_ibfk_1` FOREIGN KEY (`email`) REFERENCES `utilizadores` (`email`),
   ADD CONSTRAINT `clientes_ibfk_2` FOREIGN KEY (`codpostal`) REFERENCES `localidades` (`codpostal`);
 
 --
@@ -343,7 +356,8 @@ ALTER TABLE `pedidos`
 -- Limitadores para a tabela `utilizadores`
 --
 ALTER TABLE `utilizadores`
-  ADD CONSTRAINT `utilizadores_ibfk_1` FOREIGN KEY (`idtipo`) REFERENCES `tipoutilizador` (`idtipo`);
+  ADD CONSTRAINT `utilizadores_ibfk_1` FOREIGN KEY (`idtipo`) REFERENCES `tipoutilizador` (`idtipo`),
+  ADD CONSTRAINT `utilizadores_ibfk_2` FOREIGN KEY (`nrcontribuinte`) REFERENCES `clientes` (`nrcontribuinte`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

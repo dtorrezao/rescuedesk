@@ -21,10 +21,7 @@ namespace RescueDesk.Controllers
         public ActionResult Create()
         {
             ClientesService servico = new ClientesService();
-            UtilizadorService utilizadorService = new UtilizadorService();
             AddressService address = new AddressService();
-
-            ListaUtilizadores(utilizadorService);
 
             ListaEndereços(address);
 
@@ -41,10 +38,8 @@ namespace RescueDesk.Controllers
             }
             else
             {
-                UtilizadorService utilizadorService = new UtilizadorService();
                 AddressService address = new AddressService();
-
-                ListaUtilizadores(utilizadorService);
+                
                 ListaEndereços(address);
 
                 return View(cliente);
@@ -54,10 +49,8 @@ namespace RescueDesk.Controllers
         public ActionResult Edit(int id)
         {
             ClientesService servico = new ClientesService();
-            UtilizadorService utilizadorService = new UtilizadorService();
             AddressService address = new AddressService();
-
-            ListaUtilizadores(utilizadorService);
+            
             ListaEndereços(address);
 
             return View(servico.ObterCliente(id));
@@ -73,10 +66,8 @@ namespace RescueDesk.Controllers
             }
             else
             {
-                UtilizadorService utilizadorService = new UtilizadorService();
                 AddressService address = new AddressService();
-
-                ListaUtilizadores(utilizadorService);
+                
                 ListaEndereços(address);
 
                 return View(cliente);
