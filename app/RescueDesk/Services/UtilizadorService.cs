@@ -29,6 +29,35 @@ namespace RescueDesk.Services
 
         }
 
+        public bool CreateUtilizador(Utilizador User)
+        {
+            string query = "INSERT INTO `utilizadores` " +
+               " (`email`, `password`,`foto`, `idtipo`) " +
+               " VALUES ('" + User.email + "','" + User.password + "','" + User.foto + "','" + User.idtipo +"')";
+            this.Conn.Open();
+            MySqlCommand cmd = new MySqlCommand(query, this.Conn);
+            int resultados = cmd.ExecuteNonQuery();
+            this.Conn.Close();
+            return resultados > 0;
+        }
+
+
+        public Utilizador ObterUtilizador(string id)
+        {
+            this.Conn.Open();
+            MySqlDataAdapter cmd1 = new MySqlDataAdapter("Select * from utilizadores where email='" + id + "'", this.Conn);
+            DataTable dados1 = new DataTable();
+            cmd1.Fill(dados1);
+            this.Conn.Close();
+            foreach (DataRow linha in dados1.Rows)
+            {
+                Utilizador utilizador = ParseUtilizador(linha);
+                return utilizador;
+            }
+            return null;
+        }
+
+
         private Utilizador ParseUtilizador(DataRow linha)
         {
                Utilizador utilizador = new Utilizador();

@@ -165,6 +165,7 @@
     <Compile Include="Controllers\LocalidadesController.cs" />
     <Compile Include="Controllers\PedidosController.cs" />
     <Compile Include="Controllers\TipoUtilizadorController.cs" />
+    <Compile Include="Controllers\UtilizadoresController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -325,6 +326,8 @@
     <Content Include="Views\TipoUtilizador\Create.cshtml" />
     <Content Include="Views\TipoUtilizador\Edit.cshtml" />
     <Content Include="Views\TipoUtilizador\Delete.cshtml" />
+    <Content Include="Views\Utilizadores\Index.cshtml" />
+    <Content Include="Views\Utilizadores\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
