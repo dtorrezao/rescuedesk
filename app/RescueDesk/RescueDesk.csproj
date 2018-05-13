@@ -1033,6 +1033,10 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\chart-js\Chart.bundle.js" />
     <Content Include="Scripts\chart-js\chartjs-init.js" />
+    <Content Include="Scripts\chosen\chosen.jquery.js" />
+    <Content Include="Scripts\chosen\chosen.jquery.min.js" />
+    <Content Include="Scripts\chosen\chosen.proto.js" />
+    <Content Include="Scripts\chosen\chosen.proto.min.js" />
     <Content Include="Scripts\dashboard.js" />
     <Content Include="Scripts\data-table\buttons.bootstrap.min.js" />
     <Content Include="Scripts\data-table\buttons.colVis.min.js" />

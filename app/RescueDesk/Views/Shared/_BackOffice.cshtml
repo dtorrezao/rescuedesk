@@ -43,5 +43,11 @@
     @Scripts.Render("~/bundles/BackOffice")
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
     @RenderSection("scripts", required: false)
+
+    <script>
+        jQuery(document).ready(function () {
+            jQuery(".standardSelect").chosen({});
+        });
+    </script>
 </body>
 </html>
