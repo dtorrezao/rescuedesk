@@ -10,6 +10,13 @@
 
     $('#bootstrap-data-table').DataTable({
         lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]],
+        language: {
+            url: "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese.json"
+        },
+        columnDefs: [{
+            "targets": 'no-sort',
+            "orderable": false,
+        }]
     });
 
 
