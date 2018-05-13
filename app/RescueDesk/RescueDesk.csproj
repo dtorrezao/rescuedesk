@@ -250,6 +250,7 @@
     <Content Include="Views\Departamentos\Edit.cshtml" />
     <Content Include="Views\Localidades\Delete.cshtml" />
     <Content Include="Views\Departamentos\Delete.cshtml" />
+    <Content Include="Views\Shared\_BackOffice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
