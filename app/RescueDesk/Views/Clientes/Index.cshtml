@@ -1,69 +1,90 @@
 ﻿@model IEnumerable<RescueDesk.Models.Cliente>
-
 @{
     ViewBag.Title = "Index";
 }
-
 <h2>Index</h2>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nrcontribuinte)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.morada)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.codpostal)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.contacto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.obs)
-        </th>
-        <th></th>
-    </tr>
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong class="card-title">Clientes</strong>
+                </div>
+                <div class="card-body">
+                    <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.nrcontribuinte)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.nome)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.morada)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.codpostal)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.contacto)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.email)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.obs)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.nrcontribuinte)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.morada)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.codpostal)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.contacto)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.obs)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.nrcontribuinte }) |
+                                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.nrcontribuinte })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nrcontribuinte)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.morada)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.codpostal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.contacto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.obs)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new {  id=item.nrcontribuinte  }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.nrcontribuinte })
-        </td>
-    </tr>
+    </div>
+</div><!-- .animated -->
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#bootstrap-data-table-export').DataTable();
+        });
+    </script>
 }
-
-</table>
