@@ -1109,9 +1109,11 @@
     <Content Include="Views\TipoUtilizador\Create.cshtml" />
     <Content Include="Views\TipoUtilizador\Edit.cshtml" />
     <Content Include="Views\TipoUtilizador\Delete.cshtml" />
+    <Content Include="Views\Shared\BackOffice\_Breadcrumbs.cshtml" />
     <Content Include="Views\Utilizadores\Index.cshtml" />
     <Content Include="Views\Utilizadores\Create.cshtml" />
-    <Content Include="Views\Shared\BackOffice\_Breadcrumbs.cshtml" />
+    <Content Include="Views\Utilizadores\Edit.cshtml" />
+    <Content Include="Views\Utilizadores\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -18,6 +18,9 @@
             @Html.DisplayNameFor(model => model.password)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.nrcontribuinte)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.foto)
         </th>
         <th>
@@ -35,15 +38,18 @@
             @Html.DisplayFor(modelItem => item.password)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.nrcontribuinte)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.foto)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.idtipo)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Edit", "Edit", new { id=item.email }  ) |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Delete", "Delete", new {  id=item.email  })
         </td>
     </tr>
 }

@@ -48,48 +48,51 @@ namespace RescueDesk.Controllers
         }
 
 
-        // GET: Utilizadores/Edit/5
-        //public ActionResult Edit(string id)
-        //{
-        //    UtilizadorService UtilizadorService = new UtilizadorService();
-        //    return View(UtilizadorService.ObterUtilizador(id));
-        //}
-
-        // POST: Atividade/Edit/5
-        //[HttpPost]
-        //public ActionResult Edit(Utilizador user)
-        //{
-        //    UtilizadorService UtilizadorService = new UtilizadorService();
-
-        //    if (UtilizadorService.UpdateUtilizador(user))
-        //    {
-        //        return this.RedirectToAction("Index");
-        //    }
-        //    else
-        //    {
-        //        return View(user);
-        //    }
-        //}
-
-        // GET: Utilizadores/Delete/5
-        public ActionResult Delete(int id)
+        //GET: Utilizadores/Edit/5
+        public ActionResult Edit(string id)
         {
-            return View();
+            UtilizadorService UtilizadorService = new UtilizadorService();
+
+            return View(UtilizadorService.ObterUtilizador(id));
         }
 
-        // POST: Utilizadores/Delete/5
+        // POST: Atividade/Edit/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Edit(Utilizador user)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            UtilizadorService UtilizadorService = new UtilizadorService();
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (UtilizadorService.UpdateUtilizador(user))
             {
-                return View();
+                return this.RedirectToAction("Index");
+            }
+            else
+            {
+                return View(user);
+            }
+        }
+
+        // GET: Atividade/Delete/5
+        public ActionResult Delete(string id)
+        {
+            UtilizadorService UtilizadorService = new UtilizadorService();
+
+            return View(UtilizadorService.ObterUtilizador(id));
+        }
+
+        // POST: Atividade/Delete/5
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(string email)
+        {
+            UtilizadorService UtilizadorService = new UtilizadorService();
+
+            if (UtilizadorService.DeleteUtilizador(email))
+            {
+                return this.RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Delete", new { id = email });
             }
         }
     }
