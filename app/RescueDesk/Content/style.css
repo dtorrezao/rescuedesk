@@ -825,7 +825,7 @@ textarea {
   width: 100%; }
 
 aside.left-panel {
-  background: #272c33;
+  background: #161b1d;
   display: table-cell;
   height: 100vh;
   min-height: 100%;
@@ -835,7 +835,7 @@ aside.left-panel {
   transition: width 0.3s ease; }
 
 .navbar {
-  background: #272c33;
+  background: #161b1d;
   border-radius: 0;
   border: none;
   display: block;
@@ -1125,19 +1125,19 @@ header.fixed-top {
   position: inherit; }
 
 .menutoggle {
-  background: #e74c3c;
+  background: #0096ff;
   border-radius: 50%;
   color: #fff !important;
   cursor: pointer;
-  font-size: 18px;
-  height: 43px;
-  line-height: 44px;
-  margin: -2px 20px 0 -57px;
+  font-size: 14px;
+  height: 30px;
+  line-height: 29px;
+  margin: 4px 20px 0 -50px;
   text-align: center;
-  width: 43px; }
+  width: 30px; }
 
 .open .menutoggle i:before {
-  content: "\f0a4"; }
+  content: "\f101"; }
 
 .search-trigger {
   background: transparent;
