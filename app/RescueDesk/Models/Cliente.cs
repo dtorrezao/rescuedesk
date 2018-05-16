@@ -11,7 +11,6 @@ namespace RescueDesk.Models
         [DisplayName("Nº Contribuinte")]
         public int nrcontribuinte { get; set; }
         [DisplayName("Nome")]
-
         public string nome { get; set; }
         [DisplayName("Morada")]
         public string morada { get; set; }

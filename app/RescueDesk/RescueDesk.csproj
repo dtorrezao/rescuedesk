@@ -161,6 +161,7 @@
     <Compile Include="Controllers\AtividadeController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\DepartamentosController.cs" />
+    <Compile Include="Controllers\FuncionariosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocalidadesController.cs" />
     <Compile Include="Controllers\PedidosController.cs" />
@@ -173,6 +174,7 @@
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Departamento.cs" />
     <Compile Include="Models\enums\prioridade.cs" />
+    <Compile Include="Models\Funcionario.cs" />
     <Compile Include="Models\Localidade.cs" />
     <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\TipoUtilizador.cs" />
@@ -182,6 +184,7 @@
     <Compile Include="Services\AtividadeService.cs" />
     <Compile Include="Services\ClientesService.cs" />
     <Compile Include="Services\DepartamentosService.cs" />
+    <Compile Include="Services\FuncionariosService.cs" />
     <Compile Include="Services\PedidosService.cs" />
     <Compile Include="Services\TipoUtilizadorService.cs" />
     <Compile Include="Services\UtilizadorService.cs" />
@@ -1117,6 +1120,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Funcionarios\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
