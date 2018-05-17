@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RescueDesk.Models;
+using RescueDesk.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +13,9 @@ namespace RescueDesk.Controllers
         // GET: Funcionarios
         public ActionResult Index()
         {
-            return View();
+            FuncionariosService servico = new FuncionariosService();
+
+            return View(servico.ObterFuncionarios());
         }
 
         // GET: Funcionarios/Details/5
@@ -23,22 +27,23 @@ namespace RescueDesk.Controllers
         // GET: Funcionarios/Create
         public ActionResult Create()
         {
-            return View();
+            Funcionario funcionario = new Funcionario();
+
+            return View(funcionario);
         }
 
-        // POST: Funcionarios/Create
+        // POST: Departamentos/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Funcionario funcionario)
         {
-            try
+            FuncionariosService servico = new FuncionariosService();
+            if (servico.CreateFuncionario(funcionario))
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                return this.RedirectToAction("Index");
             }
-            catch
+            else
             {
-                return View();
+                return View(funcionario);
             }
         }
 

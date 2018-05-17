@@ -1117,10 +1117,11 @@
     <Content Include="Views\Utilizadores\Create.cshtml" />
     <Content Include="Views\Utilizadores\Edit.cshtml" />
     <Content Include="Views\Utilizadores\Delete.cshtml" />
+    <Content Include="Views\Funcionarios\Index.cshtml" />
+    <Content Include="Views\Funcionarios\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Funcionarios\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
