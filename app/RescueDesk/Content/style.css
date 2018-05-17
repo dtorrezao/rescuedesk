@@ -940,7 +940,7 @@ aside.left-panel {
           .navbar .navbar-nav li.menu-item-has-children a:hover:before {
             color: #fff; }
         .navbar .navbar-nav li.menu-item-has-children .sub-menu {
-          background: #272c33;
+          background: #161b1d;
           border: none;
           box-shadow: none;
           overflow-y: hidden;
