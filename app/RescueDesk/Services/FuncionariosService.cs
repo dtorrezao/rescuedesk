@@ -28,6 +28,20 @@ namespace RescueDesk.Services
             return funcionarios;
         }
 
+        public bool CreateFuncionario(Funcionario funcionario)
+        {
+            string query = "INSERT INTO `funcionarios` " +
+               " (`idfuncionario`, `nome`, `morada`, `codpostal`, `iddept`, `cargo`, `contacto`, `email`, `ativo`, `ultlogin`, `obs`) " +
+               " VALUES (NULL, '" + funcionario.nome + "', '" + funcionario.morada  + "', '" + funcionario.codpostal + "', '" + funcionario.iddept + "' , '" +
+               "" + funcionario.cargo + "', '" + funcionario.contacto + "', '" + funcionario.email + "', '' , '' ,'" + funcionario.obs + "')";
+            this.Conn.Open();
+            MySqlCommand cmd = new MySqlCommand(query, this.Conn);
+            int resultados = cmd.ExecuteNonQuery();
+            this.Conn.Close();
+            return resultados > 0;
+        }
+       
+
         private static Funcionario ParseFuncionarios(DataRow linha)
         {
             Funcionario funcionario = new Funcionario();
@@ -35,6 +49,8 @@ namespace RescueDesk.Services
             funcionario.nome = linha["nome"].ToString();
             funcionario.morada = linha["morada"].ToString();
             funcionario.codpostal = linha["codpostal"].ToString();
+            funcionario.iddept = int.Parse(linha["iddept"].ToString());
+            funcionario.cargo = linha["cargo"].ToString();
             funcionario.contacto = int.Parse(linha["contacto"].ToString());
             funcionario.email = linha["email"].ToString();
             funcionario.obs = linha["obs"].ToString();
