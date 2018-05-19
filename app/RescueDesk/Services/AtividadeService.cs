@@ -85,6 +85,5 @@ namespace RescueDesk.Services
             atividade.peso = int.Parse(linha["peso"].ToString());
             return atividade;
         }
-
     }
 }

@@ -1,7 +1,7 @@
 ﻿@model RescueDesk.Models.Cliente
 @{
     ViewBag.Title = "Clientes";
-    ViewBag.SubTitle = "Adicionar";
+    ViewBag.SubTitle = "Editar";
     //listar Moradas disponiveis
     var AvailableAddress = ViewBag.AvailableAddress as List<SelectListItem>;
 
@@ -10,7 +10,7 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(x => x.nrcontribuinte)
+        @Html.HiddenFor(model => model.nrcontribuinte)
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="card">
             <div class="card-body card-block">
