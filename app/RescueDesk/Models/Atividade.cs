@@ -8,7 +8,7 @@ namespace RescueDesk.Models
 {
     public class Atividade
     {
-        [DisplayName("Id Atividade")]
+        [DisplayName("ID")]
         public int idatividade { get; set; }
         [DisplayName("Descrição")]
         public string descricao { get; set; }
