@@ -68,8 +68,8 @@ namespace RescueDesk.Services
             string query = "UPDATE `clientes` ";
             query += "SET `nome` =  '" + cliente.nome + "', " +
                 "`morada` =  '" + cliente.morada + "', " +
-                "`codpostal` =  '" + cliente.codpostal.ToString() + "'," +
-                " `contacto` = '" + cliente.contacto.ToString() + "'," +
+                "`codpostal` =  '" + cliente.codpostal + "'," +
+                " `contacto` = '" + cliente.contacto + "'," +
                 " `email` = '" + cliente.email + "'," +
                 "`obs` = '" + cliente.obs + "' " +
                 "WHERE `clientes`.`nrcontribuinte` = '" + cliente.nrcontribuinte.ToString() + "'";

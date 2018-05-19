@@ -58,7 +58,7 @@ namespace RescueDesk.Services
             string query = "UPDATE `pedidos` ";
             query += "SET `assunto` = '" + pedido.assunto + "', " +
                 "`descricao` =  '" + pedido.descricao + "', " +
-                "`idatividade` =  '" + pedido.idatividade.ToString() + "', " +
+                "`idatividade` =  '" + pedido.idatividade + "', " +
                 "`dtpedido` =  '" + pedido.dtpedido.ToString("yyyy-MM-dd hh:mm:ss") + "'," +
                 " `dtlido` = '" + pedido.dtlido.ToString("yyyy-MM-dd hh:mm:ss") + "'," +
                 " `dtmarcado` = '" + pedido.dtmarcado.ToString("yyyy-MM-dd hh:mm:ss") + "'," +

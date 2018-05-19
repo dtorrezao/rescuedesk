@@ -1119,6 +1119,8 @@
     <Content Include="Views\Utilizadores\Delete.cshtml" />
     <Content Include="Views\Funcionarios\Index.cshtml" />
     <Content Include="Views\Funcionarios\Create.cshtml" />
+    <Content Include="Views\Funcionarios\Edit.cshtml" />
+    <Content Include="Views\Funcionarios\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

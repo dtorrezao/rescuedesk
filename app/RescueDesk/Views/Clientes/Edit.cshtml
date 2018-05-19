@@ -10,6 +10,7 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
+        @Html.HiddenFor(x => x.nrcontribuinte)
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="card">
             <div class="card-body card-block">

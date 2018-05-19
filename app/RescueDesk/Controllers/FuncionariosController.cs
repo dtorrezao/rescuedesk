@@ -27,9 +27,10 @@ namespace RescueDesk.Controllers
         // GET: Funcionarios/Create
         public ActionResult Create()
         {
-            Funcionario funcionario = new Funcionario();
+            FuncionariosService servico = new FuncionariosService();
 
-            return View(funcionario);
+
+            return View(servico.ObterFuncionarioDefault());
         }
 
         // POST: Departamentos/Create
@@ -47,47 +48,45 @@ namespace RescueDesk.Controllers
             }
         }
 
-        // GET: Funcionarios/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            FuncionariosService servico = new FuncionariosService();
+
+            return View(servico.ObterFuncionario(id));
         }
 
-        // POST: Funcionarios/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Funcionario funcionario)
         {
-            try
+            FuncionariosService servico = new FuncionariosService();
+            if (servico.UpdateFuncionario(funcionario))
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                return this.RedirectToAction("Index");
             }
-            catch
+            else
             {
-                return View();
+                return View(funcionario);
             }
         }
 
-        // GET: Funcionarios/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            FuncionariosService servico = new FuncionariosService();
+
+            return View(servico.ObterFuncionario(id));
         }
 
-        // POST: Funcionarios/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int idfuncionario)
         {
-            try
+            FuncionariosService servico = new FuncionariosService();
+            if (servico.DeleteFuncionario(idfuncionario))
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                return this.RedirectToAction("Index");
             }
-            catch
+            else
             {
-                return View();
+                return RedirectToAction("Delete", new { id = idfuncionario });
             }
         }
     }

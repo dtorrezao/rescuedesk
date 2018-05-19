@@ -36,7 +36,7 @@ namespace RescueDesk.Services
                " VALUES ('" + User.email + "','" + User.password + "','" + User.nrcontribuinte + "','" + User.foto + "','" + User.idtipo + "')";
             this.Conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, this.Conn);
-            int resultados = cmd.ExecuteNonQuery();
+         int resultados = cmd.ExecuteNonQuery();
             this.Conn.Close();
             return resultados > 0;
         }
