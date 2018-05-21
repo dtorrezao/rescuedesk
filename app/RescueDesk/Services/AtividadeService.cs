@@ -10,7 +10,7 @@ namespace RescueDesk.Services
 {
     public class AtividadeService
     {
-        private MySqlConnection Conn = new MySqlConnection("server=localhost;database=rescuedesk;username=root;Convert Zero Datetime=True");
+        private MySqlConnection Conn = new MySqlConnection(Utils.ConnectionString);
 
         public List<Atividade> ObterAtividades()
         {

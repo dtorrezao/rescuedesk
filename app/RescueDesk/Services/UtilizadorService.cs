@@ -10,7 +10,7 @@ namespace RescueDesk.Services
 {
     public class UtilizadorService
     {
-        private MySqlConnection Conn = new MySqlConnection("server=localhost;database=rescuedesk;username=root;Convert Zero Datetime=True");
+        private MySqlConnection Conn = new MySqlConnection(Utils.ConnectionString);
 
         public List<Utilizador> ObterUtilizadores()
         {
@@ -26,7 +26,6 @@ namespace RescueDesk.Services
                 Utilizadores.Add(utilizador);
             }
             return Utilizadores;
-
         }
 
         public bool CreateUtilizador(Utilizador User)
