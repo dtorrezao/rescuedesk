@@ -1,39 +1,63 @@
 ﻿@model IEnumerable<RescueDesk.Models.Departamento>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Departamentos";
+    ViewBag.SubTitle = "Listagem";
 }
 
-<h2>Index</h2>
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                @*<div class="card-header">
+                        <strong class="card-title">Listagem</strong>
+                        <div class="fa-hover pull-right"><a href="@Url.Action("Create")"><i class="fa fa-plus-circle"></i> Adicionar</a></div>
+                    </div>*@
+                <div class="card-body">
+                    <div class="row container-fluid">
+                        <div class="col-sm-12 ">
+                            <div class="fa-hover"><a href="@Url.Action("Create")"><i class="fa fa-plus-circle"></i> Adicionar</a></div>
+                        </div>
+                    </div>
+                    <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%;">
+                                    @Html.DisplayNameFor(model => model.iddept)
+                                </th>
+                                <th style="width: 70%;">
+                                    @Html.DisplayNameFor(model => model.dept)
+                                </th>
+                                <th class="no-sort" style="width: 20%;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.iddept)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.dept)
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("Edit", new { id = item.iddept }) " class="btn btn-link">Editar</a>
+                                        <a href="@Url.Action("Delete", new { id = item.iddept }) " class="btn btn-danger">Eliminar</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.iddept)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dept)
-        </th>
-        <th></th>
-    </tr>
+                </div>
+            </div>
+        </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.iddept)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dept)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new {  id=item.iddept  }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.iddept })
-        </td>
-    </tr>
+    </div>
+</div>
+
+@section scripts{
+
+
 }
-
-</table>
