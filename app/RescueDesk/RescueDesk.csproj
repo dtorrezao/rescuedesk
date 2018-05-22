@@ -1122,6 +1122,8 @@
     <Content Include="Views\Funcionarios\Create.cshtml" />
     <Content Include="Views\Funcionarios\Edit.cshtml" />
     <Content Include="Views\Funcionarios\Delete.cshtml" />
+    <Content Include="Views\Utilizadores\Login.cshtml" />
+    <Content Include="Views\Shared\BackOffice\_Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

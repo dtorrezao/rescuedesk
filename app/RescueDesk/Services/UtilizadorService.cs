@@ -35,7 +35,7 @@ namespace RescueDesk.Services
                " VALUES ('" + User.email + "','" + User.password + "','" + User.nrcontribuinte + "','" + User.foto + "','" + User.idtipo + "')";
             this.Conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, this.Conn);
-         int resultados = cmd.ExecuteNonQuery();
+            int resultados = cmd.ExecuteNonQuery();
             this.Conn.Close();
             return resultados > 0;
         }
@@ -44,7 +44,7 @@ namespace RescueDesk.Services
         {
             string query = "UPDATE utilizadores " +
                            "SET password='" + utilizador.password + "', foto = '" + utilizador.foto + "' " +
-                           "WHERE email ='" + utilizador.email+ "'";
+                           "WHERE email ='" + utilizador.email + "'";
             this.Conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, this.Conn);
             int resultados = cmd.ExecuteNonQuery();
@@ -90,6 +90,36 @@ namespace RescueDesk.Services
             utilizador.idtipo = int.Parse(linha["idtipo"].ToString());
 
             return utilizador;
+        }
+
+        public bool VerificaUtilizador(string username, string password)
+        {
+            this.Conn.Open();
+            MySqlDataAdapter cmd1 = new MySqlDataAdapter("SELECT PASSWORD, email FROM utilizadores as u WHERE u.email = '" + username + "'", this.Conn);
+            DataTable dados1 = new DataTable();
+            cmd1.Fill(dados1);
+            this.Conn.Close();
+            foreach (DataRow linha in dados1.Rows)
+            {
+                return (linha["PASSWORD"].ToString() == password) && (username == linha["email"].ToString());
+            }
+
+            return false;
+        }
+
+        public string ObterTipoUser(string username)
+        {
+            this.Conn.Open();
+            MySqlDataAdapter cmd1 = new MySqlDataAdapter("SELECT tp.tipouser FROM utilizadores as u inner join tipoutilizador as tp on tp.idtipo = u.idtipo WHERE u.email = '" + username + "'", this.Conn);
+            DataTable dados1 = new DataTable();
+            cmd1.Fill(dados1);
+            this.Conn.Close();
+            foreach (DataRow linha in dados1.Rows)
+            {
+                return linha["tipouser"].ToString();
+            }
+
+            return "";
         }
     }
 }

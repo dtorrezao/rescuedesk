@@ -5,9 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+
 
 namespace RescueDesk.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class UtilizadoresController : Controller
     {
         // GET: Utilizadores
@@ -46,7 +49,6 @@ namespace RescueDesk.Controllers
                 return View(user);
             }
         }
-
 
         //GET: Utilizadores/Edit/5
         public ActionResult Edit(string id)
@@ -94,6 +96,50 @@ namespace RescueDesk.Controllers
             {
                 return RedirectToAction("Delete", new { id = email });
             }
+        }
+
+        /////
+        [AllowAnonymous]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Login(Utilizador model, string returnUrl)
+        {
+            // https://www.codeproject.com/articles/578374/aplusbeginner-splustutorialplusonpluscustomplusf
+
+            UtilizadorService UtilizadorService = new UtilizadorService();
+            if (UtilizadorService.VerificaUtilizador(model.email, model.password))
+            {
+                FormsAuthentication.SetAuthCookie(model.email, false);
+                if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
+                    && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+                {
+                    return Redirect(returnUrl);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "Password ou utilizador incorrecto");
+            }
+            //}
+
+            return View(model);
+        }
+
+        [AllowAnonymous]
+        public ActionResult LogOff()
+        {
+            FormsAuthentication.SignOut();
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

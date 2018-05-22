@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace RescueDesk.Controllers
 {
+    [Authorize(Roles = "Administrador, Funcionário")] // Todas as acções deste controlador estão disponiveis para os tipos de utlizador
     public class ClientesController : Controller
     {
         // GET: Clientes
