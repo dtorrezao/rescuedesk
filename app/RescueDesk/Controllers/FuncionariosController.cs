@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace RescueDesk.Controllers
 {
-    //[Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "Administrador")]
     public class FuncionariosController : Controller
     {
         // GET: Funcionarios
