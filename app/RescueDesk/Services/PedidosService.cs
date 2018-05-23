@@ -11,7 +11,7 @@ namespace RescueDesk.Services
 {
     public class PedidosService
     {
-        private MySqlConnection Conn = new MySqlConnection("server=localhost;database=rescuedesk;username=root;Convert Zero Datetime=True");
+        private MySqlConnection Conn = new MySqlConnection(Utils.ConnectionString);
 
         public List<Pedido> ObterPedidos()
         {
