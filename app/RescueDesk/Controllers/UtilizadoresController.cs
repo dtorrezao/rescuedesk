@@ -10,7 +10,7 @@ using System.Web.Security;
 
 namespace RescueDesk.Controllers
 {
-    [Authorize(Roles = "Administrador")]
+   // [Authorize(Roles = "Administrador")]
     public class UtilizadoresController : Controller
     {
         // GET: Utilizadores

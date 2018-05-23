@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace RescueDesk.Controllers
 {
-    [Authorize] // Todas as acções deste controlador estão disponiveis para os tipos de utlizador (apenas tem que fazer login)
+   // [Authorize] // Todas as acções deste controlador estão disponiveis para os tipos de utlizador (apenas tem que fazer login)
     public class PedidosController : Controller
     {
         // GET: Pedidos
