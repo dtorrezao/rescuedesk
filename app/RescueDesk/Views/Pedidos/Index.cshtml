@@ -1,93 +1,118 @@
 ﻿@model IEnumerable<RescueDesk.Models.Pedido>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Pedidos";
+    ViewBag.SubTitle = "Listagem";
 }
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row container-fluid">
+                        <div class="col-sm-12 ">
+                            <div class="fa-hover"><a href="@Url.Action("Create")"><i class="fa fa-plus-circle"></i> Adicionar</a></div>
+                        </div>
+                    </div>
+                    <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.idpedido)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.assunto)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.descricao)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.idatividade)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.dtpedido)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.dtlido)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.dtmarcado)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.prioridade)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.dtresolvido)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.nrcontribuinte)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.idfuncionario)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.obs)
+                                </th>
+                                <th class="no-sort"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.idpedido)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.assunto)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.descricao)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.idatividade)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.dtpedido)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.dtlido)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.dtmarcado)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.prioridade)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.dtresolvido)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.nrcontribuinte)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.idfuncionario)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.obs)
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Edit", new { id = item.idpedido }) " class="btn btn-link">Editar</a>
+                                    @*<a href="@Url.Action("Delete", new { id = item.nrcontribuinte }) " class="btn btn-danger">Eliminar</a>*@
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
 
-<h2>Index</h2>
+                </div>
+            </div>
+        </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.idpedido)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.assunto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.descricao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.idatividade)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dtpedido)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dtlido)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dtmarcado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dtresolvido)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nrcontribuinte)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.idfuncionario)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.obs)
-        </th>
-        <th></th>
-    </tr>
+    </div>
+</div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.idpedido)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.assunto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.descricao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.idatividade)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dtpedido)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dtlido)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dtmarcado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dtresolvido)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nrcontribuinte)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.idfuncionario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.obs)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new {  id=item.idpedido  }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new {  id=item.idpedido })
-        </td>
-    </tr>
+@section scripts{
+
+
 }
-
-</table>
