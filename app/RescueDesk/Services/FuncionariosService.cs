@@ -10,7 +10,7 @@ namespace RescueDesk.Services
 {
     public class FuncionariosService
     {
-        private MySqlConnection Conn = new MySqlConnection(Utils.ConnectionString);
+        private MySqlConnection Conn = new MySqlConnection(Utils.ConnectionString());
 
         public List<Funcionario> ObterFuncionarios()
         {

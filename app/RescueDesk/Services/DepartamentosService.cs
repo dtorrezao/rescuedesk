@@ -11,7 +11,7 @@ namespace RescueDesk.Services
     public class DepartamentosService
     {
 
-        private MySqlConnection Conn = new MySqlConnection(Utils.ConnectionString);
+        private MySqlConnection Conn = new MySqlConnection(Utils.ConnectionString());
 
         public List<Departamento> ObterDepartamentos()
         {

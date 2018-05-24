@@ -1032,6 +1032,7 @@
     <Content Include="images\logo.png" />
     <Content Include="images\logo2.png" />
     <Content Include="images\placeholder.png" />
+    <Content Include="images\signature.png" />
     <Content Include="images\twitter_corner_black.png" />
     <Content Include="images\twitter_corner_blue.png" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1072,6 +1073,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\widgets.js" />
     <Content Include="images\.gitignore" />
+    <None Include="Properties\PublishProfiles\wtorrezao-001-site1.btempurl.com.pubxml" />
     <None Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
