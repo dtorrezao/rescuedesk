@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using RescueDesk.Models;
+using RescueDesk.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -30,9 +31,10 @@ namespace RescueDesk.Services
 
         public bool CreateUtilizador(Utilizador User)
         {
+            string hashpwd = Criptografia.HashString(User.password);
             string query = "INSERT INTO `utilizadores` " +
                " (`email`, `password`,`nrcontribuinte`,`foto`, `idtipo`) " +
-               " VALUES ('" + User.email + "','" + User.password + "','" + User.nrcontribuinte + "','" + User.foto + "','" + User.idtipo + "')";
+               " VALUES ('" + User.email + "','" + hashpwd + "','" + User.nrcontribuinte + "','" + User.foto + "','" + User.idtipo + "')";
             this.Conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, this.Conn);
             int resultados = cmd.ExecuteNonQuery();
@@ -42,8 +44,9 @@ namespace RescueDesk.Services
 
         public bool UpdateUtilizador(Utilizador utilizador)
         {
+            string hashpwd = Criptografia.HashString(utilizador.password);
             string query = "UPDATE utilizadores " +
-                           "SET password='" + utilizador.password + "', foto = '" + utilizador.foto + "' " +
+                           "SET password='" + hashpwd + "', foto = '" + utilizador.foto + "' " +
                            "WHERE email ='" + utilizador.email + "'";
             this.Conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, this.Conn);
@@ -101,7 +104,7 @@ namespace RescueDesk.Services
             this.Conn.Close();
             foreach (DataRow linha in dados1.Rows)
             {
-                return (linha["PASSWORD"].ToString() == password) && (username == linha["email"].ToString());
+                return (linha["PASSWORD"].ToString() == password.ToLower()) && (username == linha["email"].ToString());
             }
 
             return false;

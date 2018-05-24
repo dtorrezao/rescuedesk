@@ -188,6 +188,7 @@
     <Compile Include="Services\PedidosService.cs" />
     <Compile Include="Services\TipoUtilizadorService.cs" />
     <Compile Include="Services\UtilizadorService.cs" />
+    <Compile Include="Utils\Criptografia.cs" />
     <Compile Include="Utils\Database.cs" />
   </ItemGroup>
   <ItemGroup>

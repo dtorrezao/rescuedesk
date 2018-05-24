@@ -1,5 +1,6 @@
 ﻿using RescueDesk.Models;
 using RescueDesk.Services;
+using RescueDesk.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -112,7 +113,10 @@ namespace RescueDesk.Controllers
             // https://www.codeproject.com/articles/578374/aplusbeginner-splustutorialplusonpluscustomplusf
 
             UtilizadorService UtilizadorService = new UtilizadorService();
-            if (UtilizadorService.VerificaUtilizador(model.email, model.password))
+
+            string hashedPwd = Criptografia.HashString(model.password);
+
+            if (UtilizadorService.VerificaUtilizador(model.email, hashedPwd))
             {
                 FormsAuthentication.SetAuthCookie(model.email, false);
                 if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")

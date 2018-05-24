@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.0-rc1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: 13-Maio-2018 às 18:44
--- Versão do servidor: 10.1.28-MariaDB
--- PHP Version: 7.1.11
+-- Host: mysql6002.site4now.net
+-- Generation Time: 23-Maio-2018 às 17:44
+-- Versão do servidor: 5.6.26-log
+-- PHP Version: 7.0.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `rescuedesk`
+-- Database: `db_a3c10b_rd`
 --
 
 -- --------------------------------------------------------
@@ -211,7 +211,7 @@ INSERT INTO `tipoutilizador` (`idtipo`, `tipouser`) VALUES
 
 CREATE TABLE `utilizadores` (
   `email` varchar(64) NOT NULL,
-  `password` varchar(16) NOT NULL,
+  `password` varchar(64) NOT NULL,
   `nrcontribuinte` int(9) DEFAULT NULL,
   `foto` text,
   `idtipo` int(11) NOT NULL
@@ -222,13 +222,13 @@ CREATE TABLE `utilizadores` (
 --
 
 INSERT INTO `utilizadores` (`email`, `password`, `nrcontribuinte`, `foto`, `idtipo`) VALUES
-('adminstrador1@gmail.com', 'adminstrador1', NULL, NULL, 1),
-('adminstrador2@gmail.com', 'adminstrador2', NULL, NULL, 1),
-('cliente1@gmail.com', 'cliente1', NULL, NULL, 3),
-('cliente2@gmail.com', 'cliente2', NULL, NULL, 3),
-('funcionario1@gmail.com', 'funcionario1', NULL, NULL, 2),
-('funcionario2@gmail.com', 'funcionario2', NULL, NULL, 2),
-('funcionario3@gmail.com', 'funcionario3', NULL, NULL, 2);
+('adminstrador1@gmail.com', 'df757fd307f74a059fba26eb59b40e77', NULL, NULL, 1),
+('adminstrador2@gmail.com', 'c76b1d86033c045de97e9eaa282cb7d2', NULL, NULL, 1),
+('cliente1@gmail.com', 'd5a8d8c7ab0514e2b8a2f98769281585', NULL, NULL, 3),
+('cliente2@gmail.com', '6dcd0e14f89d67e397b9f52bb63f5570', NULL, NULL, 3),
+('funcionario1@gmail.com', 'e6b78617985d7fb806699b4a966e46dd', NULL, NULL, 2),
+('funcionario2@gmail.com', '279b850eb472b50751f7fe94195cabe8', NULL, NULL, 2),
+('funcionario3@gmail.com', 'caa42deaf7dfd430876b5ed08d208d0a', NULL, NULL, 2);
 
 --
 -- Indexes for dumped tables
@@ -301,31 +301,26 @@ ALTER TABLE `utilizadores`
 --
 ALTER TABLE `departamentos`
   MODIFY `iddept` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT for table `funcionarios`
 --
 ALTER TABLE `funcionarios`
   MODIFY `idfuncionario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT for table `pedidos`
 --
 ALTER TABLE `pedidos`
   MODIFY `idpedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT for table `tipoatividade`
 --
 ALTER TABLE `tipoatividade`
   MODIFY `idatividade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT for table `tipoutilizador`
 --
 ALTER TABLE `tipoutilizador`
   MODIFY `idtipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- Constraints for dumped tables
 --
