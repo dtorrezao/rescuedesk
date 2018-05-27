@@ -14,6 +14,7 @@ namespace RescueDesk.Models
         public int iddept { get; set; }
         public string cargo { get; set; }
         public int contacto { get; set; }
+        public int idUtilizador { get; set; }
         public string email { get; set; }
         public bool ativo { get; set; }
         public DateTime ultlogin { get; set; }

@@ -52,7 +52,7 @@ namespace RescueDesk.Controllers
         }
 
         //GET: Utilizadores/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int id)
         {
             UtilizadorService UtilizadorService = new UtilizadorService();
 
@@ -76,7 +76,7 @@ namespace RescueDesk.Controllers
         }
 
         // GET: Atividade/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int id)
         {
             UtilizadorService UtilizadorService = new UtilizadorService();
 
@@ -85,17 +85,17 @@ namespace RescueDesk.Controllers
 
         // POST: Atividade/Delete/5
         [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(string email)
+        public ActionResult DeleteConfirmed(int idUtilizador)
         {
             UtilizadorService UtilizadorService = new UtilizadorService();
 
-            if (UtilizadorService.DeleteUtilizador(email))
+            if (UtilizadorService.DeleteUtilizador(idUtilizador))
             {
                 return this.RedirectToAction("Index");
             }
             else
             {
-                return RedirectToAction("Delete", new { id = email });
+                return RedirectToAction("Delete", new { id = idUtilizador });
             }
         }
 

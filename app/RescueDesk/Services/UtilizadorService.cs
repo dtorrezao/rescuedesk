@@ -34,7 +34,7 @@ namespace RescueDesk.Services
             string hashpwd = Criptografia.HashString(User.password);
             string query = "INSERT INTO `utilizadores` " +
                " (`email`, `password`,`nrcontribuinte`,`foto`, `idtipo`) " +
-               " VALUES ('" + User.email + "','" + hashpwd + "','" + User.nrcontribuinte + "','" + User.foto + "','" + User.idtipo + "')";
+               " VALUES ('" + User.email + "','" + hashpwd + "'," + (User.nrcontribuinte.HasValue ? "'"+ User.nrcontribuinte.Value + "'" : "NULL") + ",'" + User.foto + "','" + User.idtipo + "')";
             this.Conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, this.Conn);
             int resultados = cmd.ExecuteNonQuery();
@@ -47,7 +47,7 @@ namespace RescueDesk.Services
             string hashpwd = Criptografia.HashString(utilizador.password);
             string query = "UPDATE utilizadores " +
                            "SET password='" + hashpwd + "', foto = '" + utilizador.foto + "' " +
-                           "WHERE email ='" + utilizador.email + "'";
+                           "WHERE idUtilizador ='" + utilizador.idUtilizador + "'";
             this.Conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, this.Conn);
             int resultados = cmd.ExecuteNonQuery();
@@ -55,19 +55,19 @@ namespace RescueDesk.Services
             return resultados > 0;
         }
 
-        public bool DeleteUtilizador(string id)
+        public bool DeleteUtilizador(int id)
         {
             this.Conn.Open();
-            MySqlCommand cmd = new MySqlCommand("DELETE FROM utilizadores WHERE email='" + id + "'", this.Conn);
+            MySqlCommand cmd = new MySqlCommand("DELETE FROM utilizadores WHERE idUtilizador='" + id + "'", this.Conn);
             int resultados = cmd.ExecuteNonQuery();
             this.Conn.Close();
             return resultados > 0;
         }
 
-        public Utilizador ObterUtilizador(string id)
+        public Utilizador ObterUtilizador(int id)
         {
             this.Conn.Open();
-            MySqlDataAdapter cmd1 = new MySqlDataAdapter("Select * from utilizadores where email='" + id + "'", this.Conn);
+            MySqlDataAdapter cmd1 = new MySqlDataAdapter("Select * from utilizadores where idUtilizador='" + id + "'", this.Conn);
             DataTable dados1 = new DataTable();
             cmd1.Fill(dados1);
             this.Conn.Close();
@@ -83,6 +83,7 @@ namespace RescueDesk.Services
         private Utilizador ParseUtilizador(DataRow linha)
         {
             Utilizador utilizador = new Utilizador();
+            utilizador.idUtilizador = int.Parse(linha["idUtilizador"].ToString());
             utilizador.email = linha["email"].ToString();
             utilizador.password = linha["password"].ToString();
             if (linha["nrcontribuinte"].ToString() != "")

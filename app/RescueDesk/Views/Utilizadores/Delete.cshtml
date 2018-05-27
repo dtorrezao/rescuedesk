@@ -14,49 +14,39 @@
         <dt>
             @Html.DisplayNameFor(model => model.email)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.email)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.password)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.password)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.nrcontribuinte)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.nrcontribuinte)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.foto)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.foto)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.idtipo)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.idtipo)
         </dd>
-
     </dl>
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(x => x.email)
+        @Html.HiddenFor(x => x.idUtilizador)
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
             @Html.ActionLink("Back to List", "Index")

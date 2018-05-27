@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql6002.site4now.net
--- Generation Time: 23-Maio-2018 às 17:44
+-- Generation Time: 27-Maio-2018 às 16:27
 -- Versão do servidor: 5.6.26-log
 -- PHP Version: 7.0.14
 
@@ -89,10 +89,10 @@ CREATE TABLE `funcionarios` (
   `codpostal` varchar(8) NOT NULL,
   `iddept` int(11) NOT NULL,
   `cargo` varchar(64) NOT NULL,
+  `idUtilizador` int(64) NOT NULL,
   `contacto` int(9) NOT NULL,
-  `email` varchar(64) NOT NULL,
   `ativo` tinyint(1) NOT NULL,
-  `ultlogin` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `ultlogin` datetime NOT NULL,
   `obs` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -100,12 +100,12 @@ CREATE TABLE `funcionarios` (
 -- Extraindo dados da tabela `funcionarios`
 --
 
-INSERT INTO `funcionarios` (`idfuncionario`, `nome`, `morada`, `codpostal`, `iddept`, `cargo`, `contacto`, `email`, `ativo`, `ultlogin`, `obs`) VALUES
-(1, 'carlos', 'Rua Popular Nº22', '2135-021', 1, 'Programador', 987354726, 'funcionario1@gmail.com', 0, '2018-02-11 13:39:30', NULL),
-(2, 'Ricardo', 'Avenida Central', '2120-111', 3, 'Admin', 987454741, 'adminstrador2@gmail.com', 0, '2018-02-11 14:26:26', NULL),
-(3, 'David', 'Avenida Central', '2120-111', 2, 'Gestão compras', 914574541, 'funcionario2@gmail.com', 0, '2018-02-11 13:40:56', NULL),
-(4, 'Ana', 'Rua Popular', '2135-021', 3, 'Admin', 987546325, 'adminstrador1@gmail.com', 0, '2018-02-11 13:59:36', NULL),
-(5, 'Pedro', 'Rua Jacinto', '2135-907', 1, 'Técnico informático', 974645762, 'funcionario3@gmail.com', 0, '2018-02-11 13:59:05', NULL);
+INSERT INTO `funcionarios` (`idfuncionario`, `nome`, `morada`, `codpostal`, `iddept`, `cargo`, `idUtilizador`, `contacto`, `ativo`, `ultlogin`, `obs`) VALUES
+(1, 'carlos', 'Rua Popular Nº22', '2135-021', 1, 'Programador', 2, 987354726, 0, '2018-02-11 14:39:30', NULL),
+(2, 'Ricardo', 'Avenida Central', '2120-111', 3, 'Admin', 3, 987454741, 0, '2018-02-11 15:26:26', NULL),
+(3, 'David', 'Avenida Central', '2120-111', 2, 'Gestão compras', 4, 914574541, 0, '2018-02-11 14:40:56', NULL),
+(4, 'Ana', 'Rua Popular', '2135-021', 3, 'Admin', 5, 987546325, 0, '2018-02-11 14:59:36', NULL),
+(5, 'Pedro', 'Rua Jacinto', '2135-907', 1, 'Técnico informático', 6, 974645762, 0, '2018-02-11 14:59:05', NULL);
 
 -- --------------------------------------------------------
 
@@ -210,6 +210,7 @@ INSERT INTO `tipoutilizador` (`idtipo`, `tipouser`) VALUES
 --
 
 CREATE TABLE `utilizadores` (
+  `idUtilizador` int(64) NOT NULL,
   `email` varchar(64) NOT NULL,
   `password` varchar(64) NOT NULL,
   `nrcontribuinte` int(9) DEFAULT NULL,
@@ -221,14 +222,16 @@ CREATE TABLE `utilizadores` (
 -- Extraindo dados da tabela `utilizadores`
 --
 
-INSERT INTO `utilizadores` (`email`, `password`, `nrcontribuinte`, `foto`, `idtipo`) VALUES
-('adminstrador1@gmail.com', 'df757fd307f74a059fba26eb59b40e77', NULL, NULL, 1),
-('adminstrador2@gmail.com', 'c76b1d86033c045de97e9eaa282cb7d2', NULL, NULL, 1),
-('cliente1@gmail.com', 'd5a8d8c7ab0514e2b8a2f98769281585', NULL, NULL, 3),
-('cliente2@gmail.com', '6dcd0e14f89d67e397b9f52bb63f5570', NULL, NULL, 3),
-('funcionario1@gmail.com', 'e6b78617985d7fb806699b4a966e46dd', NULL, NULL, 2),
-('funcionario2@gmail.com', '279b850eb472b50751f7fe94195cabe8', NULL, NULL, 2),
-('funcionario3@gmail.com', 'caa42deaf7dfd430876b5ed08d208d0a', NULL, NULL, 2);
+INSERT INTO `utilizadores` (`idUtilizador`, `email`, `password`, `nrcontribuinte`, `foto`, `idtipo`) VALUES
+(1, 'admin@rescuedesk.com', '5d2db32d8172f370e5cfd35c76ffcffd', 0, '', 1),
+(2, 'adminstrador1@gmail.com', 'df757fd307f74a059fba26eb59b40e77', NULL, NULL, 1),
+(3, 'adminstrador2@gmail.com', 'c76b1d86033c045de97e9eaa282cb7d2', NULL, NULL, 1),
+(4, 'cliente1@gmail.com', 'd5a8d8c7ab0514e2b8a2f98769281585', NULL, NULL, 3),
+(5, 'cliente2@gmail.com', '6dcd0e14f89d67e397b9f52bb63f5570', NULL, NULL, 3),
+(6, 'funcionario1@gmail.com', 'e6b78617985d7fb806699b4a966e46dd', NULL, NULL, 2),
+(7, 'funcionario2@gmail.com', '279b850eb472b50751f7fe94195cabe8', NULL, NULL, 2),
+(8, 'funcionario3@gmail.com', 'caa42deaf7dfd430876b5ed08d208d0a', NULL, NULL, 2),
+(9, 'wazza.torrezao@gmail.com', '5D2DB32D8172F370E5CFD35C76FFCFFD', 0, '', 1);
 
 --
 -- Indexes for dumped tables
@@ -255,7 +258,7 @@ ALTER TABLE `funcionarios`
   ADD PRIMARY KEY (`idfuncionario`),
   ADD KEY `iddept` (`iddept`),
   ADD KEY `codpostal` (`codpostal`),
-  ADD KEY `email` (`email`);
+  ADD KEY `idUtilizador` (`idUtilizador`);
 
 --
 -- Indexes for table `localidades`
@@ -288,7 +291,8 @@ ALTER TABLE `tipoutilizador`
 -- Indexes for table `utilizadores`
 --
 ALTER TABLE `utilizadores`
-  ADD PRIMARY KEY (`email`),
+  ADD PRIMARY KEY (`idUtilizador`),
+  ADD UNIQUE KEY `email` (`email`),
   ADD KEY `tipouser` (`idtipo`),
   ADD KEY `nrcontribuinte` (`nrcontribuinte`);
 
@@ -305,7 +309,7 @@ ALTER TABLE `departamentos`
 -- AUTO_INCREMENT for table `funcionarios`
 --
 ALTER TABLE `funcionarios`
-  MODIFY `idfuncionario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idfuncionario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `pedidos`
 --
@@ -322,6 +326,11 @@ ALTER TABLE `tipoatividade`
 ALTER TABLE `tipoutilizador`
   MODIFY `idtipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
+-- AUTO_INCREMENT for table `utilizadores`
+--
+ALTER TABLE `utilizadores`
+  MODIFY `idUtilizador` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
 -- Constraints for dumped tables
 --
 
@@ -336,8 +345,8 @@ ALTER TABLE `clientes`
 --
 ALTER TABLE `funcionarios`
   ADD CONSTRAINT `funcionarios_ibfk_1` FOREIGN KEY (`iddept`) REFERENCES `departamentos` (`iddept`),
-  ADD CONSTRAINT `funcionarios_ibfk_2` FOREIGN KEY (`email`) REFERENCES `utilizadores` (`email`),
-  ADD CONSTRAINT `funcionarios_ibfk_3` FOREIGN KEY (`codpostal`) REFERENCES `localidades` (`codpostal`);
+  ADD CONSTRAINT `funcionarios_ibfk_3` FOREIGN KEY (`codpostal`) REFERENCES `localidades` (`codpostal`),
+  ADD CONSTRAINT `funcionarios_ibfk_4` FOREIGN KEY (`idUtilizador`) REFERENCES `utilizadores` (`idUtilizador`);
 
 --
 -- Limitadores para a tabela `pedidos`

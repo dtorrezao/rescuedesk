@@ -56,10 +56,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="bin/RescueDesk.dll">
-      <publishTime>05/24/2018 01:04:46</publishTime>
+      <publishTime>05/27/2018 22:29:57</publishTime>
     </File>
     <File Include="bin/RescueDesk.pdb">
-      <publishTime>05/24/2018 01:04:46</publishTime>
+      <publishTime>05/27/2018 22:29:57</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>05/23/2018 23:27:31</publishTime>
@@ -68,34 +68,34 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2018 23:27:31</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:31</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:31</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:31</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:31</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:31</publishTime>
     </File>
     <File Include="bin/roslyn/System.Collections.Immutable.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:31</publishTime>
     </File>
     <File Include="bin/roslyn/System.Reflection.Metadata.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:31</publishTime>
     </File>
     <File Include="bin/roslyn/vbc.exe">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:31</publishTime>
     </File>
     <File Include="bin/roslyn/VBCSCompiler.exe">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:31</publishTime>
     </File>
     <File Include="bin/roslyn/VBCSCompiler.exe.config">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:31</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>05/23/2018 23:27:31</publishTime>
@@ -122,196 +122,196 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="Content/animate.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="Content/bootstrap-select.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="Content/bootstrap.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="Content/bootstrap.css.map">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="Content/bootstrap.min.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="Content/bootstrap.min.css.map">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="Content/cs-skin-elastic.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="Content/flag-icon.min.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="Content/font-awesome.min.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="Content/lib/chosen/chosen-sprite%402x.png">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="Content/lib/chosen/chosen-sprite.png">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="Content/lib/chosen/chosen.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="Content/lib/chosen/chosen.min.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="Content/lib/datatable/buttons.bootstrap.min.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="Content/lib/datatable/buttons.dataTables.min.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="Content/lib/datatable/dataTables.bootstrap.min.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="Content/lib/vector-map/jqvmap.min.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="Content/normalize.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="Content/style.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="Content/style.css.map">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="Content/themify-icons.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="Content/variables.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="docs/MySqlCommand.xml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="docs/MySqlCommandBuilder.xml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="docs/MySqlConnection.xml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="docs/MySqlConnectionStringBuilder.xml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="docs/MySqlDataAdapter.xml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="docs/MySqlDataReader.xml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="docs/MySqlException.xml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="docs/MySqlHelper.xml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="docs/MySqlParameter.xml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="docs/MySqlParameterCollection.xml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="docs/MySqlTransaction.xml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="fonts/codropsicons/codropsicons.eot">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="fonts/codropsicons/codropsicons.svg">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="fonts/codropsicons/codropsicons.ttf">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="fonts/codropsicons/codropsicons.woff">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="fonts/codropsicons/index.html">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="fonts/codropsicons/license.txt">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="fonts/fontawesome-webfont.eot">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="fonts/fontawesome-webfont.svg">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="fonts/fontawesome-webfont.ttf">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="fonts/fontawesome-webfont.woff">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="fonts/fontawesome-webfont.woff2">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="fonts/FontAwesome.otf">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.eot">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.svg">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.ttf">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.woff">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.woff2">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="fonts/icomoon/icomoon.eot">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="fonts/icomoon/icomoon.svg">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="fonts/icomoon/icomoon.ttf">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="fonts/icomoon/icomoon.woff">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="fonts/icomoon/index.html">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="fonts/index.html">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="fonts/themify.eot">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="fonts/themify.svg">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="fonts/themify.ttf">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="fonts/themify.woff">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="images/.gitignore">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="images/admin.jpg">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="images/avatar/1.jpg">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -2630,268 +2630,271 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="images/logo.png">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="images/logo2.png">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="images/placeholder.png">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
+    </File>
+    <File Include="images/signature.png">
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="images/twitter_corner_black.png">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="images/twitter_corner_blue.png">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/bootstrap.min.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/chart-js/Chart.bundle.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/chart-js/chartjs-init.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/chosen/chosen.jquery.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/chosen/chosen.jquery.min.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/chosen/chosen.proto.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/chosen/chosen.proto.min.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/dashboard.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/data-table/buttons.bootstrap.min.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/data-table/buttons.colVis.min.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/data-table/buttons.flash.min.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/data-table/buttons.html5.min.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/data-table/buttons.print.min.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/data-table/datatables-init.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/data-table/dataTables.bootstrap.min.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/data-table/dataTables.buttons.min.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/data-table/datatables.min.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/data-table/jquery-1.12.4.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/data-table/jquery.dataTables.min.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/data-table/jszip.min.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/data-table/pdfmake.min.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/data-table/vfs_fonts.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/jquery-1.10.2.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/jquery-1.10.2.min.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/jquery-1.10.2.min.map">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/jquery-2.1.4.min.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.min.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.unobtrusive.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.unobtrusive.min.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/main.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/modernizr-2.6.2.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/plugins.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Scripts/respond.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/respond.min.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Scripts/widgets.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Views/Atividade/Create.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Atividade/Delete.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Atividade/Edit.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Atividade/Index.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Clientes/Create.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Clientes/Edit.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Clientes/Index.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Departamentos/Create.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Departamentos/Delete.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Departamentos/Edit.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Departamentos/Index.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Funcionarios/Create.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Funcionarios/Delete.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Funcionarios/Edit.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Funcionarios/Index.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Home/About.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Home/Contact.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Localidades/Create.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Localidades/Delete.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Localidades/Edit.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Localidades/Index.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Pedidos/Create.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Pedidos/Delete.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Pedidos/Edit.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Pedidos/Index.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Shared/BackOffice/_Breadcrumbs.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Shared/BackOffice/_Header.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Shared/BackOffice/_Login.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Shared/BackOffice/_NavBar.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Shared/_BackOffice.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/TipoUtilizador/Create.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/TipoUtilizador/Delete.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/TipoUtilizador/Edit.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/TipoUtilizador/Index.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Utilizadores/Create.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Utilizadores/Delete.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Utilizadores/Edit.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Utilizadores/Index.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Utilizadores/Login.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Web.config">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/24/2018 00:24:10</publishTime>
+      <publishTime>05/24/2018 12:44:50</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -16,7 +16,10 @@ namespace RescueDesk.Services
         {
             List<Funcionario> funcionarios = new List<Funcionario>();
             this.Conn.Open();
-            MySqlDataAdapter cmd1 = new MySqlDataAdapter("Select * from funcionarios", this.Conn);
+
+            string query= "SELECT `funcionarios`.*, email FROM `funcionarios` inner join utilizadores as ut on ut.idUtilizador = funcionarios.idUtilizador";
+
+            MySqlDataAdapter cmd1 = new MySqlDataAdapter(query, this.Conn);
             DataTable dados1 = new DataTable();
             cmd1.Fill(dados1);
             this.Conn.Close();
@@ -38,9 +41,9 @@ namespace RescueDesk.Services
         public bool CreateFuncionario(Funcionario funcionario)
         {
             string query = "INSERT INTO `funcionarios` " +
-               " (`idfuncionario`, `nome`, `morada`, `codpostal`, `iddept`, `cargo`, `contacto`, `email`, `ativo`, `ultlogin`, `obs`) " +
+               " (`idfuncionario`, `nome`, `morada`, `codpostal`, `iddept`, `cargo`, `contacto`, `idutilizador`, `ativo`, `ultlogin`, `obs`) " +
                " VALUES (NULL, '" + funcionario.nome + "', '" + funcionario.morada + "', '" + funcionario.codpostal + "', '" + funcionario.iddept + "' , '" +
-               "" + funcionario.cargo + "', '" + funcionario.contacto + "', '" + funcionario.email + "', '" + (funcionario.ativo ? "1" : "0") + "' , '" +funcionario.ultlogin.ToString("yyyy-MM-dd hh:mm:ss") + "' , '" + funcionario.obs + "')";
+               "" + funcionario.cargo + "', '" + funcionario.contacto + "', '" + funcionario.idUtilizador + "', '" + (funcionario.ativo ? "1" : "0") + "' , '" +funcionario.ultlogin.ToString("yyyy-MM-dd hh:mm:ss") + "' , '" + funcionario.obs + "')";
             this.Conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, this.Conn);
             int resultados = cmd.ExecuteNonQuery();
@@ -57,7 +60,7 @@ namespace RescueDesk.Services
                 "`iddept` =  '" + funcionario.iddept + "'," +
                 " `cargo` = '" + funcionario.cargo + "'," +
                 " `contacto` = '" + funcionario.contacto + "'," +
-                "`email` = '" + funcionario.email + "'," +
+                "`idutilizador` = '" + funcionario.idUtilizador + "'," +
                 "`ativo` = '" + (funcionario.ativo ? "1" : "0") + "'," +
                 " `ultlogin` = '" + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss") + "'," +
                 "`obs` = '" + funcionario.obs + "' " +
@@ -82,7 +85,10 @@ namespace RescueDesk.Services
         public Funcionario ObterFuncionario(int id)
         {
             this.Conn.Open();
-            MySqlDataAdapter cmd1 = new MySqlDataAdapter("Select * from funcionarios where idfuncionario='" + id.ToString() + "'", this.Conn);
+            string query = "SELECT `funcionarios`.*, email FROM `funcionarios` inner join utilizadores as ut on ut.idUtilizador = funcionarios.idUtilizador";
+            query += " where idfuncionario = '" + id.ToString() + "'";
+
+            MySqlDataAdapter cmd1 = new MySqlDataAdapter(query, this.Conn);
             DataTable dados1 = new DataTable();
             cmd1.Fill(dados1);
             this.Conn.Close();
@@ -105,6 +111,7 @@ namespace RescueDesk.Services
             funcionario.iddept = int.Parse(linha["iddept"].ToString());
             funcionario.cargo = linha["cargo"].ToString();
             funcionario.contacto = int.Parse(linha["contacto"].ToString());
+            funcionario.idUtilizador = int.Parse(linha["idUtilizador"].ToString());
             funcionario.email = linha["email"].ToString();
             funcionario.ativo = bool.Parse(linha["ativo"].ToString());
             funcionario.ultlogin= DateTime.Parse(linha["ultlogin"].ToString());
