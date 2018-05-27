@@ -104,7 +104,7 @@ namespace RescueDesk.Services
             this.Conn.Close();
             foreach (DataRow linha in dados1.Rows)
             {
-                return (linha["PASSWORD"].ToString() == password.ToLower()) && (username == linha["email"].ToString());
+                return (linha["PASSWORD"].ToString().ToLower() == password.ToLower()) && (username == linha["email"].ToString());
             }
 
             return false;
