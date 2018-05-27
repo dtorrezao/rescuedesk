@@ -45,6 +45,7 @@ namespace RescueDesk
 
             bundles.Add(new ScriptBundle("~/bundles/BackOffice").Include(
                         "~/Scripts/jquery-2.1.4.min.js",
+                        "~/Scripts/popper.min.js",
                         "~/Scripts/plugins.js",
                         "~/Scripts/main.js",
                         "~/Scripts/chart-js/Chart.bundle.js",
