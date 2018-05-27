@@ -56,10 +56,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="bin/RescueDesk.dll">
-      <publishTime>05/27/2018 22:29:57</publishTime>
+      <publishTime>05/28/2018 00:59:45</publishTime>
     </File>
     <File Include="bin/RescueDesk.pdb">
-      <publishTime>05/27/2018 22:29:57</publishTime>
+      <publishTime>05/28/2018 00:59:45</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>05/23/2018 23:27:31</publishTime>
@@ -2752,6 +2752,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/plugins.js">
       <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
+    <File Include="Scripts/popper.min.js">
+      <publishTime>05/28/2018 00:50:40</publishTime>
+    </File>
     <File Include="Scripts/respond.js">
       <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
@@ -2795,16 +2798,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Funcionarios/Create.cshtml">
-      <publishTime>05/23/2018 23:27:36</publishTime>
+      <publishTime>05/28/2018 00:13:43</publishTime>
     </File>
     <File Include="Views/Funcionarios/Delete.cshtml">
       <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Funcionarios/Edit.cshtml">
-      <publishTime>05/23/2018 23:27:36</publishTime>
+      <publishTime>05/28/2018 00:13:43</publishTime>
     </File>
     <File Include="Views/Funcionarios/Index.cshtml">
-      <publishTime>05/23/2018 23:27:36</publishTime>
+      <publishTime>05/28/2018 00:11:33</publishTime>
     </File>
     <File Include="Views/Home/About.cshtml">
       <publishTime>05/23/2018 23:27:36</publishTime>
@@ -2843,13 +2846,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Shared/BackOffice/_Header.cshtml">
-      <publishTime>05/23/2018 23:27:36</publishTime>
+      <publishTime>05/28/2018 00:54:44</publishTime>
     </File>
     <File Include="Views/Shared/BackOffice/_Login.cshtml">
       <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Shared/BackOffice/_NavBar.cshtml">
-      <publishTime>05/23/2018 23:27:36</publishTime>
+      <publishTime>05/28/2018 00:41:27</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>05/23/2018 23:27:36</publishTime>
@@ -2876,13 +2879,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Utilizadores/Delete.cshtml">
-      <publishTime>05/23/2018 23:27:36</publishTime>
+      <publishTime>05/28/2018 00:13:43</publishTime>
     </File>
     <File Include="Views/Utilizadores/Edit.cshtml">
-      <publishTime>05/23/2018 23:27:36</publishTime>
+      <publishTime>05/28/2018 00:13:43</publishTime>
     </File>
     <File Include="Views/Utilizadores/Index.cshtml">
-      <publishTime>05/23/2018 23:27:36</publishTime>
+      <publishTime>05/28/2018 00:13:43</publishTime>
     </File>
     <File Include="Views/Utilizadores/Login.cshtml">
       <publishTime>05/23/2018 23:27:36</publishTime>
