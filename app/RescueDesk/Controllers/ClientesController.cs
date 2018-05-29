@@ -75,6 +75,15 @@ namespace RescueDesk.Controllers
             }
         }
 
+        // GET: Default/Details/5
+        public ActionResult Details(int id)
+        {
+
+            ClientesService servico = new ClientesService();
+
+            return View(servico.ObterCliente(id));
+        }
+
         private void ListaUtilizadores(UtilizadorService utilizadorService)
         {
             //lsitar emails disponiveis

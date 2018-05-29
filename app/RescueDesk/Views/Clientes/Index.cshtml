@@ -1,7 +1,6 @@
 ﻿@model IEnumerable<RescueDesk.Models.Cliente>
 @{
     ViewBag.Title = "Clientes";
-    ViewBag.SubTitle = "Listagem";
 }
 <div class="animated fadeIn">
     <div class="row">
@@ -20,28 +19,16 @@
                     <table id="bootstrap-data-table" class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>
+                                <th style="width: 15%;">
                                     @Html.DisplayNameFor(model => model.nrcontribuinte)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.nome)
                                 </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.morada)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.codpostal)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.contacto)
-                                </th>
-                                <th>
+                                <th style="width: 15%;">
                                     @Html.DisplayNameFor(model => model.email)
                                 </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.obs)
-                                </th>
-                                <th  class="no-sort"></th>
+                                <th class="no-sort"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,22 +42,11 @@
                                         @Html.DisplayFor(modelItem => item.nome)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.morada)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.codpostal)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.contacto)
-                                    </td>
-                                    <td>
                                         @Html.DisplayFor(modelItem => item.email)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.obs)
-                                    </td>
-                                    <td >
                                         <a href="@Url.Action("Edit", new { id = item.nrcontribuinte }) " class="btn btn-link">Editar</a>
+                                        <a href="@Url.Action("Details", new { id = item.nrcontribuinte }) " class="btn btn-link">Detalhes</a>
                                         @*<a href="@Url.Action("Delete", new { id = item.nrcontribuinte }) " class="btn btn-danger">Eliminar</a>*@
                                     </td>
                                 </tr>
