@@ -29,7 +29,9 @@ namespace RescueDesk.Controllers
         public ActionResult Create()
         {
             FuncionariosService servico = new FuncionariosService();
+            AddressService address = new AddressService();
 
+            ListaEndereços(address);
 
             return View(servico.ObterFuncionarioDefault());
         }
@@ -45,6 +47,10 @@ namespace RescueDesk.Controllers
             }
             else
             {
+                AddressService address = new AddressService();
+
+                ListaEndereços(address);
+
                 return View(funcionario);
             }
         }
@@ -52,6 +58,9 @@ namespace RescueDesk.Controllers
         public ActionResult Edit(int id)
         {
             FuncionariosService servico = new FuncionariosService();
+            AddressService address = new AddressService();
+
+            ListaEndereços(address);
 
             return View(servico.ObterFuncionario(id));
         }
@@ -66,6 +75,9 @@ namespace RescueDesk.Controllers
             }
             else
             {
+                AddressService address = new AddressService();
+
+                ListaEndereços(address);
                 return View(funcionario);
             }
         }
@@ -89,6 +101,17 @@ namespace RescueDesk.Controllers
             {
                 return RedirectToAction("Delete", new { id = idfuncionario });
             }
+        }
+
+        private void ListaEndereços(AddressService address)
+        {
+            //listar moradas disponiveis
+            var AvailableAddress = new List<SelectListItem>();
+            foreach (var item in address.ObterLocalidades())
+            {
+                AvailableAddress.Add(new SelectListItem() { Text = item.codpostal + " - " + item.nomeLocalidade, Value = item.codpostal });
+            }
+            ViewBag.AvailableAddress = AvailableAddress;
         }
     }
 }
