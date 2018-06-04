@@ -60,7 +60,7 @@ namespace RescueDesk.Services
                 "`iddept` =  '" + funcionario.iddept + "'," +
                 " `cargo` = '" + funcionario.cargo + "'," +
                 " `contacto` = '" + funcionario.contacto + "'," +
-                "`idutilizador` = '" + funcionario.idUtilizador + "'," +
+                //"`idutilizador` = '" + funcionario.idUtilizador + "'," +
                 "`ativo` = '" + (funcionario.ativo ? "1" : "0") + "'," +
                 " `ultlogin` = '" + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss") + "'," +
                 "`obs` = '" + funcionario.obs + "' " +

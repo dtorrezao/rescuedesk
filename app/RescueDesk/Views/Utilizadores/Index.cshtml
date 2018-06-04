@@ -14,7 +14,7 @@
                             <div class="fa-hover"><a href="@Url.Action("Create")"><i class="fa fa-plus-circle"></i> Adicionar</a></div>
                         </div>
                     </div>
-                    <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                    <table id="bootstrap-data-table" class="table table-striped table-bordered"  style="font-size:14px">
                         <thead>
                             <tr>
                                 <th style="width: 5%;">
@@ -62,7 +62,7 @@
                                 </td>
 
                                 <td>
-                                    <a href="@Url.Action("Edit", new { id = item.idUtilizador }) " class="btn btn-link">Editar</a>
+                                    <a href="@Url.Action("Edit", new { id = item.idUtilizador }) "class="btn btn-link minus-padd" title="Editar"><i class="fa fa-pencil"></i></a>
                                     @*<a href="@Url.Action("Delete", new { id = item.codpostal }) " class="btn btn-danger">Eliminar</a>*@
                                 </td>
                             </tr>
