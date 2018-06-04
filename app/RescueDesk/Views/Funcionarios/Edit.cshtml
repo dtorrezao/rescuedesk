@@ -48,22 +48,17 @@
                 </div>
                 <div class="form-group">
                     <label for="@Html.NameFor(x=>x.idUtilizador)" class=" form-control-label">@Html.DisplayNameFor(model => model.idUtilizador)</label>
-                    @Html.EditorFor(model => model.idUtilizador, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
+                    @Html.DisplayFor(model => model.idUtilizador, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
                     @Html.ValidationMessageFor(model => model.idUtilizador, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label for="@Html.NameFor(x=>x.email)" class=" form-control-label">@Html.DisplayNameFor(model => model.email)</label>
+                    @Html.DisplayFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
+                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
                     <label for="@Html.NameFor(x=>x.contacto)" class=" form-control-label">@Html.DisplayNameFor(model => model.contacto)</label>
                     @Html.EditorFor(model => model.contacto, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
-                    @Html.ValidationMessageFor(model => model.contacto, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    <label for="@Html.NameFor(x=>x.idUtilizador)" class=" form-control-label">@Html.DisplayNameFor(model => model.idUtilizador)</label>
-                    @Html.EditorFor(model => model.idUtilizador, new { htmlAttributes = new { @class = "form-control ", @placeholder = "..." } })
-                    @Html.ValidationMessageFor(model => model.idUtilizador, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    <label for="@Html.NameFor(x=>x.contacto)" class=" form-control-label">@Html.DisplayNameFor(model => model.contacto)</label>
-                    @Html.EditorFor(model => model.contacto, new { htmlAttributes = new { @class = "form-control ", @placeholder = "..." } })
                     @Html.ValidationMessageFor(model => model.contacto, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
