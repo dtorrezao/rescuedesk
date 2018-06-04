@@ -6,29 +6,28 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                @*<div class="card-header">
-                        <strong class="card-title">Listagem</strong>
-                        <div class="fa-hover pull-right"><a href="@Url.Action("Create")"><i class="fa fa-plus-circle"></i> Adicionar</a></div>
-                    </div>*@
                 <div class="card-body">
                     <div class="row container-fluid">
                         <div class="col-sm-12 ">
                             <div class="fa-hover"><a href="@Url.Action("Create")"><i class="fa fa-plus-circle"></i> Adicionar</a></div>
                         </div>
                     </div>
-                    <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                    <table id="bootstrap-data-table" class="table table-striped table-bordered" style="font-size:14px">
                         <thead>
                             <tr>
-                                <th style="width: 15%;">
+                                <th style="width: 20%">
                                     @Html.DisplayNameFor(model => model.nrcontribuinte)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.nome)
                                 </th>
-                                <th style="width: 15%;">
+                                <th class="no-sort" style="width: 15%">
+                                    @Html.DisplayNameFor(model => model.contacto)
+                                </th>
+                                <th style="width: 15%">
                                     @Html.DisplayNameFor(model => model.email)
                                 </th>
-                                <th class="no-sort"></th>
+                                <th class="no-sort" style="width: 15%"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,12 +41,14 @@
                                         @Html.DisplayFor(modelItem => item.nome)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.email)
+                                        @Html.DisplayFor(modelItem => item.contacto)
                                     </td>
                                     <td>
-                                        <a href="@Url.Action("Edit", new { id = item.nrcontribuinte }) " class="btn btn-link">Editar</a>
-                                        <a href="@Url.Action("Details", new { id = item.nrcontribuinte }) " class="btn btn-link">Detalhes</a>
-                                        @*<a href="@Url.Action("Delete", new { id = item.nrcontribuinte }) " class="btn btn-danger">Eliminar</a>*@
+                                        @Html.DisplayFor(modelItem => item.email)
+                                    </td>
+                                    <td align="center">
+                                        <a href="@Url.Action("Edit", new { id = item.nrcontribuinte })" class="btn btn-link minus-padd" title="Editar"><i class="fa fa-pencil"></i></a>
+                                        <a href="@Url.Action("Details", new { id = item.nrcontribuinte })" class="btn btn-link minus-padd" title="Detalhes"><i class="fa fa-ellipsis-h"></i></a>
                                     </td>
                                 </tr>
                             }
