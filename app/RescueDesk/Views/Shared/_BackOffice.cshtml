@@ -43,11 +43,44 @@
     @Scripts.Render("~/bundles/BackOffice")
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
     @RenderSection("scripts", required: false)
-
+    <div id="modal-container" class="modal fade" tabindex="-1" role="dialog">
+        <a title="Close" class="modal-close-btn">X</a>"
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="modal-body"> </div>
+            </div>
+        </div>
+    </div>
     <script>
         jQuery(document).ready(function () {
             jQuery(".standardSelect").chosen({});
+
         });
+    </script>
+
+
+    <script>
+        $(function () {
+            $('body').on('click', ".modal-link", function (e) {
+                e.preventDefault();
+                $(this).attr("data-target", '#modal-container');
+                $(this).attr("data-toggle", 'modal');
+                $('.modal-backdrop').show();
+            });
+            $('body').on('click', ".modal-close-btn", function (e) {
+                $('#modal-container').modal('hide');
+                $(this).removeData('bs.modal');
+            });
+
+            $('#modal-container').on('hidden.bs.modal', function () {
+                $('.modal-backdrop').hide();
+                $(this).removeData('bs.modal');
+            })
+        });
+
+        function closeModal() {
+            $('#modal-container').modal('hide');
+        }
     </script>
 </body>
 </html>

@@ -158,7 +158,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AtividadeController.cs" />
+    <Compile Include="Controllers\ServicosController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\DepartamentosController.cs" />
     <Compile Include="Controllers\FuncionariosController.cs" />
@@ -209,6 +209,7 @@
     <Content Include="Content\lib\datatable\dataTables.bootstrap.min.css" />
     <Content Include="Content\lib\vector-map\jqvmap.min.css" />
     <Content Include="Content\normalize.css" />
+    <Content Include="Content\rescuedesk.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\themify-icons.css" />
     <Content Include="Content\variables.css" />
@@ -331,10 +332,10 @@
     <Content Include="Views\Localidades\Create.cshtml" />
     <Content Include="Views\Localidades\Edit.cshtml" />
     <Content Include="Views\Departamentos\Index.cshtml" />
-    <Content Include="Views\Atividade\Index.cshtml" />
-    <Content Include="Views\Atividade\Delete.cshtml" />
-    <Content Include="Views\Atividade\Edit.cshtml" />
-    <Content Include="Views\Atividade\Create.cshtml" />
+    <Content Include="Views\Servicos\Index.cshtml" />
+    <Content Include="Views\Servicos\Delete.cshtml" />
+    <Content Include="Views\Servicos\Edit.cshtml" />
+    <Content Include="Views\Servicos\Create.cshtml" />
     <Content Include="Views\Departamentos\Create.cshtml" />
     <Content Include="Views\Departamentos\Edit.cshtml" />
     <Content Include="Views\Localidades\Delete.cshtml" />

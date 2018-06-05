@@ -1,0 +1,75 @@
+﻿@model IEnumerable<RescueDesk.Models.Atividade>
+
+@{
+    ViewBag.Title = "Serviços";
+}
+
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row container-fluid">
+                        <div class="col-sm-12 ">
+                            <div class="fa-hover"><a href="@Url.Action("Create")"><i class="fa fa-plus-circle"></i> Adicionar</a></div>
+                        </div>
+                    </div>
+                    <table id="bootstrap-data-table" class="table table-striped table-bordered" style="font-size:14px">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%;">
+                                    @Html.DisplayNameFor(model => model.idatividade)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.descricao)
+                                </th>
+                                <th style="width: 5%;">
+                                    @Html.DisplayNameFor(model => model.peso)
+                                </th>
+                                <th class="no-sort" style="width: 15%;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.idatividade)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.descricao)
+                                    </td>
+                                    <td align="center">
+                                        @Html.DisplayFor(modelItem => item.peso)
+                                    <td align="center">
+                                        <a href="@Url.Action("Edit", new { id = item.idatividade })"
+                                           data-ajax="true"
+                                           data-ajax-method="GET"
+                                           data-ajax-mode="after"
+                                           data-ajax-update="#modal-body"
+                                           class="btn btn-link minus-padd modal-link"><i class="fa fa-pencil"></i></a>
+
+
+                                        <a href="@Url.Action("Delete", new { id = item.idatividade }) "
+                                           class="btn btn-link minus-padd modal-link"
+                                           data-ajax="true"
+                                           data-ajax-method="GET"
+                                           data-ajax-mode="after"
+                                           data-ajax-update="#modal-body"
+                                           style="color: #dc3545">
+                                            <i class="fa fa-trash-o"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+

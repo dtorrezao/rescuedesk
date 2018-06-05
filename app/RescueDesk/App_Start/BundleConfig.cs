@@ -36,6 +36,7 @@ namespace RescueDesk
                       "~/Content/font-awesome.min.css",
                       "~/Content/normalize.css",
                       "~/Content/style.css",
+                      "~/Content/rescuedesk.css",
                       "~/Content/lib/datatable/buttons.bootstrap.min.css",
                       "~/Content/lib/datatable/buttons.dataTables.min.css",
                       "~/Content/lib/datatable/dataTables.bootstrap.min.css",

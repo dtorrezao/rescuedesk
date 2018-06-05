@@ -17,7 +17,10 @@ namespace RescueDesk.Services
         {
             List<Pedido> pedidos = new List<Pedido>();
             this.Conn.Open();
-            MySqlDataAdapter cmd1 = new MySqlDataAdapter("Select * from pedidos", this.Conn);
+
+            string query = "SELECT * FROM `pedidos`";
+            
+            MySqlDataAdapter cmd1 = new MySqlDataAdapter(query, this.Conn);
             DataTable dados1 = new DataTable();
             cmd1.Fill(dados1);
             this.Conn.Close();

@@ -9,7 +9,7 @@ using System.Web.Mvc;
 namespace RescueDesk.Controllers
 {
     [Authorize(Roles = "Administrador, Funcionário")] // Todas as acções deste controlador estão disponiveis para os tipos de utlizador
-    public class AtividadeController : Controller
+    public class ServicosController : Controller
     {
         // GET: Atividade
         public ActionResult Index()
@@ -54,7 +54,7 @@ namespace RescueDesk.Controllers
         {
             AtividadeService atividadeService = new AtividadeService();
 
-            return View(atividadeService.ObterAtividade(id));
+            return PartialView(atividadeService.ObterAtividade(id));
         }
 
         // POST: Atividade/Edit/5
@@ -78,7 +78,7 @@ namespace RescueDesk.Controllers
         {
             AtividadeService atividadeService = new AtividadeService();
 
-            return View(atividadeService.ObterAtividade(id));
+            return PartialView(atividadeService.ObterAtividade(id));
         }
 
         // POST: Atividade/Delete/5

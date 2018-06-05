@@ -24,9 +24,6 @@
                                     @Html.DisplayNameFor(model => model.email)
                                 </th>
                                 <th style="width: 70%;">
-                                    @Html.DisplayNameFor(model => model.password)
-                                </th>
-                                <th style="width: 70%;">
                                     @Html.DisplayNameFor(model => model.nrcontribuinte)
                                 </th>
                                 <th style="width: 70%;">
@@ -35,7 +32,7 @@
                                 <th style="width: 70%;">
                                     @Html.DisplayNameFor(model => model.idtipo)
                                 </th>
-                                <th class="no-sort" style="width: 20%;"></th>
+                                <th class="no-sort" style="width: 15%"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -49,9 +46,6 @@
                                     @Html.DisplayFor(modelItem => item.email)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.password)
-                                </td>
-                                <td>
                                     @Html.DisplayFor(modelItem => item.nrcontribuinte)
                                 </td>
                                 <td>
@@ -60,7 +54,6 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.idtipo)
                                 </td>
-
                                 <td>
                                     <a href="@Url.Action("Edit", new { id = item.idUtilizador }) "class="btn btn-link minus-padd" title="Editar"><i class="fa fa-pencil"></i></a>
                                     @*<a href="@Url.Action("Delete", new { id = item.codpostal }) " class="btn btn-danger">Eliminar</a>*@
