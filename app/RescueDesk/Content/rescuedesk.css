@@ -10,3 +10,24 @@
     margin-left: 25%;
     padding-top: 15px;
 }
+.btn-danger {
+    color: white !important;
+}
+.btn-danger:hover {
+    color: white !important;
+}
+.fa-red {
+    color: #dc3545;
+}
+
+.fa-red:hover {
+    color: #8f222d;
+}
+
+.card-body .row label {
+    line-height: 35px;
+}
+
+.card-body .form-group {
+    margin-bottom: initial;
+}

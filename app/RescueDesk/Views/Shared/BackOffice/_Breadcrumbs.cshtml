@@ -1,4 +1,8 @@
-﻿<div class="breadcrumbs">
+﻿@{
+    bool temUrlCreate = !string.IsNullOrEmpty((string)ViewBag.AddUrl);
+}
+
+<div class="breadcrumbs">
     <div class="col-sm-4">
         <div class="page-header float-left">
             <div class="page-title">
@@ -10,7 +14,16 @@
         <div class="page-header float-right">
             <div class="page-title">
                 <ol class="breadcrumb text-right">
-                    <li class="active">@ViewBag.SubTitle</li>
+                    <li class="active">
+                        @if (temUrlCreate)
+                        {
+                            <div class="fa-hover"><a href="@ViewBag.AddUrl"><i class="fa fa-plus-circle"></i> Adicionar</a></div>
+                        }
+                        else
+                        {
+                            @ViewBag.SubTitle
+                        }
+                    </li>
                 </ol>
             </div>
         </div>

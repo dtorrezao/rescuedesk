@@ -28,7 +28,6 @@ namespace RescueDesk
                       "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/BackOffice").Include(
-                      "~/Content/animate.css",
                       "~/Content/bootstrap.css",
                       "~/Content/bootstrap-select.css",
                       "~/Content/cs-skin-elastic.css",
@@ -36,13 +35,13 @@ namespace RescueDesk
                       "~/Content/font-awesome.min.css",
                       "~/Content/normalize.css",
                       "~/Content/style.css",
-                      "~/Content/rescuedesk.css",
                       "~/Content/lib/datatable/buttons.bootstrap.min.css",
                       "~/Content/lib/datatable/buttons.dataTables.min.css",
                       "~/Content/lib/datatable/dataTables.bootstrap.min.css",
                       "~/Content/themify-icons.css",
                       "~/Content/lib/chosen/chosen.min.css",
-                      "~/Content/variables.css"));
+                      "~/Content/variables.css",
+                      "~/Content/rescuedesk.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/BackOffice").Include(
                         "~/Scripts/jquery-2.1.4.min.js",

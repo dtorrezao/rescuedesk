@@ -10,13 +10,19 @@
 
     <div class="card">
         <div class="card-body card-block">
-            <div class="form-group">
-                <label for="@Html.NameFor(x=>x.descricao)" class=" form-control-label">@Html.DisplayNameFor(model => model.descricao)</label>
-                @Html.EditorFor(model => model.descricao, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
-            </div>
-            <div class="form-group">
-                <label for="@Html.NameFor(x=>x.peso)" class=" form-control-label">@Html.DisplayNameFor(model => model.peso)</label>
-                @Html.EditorFor(model => model.peso, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled"} })
+            <div class="row form-group">
+                <div class="col col-md-2">
+                    <label for="@Html.NameFor(x=>x.descricao)" class=" form-control-label">@Html.DisplayNameFor(model => model.descricao)</label>
+                </div>
+                <div class="col col-md-6">
+                    @Html.EditorFor(model => model.descricao, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                </div>
+                <div class="col col-md-1">
+                    <label for="@Html.NameFor(x=>x.peso)" class=" form-control-label">@Html.DisplayNameFor(model => model.peso)</label>
+                </div>
+                <div class="col col-md-3">
+                    @Html.EditorFor(model => model.peso, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                </div>
             </div>
         </div>
         <div class="card-footer">

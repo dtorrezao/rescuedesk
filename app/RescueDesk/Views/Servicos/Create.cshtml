@@ -5,22 +5,28 @@
     ViewBag.SubTitle = "Adicionar";
 }
 
-<div class="col-lg-12">
+<div class="col-lg-12 ">
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="card">
             <div class="card-body card-block">
-                <div class="form-group">
-                    <label for="@Html.NameFor(x=>x.descricao)" class=" form-control-label">@Html.DisplayNameFor(model => model.descricao)</label>
-                    @Html.EditorFor(model => model.descricao, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza uma breve descrição da atividade..." } })
-                    @Html.ValidationMessageFor(model => model.descricao, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    <label for="@Html.NameFor(x=>x.peso)" class=" form-control-label">@Html.DisplayNameFor(model => model.peso)</label>
-                    @Html.EditorFor(model => model.peso, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o peso da atividade..." } })
-                    @Html.ValidationMessageFor(model => model.peso, "", new { @class = "text-danger" })
+                <div class="row form-group">
+                    <div class="col col-md-1">
+                        <label for="@Html.NameFor(x=>x.descricao)" class=" form-control-label">@Html.DisplayNameFor(model => model.descricao)</label>
+                    </div>
+                    <div class="col col-md-7">
+                        @Html.EditorFor(model => model.descricao, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza uma breve descrição da atividade..." } })
+                        @Html.ValidationMessageFor(model => model.descricao, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col col-md-1">
+                        <label for="@Html.NameFor(x=>x.peso)" class=" form-control-label">@Html.DisplayNameFor(model => model.peso)</label>
+                    </div>
+                    <div class="col col-md-3">
+                        @Html.EditorFor(model => model.peso, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o peso da atividade..." } })
+                        @Html.ValidationMessageFor(model => model.peso, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
             <div class="card-footer">
