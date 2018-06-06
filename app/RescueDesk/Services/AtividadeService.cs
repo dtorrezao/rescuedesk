@@ -16,7 +16,10 @@ namespace RescueDesk.Services
         {
             List<Atividade> atividades = new List<Atividade>();
             this.Conn.Open();
-            MySqlDataAdapter cmd1 = new MySqlDataAdapter("SELECT * FROM tipoatividade", this.Conn);
+
+            string query = "SELECT ta.*, case WHEN p.idpedido IS NULL THEN 1 ELSE 0 END 'PodeEliminar' FROM tipoatividade ta LEFT JOIN pedidos p on ta.idatividade = p.idatividade";
+
+            MySqlDataAdapter cmd1 = new MySqlDataAdapter(query, this.Conn);
             DataTable dados1 = new DataTable();
             cmd1.Fill(dados1);
             this.Conn.Close();
@@ -62,6 +65,7 @@ namespace RescueDesk.Services
             return resultados > 0;
         }
 
+
         public Atividade ObterAtividade(int id)
         {
             this.Conn.Open();
@@ -83,6 +87,11 @@ namespace RescueDesk.Services
             atividade.idatividade = int.Parse(linha["idatividade"].ToString());
             atividade.descricao = linha["atividade"].ToString();
             atividade.peso = int.Parse(linha["peso"].ToString());
+
+            if (linha.Table.Columns.Contains("PodeEliminar"))
+            {
+                atividade.PodeEliminar = linha["PodeEliminar"].ToString().Equals("1");
+            }
             return atividade;
         }
     }

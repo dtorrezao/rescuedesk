@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Serviços";
+    ViewBag.FAIcon = "fa-wrench";
     ViewBag.SubTitle = "";
     ViewBag.AddUrl = Url.Action("Create");
 }
@@ -48,12 +49,11 @@
 
 
                                         <a href="@Url.Action("Delete", new { id = item.idatividade }) "
-                                           class="btn btn-link minus-padd modal-link"
+                                           class="btn btn-link minus-padd modal-link   @if (!item.PodeEliminar) { <text> disabled</text>  }"
                                            data-ajax="true"
                                            data-ajax-method="GET"
                                            data-ajax-mode="after"
-                                           data-ajax-update="#modal-body"
-                                           >
+                                           data-ajax-update="#modal-body">
                                             <i class="fa fa-trash-o fa-red"></i>
                                         </a>
                                     </td>
@@ -69,4 +69,8 @@
 
 </div>
 
-
+<style>    
+    a.btn.disabled i {
+        color: #868e96;
+    }
+</style>

@@ -7,9 +7,10 @@
 
 
 
-
+    //https://datatables.net/examples/advanced_init/
     $('#bootstrap-data-table').DataTable({
-        lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]],
+        lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "Todos"]],
+        pageLength: 20,
         language: {
             url: "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese.json"
         },
@@ -23,7 +24,7 @@
 
     $('#bootstrap-data-table-export').DataTable({
         dom: 'lBfrtip',
-        lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
+        lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
         buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'
         ]

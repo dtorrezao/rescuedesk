@@ -77,7 +77,6 @@ namespace RescueDesk.Controllers
         public ActionResult Delete(int id)
         {
             AtividadeService atividadeService = new AtividadeService();
-
             return PartialView(atividadeService.ObterAtividade(id));
         }
 
