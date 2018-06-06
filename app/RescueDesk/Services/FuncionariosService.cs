@@ -43,6 +43,7 @@ namespace RescueDesk.Services
         {
             Funcionario funcionario = new Funcionario();
             funcionario.ultlogin = DateTime.Now;
+            funcionario.ativo = true;
             return funcionario;
         }
 

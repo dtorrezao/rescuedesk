@@ -1,19 +1,15 @@
 ﻿@model IEnumerable<RescueDesk.Models.Funcionario>
-
 @{
     ViewBag.Title = "Funcionários";
-    ViewBag.SubTitle = "Listagem";
+    ViewBag.FAIcon = "fa-suitcase";
+    ViewBag.SubTitle = "";
+    ViewBag.AddUrl = Url.Action("Create");
 }
 <div class="animated fadeIn">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="row container-fluid">
-                        <div class="col-sm-12 ">
-                            <div class="fa-hover"><a href="@Url.Action("Create")"><i class="fa fa-plus-circle"></i> Adicionar</a></div>
-                        </div>
-                    </div>
                     <table id="bootstrap-data-table" class="table table-striped table-bordered" style="font-size:14px">
                         <thead>
                             <tr>
@@ -38,39 +34,37 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.idfuncionario)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.nome)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.dept)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.email)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.contacto)
-                                </td>
-                                <td>
-                                    <a href="@Url.Action("Edit", new { id = item.idfuncionario }) " class="btn btn-link minus-padd" title="Editar"><i class="fa fa-pencil"></i></a>
-                                    @*<a href="@Url.Action("Delete", new { id = item.nrcontribuinte }) " class="btn btn-danger">Eliminar</a>*@
-                                </td>
-                            </tr>
+                                var inativoclass = "";
+                                if (!item.ativo) { inativoclass = "inactive"; }
+                                <tr class="@inativoclass">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.idfuncionario)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.dept)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.contacto)
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("Edit", new { id = item.idfuncionario }) " class="btn btn-link minus-padd" title="Editar"><i class="fa fa-pencil"></i></a>
+                                        @*<a href="@Url.Action("Delete", new { id = item.nrcontribuinte }) " class="btn btn-danger">Eliminar</a>*@
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>
-
     </div>
 </div>
-
 @section scripts{
-
 
 }

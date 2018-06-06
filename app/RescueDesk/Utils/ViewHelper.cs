@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RescueDesk.Models;
+using RescueDesk.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -20,6 +22,15 @@ namespace RescueDesk.Utils
                 action = (string)routeValues["action"];
 
             return controller == controllerName && action == actionName ? "active" : "";
+        }
+
+        public static string GetUserImage()
+        {
+            var username = HttpContext.Current.User.Identity.Name;
+
+            UtilizadorService usrService = new UtilizadorService();
+            Utilizador user = usrService.ObterUtilizadorByEmail(username);
+            return user.foto ?? "/images/admin.jpg";
         }
     }
 }

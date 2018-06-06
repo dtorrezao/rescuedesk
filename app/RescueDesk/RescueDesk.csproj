@@ -165,7 +165,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocalidadesController.cs" />
     <Compile Include="Controllers\PedidosController.cs" />
-    <Compile Include="Controllers\TipoUtilizadorController.cs" />
     <Compile Include="Controllers\UtilizadoresController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -191,6 +190,7 @@
     <Compile Include="Utils\Criptografia.cs" />
     <Compile Include="Utils\Database.cs" />
     <Compile Include="Utils\ViewHelper.cs" />
+    <Compile Include="ViewModels\FuncionarioViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\animate.css" />
@@ -343,23 +343,17 @@
     <Content Include="Views\Shared\_BackOffice.cshtml" />
     <Content Include="Views\Shared\BackOffice\_NavBar.cshtml" />
     <Content Include="Views\Shared\BackOffice\_Header.cshtml" />
-    <Content Include="Views\TipoUtilizador\Index.cshtml" />
-    <Content Include="Views\TipoUtilizador\Create.cshtml" />
-    <Content Include="Views\TipoUtilizador\Edit.cshtml" />
-    <Content Include="Views\TipoUtilizador\Delete.cshtml" />
     <Content Include="Views\Shared\BackOffice\_Breadcrumbs.cshtml" />
     <Content Include="Views\Utilizadores\Index.cshtml" />
     <Content Include="Views\Funcionarios\Index.cshtml" />
     <Content Include="Views\Funcionarios\Create.cshtml" />
     <Content Include="Views\Funcionarios\Edit.cshtml" />
-    <Content Include="Views\Funcionarios\Delete.cshtml" />
     <Content Include="Views\Utilizadores\Login.cshtml" />
     <Content Include="Views\Shared\BackOffice\_Login.cshtml" />
     <Content Include="Views\Clientes\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

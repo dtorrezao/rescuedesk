@@ -36,3 +36,7 @@
 .card-body .form-group {
     margin-bottom: initial;
 }
+
+tr.inactive {
+    color: #bababa !important;
+}

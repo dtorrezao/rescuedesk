@@ -1,69 +1,69 @@
-﻿@model RescueDesk.Models.Funcionario
+﻿@model RescueDesk.ViewModels.FuncionarioViewModel
 @{
     ViewBag.Title = "Funcionarios";
     ViewBag.SubTitle = "Adicionar";
-    //listar Moradas disponiveis
-    var AvailableAddress = ViewBag.AvailableAddress as List<SelectListItem>;
-
+    ViewBag.FAIcon = "fa-suitcase";
 }
 <div class="col-lg-12">
-    @using (Html.BeginForm())
+    @using (Html.BeginForm(
+        actionName: "Create",
+        controllerName: "Funcionarios",
+        routeValues: null,
+        method: FormMethod.Post,
+        htmlAttributes: new { @enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="card">
             <div class="card-body card-block">
                 <div class="form-group">
-                    <label for="@Html.NameFor(x=>x.nome)" class=" form-control-label">@Html.DisplayNameFor(model => model.nome)</label>
-                    @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o seu primeiro e último nome" } })
-                    @Html.ValidationMessageFor(model => model.nome, "", new { @class = "text-danger" })
+                    <label for="@Html.NameFor(x=>x.Funcionario.nome)" class=" form-control-label">@Html.DisplayNameFor(model => model.Funcionario.nome)</label>
+                    @Html.EditorFor(model => model.Funcionario.nome, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o seu primeiro e último nome" } })
+                    @Html.ValidationMessageFor(model => model.Funcionario.nome, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
-                    <label for="@Html.NameFor(x=>x.morada)" class=" form-control-label">@Html.DisplayNameFor(model => model.morada)</label>
-                    @Html.EditorFor(model => model.morada, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
-                    @Html.ValidationMessageFor(model => model.morada, "", new { @class = "text-danger" })
+                    <label for="@Html.NameFor(x=>x.Funcionario.cargo)" class=" form-control-label">@Html.DisplayNameFor(model => model.Funcionario.cargo)</label>
+                    @Html.EditorFor(model => model.Funcionario.cargo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o seu cargo" } })
+                    @Html.ValidationMessageFor(model => model.Funcionario.cargo, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
-                    <label for="@Html.NameFor(x=>x.codpostal)" class=" form-control-label">@Html.DisplayNameFor(model => model.codpostal)</label>
-                    @Html.DropDownListFor(model => model.codpostal, AvailableAddress, new { @class = "form-control standardSelect" })
-                    @Html.ValidationMessageFor(model => model.codpostal, "", new { @class = "text-danger" })
+                    <label for="@Html.NameFor(x=>x.Funcionario.contacto)" class=" form-control-label">@Html.DisplayNameFor(model => model.Funcionario.contacto)</label>
+                    @Html.EditorFor(model => model.Funcionario.contacto, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o seu contacto" } })
+                    @Html.ValidationMessageFor(model => model.Funcionario.contacto, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
-                    <label for="@Html.NameFor(x=>x.iddept)" class=" form-control-label">@Html.DisplayNameFor(model => model.iddept)</label>
-                    @Html.EditorFor(model => model.iddept, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
-                    @Html.ValidationMessageFor(model => model.iddept, "", new { @class = "text-danger" })
+                    <label for="@Html.NameFor(x=>x.Funcionario.dept)" class=" form-control-label">@Html.DisplayNameFor(model => model.Funcionario.dept)</label>
+                    @Html.DropDownListFor(model => model.Funcionario.iddept, Model.Departamentos, new { @class = "form-control standardSelect" })
+                    @Html.ValidationMessageFor(model => model.Funcionario.dept, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
-                    <label for="@Html.NameFor(x=>x.cargo)" class=" form-control-label">@Html.DisplayNameFor(model => model.cargo)</label>
-                    @Html.EditorFor(model => model.cargo, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
-                    @Html.ValidationMessageFor(model => model.cargo, "", new { @class = "text-danger" })
+                    <label for="@Html.NameFor(x=>x.Funcionario.obs)" class=" form-control-label">@Html.DisplayNameFor(model => model.Funcionario.obs)</label>
+                    @Html.EditorFor(model => model.Funcionario.obs, new { htmlAttributes = new { @class = "form-control", @placeholder = "Observações" } })
+                    @Html.ValidationMessageFor(model => model.Funcionario.obs, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
-                    <label for="@Html.NameFor(x=>x.idUtilizador)" class=" form-control-label">@Html.DisplayNameFor(model => model.idUtilizador)</label>
-                    @Html.EditorFor(model => model.idUtilizador, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
-                    @Html.ValidationMessageFor(model => model.idUtilizador, "", new { @class = "text-danger" })
+                    <label for="@Html.NameFor(x=>x.Funcionario.morada)" class=" form-control-label">@Html.DisplayNameFor(model => model.Funcionario.morada)</label>
+                    @Html.EditorFor(model => model.Funcionario.morada, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza a sua morada" } })
+                    @Html.ValidationMessageFor(model => model.Funcionario.morada, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
-                    <label for="@Html.NameFor(x=>x.contacto)" class=" form-control-label">@Html.DisplayNameFor(model => model.contacto)</label>
-                    @Html.EditorFor(model => model.contacto, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
-                    @Html.ValidationMessageFor(model => model.contacto, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    <label for="@Html.NameFor(x=>x.ativo)" class=" form-control-label">@Html.DisplayNameFor(model => model.ativo)</label>
-                    @Html.EditorFor(model => model.ativo, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
-                    @Html.ValidationMessageFor(model => model.ativo, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    <label for="@Html.NameFor(x=>x.ultlogin)" class=" form-control-label">@Html.DisplayNameFor(model => model.ultlogin)</label>
-                    @Html.EditorFor(model => model.ultlogin, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
-                    @Html.ValidationMessageFor(model => model.ultlogin, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    <label for="@Html.NameFor(x=>x.obs)" class=" form-control-label">@Html.DisplayNameFor(model => model.obs)</label>
-                    @Html.EditorFor(model => model.obs, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
-                    @Html.ValidationMessageFor(model => model.obs, "", new { @class = "text-danger" })
+                    <label for="@Html.NameFor(x=>x.Funcionario.codpostal)" class=" form-control-label">@Html.DisplayNameFor(model => model.Funcionario.codpostal)</label>
+                    @Html.DropDownListFor(model => model.Funcionario.codpostal, Model.Enderecos, new { @class = "form-control standardSelect" })
+                    @Html.ValidationMessageFor(model => model.Funcionario.codpostal, "", new { @class = "text-danger" })
                 </div>
 
+                <div class="form-group">
+                    <label for="@Html.NameFor(x=>x.Utilizador.email)" class=" form-control-label">@Html.DisplayNameFor(model => model.Utilizador.email)</label>
+                    @Html.EditorFor(model => model.Utilizador.email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o seu email" } })
+                    @Html.ValidationMessageFor(model => model.Utilizador.email, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label for="@Html.NameFor(x=>x.Utilizador.foto)" class=" form-control-label">@Html.DisplayNameFor(model => model.Utilizador.foto)</label>
+                    <input type="file" name="foto" id="foto" />
+                </div>
+                @Html.HiddenFor(x => x.Utilizador.password)
+                @Html.HiddenFor(x => x.Utilizador.idtipo)
+                @Html.HiddenFor(x => x.Funcionario.ativo)
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary btn-sm">
@@ -76,7 +76,6 @@
         </div>
     }
 </div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 

@@ -37,12 +37,62 @@ namespace RescueDesk.Services
             return Utilizadores;
         }
 
+        public Utilizador ObterUtilizadorByEmail(string user)
+        {
+            this.Conn.Open();
+            MySqlDataAdapter cmd1 = new MySqlDataAdapter("Select * from utilizadores where email='" + user + "'", this.Conn);
+            DataTable dados1 = new DataTable();
+            cmd1.Fill(dados1);
+            this.Conn.Close();
+            foreach (DataRow linha in dados1.Rows)
+            {
+                Utilizador utilizador = ParseUtilizador(linha);
+                return utilizador;
+            }
+            return null;
+        }
+
+        public Utilizador ObterUtilizadorDefault()
+        {
+            return new Utilizador()
+            {
+                idtipo = 2,
+                foto = "default.jpg",
+                password = "",
+            };
+        }
+
         public bool CreateUtilizador(Utilizador User)
         {
-            string hashpwd = Criptografia.HashString(User.password);
+            string hashpwd = Criptografia.HashString(User.password ?? "");
             string query = "INSERT INTO `utilizadores` " +
                " (`email`, `password`,`nrcontribuinte`,`foto`, `idtipo`) " +
-               " VALUES ('" + User.email + "','" + hashpwd + "'," + (User.nrcontribuinte.HasValue ? "'"+ User.nrcontribuinte.Value + "'" : "NULL") + ",'" + User.foto + "','" + User.idtipo + "')";
+               " VALUES ('" + User.email + "','" + hashpwd + "'," + (User.nrcontribuinte.HasValue ? "'" + User.nrcontribuinte.Value + "'" : "NULL") + ",'" + User.foto + "','" + User.idtipo + "')";
+            this.Conn.Open();
+            MySqlCommand cmd = new MySqlCommand(query, this.Conn);
+            int resultados = cmd.ExecuteNonQuery();
+            this.Conn.Close();
+
+            bool wasAdded = resultados > 0;
+
+            query = "SELECT idUtilizador FROM `utilizadores` where email = '" + User.email + "'";
+            MySqlDataAdapter cmd1 = new MySqlDataAdapter(query, this.Conn);
+            DataTable dados1 = new DataTable();
+            cmd1.Fill(dados1);
+            this.Conn.Close();
+            foreach (DataRow linha in dados1.Rows)
+            {
+                User.idUtilizador = int.Parse(linha["idUtilizador"].ToString());
+            }
+            return wasAdded;
+        }
+
+        public bool ChangePassword(Utilizador utilizador)
+        {
+            string hashpwd = Criptografia.HashString(utilizador.password);
+            string query = "UPDATE utilizadores " +
+                           "SET password='" + hashpwd + "'" +
+                           "WHERE idUtilizador ='" + utilizador.idUtilizador + "'";
             this.Conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, this.Conn);
             int resultados = cmd.ExecuteNonQuery();
@@ -52,9 +102,8 @@ namespace RescueDesk.Services
 
         public bool UpdateUtilizador(Utilizador utilizador)
         {
-            string hashpwd = Criptografia.HashString(utilizador.password);
             string query = "UPDATE utilizadores " +
-                           "SET password='" + hashpwd + "', foto = '" + utilizador.foto + "' " +
+                           "SET foto = '" + utilizador.foto + "' " +
                            "WHERE idUtilizador ='" + utilizador.idUtilizador + "'";
             this.Conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, this.Conn);
@@ -110,7 +159,7 @@ namespace RescueDesk.Services
             {
                 utilizador.nome = linha["nome"].ToString();
             }
-            
+
             return utilizador;
         }
 
