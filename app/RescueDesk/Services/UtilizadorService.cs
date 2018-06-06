@@ -17,7 +17,15 @@ namespace RescueDesk.Services
         {
             List<Utilizador> Utilizadores = new List<Utilizador>();
             this.Conn.Open();
-            MySqlDataAdapter cmd1 = new MySqlDataAdapter("Select * from utilizadores", this.Conn);
+
+            string query = "Select u.*, tipouser, ";
+            query += "case WHEN f.nome is null then c.nome ELSE f.nome END AS nome";
+            query += " from utilizadores u";
+            query += " LEFT join funcionarios f on f.idUtilizador = u.idUtilizador";
+            query += " LEFT join clientes c on c.nrcontribuinte = u.nrcontribuinte";
+            query += " inner join tipoutilizador tu on u.idtipo = tu.idtipo";
+
+            MySqlDataAdapter cmd1 = new MySqlDataAdapter(query, this.Conn);
             DataTable dados1 = new DataTable();
             cmd1.Fill(dados1);
             this.Conn.Close();
@@ -93,6 +101,16 @@ namespace RescueDesk.Services
             utilizador.foto = linha["foto"].ToString();
             utilizador.idtipo = int.Parse(linha["idtipo"].ToString());
 
+            if (linha.Table.Columns.Contains("tipouser"))
+            {
+                utilizador.tipoUtilizador = linha["tipouser"].ToString();
+            }
+
+            if (linha.Table.Columns.Contains("nome"))
+            {
+                utilizador.nome = linha["nome"].ToString();
+            }
+            
             return utilizador;
         }
 
