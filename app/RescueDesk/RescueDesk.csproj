@@ -187,6 +187,7 @@
     <Compile Include="Services\PedidosService.cs" />
     <Compile Include="Services\TipoUtilizadorService.cs" />
     <Compile Include="Services\UtilizadorService.cs" />
+    <Compile Include="Utils\Utils.cs" />
     <Compile Include="Utils\Criptografia.cs" />
     <Compile Include="Utils\Database.cs" />
     <Compile Include="Utils\ViewHelper.cs" />
@@ -307,7 +308,9 @@
     <Content Include="images\.gitignore" />
     <None Include="Properties\PublishProfiles\wtorrezao-001-site1.btempurl.com.pubxml" />
     <None Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -351,6 +354,7 @@
     <Content Include="Views\Utilizadores\Login.cshtml" />
     <Content Include="Views\Shared\BackOffice\_Login.cshtml" />
     <Content Include="Views\Clientes\Details.cshtml" />
+    <Content Include="Views\Localidades\ImportFicheiro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

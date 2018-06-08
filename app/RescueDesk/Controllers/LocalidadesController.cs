@@ -2,6 +2,7 @@
 using RescueDesk.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -92,6 +93,68 @@ namespace RescueDesk.Controllers
             {
                 return RedirectToAction("Delete", new { id = codpostal });
             }
+        }
+
+        // GET: Localidades/ImportFicheiro
+        public ActionResult ImportFicheiro()
+        {
+            return View();
+        }
+        // POST: Localidades/ImportFicheiro
+        [HttpPost]
+        public ActionResult ImportFicheiro(HttpPostedFileBase file)
+        {
+            if (file != null)
+            {
+                List<Localidade> localidades = new List<Localidade>();
+                if (file.ContentLength > 0)
+                {
+                    //// Gravar o ficheiro Localmente
+                    var fileName = Path.GetFileName(file.FileName);
+                    var path = Path.Combine(Server.MapPath("~/"), fileName);
+                    file.SaveAs(path);
+
+                    //// Percorrer ficheiro para parse
+                    //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/file-system/how-to-read-a-text-file-one-line-at-a-time
+                    int counter = 0;
+                    string line;
+
+                    // Read the file and display it line by line.  
+                    System.IO.StreamReader importedFile = new System.IO.StreamReader(path, System.Text.Encoding.UTF7);
+                    while ((line = importedFile.ReadLine()) != null)
+                    {
+                        localidades.Add(Localidade.Parse(line));
+                        counter++;
+                    }
+
+                    importedFile.Close();
+
+                    // Gravar Localidades
+                    AddressService addressService = new AddressService();
+
+                    List<Localidade> localidadesExistentes = addressService.ObterLocalidades();
+                    List<Localidade> localidadesAActualizar = new List<Localidade>();
+                    List<Localidade> localidadesAInserir = new List<Localidade>();
+
+                    foreach (Localidade localidade in localidades)
+                    {
+                        if (localidadesExistentes.Exists(x => x.codpostal == localidade.codpostal))
+                        {
+                            localidadesAActualizar.Add(localidade);
+                        }
+                        else
+                        {
+                            localidadesAInserir.Add(localidade);
+                           
+                        }
+                    }
+
+                    addressService.UpdateLocalidades(localidadesAActualizar);
+                    addressService.CreateLocalidades(localidadesAInserir);
+                }
+            }
+
+            return View();
         }
     }
 }

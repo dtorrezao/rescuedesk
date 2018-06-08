@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using MySql.Data.MySqlClient;
 using RescueDesk.Models;
+using RescueDesk.Utils;
 
 namespace RescueDesk.Services
 {
@@ -41,6 +42,26 @@ namespace RescueDesk.Services
             return resultados > 0;
         }
 
+        public void CreateLocalidades(List<Localidade> localidadesAInserir)
+        {
+            if (localidadesAInserir.Any())
+            {
+                this.Conn.Open();
+                foreach (Localidade localidade in localidadesAInserir.DistinctBy(x => x.codpostal))
+                {
+                    string query = "";
+                    query += "INSERT INTO localidades " +
+                               "(codpostal, localidade) " +
+                               "VALUES ('" + localidade.codpostal.ToString() + "', '" + localidade.nomeLocalidade.ToString() + "')";
+
+                    MySqlCommand cmd = new MySqlCommand(query, this.Conn);
+                    int resultados = cmd.ExecuteNonQuery();
+                }
+
+                this.Conn.Close();
+            }
+        }
+
         public bool UpdateLocalidade(Localidade localidade, string oldID)
         {
             string query = "UPDATE localidades " +
@@ -51,6 +72,28 @@ namespace RescueDesk.Services
             int resultados = cmd.ExecuteNonQuery();
             this.Conn.Close();
             return resultados > 0;
+        }
+
+        public void UpdateLocalidades(List<Localidade> localidadesAActualizar)
+        {
+            if (localidadesAActualizar.Any())
+            {
+                this.Conn.Open();
+
+                foreach (Localidade localidade in localidadesAActualizar.DistinctBy(x => x.codpostal))
+                {
+                    string query = "";
+
+                    query += "UPDATE localidades " +
+                             "SET codpostal='" + localidade.codpostal + "', localidade = '" + localidade.nomeLocalidade + "' " +
+                             "WHERE codpostal = '" + localidade.codpostal + "' ";
+
+                    MySqlCommand cmd = new MySqlCommand(query, this.Conn);
+                    int resultados = cmd.ExecuteNonQuery();
+                }
+
+                this.Conn.Close();
+            }
         }
 
         public Localidade ObterLocalidade(string id)
@@ -85,6 +128,7 @@ namespace RescueDesk.Services
 
             return localidade;
         }
+
 
     }
 }
