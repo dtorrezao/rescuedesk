@@ -30,7 +30,7 @@ namespace RescueDesk.Controllers
         {
             Atividade atividade = new Atividade();
 
-            return View(atividade);
+            return PartialView(atividade);
         }
 
         // POST: Atividade/Create

@@ -19,7 +19,8 @@ namespace RescueDesk.Services
             this.Conn.Open();
 
             string query = "Select u.*, tipouser, ";
-            query += "case WHEN f.nome is null then c.nome ELSE f.nome END AS nome";
+            query += "case WHEN f.nome is null then c.nome ELSE f.nome END AS nome,";
+            query += "CASE WHEN f.ativo IS NULL THEN 1 ELSE f.ativo END 'Ativo'";
             query += " from utilizadores u";
             query += " LEFT join funcionarios f on f.idUtilizador = u.idUtilizador";
             query += " LEFT join clientes c on c.nrcontribuinte = u.nrcontribuinte";
@@ -158,6 +159,11 @@ namespace RescueDesk.Services
             if (linha.Table.Columns.Contains("nome"))
             {
                 utilizador.nome = linha["nome"].ToString();
+            }
+
+            if (linha.Table.Columns.Contains("Ativo"))
+            {
+                utilizador.ativo = int.Parse(linha["Ativo"].ToString())==1?true:false;
             }
 
             return utilizador;

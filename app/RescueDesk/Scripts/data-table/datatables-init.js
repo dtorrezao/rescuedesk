@@ -1,11 +1,8 @@
 (function ($) {
     //    "use strict";
 
-
     /*  Data Table
     -------------*/
-
-
 
     //https://datatables.net/examples/advanced_init/
     $('#bootstrap-data-table').DataTable({
@@ -19,8 +16,6 @@
             "orderable": false,
         }]
     });
-
-
 
     $('#bootstrap-data-table-export').DataTable({
         dom: 'lBfrtip',
@@ -52,10 +47,5 @@
 				} );
 			}
 		} );
-
-
-
-
-
 
 })(jQuery);

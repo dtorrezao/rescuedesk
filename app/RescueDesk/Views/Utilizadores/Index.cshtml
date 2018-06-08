@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<RescueDesk.Models.Utilizador>
+
 @{
     ViewBag.Title = "Utilizadores";
     ViewBag.FAIcon = "fa-users";
@@ -10,19 +11,19 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <table id="bootstrap-data-table" class="table table-striped table-bordered"  style="font-size:14px">
+                    <table id="bootstrap-data-table" class="table table-striped table-bordered" style="font-size:14px">
                         <thead>
                             <tr>
-                                <th style="width: 10%;">
+                                <th style="width: 10%">
                                     @Html.DisplayNameFor(model => model.idUtilizador)
                                 </th>
-                                <th style="width: 40%;">
+                                <th style="width: 40%">
                                     @Html.DisplayNameFor(model => model.nome)
                                 </th>
-                                <th style="width: 25%;">
+                                <th style="width: 30%">
                                     @Html.DisplayNameFor(model => model.email)
                                 </th>
-                                <th style="width: 25%;">
+                                <th style="width: 20%">
                                     @Html.DisplayNameFor(model => model.tipoUtilizador)
                                 </th>
                             </tr>
@@ -30,20 +31,22 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.idUtilizador)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.nome)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.email)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.tipoUtilizador)
-                                </td>
-                            </tr>
+                                var inativoclass = "";
+                                if (!item.ativo) { inativoclass = "inactive"; }
+                                <tr class="@inativoclass">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.idUtilizador)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tipoUtilizador)
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>
@@ -51,7 +54,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
@@ -59,3 +61,4 @@
 
 
 }
+

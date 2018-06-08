@@ -2,6 +2,9 @@
 
 @{
     ViewBag.Title = "Departamentos";
+    ViewBag.FAIcon = "fa-sitemap";
+    ViewBag.SubTitle = "";
+    ViewBag.AddUrl = Url.Action("Create");
 }
 
 <div class="animated fadeIn">
@@ -9,17 +12,9 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="row container-fluid">
-                        <div class="col-sm-12 ">
-                            <div class="fa-hover"><a href="@Url.Action("Create")"><i class="fa fa-plus-circle"></i> Adicionar</a></div>
-                        </div>
-                    </div>
                     <table id="bootstrap-data-table" class="table table-striped table-bordered" style="font-size:14px">
                         <thead>
                             <tr>
-                                <th style="width: 5%">
-                                    @Html.DisplayNameFor(model => model.iddept)
-                                </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.dept)
                                 </th>
@@ -31,14 +26,23 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.iddept)
-                                    </td>
-                                    <td>
                                         @Html.DisplayFor(modelItem => item.dept)
                                     </td>
                                     <td align="center">
-                                        <a href="@Url.Action("Edit", new { id = item.iddept }) " class="btn btn-link minus-padd"><i class="fa fa-pencil"></i></a>
-                                        <a href="@Url.Action("Delete", new { id = item.iddept }) " class="btn btn-link minus-padd" style="color: #dc3545"><i class="fa fa-trash-o"></i></a>
+                                        <a href="@Url.Action("Edit", new { id = item.iddept })" 
+                                           title="Editar"
+                                           data-ajax="true"
+                                           data-ajax-method="GET"
+                                           data-ajax-mode="after"
+                                           data-ajax-update="#modal-body"
+                                           class="btn btn-link minus-padd modal-link"><i class="fa fa-pencil fa-add"></i></a>
+                                        <a href="@Url.Action("Delete", new { id = item.iddept })"
+                                           title="Eliminar"
+                                           data-ajax="true"
+                                           data-ajax-method="GET"
+                                           data-ajax-mode="after"
+                                           data-ajax-update="#modal-body"
+                                           class="btn btn-link minus-padd modal-link"><i class="fa fa-trash-o fa-red"></i></a>
                                     </td>
                                 </tr>
                             }
@@ -51,8 +55,3 @@
 
     </div>
 </div>
-
-@section scripts{
-
-
-}

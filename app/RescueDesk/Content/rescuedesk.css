@@ -5,12 +5,6 @@
     padding-top: 0px;
 }
 
-.modal-content {
-    width: 50%;
-    margin-left: 25%;
-    padding-top: 15px;
-}
-
 #modal-container .btn-secondary,
 #modal-container .btn-danger {
     color: white !important;
@@ -38,5 +32,20 @@
 }
 
 tr.inactive {
+    color: #bababa !important;
+}
+
+.fa-add {
+    color: #007bff !important;
+}
+
+    .fa-add:hover {
+        color: #0056b3 !important;
+    }
+
+.inactive a,
+.inactive a:visited,
+.inactive a:hover,
+.inactive a:active {
     color: #bababa !important;
 }

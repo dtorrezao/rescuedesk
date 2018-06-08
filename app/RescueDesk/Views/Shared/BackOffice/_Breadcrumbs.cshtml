@@ -1,6 +1,6 @@
 ﻿@{
     bool temUrlCreate = !string.IsNullOrEmpty((string)ViewBag.AddUrl);
-    bool temfaIcon= !string.IsNullOrEmpty((string)ViewBag.FAIcon);
+    bool temfaIcon = !string.IsNullOrEmpty((string)ViewBag.FAIcon);
 }
 
 <div class="breadcrumbs">
@@ -9,7 +9,7 @@
             <div class="page-title">
                 @if (temfaIcon)
                 {
-                    <h1><i class="fa @ViewBag.FAIcon"></i> @ViewBag.Title</h1>
+                    <h1><i class="fa @ViewBag.FAIcon"></i>&ensp;@ViewBag.Title</h1>
                 }
                 else
                 {
@@ -25,7 +25,14 @@
                     <li class="active">
                         @if (temUrlCreate)
                         {
-                            <div class="fa-hover"><a href="@ViewBag.AddUrl"><i class="fa fa-plus-circle"></i> Adicionar</a></div>
+                            <div class="fa-hover">
+                                <a class="fa-add modal-link"
+                                   data-ajax="true"
+                                   data-ajax-method="GET"
+                                   data-ajax-mode="after"
+                                   data-ajax-update="#modal-body"
+                                   href="@ViewBag.AddUrl"><i class="fa fa-plus-circle"></i>&nbsp;Criar</a>
+                            </div>
                         }
                         else
                         {

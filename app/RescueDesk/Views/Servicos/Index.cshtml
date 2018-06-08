@@ -5,6 +5,7 @@
     ViewBag.FAIcon = "fa-wrench";
     ViewBag.SubTitle = "";
     ViewBag.AddUrl = Url.Action("Create");
+    ViewBag.IsPopUp = true;
 }
 
 <div class="animated fadeIn">
@@ -15,16 +16,13 @@
                     <table id="bootstrap-data-table" class="table table-striped table-bordered" style="font-size:14px">
                         <thead>
                             <tr>
-                                <th style="width: 5%;">
-                                    @Html.DisplayNameFor(model => model.idatividade)
-                                </th>
-                                <th>
+                                <th style="width: 80%">
                                     @Html.DisplayNameFor(model => model.descricao)
                                 </th>
-                                <th style="width: 5%;">
+                                <th style="width: 5%">
                                     @Html.DisplayNameFor(model => model.peso)
                                 </th>
-                                <th class="no-sort" style="width: 15%;"></th>
+                                <th class="no-sort" style="width: 15%"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -32,28 +30,26 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.idatividade)
-                                    </td>
-                                    <td>
                                         @Html.DisplayFor(modelItem => item.descricao)
                                     </td>
                                     <td align="center">
                                         @Html.DisplayFor(modelItem => item.peso)
                                     <td align="center">
                                         <a href="@Url.Action("Edit", new { id = item.idatividade })"
+                                           title="Editar"
                                            data-ajax="true"
                                            data-ajax-method="GET"
                                            data-ajax-mode="after"
                                            data-ajax-update="#modal-body"
-                                           class="btn btn-link minus-padd modal-link"><i class="fa fa-pencil"></i></a>
+                                           class="btn btn-link minus-padd modal-link"><i class="fa fa-pencil fa-add"></i></a>
 
-
-                                        <a href="@Url.Action("Delete", new { id = item.idatividade }) "
-                                           class="btn btn-link minus-padd modal-link   @if (!item.PodeEliminar) { <text> disabled</text>  }"
+                                        <a href="@Url.Action("Delete", new { id = item.idatividade })"
+                                           title="Eliminar"
                                            data-ajax="true"
                                            data-ajax-method="GET"
                                            data-ajax-mode="after"
-                                           data-ajax-update="#modal-body">
+                                           data-ajax-update="#modal-body"
+                                           class="btn btn-link minus-padd modal-link  @if (!item.PodeEliminar) { <text> disabled</text> }">
                                             <i class="fa fa-trash-o fa-red"></i>
                                         </a>
                                     </td>
@@ -64,12 +60,10 @@
                 </div>
             </div>
         </div>
-
     </div>
-
 </div>
 
-<style>    
+<style>
     a.btn.disabled i {
         color: #868e96;
     }
