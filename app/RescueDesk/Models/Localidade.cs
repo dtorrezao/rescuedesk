@@ -20,7 +20,7 @@ namespace RescueDesk.Models
             return new Localidade()
             {
                 codpostal = words[14] + "-" + words[15],
-                nomeLocalidade = words[16]
+                nomeLocalidade = words[16].Replace("'","")
             };
         }
     }

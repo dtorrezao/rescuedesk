@@ -3,31 +3,36 @@
 @{
     Layout = null;
     ViewBag.Title = "Departamento";
-    ViewBag.SubTitle = "";
+    ViewBag.SubTitle = "Eliminar Departamento";
 }
 
-<div class="col-lg-12">
-
-    <div class="card">
-        <div class="card-body card-block">
-            <div class="row form-group">
-                <div class="col col-md-12">
-                    Tem a certeza que pretende eliminar o departamento de: <b>@Html.ValueFor(model => model.dept)</b>?
-                </div>
+@using (Html.BeginForm())
+{
+    if (!string.IsNullOrEmpty((string)ViewBag.SubTitle))
+    {
+        <div class="modal-header">
+            <h5 class="modal-title" id="staticModalLabel">@ViewBag.SubTitle</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    <div class="modal-body">
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.iddept)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row ">
+            <div class="col col-md-12">
+                Tem a certeza que pretende eliminar o departamento de: <b>@Html.ValueFor(model => model.dept)</b>?
             </div>
         </div>
-        <div class="card-footer">
-            <button type="submit" class="btn btn-danger btn-sm">
-                <i class="fa fa-trash-o"></i>&nbsp; Eliminar
-            </button>
-            <a onclick="closeModal()" class="btn btn-secondary btn-sm">
-                <i class="fa fa-times"></i>&nbsp;Cancelar
-            </a>
-        </div>
     </div>
-</div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i>&nbsp;Eliminar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"> <i class="fa fa-times"></i>&nbsp;Cancelar</button>
+    </div>
+}
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-

@@ -49,3 +49,7 @@ tr.inactive {
 .inactive a:active {
     color: #bababa !important;
 }
+
+a.btn.disabled i {
+    color: #868e96;
+}

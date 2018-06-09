@@ -50,7 +50,7 @@ namespace RescueDesk.Services
                 foreach (Localidade localidade in localidadesAInserir.DistinctBy(x => x.codpostal))
                 {
                     string query = "";
-                    query += "INSERT INTO localidades " +
+                    query += @"INSERT INTO localidades " +
                                "(codpostal, localidade) " +
                                "VALUES ('" + localidade.codpostal.ToString() + "', '" + localidade.nomeLocalidade.ToString() + "')";
 

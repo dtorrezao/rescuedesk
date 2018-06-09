@@ -14,17 +14,14 @@
                     <table id="bootstrap-data-table" class="table table-striped table-bordered" style="font-size:14px">
                         <thead>
                             <tr>
-                                <th style="width: 10%">
-                                    @Html.DisplayNameFor(model => model.idUtilizador)
-                                </th>
-                                <th style="width: 40%">
+                                <th style="width: 45%">
                                     @Html.DisplayNameFor(model => model.nome)
-                                </th>
-                                <th style="width: 30%">
-                                    @Html.DisplayNameFor(model => model.email)
                                 </th>
                                 <th style="width: 20%">
                                     @Html.DisplayNameFor(model => model.tipoUtilizador)
+                                </th>
+                                <th style="width: 35%">
+                                    @Html.DisplayNameFor(model => model.email)
                                 </th>
                             </tr>
                         </thead>
@@ -35,16 +32,13 @@
                                 if (!item.ativo) { inativoclass = "inactive"; }
                                 <tr class="@inativoclass">
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.idUtilizador)
-                                    </td>
-                                    <td>
                                         @Html.DisplayFor(modelItem => item.nome)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.email)
+                                        @Html.DisplayFor(modelItem => item.tipoUtilizador)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.tipoUtilizador)
+                                        @Html.DisplayFor(modelItem => item.email)
                                     </td>
                                 </tr>
                             }

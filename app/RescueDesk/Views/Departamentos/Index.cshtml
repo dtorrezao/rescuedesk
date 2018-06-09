@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Departamentos";
     ViewBag.FAIcon = "fa-sitemap";
-    ViewBag.SubTitle = "";
+    ViewBag.SubTitle = "Criar";
     ViewBag.AddUrl = Url.Action("Create");
 }
 
@@ -36,22 +36,23 @@
                                            data-ajax-mode="after"
                                            data-ajax-update="#modal-body"
                                            class="btn btn-link minus-padd modal-link"><i class="fa fa-pencil fa-add"></i></a>
+
                                         <a href="@Url.Action("Delete", new { id = item.iddept })"
                                            title="Eliminar"
                                            data-ajax="true"
                                            data-ajax-method="GET"
                                            data-ajax-mode="after"
                                            data-ajax-update="#modal-body"
-                                           class="btn btn-link minus-padd modal-link"><i class="fa fa-trash-o fa-red"></i></a>
+                                           class="btn btn-link minus-padd modal-link @if (!item.PodeEliminar) { <text> disabled</text> }">
+                                           <i class="fa fa-trash-o fa-red"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             }
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>
-
     </div>
 </div>
