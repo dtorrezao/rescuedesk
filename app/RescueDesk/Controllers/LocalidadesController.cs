@@ -1,4 +1,5 @@
-﻿using RescueDesk.Models;
+﻿using Newtonsoft.Json;
+using RescueDesk.Models;
 using RescueDesk.Services;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,8 @@ namespace RescueDesk.Controllers
     [Authorize(Roles = "Administrador, Funcionário")] // Todas as acções deste controlador estão disponiveis para os tipos de utlizador
     public class LocalidadesController : Controller
     {
+        static IEnumerable<Localidade> localidades;
+
         // GET: Localidades
         public ActionResult Index()
         {
@@ -145,7 +148,7 @@ namespace RescueDesk.Controllers
                         else
                         {
                             localidadesAInserir.Add(localidade);
-                           
+
                         }
                     }
 
@@ -156,5 +159,35 @@ namespace RescueDesk.Controllers
 
             return View();
         }
+
+        public string ObterLocalidades()
+        {
+            AddressService addressService = new AddressService();
+            localidades = addressService.ObterLocalidades();
+
+            //// Faz Pesquisa
+            string searchParam = Request.Params["search[value]"].ToLower();
+            if (!string.IsNullOrEmpty(searchParam))
+            {
+                localidades = localidades.Where(x => x.nomeLocalidade.ToLower().Contains(searchParam) || x.codpostal.ToLower().Contains(searchParam));
+            }
+
+            //// Faz Paginação
+            List<Localidade> reducedlocalidades = localidades.Skip(int.Parse(Request.Params["start"])).Take(int.Parse(Request.Params["length"])).ToList();
+            var chk = new
+            {
+                draw = Request.Params["draw"],
+                //Data representa um array com as colunas (Ncolunas = quantidade de items devolvidos
+                data = reducedlocalidades.Select(x =>
+                    new string[] {
+                        x.codpostal.ToString(),
+                        x.nomeLocalidade.ToString(),
+                    }),
+                recordsTotal = localidades.Count(),
+                recordsFiltered = localidades.Count()
+            };
+            return JsonConvert.SerializeObject(chk);
+        }
+
     }
 }
