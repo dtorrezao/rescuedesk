@@ -13,14 +13,14 @@ namespace RescueDesk.Controllers
     [Authorize(Roles = "Administrador, Funcionário")] // Todas as acções deste controlador estão disponiveis para os tipos de utlizador
     public class LocalidadesController : Controller
     {
-        static IEnumerable<Localidade> localidades;
+        public static readonly string[] ChavesMestre = new string[] { "keyLocalidades" };
 
         // GET: Localidades
         public ActionResult Index()
         {
             AddressService addressService = new AddressService();
 
-            return View(addressService.ObterLocalidades());
+            return View();
         }
 
         // GET: Localidades/Details/5
@@ -163,13 +163,29 @@ namespace RescueDesk.Controllers
         public string ObterLocalidades()
         {
             AddressService addressService = new AddressService();
-            localidades = addressService.ObterLocalidades();
+            List<Localidade> localidades = new List<Localidade>();
+
+            ////https://www.devmedia.com.br/cache-no-asp-net/6704
+            System.Web.Caching.Cache dadosCache = HttpRuntime.Cache;
+            if (dadosCache.Get("Localidades") == null)
+            {
+                dadosCache.Insert(ChavesMestre[0], DateTime.Now);
+                localidades.Clear();
+                localidades = addressService.ObterLocalidades();
+                System.Web.Caching.CacheDependency cd = new System.Web.Caching.CacheDependency(null, ChavesMestre);
+                dadosCache.Insert("Localidades", localidades, cd);
+            }
+            else
+            {
+                localidades.Clear();
+                localidades = dadosCache.Get("Localidades") as List<Localidade>;
+            }
 
             //// Faz Pesquisa
             string searchParam = Request.Params["search[value]"].ToLower();
             if (!string.IsNullOrEmpty(searchParam))
             {
-                localidades = localidades.Where(x => x.nomeLocalidade.ToLower().Contains(searchParam) || x.codpostal.ToLower().Contains(searchParam));
+                localidades = localidades.Where(x => x.nomeLocalidade.ToLower().Contains(searchParam) || x.codpostal.ToLower().Contains(searchParam)).ToList();
             }
 
             //// Faz Paginação
