@@ -26,7 +26,7 @@ namespace RescueDesk.Models
         [DisplayName("Cargo")]
         public string cargo { get; set; }
         [DisplayName("Contacto")]
-        public int contacto { get; set; }
+        public int? contacto { get; set; }
         [DisplayName("Nº Utilizador")]
         public int idUtilizador { get; set; }
         [DisplayName("Email")]

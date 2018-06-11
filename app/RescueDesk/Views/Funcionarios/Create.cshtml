@@ -21,7 +21,7 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="card">
                         <div class="card-body card-block">
-                            <div class="form-group">
+                            <div class="form-group">x
                                 <label for="@Html.NameFor(x=>x.Funcionario.nome)" class=" form-control-label">@Html.DisplayNameFor(model => model.Funcionario.nome)</label>
                                 @Html.EditorFor(model => model.Funcionario.nome, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o seu primeiro e último nome" } })
                                 @Html.ValidationMessageFor(model => model.Funcionario.nome, "", new { @class = "text-danger" })
@@ -31,7 +31,7 @@
                                 @Html.EditorFor(model => model.Funcionario.cargo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o seu cargo" } })
                                 @Html.ValidationMessageFor(model => model.Funcionario.cargo, "", new { @class = "text-danger" })
                             </div>
-                            <div class="form-group">
+                            <div class="form-group">x
                                 <label for="@Html.NameFor(x=>x.Funcionario.contacto)" class=" form-control-label">@Html.DisplayNameFor(model => model.Funcionario.contacto)</label>
                                 @Html.EditorFor(model => model.Funcionario.contacto, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o seu contacto" } })
                                 @Html.ValidationMessageFor(model => model.Funcionario.contacto, "", new { @class = "text-danger" })
@@ -46,18 +46,18 @@
                                 @Html.EditorFor(model => model.Funcionario.obs, new { htmlAttributes = new { @class = "form-control", @placeholder = "Observações" } })
                                 @Html.ValidationMessageFor(model => model.Funcionario.obs, "", new { @class = "text-danger" })
                             </div>
-                            <div class="form-group">
+                            <div class="form-group">x
                                 <label for="@Html.NameFor(x=>x.Funcionario.morada)" class=" form-control-label">@Html.DisplayNameFor(model => model.Funcionario.morada)</label>
                                 @Html.EditorFor(model => model.Funcionario.morada, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza a sua morada" } })
                                 @Html.ValidationMessageFor(model => model.Funcionario.morada, "", new { @class = "text-danger" })
                             </div>
-                            <div class="form-group">
+                            <div class="form-group">x
                                 <label for="@Html.NameFor(x=>x.Funcionario.codpostal)" class=" form-control-label">@Html.DisplayNameFor(model => model.Funcionario.codpostal)</label>
                                 @Html.DropDownListFor(model => model.Funcionario.codpostal, Model.Enderecos, new { @class = "form-control standardSelect" })
                                 @Html.ValidationMessageFor(model => model.Funcionario.codpostal, "", new { @class = "text-danger" })
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group">x
                                 <label for="@Html.NameFor(x=>x.Utilizador.email)" class=" form-control-label">@Html.DisplayNameFor(model => model.Utilizador.email)</label>
                                 @Html.EditorFor(model => model.Utilizador.email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o seu email" } })
                                 @Html.ValidationMessageFor(model => model.Utilizador.email, "", new { @class = "text-danger" })
@@ -106,7 +106,7 @@ htmlAttributes: new { @enctype = "multipart/form-data" }))
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="row">
-            <div class="col col-md-8" style="margin-top: 4px; padding: 0px">
+            <div class="col col-md-8" style="margin-top: 10px; padding: 0px">
                 <div class="col col-md-12">
                     <div class="col col-md-2">
                         <label for="@Html.NameFor(model=>model.Funcionario.nome)" class="form-control-label" style="line-height:36px">@Html.DisplayNameFor(model => model.Funcionario.nome):</label>
@@ -116,27 +116,64 @@ htmlAttributes: new { @enctype = "multipart/form-data" }))
                         @Html.ValidationMessageFor(model => model.Funcionario.nome, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <div class="col col-md-12">
+                <div class="col col-md-12" style="padding-top:10px">
                     <div class="col col-md-2">
-                        <label for="@Html.NameFor(model=>model.Funcionario.morada)" class="form-control-label" style="line-height:36px">@Html.DisplayNameFor(model => model.Funcionario.morada):</label>
+                        <label for="@Html.NameFor(model=>model.Utilizador.email)" class=" form-control-label" style="line-height:36px">@Html.DisplayNameFor(model => model.Utilizador.email):</label>
                     </div>
                     <div class="col col-md-10">
-                        @Html.EditorFor(model => model.Funcionario.morada, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza a sua morada..." } })
-                        @Html.ValidationMessageFor(model => model.Funcionario.morada, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.Utilizador.email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o seu email..." } })
+                        @Html.ValidationMessageFor(model => model.Utilizador.email, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <div class="col col-md-12">
-                    <div class="col col-md-4" style="margin-right: -42px">
-                        <label for="@Html.NameFor(model=>model.Funcionario.codpostal)" class=" form-control-label" style="line-height: 30px">@Html.DisplayNameFor(model => model.Funcionario.codpostal)</label>
+                <div class="col col-md-12" style="padding-top:10px; padding-bottom:10px">
+                    <div class="col col-md-2">
+                        <label for="@Html.NameFor(model=>model.Funcionario.contacto)" class=" form-control-label" style="line-height:36px">@Html.DisplayNameFor(model => model.Funcionario.contacto):</label>
                     </div>
-                    <div class="col col-md-8">
-                        @Html.DropDownListFor(model => model.Funcionario.codpostal, Model.Enderecos, new { @class = "form-control autoComplete" })
-                        @Html.ValidationMessageFor(model => model.Funcionario.codpostal, "", new { @class = "text-danger" })
+                    <div class="col col-md-10">
+                        @Html.TextBoxFor(model => model.Funcionario.contacto, new { @class = "form-control", @placeholder = "Introduza o seu contacto..." })
+                        @Html.ValidationMessageFor(model => model.Funcionario.contacto, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
             <div class="col col-md-4">
                 <img class="rounded-circle mx-auto d-block" src="images/admin.jpg" alt="Card image cap">
+                @*<label class="switch switch-text switch-primary switch-pill"><input type="checkbox" class="switch-input" checked="true"> <span data-on="On" data-off="Off" class="switch-label"></span> <span class="switch-handle"></span></label>*@
+            </div>
+            <div class="col col-md-12">
+                <div class="col col-md-2">
+                    <label for="@Html.NameFor(model=>model.Funcionario.morada)" class=" form-control-label" style="line-height:36px">@Html.DisplayNameFor(model => model.Funcionario.morada):</label>
+                </div>
+                <div class="col col-md-10">
+                    @Html.EditorFor(model => model.Funcionario.morada, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza a sua morada..." } })
+                    @Html.ValidationMessageFor(model => model.Funcionario.morada, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col col-md-12">
+                <div class="col col-md-3">
+                    <label for="@Html.NameFor(model=>model.Funcionario.codpostal)" class=" form-control-label" style="line-height:30px">@Html.DisplayNameFor(model => model.Funcionario.codpostal):</label>
+                </div>
+                <div class="col col-md-9">
+                    @Html.DropDownListFor(model => model.Funcionario.codpostal, Model.Enderecos, new { @class = "form-control autoComplete" })
+                    @Html.ValidationMessageFor(model => model.Funcionario.codpostal, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col col-md-12">
+                <div class="col col-md-2">
+                    <label for="@Html.NameFor(model=>model.Funcionario.cargo)" class=" form-control-label" style="line-height:36px">@Html.DisplayNameFor(model => model.Funcionario.cargo)</label>
+                </div>
+                <div class="col col-md-10">
+                    @Html.EditorFor(model => model.Funcionario.cargo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o seu cargo..." } })
+                    @Html.ValidationMessageFor(model => model.Funcionario.cargo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col col-md-12">
+                <div class="col col-md-3">
+                    <label for="@Html.NameFor(model=>model.Funcionario.dept)" class=" form-control-label" style="line-height:30px">@Html.DisplayNameFor(model => model.Funcionario.dept):</label>
+                </div>
+                <div class="col col-md-9">
+                    @Html.DropDownListFor(model => model.Funcionario.iddept, Model.Departamentos, new { @class = "form-control autoComplete" })
+                    @Html.ValidationMessageFor(model => model.Funcionario.dept, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
     </div>
@@ -150,6 +187,7 @@ htmlAttributes: new { @enctype = "multipart/form-data" }))
     @Scripts.Render("~/bundles/jqueryval")
 
 }
-    <script>jQuery(document).ready(function () {
-            jQuery(".autoComplete").chosen({});
-        });</script>
+<script>
+    jQuery(document).ready(function () {
+        jQuery(".autoComplete").chosen({});
+    });</script>
