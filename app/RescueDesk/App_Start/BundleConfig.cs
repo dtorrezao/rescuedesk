@@ -41,7 +41,11 @@ namespace RescueDesk
                       "~/Content/themify-icons.css",
                       "~/Content/lib/chosen/chosen.min.css",
                       "~/Content/variables.css",
-                      "~/Content/rescuedesk.css"));
+                      "~/Content/rescuedesk.css",
+                      "~/Scripts/qTip/jquery.qtip.css",
+                      "~/Content/fullcalendar.css",
+                      "~/Content/bootstrap-datepicker.css",
+                      "~/Content/jquery.datetimepicker.min.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/BackOffice").Include(
                         "~/Scripts/jquery-2.1.4.min.js",
@@ -60,7 +64,13 @@ namespace RescueDesk
                        "~/Scripts/data-table/buttons.print.min.js",
                        "~/Scripts/data-table/buttons.colVis.min.js",
                        "~/Scripts/data-table/datatables-init.js",
-                       "~/Scripts/chosen/chosen.jquery.min.js"
+                       "~/Scripts/chosen/chosen.jquery.min.js",
+                       "~/Scripts/moment.min.js",
+                        "~/Scripts/fullcalendar.js",
+                        "~/Scripts/locale-all.js",
+                        "~/Scripts/qTip/jquery.qtip.js",
+                        "~/Scripts/bootstrap-datepicker.js",
+                        "~/Scripts/jquery.datetimepicker.full.min.js"
                         //"~/Scripts/dashboard.js",
                         //"~/Scripts/widgets.js"
                         ));

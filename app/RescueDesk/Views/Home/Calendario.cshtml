@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = "Calendário";
+}
+<div id='calendar'></div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @using (Html.BeginForm("AdicionarEvento", "Home"))
+            {
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Novo Evento</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="title" class="col-form-label">Titulo:</label>
+                        <input type="text" class="form-control" name="title">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="title" class="col-form-label">Inicio:</label>
+                        <input type="text" class="form-control date" name="start">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="title" class="col-form-label">Inicio:</label>
+                        <input type="text" class="form-control date" name="end">
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-form-label">Inicio:</label>
+                        <input type="checkbox" name="allDay" value="true">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Adicionar Evento</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+    $(document).ready(function () {
+        $('#calendar').fullCalendar({
+            locale: 'pt',
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay,listWeek'
+            },
+            footer: {
+                left: 'addEventButton',
+            },
+            businessHours: {
+                dow: [1, 2, 3, 4, 5], // Monday - Thursday
+                start: '10:00', // a start time (10am in this example)
+                end: '18:00', // an end time (6pm in this example)
+            },
+            defaultView: 'month',
+            nowIndicator : true,
+            navLinks: true,
+            editable: true,
+            //selectable: true,
+            //eventClick: function (calEvent, jsEvent, view) {
+
+            //    alert('Event: ' + calEvent.title);
+            //    alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+            //    alert('View: ' + view.name);
+
+            //    // change the border color just for fun
+            //    $(this).css('border-color', 'red');
+
+            //},
+            eventLimit: true,
+            events: "@Url.Action("GetEvents")",
+            customButtons: {
+                addEventButton: {
+                    text: 'Adicionar Evento',
+                }
+            }
+        });
+
+        $('body').on('click', ".fc-addEventButton-button", function (e) {
+            e.preventDefault();
+            $(this).attr("data-target", '#exampleModal');
+            $(this).attr("data-toggle", 'modal');
+            $('.modal-backdrop').show();
+        });
+        $.datetimepicker.setLocale('pt');
+        $('.date').datetimepicker({
+        });
+    });
+    </script>
+}
+<style>
+    #calendar {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+</style>
