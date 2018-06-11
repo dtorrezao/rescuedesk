@@ -15,15 +15,15 @@
             @Html.ValidationSummary(true)
             <div class="form-group">
                 @Html.LabelFor(x => x.email)
-                @Html.TextBoxFor(x => x.email, new { @class = "form-control", @placeholder = "Email" })
+                @Html.TextBoxFor(x => x.email, new { @class = "form-control", @placeholder = "Insira o Email..." })
             </div>
             <div class="form-group">
                 @Html.LabelFor(x => x.password)
-                @Html.PasswordFor(x => x.password, new { @class = "form-control", @placeholder = "Password" })
+                @Html.PasswordFor(x => x.password, new { @class = "form-control", @placeholder = "Insira a Password..." })
             </div>
-            <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Sign in</button>
+            <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Entrar</button>
             <div class="register-link m-t-15 text-center">
-                <p>Don't have account ? <a href="#"> Sign Up Here</a></p>
+                <p>Não tem uma conta ? <a href="#"> Registe-se aqui</a></p>
             </div>
         }
     </div>
