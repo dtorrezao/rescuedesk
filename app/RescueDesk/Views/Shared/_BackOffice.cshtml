@@ -61,8 +61,18 @@
         });
 
         $.datetimepicker.setLocale('pt');
+
         $('.date').datetimepicker({
+            format: 'd/m/Y H:i:s',
+            minDate: getFormattedDate(new Date())
         });
+
+        function getFormattedDate(date) {
+            var day = date.getDate();
+            var month = date.getMonth() + 1;
+            var year = date.getFullYear().toString().slice(2);
+            return day + '-' + month + '-' + year;
+        }
     </script>
 
 
