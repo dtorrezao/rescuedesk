@@ -30,7 +30,7 @@ namespace RescueDesk.Controllers
         {
             NotasService servico = new NotasService();
 
-            return PartialView(servico.ObterNotas());
+            return PartialView(new Notas() { });
         }
 
         // POST: Notas/Create
