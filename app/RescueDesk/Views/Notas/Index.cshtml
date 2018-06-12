@@ -1,0 +1,60 @@
+﻿@model IEnumerable<RescueDesk.Models.Notas>
+
+@{
+    ViewBag.Title = "Notas";
+    ViewBag.FAIcon = "fa-file-text";
+    ViewBag.SubTitle = "";
+    ViewBag.AddUrl = Url.Action("Create");
+}
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <table id="bootstrap-data-table" class="table table-striped table-bordered" style="font-size:14px">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.idnota)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.titulo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.corpo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.idUtilizador)
+                                </th>
+                                <th class="no-sort"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.idnota)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.titulo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.corpo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.idUtilizador)
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("Edit", new { id = item.idnota }) " class="btn btn-link minus-padd " title="Editar"><i class="fa fa-pencil"></i></a>
+                                        <a href="@Url.Action("Delete", new { id = item.idnota }) " class="btn btn-danger">Eliminar</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -158,6 +158,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\NotasController.cs" />
     <Compile Include="Controllers\ServicosController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\DepartamentosController.cs" />
@@ -176,6 +177,7 @@
     <Compile Include="Models\Evento.cs" />
     <Compile Include="Models\Funcionario.cs" />
     <Compile Include="Models\Localidade.cs" />
+    <Compile Include="Models\Notas.cs" />
     <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\TipoUtilizador.cs" />
     <Compile Include="Models\Utilizador.cs" />
@@ -186,6 +188,7 @@
     <Compile Include="Services\DepartamentosService.cs" />
     <Compile Include="Services\EmailService.cs" />
     <Compile Include="Services\FuncionariosService.cs" />
+    <Compile Include="Services\NotasService.cs" />
     <Compile Include="Services\PedidosService.cs" />
     <Compile Include="Services\TipoUtilizadorService.cs" />
     <Compile Include="Services\UtilizadorService.cs" />
@@ -642,6 +645,9 @@
     <Content Include="Views\Localidades\ImportFicheiro.cshtml" />
     <Content Include="Views\Home\Calendario.cshtml" />
     <Content Include="Views\Funcionarios\ConfirmarRegisto.cshtml" />
+    <Content Include="Views\Notas\Index.cshtml" />
+    <Content Include="Views\Notas\Create.cshtml" />
+    <Content Include="Views\Notas\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
