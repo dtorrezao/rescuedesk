@@ -16,28 +16,6 @@ namespace RescueDesk.Services
 
         public List<Localidade> ObterLocalidades()
         {
-            List<Localidade> localidades = new List<Localidade>();
-            System.Web.Caching.Cache dadosCache = HttpRuntime.Cache;
-            if (dadosCache.Get("Localidades") == null)
-            {
-                dadosCache.Insert(ChavesMestre[0], DateTime.Now);
-                localidades = this.ObterLocalidadesFromDb();
-                System.Web.Caching.CacheDependency cd = new System.Web.Caching.CacheDependency(null, ChavesMestre);
-                dadosCache.Insert("Localidades", localidades, cd);
-            }
-            else
-            {
-                localidades.Clear();
-                localidades = dadosCache.Get("Localidades") as List<Localidade>;
-            }
-
-            return localidades;
-
-        }
-
-        private List<Localidade> ObterLocalidadesFromDb()
-        {
-
             List<Localidade> Localidades = new List<Localidade>();
             this.Conn.Open();
             MySqlDataAdapter cmd1 = new MySqlDataAdapter("SELECT * FROM localidades", this.Conn);

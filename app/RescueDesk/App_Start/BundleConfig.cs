@@ -65,6 +65,7 @@ namespace RescueDesk
                        "~/Scripts/data-table/buttons.colVis.min.js",
                        "~/Scripts/data-table/datatables-init.js",
                        "~/Scripts/chosen/chosen.jquery.min.js",
+                       "~/Scripts/chosen/chosen.ajaxaddition.jquery.js",
                        "~/Scripts/moment.min.js",
                         "~/Scripts/fullcalendar.js",
                         "~/Scripts/locale-all.js",

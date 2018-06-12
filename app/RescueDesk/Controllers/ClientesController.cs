@@ -24,8 +24,6 @@ namespace RescueDesk.Controllers
             ClientesService servico = new ClientesService();
             AddressService address = new AddressService();
 
-            ListaEndereços(address);
-
             return View(servico.ObterClienteDefault());
         }
 
@@ -39,10 +37,6 @@ namespace RescueDesk.Controllers
             }
             else
             {
-                AddressService address = new AddressService();
-                
-                ListaEndereços(address);
-
                 return View(cliente);
             }
         }
@@ -52,8 +46,6 @@ namespace RescueDesk.Controllers
             ClientesService servico = new ClientesService();
             AddressService address = new AddressService();
             
-            ListaEndereços(address);
-
             return View(servico.ObterCliente(id));
         }
 
@@ -67,10 +59,6 @@ namespace RescueDesk.Controllers
             }
             else
             {
-                AddressService address = new AddressService();
-                
-                ListaEndereços(address);
-
                 return View(cliente);
             }
         }
@@ -98,12 +86,7 @@ namespace RescueDesk.Controllers
         private void ListaEndereços(AddressService address)
         {
             //listar moradas disponiveis
-            var AvailableAddress = new List<SelectListItem>();
-            foreach (var item in address.ObterLocalidades())
-            {
-                AvailableAddress.Add(new SelectListItem() { Text = item.codpostal + " - " + item.nomeLocalidade, Value = item.codpostal });
-            }
-            ViewBag.AvailableAddress = AvailableAddress;
+            ViewBag.AvailableAddress = new List<SelectListItem>();
         }
     }
 }

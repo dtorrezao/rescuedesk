@@ -205,5 +205,39 @@ namespace RescueDesk.Controllers
             return JsonConvert.SerializeObject(chk);
         }
 
+
+        public string ObterLocalidadesFiltradas()
+        {
+            AddressService addressService = new AddressService();
+
+            string query = Request.Form["data[q]"].ToLower();
+
+            List<Localidade> localidades = new List<Localidade>();
+
+            ////https://www.devmedia.com.br/cache-no-asp-net/6704
+            System.Web.Caching.Cache dadosCache = HttpRuntime.Cache;
+            if (dadosCache.Get("Localidades") == null)
+            {
+                dadosCache.Insert(ChavesMestre[0], DateTime.Now);
+                localidades.Clear();
+                localidades = addressService.ObterLocalidades();
+                System.Web.Caching.CacheDependency cd = new System.Web.Caching.CacheDependency(null, ChavesMestre);
+                dadosCache.Insert("Localidades", localidades, cd);
+            }
+            else
+            {
+                localidades.Clear();
+                localidades = dadosCache.Get("Localidades") as List<Localidade>;
+            }
+
+            localidades = localidades.Where(x => x.codpostal.ToLower().Contains(query) || x.nomeLocalidade.ToLower().Contains(query)).Take(50).ToList();
+            var list = localidades.Select(x => new { id = x.codpostal, text = string.Format("{0} - {1}", x.codpostal, x.nomeLocalidade) }).ToList();
+            var chk = new
+            {
+                q = query,
+                results = list
+            };
+            return JsonConvert.SerializeObject(chk);
+        }
     }
 }

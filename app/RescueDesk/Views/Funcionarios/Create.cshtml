@@ -153,7 +153,7 @@ htmlAttributes: new { @enctype = "multipart/form-data" }))
                     <label for="@Html.NameFor(model=>model.Funcionario.codpostal)" class=" form-control-label" style="line-height:30px">@Html.DisplayNameFor(model => model.Funcionario.codpostal):</label>
                 </div>
                 <div class="col col-md-9">
-                    @Html.DropDownListFor(model => model.Funcionario.codpostal, Model.Enderecos, new { @class = "form-control autoComplete" })
+                    @Html.DropDownListFor(model => model.Funcionario.codpostal, Model.Enderecos, new { @class = "form-control localidadesDropdown" })
                     @Html.ValidationMessageFor(model => model.Funcionario.codpostal, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -190,4 +190,13 @@ htmlAttributes: new { @enctype = "multipart/form-data" }))
 <script>
     jQuery(document).ready(function () {
         jQuery(".autoComplete").chosen({});
-    });</script>
+    });
+
+    $('.localidadesDropdown').ajaxChosen({
+        dataType: 'json',
+        type: 'POST',
+        url: '@Url.Action("ObterLocalidadesFiltradas", "Localidades")'
+    }, {
+            loadingImg: 'images/loading.gif'
+        });
+</script>

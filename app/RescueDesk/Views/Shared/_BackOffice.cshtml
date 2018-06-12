@@ -86,6 +86,14 @@
         function closeModal() {
             $('#modal-container').modal('hide');
         }
+
+            $('.localidadesDropdown').ajaxChosen({
+        dataType: 'json',
+        type: 'POST',
+        url: '@Url.Action("ObterLocalidadesFiltradas", "Localidades")'
+    }, {
+            loadingImg: 'images/loading.gif'
+        });
     </script>
 </body>
 </html>

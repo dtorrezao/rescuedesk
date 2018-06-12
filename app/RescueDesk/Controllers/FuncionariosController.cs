@@ -40,7 +40,7 @@ namespace RescueDesk.Controllers
             FuncionarioViewModel vm = new FuncionarioViewModel();
             vm.Funcionario = servico.ObterFuncionarioDefault();
             vm.Utilizador = usrService.ObterUtilizadorDefault();
-            vm.Enderecos = ListaEndereços(address);
+            vm.Enderecos = new List<SelectListItem>() { new SelectListItem() { Text = "Selecione uma localidade" } };
             vm.Departamentos = ListaDepartmentos(dptService);
             return View(vm);
         }
@@ -129,7 +129,10 @@ namespace RescueDesk.Controllers
             FuncionarioViewModel vm = new FuncionarioViewModel();
             vm.Funcionario = servico.ObterFuncionario(id);
             vm.Utilizador = usrService.ObterUtilizador(vm.Funcionario.idUtilizador);
-            vm.Enderecos = ListaEndereços(address);
+
+            var localidade = address.ObterLocalidade(vm.Funcionario.codpostal);
+
+            vm.Enderecos = new List<SelectListItem>() { new SelectListItem() { Value = vm.Funcionario.codpostal, Text = string.Format("{0} - {1}", localidade.codpostal, localidade.nomeLocalidade), Selected = true } };
             vm.Departamentos = ListaDepartmentos(dptService);
             return View(vm);
         }
@@ -170,17 +173,6 @@ namespace RescueDesk.Controllers
             foreach (var item in dptService.ObterDepartamentos())
             {
                 AvailableAddress.Add(new SelectListItem() { Text = item.dept, Value = item.iddept.ToString() });
-            }
-            return AvailableAddress;
-        }
-
-        private List<SelectListItem> ListaEndereços(AddressService address)
-        {
-            //listar moradas disponiveis
-            var AvailableAddress = new List<SelectListItem>();
-            foreach (var item in address.ObterLocalidades().Take(100))
-            {
-                AvailableAddress.Add(new SelectListItem() { Text = item.codpostal + " - " + item.nomeLocalidade, Value = item.codpostal });
             }
             return AvailableAddress;
         }
