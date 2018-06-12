@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace RescueDesk.Controllers
 {
+    [Authorize] // Todas as acções deste controlador estão disponiveis para os tipos de utlizador (apenas tem que fazer login)
     public class NotasController : Controller
     {
         // GET: Notas
@@ -17,8 +18,7 @@ namespace RescueDesk.Controllers
 
             return View(servico.ObterNotas());
         }
-
-
+        
         // GET: Notas/Details/5
         public ActionResult Details(int id)
         {
@@ -30,7 +30,7 @@ namespace RescueDesk.Controllers
         {
             NotasService servico = new NotasService();
 
-            return View(servico.ObterNotas());
+            return PartialView(servico.ObterNotas());
         }
 
         // POST: Notas/Create
@@ -44,7 +44,7 @@ namespace RescueDesk.Controllers
             }
             else
             {
-                return PartialView(nota);
+                return View(nota);
             }
         }
 
@@ -54,7 +54,7 @@ namespace RescueDesk.Controllers
         {
             NotasService servico = new NotasService();
 
-            return View(servico.ObterNota(id));
+            return PartialView(servico.ObterNota(id));
         }
 
         // POST: Notas/Edit/5
@@ -75,12 +75,15 @@ namespace RescueDesk.Controllers
         // GET: Notas/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            NotasService servico = new NotasService();
+
+            return PartialView(servico.ObterNota(id));
+
         }
 
         // POST: Notas/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
         {
             try
             {
