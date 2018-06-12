@@ -83,17 +83,16 @@ namespace RescueDesk.Controllers
 
         // POST: Notas/Delete/5
         [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int idnota)
         {
-            try
+            NotasService servico = new NotasService();
+            if (servico.DeleteNota(idnota))
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                return this.RedirectToAction("Index");
             }
-            catch
+            else
             {
-                return View();
+                return RedirectToAction("Delete", new { id = idnota });
             }
         }
     }

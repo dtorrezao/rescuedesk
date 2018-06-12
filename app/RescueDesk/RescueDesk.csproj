@@ -648,6 +648,7 @@
     <Content Include="Views\Notas\Index.cshtml" />
     <Content Include="Views\Notas\Create.cshtml" />
     <Content Include="Views\Notas\Edit.cshtml" />
+    <Content Include="Views\Notas\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Notas";
     ViewBag.FAIcon = "fa-file-text";
-    ViewBag.SubTitle = "";
+    ViewBag.SubTitle = "Criar";
     ViewBag.AddUrl = Url.Action("Create");
 }
 <div class="animated fadeIn">
@@ -46,8 +46,21 @@
                                         @Html.DisplayFor(modelItem => item.idUtilizador)
                                     </td>
                                     <td>
-                                        <a href="@Url.Action("Edit", new { id = item.idnota }) " class="btn btn-link minus-padd " title="Editar"><i class="fa fa-pencil"></i></a>
-                                        <a href="@Url.Action("Delete", new { id = item.idnota }) " class="btn btn-danger">Eliminar</a>
+                                        <a href="@Url.Action("Edit", new { id = item.idnota })"                                           
+                                           title="Editar"
+                                           data-ajax="true"
+                                           data-ajax-method="GET"
+                                           data-ajax-mode="after"
+                                           data-ajax-update="#modal-body"
+                                           class="btn btn-link minus-padd modal-link"><i class="fa fa-pencil fa-add"></i></a>
+                                        <a href="@Url.Action("Delete", new { id = item.idnota })"
+                                           title="Eliminar"
+                                           data-ajax="true"
+                                           data-ajax-method="GET"
+                                           data-ajax-mode="after"
+                                           data-ajax-update="#modal-body"
+                                           class="btn btn-link minus-padd modal-link"><i class="fa fa-trash-o fa-red"></i></a>
+                                           
                                     </td>
                                 </tr>
                             }

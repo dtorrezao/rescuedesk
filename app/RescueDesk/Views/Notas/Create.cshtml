@@ -3,7 +3,7 @@
 @{
     Layout = null;
     ViewBag.Title = "Notas";
-    ViewBag.SubTitle = "Criar Nota";
+    ViewBag.SubTitle = "Criar Notas";
 }
 
 @using (Html.BeginForm())
@@ -22,27 +22,19 @@
         @Html.HiddenFor(model => model.idnota)
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="row">
-            <div class="col col-md-2" style="margin-left: 2px; margin-right: -6px">
-                <label for="@Html.NameFor(x=>x.titulo)" class=" form-control-label" style="line-height: 36px">@Html.DisplayNameFor(model => model.titulo):</label>
+            <div class="col col-md-2" style="margin-right: -44px; margin-left: 4px">
+                <label for="@Html.NameFor(model=>model.titulo)" class=" form-control-label" style="line-height: 38px">@Html.DisplayNameFor(model => model.titulo):</label>
             </div>
-            <div class="col col-md-10">
-                @Html.EditorFor(model => model.titulo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o titulo da nota..." } })
+            <div class="col col-md-7">
+                @Html.EditorFor(model => model.titulo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza uma breve descrição do serviço..." } })
                 @Html.ValidationMessageFor(model => model.titulo, "", new { @class = "text-danger" })
             </div>
-            <div class="col col-md-2" style="margin-left: 2px; margin-right: -6px">
-                <label for="@Html.NameFor(x=>x.corpo)" class=" form-control-label" style="line-height: 36px">@Html.DisplayNameFor(model => model.corpo):</label>
+            <div class="col col-md-1" style="margin-right: -12px; margin-left: -8px">
+                <label for="@Html.NameFor(model=>model.corpo)" class=" form-control-label" style="line-height: 38px">@Html.DisplayNameFor(model => model.corpo):</label>
             </div>
-            <div class="col col-md-10">
-                @Html.EditorFor(model => model.corpo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o corpo da nota..." } })
-                @Html.TextAreaFor(model => model.corpo, new { @class = "form-control", @placeholder = "..." })
+            <div class="col col-md-2" style="margin-left: 2px;">
+                @Html.EditorFor(model => model.corpo, new { htmlAttributes = new { @class = "form-control", @style = "width: 160px", @placeholder = "do serviço..." } })
                 @Html.ValidationMessageFor(model => model.corpo, "", new { @class = "text-danger" })
-            </div>
-            <div class="col col-md-2" style="margin-left: 2px; margin-right: -6px">
-                <label for="@Html.NameFor(x=>x.idUtilizador)" class=" form-control-label" style="line-height: 36px">@Html.DisplayNameFor(model => model.idUtilizador):</label>
-            </div>
-            <div class="col col-md-10">
-                @Html.EditorFor(model => model.idUtilizador, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o titulo da nota..." } })
-                @Html.ValidationMessageFor(model => model.idUtilizador, "", new { @class = "text-danger" })
             </div>
         </div>
 

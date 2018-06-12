@@ -17,29 +17,28 @@
             </button>
         </div>
     }
-        <div class="modal-body">
-            @Html.AntiForgeryToken()
-            @Html.HiddenFor(model => model.idnota)
-            @Html.HiddenFor(model => model.idUtilizador)
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="row">
-                <div class="col col-md-2" style="margin-left: 2px; margin-right: -6px">
-                    <label for="@Html.NameFor(x=>x.titulo)" class=" form-control-label" style="line-height: 36px">@Html.DisplayNameFor(model => model.titulo):</label>
-                </div>
-                <div class="col col-md-10">
-                    @Html.EditorFor(model => model.titulo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o nome do departamento..." } })
-                    @Html.ValidationMessageFor(model => model.titulo, "", new { @class = "text-danger" })
-                </div>
-                <div class="col col-md-2" style="margin-left: 2px; margin-right: -6px">
-                    <label for="@Html.NameFor(x=>x.corpo)" class=" form-control-label" style="line-height: 36px">@Html.DisplayNameFor(model => model.corpo):</label>
-                </div>
-                <div class="col col-md-10">
-                    @Html.EditorFor(model => model.corpo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o nome do departamento..." } })
-                    @Html.ValidationMessageFor(model => model.corpo, "", new { @class = "text-danger" })
-                </div>
+    <div class="modal-body">
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.idnota)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col col-md-2" style="margin-left: 2px; margin-right: -6px">
+                <label for="@Html.NameFor(x=>x.titulo)" class=" form-control-label" style="line-height: 36px">@Html.DisplayNameFor(model => model.titulo):</label>
             </div>
-
+            <div class="col col-md-10">
+                @Html.EditorFor(model => model.titulo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o titulo da nota..." } })
+                @Html.ValidationMessageFor(model => model.titulo, "", new { @class = "text-danger" })
+            </div>
+            <div class="col col-md-2" style="margin-left: 2px; margin-right: -6px">
+                <label for="@Html.NameFor(x=>x.corpo)" class=" form-control-label" style="line-height: 36px">@Html.DisplayNameFor(model => model.corpo):</label>
+            </div>
+            <div class="col col-md-10">
+                @Html.EditorFor(model => model.corpo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o corpo da nota..." } })
+                @Html.ValidationMessageFor(model => model.corpo, "", new { @class = "text-danger" })
+            </div>
         </div>
+
+    </div>
     <div class="modal-footer">
         <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>&nbsp; Guardar</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal"> <i class="fa fa-times"></i>&nbsp;Cancelar</button>
@@ -49,4 +48,3 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-

@@ -58,12 +58,21 @@ namespace RescueDesk.Services
 
         public bool UpdateNota(Notas nota)
         {
-            string query = "UPDATE `notas`";
+            string query = "UPDATE `notas` ";
             query += "SET `titulo` = '" + nota.titulo + "', " +
-                "`corpo` =  '" + nota.corpo + "', " +
-                 " WHERE `departamentos`.`iddept` = '" + nota.idnota.ToString() + "'";
+                "`corpo` = '" + nota.corpo + "'" +
+                 " WHERE `notas`.`idnota` = '" + nota.idnota.ToString() + "'";
             this.Conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, this.Conn);
+            int resultados = cmd.ExecuteNonQuery();
+            this.Conn.Close();
+            return resultados > 0;
+        }
+
+        public bool DeleteNota(int id)
+        {
+            this.Conn.Open();
+            MySqlCommand cmd = new MySqlCommand("DELETE FROM notas where idnota='" + id.ToString() + "'", this.Conn);
             int resultados = cmd.ExecuteNonQuery();
             this.Conn.Close();
             return resultados > 0;
