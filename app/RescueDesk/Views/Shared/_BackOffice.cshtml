@@ -35,6 +35,17 @@
         <div class="content mt-3">
             <div class="col-md-12">
                 @RenderBody()
+
+                <div id="modal-container" class="modal fade" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div id="modal-body"> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div><!-- /#right-panel -->
@@ -43,15 +54,6 @@
     @Scripts.Render("~/bundles/BackOffice")
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
     @RenderSection("scripts", required: false)
-    <div id="modal-container" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div id="modal-body"> </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <script>
         jQuery(document).ready(function () {
