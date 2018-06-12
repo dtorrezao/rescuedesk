@@ -64,8 +64,11 @@
                     @Html.ValidationMessageFor(model => model.Funcionario.ativo, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
-                    <label for="@Html.NameFor(x=>x.Utilizador.foto)" class=" form-control-label">@Html.DisplayNameFor(model => model.Utilizador.foto)</label>
-                    <input type="file" name="foto" id="foto" />
+                    <label for="foto">
+                        <img class="rounded-circle mx-auto d-block" src="@Model.Utilizador.foto" alt="Card image cap">
+                    </label>
+                    <input id="foto" name="foto" type="file" />
+                    
                 </div>
                 @Html.HiddenFor(x => x.Utilizador.password)
                 @Html.HiddenFor(x => x.Utilizador.idtipo)

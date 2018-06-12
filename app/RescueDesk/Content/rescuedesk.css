@@ -53,3 +53,7 @@ tr.inactive {
 a.btn.disabled i {
     color: #868e96;
 }
+
+#foto {
+    display:none;
+}

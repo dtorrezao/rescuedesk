@@ -136,7 +136,10 @@ htmlAttributes: new { @enctype = "multipart/form-data" }))
                 </div>
             </div>
             <div class="col col-md-4">
-                <img class="rounded-circle mx-auto d-block" src="images/admin.jpg" alt="Card image cap">
+                <label for="foto">
+                    <img class="rounded-circle mx-auto d-block" src="images/default_img.jpg" alt="Card image cap">
+                </label>
+                <input id="foto" name="foto" type="file" />
                 @*<label class="switch switch-text switch-primary switch-pill"><input type="checkbox" class="switch-input" checked="true"> <span data-on="On" data-off="Off" class="switch-label"></span> <span class="switch-handle"></span></label>*@
             </div>
             <div class="col col-md-12">
