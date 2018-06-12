@@ -184,6 +184,7 @@
     <Compile Include="Services\AtividadeService.cs" />
     <Compile Include="Services\ClientesService.cs" />
     <Compile Include="Services\DepartamentosService.cs" />
+    <Compile Include="Services\EmailService.cs" />
     <Compile Include="Services\FuncionariosService.cs" />
     <Compile Include="Services\PedidosService.cs" />
     <Compile Include="Services\TipoUtilizadorService.cs" />
@@ -192,6 +193,7 @@
     <Compile Include="Utils\Criptografia.cs" />
     <Compile Include="Utils\Database.cs" />
     <Compile Include="Utils\ViewHelper.cs" />
+    <Compile Include="ViewModels\ConfirmRegistoViewModel.cs" />
     <Compile Include="ViewModels\FuncionarioViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -639,6 +641,7 @@
     <Content Include="Views\Clientes\Details.cshtml" />
     <Content Include="Views\Localidades\ImportFicheiro.cshtml" />
     <Content Include="Views\Home\Calendario.cshtml" />
+    <Content Include="Views\Funcionarios\ConfirmarRegisto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

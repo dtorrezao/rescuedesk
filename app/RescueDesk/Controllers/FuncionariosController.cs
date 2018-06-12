@@ -1,10 +1,12 @@
 ﻿using RescueDesk.Models;
 using RescueDesk.Services;
+using RescueDesk.Utils;
 using RescueDesk.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 
@@ -50,13 +52,13 @@ namespace RescueDesk.Controllers
             if (foto != null)
             {
                 if (foto.ContentLength > 0)
-            {
-                var fileName = Path.GetFileName(foto.FileName);
-                var path = Path.Combine(Server.MapPath("~/images/"), fileName);
-                foto.SaveAs(path);
+                {
+                    var fileName = Path.GetFileName(foto.FileName);
+                    var path = Path.Combine(Server.MapPath("~/images/"), fileName);
+                    foto.SaveAs(path);
 
-                func.Utilizador.foto = "/images/" + fileName;
-            }
+                    func.Utilizador.foto = "/images/" + fileName;
+                }
             }
 
             FuncionariosService servico = new FuncionariosService();
@@ -66,11 +68,55 @@ namespace RescueDesk.Controllers
                 func.Funcionario.idUtilizador = func.Utilizador.idUtilizador;
                 if (servico.CreateFuncionario(func.Funcionario))
                 {
+                    this.EnviarEmailRegisto(func.Utilizador);
+
                     return this.RedirectToAction("Index");
                 }
             }
 
             return RedirectToAction("Create");
+        }
+
+        private void EnviarEmailRegisto(Utilizador utilizador)
+        {
+            var mail = new MailMessage();
+            var link = "http://" + Request.Url.Authority + Url.Action("ConfirmarRegisto", "Funcionarios", new { hash = Criptografia.HashString(utilizador.email) });
+
+            mail.Body = "Bla Bla Bla " + link + " bla bla bla";
+            mail.Subject = "Register";
+            mail.To.Add(new MailAddress(utilizador.email));
+
+            EmailService emailSvc = new EmailService();
+            emailSvc.EnviarEmail(mail);
+        }
+
+        public ActionResult ConfirmarRegisto(string hash)
+        {
+            ConfirmRegistoViewModel viewModel = new ConfirmRegistoViewModel();
+            viewModel.Hash = hash;
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ActionName("ConfirmarRegisto")]
+        public ActionResult ConfirmarRegistoA(ConfirmRegistoViewModel utilizador)
+        {
+            string hashedUser = Criptografia.HashString(utilizador.Username);
+
+            if (utilizador.Hash == hashedUser)
+            {
+                if (utilizador.Password == utilizador.ConfirmPassword)
+                {
+                    UtilizadorService usrService = new UtilizadorService();
+                    var user = usrService.ObterUtilizadorByEmail(utilizador.Username);
+                    user.password = utilizador.Password;
+                    usrService.ChangePassword(user);
+
+                    return RedirectToAction("Index");
+                }
+            }
+
+            return View();
         }
 
         public ActionResult Edit(int id)
@@ -132,7 +178,7 @@ namespace RescueDesk.Controllers
         {
             //listar moradas disponiveis
             var AvailableAddress = new List<SelectListItem>();
-            foreach (var item in address.ObterLocalidades())
+            foreach (var item in address.ObterLocalidades().Take(100))
             {
                 AvailableAddress.Add(new SelectListItem() { Text = item.codpostal + " - " + item.nomeLocalidade, Value = item.codpostal });
             }

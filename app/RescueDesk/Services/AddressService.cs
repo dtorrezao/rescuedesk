@@ -12,9 +12,32 @@ namespace RescueDesk.Services
     public class AddressService
     {
         private MySqlConnection Conn = new MySqlConnection(Utils.ConnectionString());
+        private static readonly string[] ChavesMestre = new string[] { "keyLocalidades" };
 
         public List<Localidade> ObterLocalidades()
         {
+            List<Localidade> localidades = new List<Localidade>();
+            System.Web.Caching.Cache dadosCache = HttpRuntime.Cache;
+            if (dadosCache.Get("Localidades") == null)
+            {
+                dadosCache.Insert(ChavesMestre[0], DateTime.Now);
+                localidades = this.ObterLocalidadesFromDb();
+                System.Web.Caching.CacheDependency cd = new System.Web.Caching.CacheDependency(null, ChavesMestre);
+                dadosCache.Insert("Localidades", localidades, cd);
+            }
+            else
+            {
+                localidades.Clear();
+                localidades = dadosCache.Get("Localidades") as List<Localidade>;
+            }
+
+            return localidades;
+
+        }
+
+        private List<Localidade> ObterLocalidadesFromDb()
+        {
+
             List<Localidade> Localidades = new List<Localidade>();
             this.Conn.Open();
             MySqlDataAdapter cmd1 = new MySqlDataAdapter("SELECT * FROM localidades", this.Conn);
@@ -39,7 +62,14 @@ namespace RescueDesk.Services
             MySqlCommand cmd = new MySqlCommand(query, this.Conn);
             int resultados = cmd.ExecuteNonQuery();
             this.Conn.Close();
+            ClearCache();
             return resultados > 0;
+        }
+
+        private static void ClearCache()
+        {
+            System.Web.Caching.Cache dadosCache = HttpRuntime.Cache;
+            dadosCache.Remove("Localidades");
         }
 
         public void CreateLocalidades(List<Localidade> localidadesAInserir)
@@ -58,6 +88,8 @@ namespace RescueDesk.Services
                     int resultados = cmd.ExecuteNonQuery();
                 }
 
+                ClearCache();
+
                 this.Conn.Close();
             }
         }
@@ -71,6 +103,8 @@ namespace RescueDesk.Services
             MySqlCommand cmd = new MySqlCommand(query, this.Conn);
             int resultados = cmd.ExecuteNonQuery();
             this.Conn.Close();
+
+            ClearCache();
             return resultados > 0;
         }
 
@@ -108,6 +142,7 @@ namespace RescueDesk.Services
                 Localidade localidade = ParseLocalidade(linha);
                 return localidade;
             }
+
             return null;
         }
 
@@ -117,6 +152,8 @@ namespace RescueDesk.Services
             MySqlCommand cmd = new MySqlCommand("DELETE FROM localidades where codpostal='" + id + "'", this.Conn);
             int resultados = cmd.ExecuteNonQuery();
             this.Conn.Close();
+
+            ClearCache();
             return resultados > 0;
         }
 

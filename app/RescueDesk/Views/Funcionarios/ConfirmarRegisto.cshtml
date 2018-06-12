@@ -1,0 +1,13 @@
+﻿@model RescueDesk.ViewModels.ConfirmRegistoViewModel
+@{
+    ViewBag.Title = "ConfirmarRegisto";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(x => x.Hash)
+    @Html.EditorFor(x => x.Username)
+    @Html.EditorFor(x => x.Password)
+    @Html.EditorFor(x => x.ConfirmPassword)
+    <button type="submit">Submit</button>
+}

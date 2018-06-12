@@ -25,5 +25,10 @@ namespace RescueDesk.Utils
 
             return sb.ToString();
         }
+
+        internal static string HashString(object username)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
