@@ -85,7 +85,7 @@ actionName: "Create",
 controllerName: "Funcionarios",
 routeValues: null,
 method: FormMethod.Post,
-htmlAttributes: new { @enctype = "multipart/form-data" }))
+htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
 {
     if (!string.IsNullOrEmpty((string)ViewBag.SubTitle))
     {
@@ -202,4 +202,8 @@ htmlAttributes: new { @enctype = "multipart/form-data" }))
     }, {
             loadingImg: 'images/loading.gif'
         });
+
+    $("form.hasImage").submit(function (e) {
+        CheckFormImage(e,this);
+    });
 </script>

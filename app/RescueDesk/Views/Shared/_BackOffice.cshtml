@@ -98,13 +98,47 @@
         function closeModal() {
             $('#modal-container').modal('hide');
         }
+        function CheckFormImage(e,form) {
+            e.preventDefault(); //Stop the submit for now
+            //Replace with your selector to find the file input in your form
+            var fileInput = $("input[type=file]")[0],
+                file = fileInput.files && fileInput.files[0];
 
-            $('.localidadesDropdown').ajaxChosen({
-        dataType: 'json',
-        type: 'POST',
-        url: '@Url.Action("ObterLocalidadesFiltradas", "Localidades")'
-    }, {
+            if (file) {
+                var img = new Image();
+
+                img.src = window.URL.createObjectURL(file);
+
+                img.onload = function () {
+                    var width = img.naturalWidth,
+                        height = img.naturalHeight;
+
+                    window.URL.revokeObjectURL(img.src);
+
+                    if (img.naturalWidth > 0 &&
+                        img.naturalHeight > 0 &&
+                        (img.naturalWidth / img.naturalHeight) < 1.10) {
+                        form.submit();
+                    }
+                    else {
+                        alert("Selecione outra imagem mas com o ratio de 1x1");
+                    }
+                };
+            }
+            else { //No file was input or browser doesn't support client side reading
+                form.submit();
+            }
+        }
+        $('.localidadesDropdown').ajaxChosen({
+            dataType: 'json',
+            type: 'POST',
+            url: '@Url.Action("ObterLocalidadesFiltradas", "Localidades")'
+        }, {
             loadingImg: 'images/loading.gif'
+            });
+        
+        $("form.hasImage").submit(function (e) {
+            CheckFormImage(e, this);
         });
     </script>
 </body>

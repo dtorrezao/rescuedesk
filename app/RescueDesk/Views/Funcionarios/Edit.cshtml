@@ -10,7 +10,7 @@
         controllerName: "Funcionarios",
         routeValues: null,
         method: FormMethod.Post,
-        htmlAttributes: new { @enctype = "multipart/form-data" }))
+        htmlAttributes: new { @enctype = "multipart/form-data" , @class= "hasImage" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -67,7 +67,7 @@
                     <label for="foto">
                         <img class="rounded-circle mx-auto d-block" src="@Model.Utilizador.foto" alt="Card image cap">
                     </label>
-                    <input id="foto" name="foto" type="file" />
+                    <input id="foto" name="foto" type="file" accept="image/jpg" />
                     
                 </div>
                 @Html.HiddenFor(x => x.Utilizador.password)
