@@ -7,7 +7,7 @@ using System.Web;
 
 namespace RescueDesk.Models
 {
-    public class Atividade
+    public class Servico
     {
         [DisplayName("ID")]
         public int idatividade { get; set; }

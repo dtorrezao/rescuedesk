@@ -183,7 +183,7 @@
     <Compile Include="Models\Utilizador.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AddressService.cs" />
-    <Compile Include="Services\AtividadeService.cs" />
+    <Compile Include="Services\ServicosService.cs" />
     <Compile Include="Services\ClientesService.cs" />
     <Compile Include="Services\DepartamentosService.cs" />
     <Compile Include="Services\EmailService.cs" />

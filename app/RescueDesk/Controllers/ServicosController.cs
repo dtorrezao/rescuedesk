@@ -14,9 +14,9 @@ namespace RescueDesk.Controllers
         // GET: Atividade
         public ActionResult Index()
         {
-            AtividadeService atividadeService = new AtividadeService();
+            ServicosService atividadeService = new ServicosService();
 
-            return View(atividadeService.ObterAtividades());
+            return View(atividadeService.ObterServicos());
         }
 
         // GET: Atividade/Details/5
@@ -28,18 +28,18 @@ namespace RescueDesk.Controllers
         // GET: Atividade/Create
         public ActionResult Create()
         {
-            Atividade atividade = new Atividade();
+            Servico atividade = new Servico();
 
             return PartialView(atividade);
         }
 
         // POST: Atividade/Create
         [HttpPost]
-        public ActionResult Create(Atividade atividade)
+        public ActionResult Create(Servico atividade)
         {
-            AtividadeService atividadeService = new AtividadeService();
+            ServicosService atividadeService = new ServicosService();
 
-            if (atividadeService.CreateAtividade(atividade))
+            if (atividadeService.CreateServico(atividade))
             {
                 return this.RedirectToAction("Index");
             }
@@ -52,18 +52,18 @@ namespace RescueDesk.Controllers
         // GET: Atividade/Edit/5
         public ActionResult Edit(int id)
         {
-            AtividadeService atividadeService = new AtividadeService();
+            ServicosService atividadeService = new ServicosService();
 
-            return PartialView(atividadeService.ObterAtividade(id));
+            return PartialView(atividadeService.ObterServico(id));
         }
 
         // POST: Atividade/Edit/5
         [HttpPost]
-        public ActionResult Edit(Atividade atividade)
+        public ActionResult Edit(Servico atividade)
         {
-            AtividadeService atividadeService = new AtividadeService();
+            ServicosService atividadeService = new ServicosService();
 
-            if (atividadeService.UpdateAtividade(atividade))
+            if (atividadeService.UpdateServico(atividade))
             {
                 return this.RedirectToAction("Index");
             }
@@ -76,17 +76,17 @@ namespace RescueDesk.Controllers
         // GET: Atividade/Delete/5
         public ActionResult Delete(int id)
         {
-            AtividadeService atividadeService = new AtividadeService();
-            return PartialView(atividadeService.ObterAtividade(id));
+            ServicosService atividadeService = new ServicosService();
+            return PartialView(atividadeService.ObterServico(id));
         }
 
         // POST: Atividade/Delete/5
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int idatividade)
         {
-            AtividadeService atividadeService = new AtividadeService();
+            ServicosService atividadeService = new ServicosService();
 
-            if (atividadeService.DeleteAtividade(idatividade))
+            if (atividadeService.DeleteServico(idatividade))
             {
                 return this.RedirectToAction("Index");
             }
