@@ -1,0 +1,91 @@
+﻿@model IEnumerable<RescueDesk.Models.Mensagem>
+
+@{
+    ViewBag.Title = "Mensagens";
+    ViewBag.FAIcon = "fa-file-text";
+    ViewBag.SubTitle = "Criar";
+    ViewBag.AddUrl = Url.Action("Create");
+}
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <table id="bootstrap-data-table" class="table table-striped table-bordered" style="font-size:14px">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.idmensagem)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.assunto)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.corpo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.recetor)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.emissor)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.dtenviado)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.lido)
+                                </th>
+                                <th class="no-sort"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.idmensagem)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.assunto)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.corpo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.emissor)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.recetor)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.dtenviado)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.lido)
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Edit", new { id = item.idmensagem })"
+                                       title="Editar"
+                                       data-ajax="true"
+                                       data-ajax-method="GET"
+                                       data-ajax-mode="after"
+                                       data-ajax-update="#modal-body"
+                                       class="btn btn-link minus-padd modal-link"><i class="fa fa-pencil fa-add"></i></a>
+                                    <a href="@Url.Action("Delete", new { id = item.idmensagem })"
+                                       title="Eliminar"
+                                       data-ajax="true"
+                                       data-ajax-method="GET"
+                                       data-ajax-mode="after"
+                                       data-ajax-update="#modal-body"
+                                       class="btn btn-link minus-padd modal-link"><i class="fa fa-trash-o fa-red"></i></a>
+
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

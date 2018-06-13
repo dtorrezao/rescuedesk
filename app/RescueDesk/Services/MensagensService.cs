@@ -1,0 +1,62 @@
+﻿using MySql.Data.MySqlClient;
+using RescueDesk.Models;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+
+namespace RescueDesk.Services
+{
+    public class MensagensService
+    {
+
+        private MySqlConnection Conn = new MySqlConnection(Utils.ConnectionString());
+
+        public List<Mensagem> ObterMensagens()
+        {
+            List<Mensagem> Mensagens = new List<Mensagem>();
+            this.Conn.Open();
+            MySqlDataAdapter cmd1 = new MySqlDataAdapter("SELECT * FROM mensagens", this.Conn);
+            DataTable dados1 = new DataTable();
+            cmd1.Fill(dados1);
+            this.Conn.Close();
+            foreach (DataRow linha in dados1.Rows)
+            {
+                Mensagem mensagem = ParseMensagem(linha);
+                Mensagens.Add(mensagem);
+            }
+            return Mensagens;
+        }
+
+        public bool CreateMensagem(Mensagem mensagem)
+        {
+            string query = "INSERT INTO `mensagens` " +
+               " (`idmensagem`, `assunto`, `corpo`, `emissor`, `recetor`, `dtenviado`, `lido`) " +
+               "VALUES(null,'" + mensagem.assunto + "', '" + mensagem.corpo + "', '" + mensagem.emissor.ToString() + "', '" + mensagem.recetor.ToString() + "', '" + mensagem.emissor.ToString() + "')";
+            this.Conn.Open();
+            MySqlCommand cmd = new MySqlCommand(query, this.Conn);
+            int resultados = cmd.ExecuteNonQuery();
+            this.Conn.Close();
+            return resultados > 0;
+        }
+
+        private static Mensagem ParseMensagem(DataRow linha)
+        {
+            Mensagem mensagem = new Mensagem();
+            mensagem.idmensagem = int.Parse(linha["idmensagem"].ToString());
+            mensagem.assunto = linha["assunto"].ToString();
+            mensagem.corpo = linha["corpo"].ToString();
+            mensagem.emissor = int.Parse(linha["emissor"].ToString());
+            mensagem.recetor = int.Parse(linha["recetor"].ToString());
+            mensagem.dtenviado = DateTime.Parse(linha["dtenviado"].ToString());
+            mensagem.lido = bool.Parse(linha["lido"].ToString());
+
+
+
+            return mensagem;
+        }
+
+
+    }
+}

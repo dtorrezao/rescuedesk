@@ -31,8 +31,8 @@ namespace RescueDesk.Services
         public bool CreateNota(Notas nota)
         {
             string query = "INSERT INTO `notas` " +
-               " (`idtipo`, `titulo`, `corpo`, `idUtilizador`) " +
-               "VALUES(Null,'" + nota.titulo + "', '" + nota.corpo+ "', '" + nota.idUtilizador.ToString() + "')";
+               " (`idnota`, `titulo`, `corpo`, `idUtilizador`) " +
+               "VALUES(null,'" + nota.titulo + "', '" + nota.corpo+ "', '" + nota.idUtilizador.ToString() + "')";
             this.Conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, this.Conn);
             int resultados = cmd.ExecuteNonQuery();

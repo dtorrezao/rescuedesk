@@ -158,6 +158,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\MensagensController.cs" />
     <Compile Include="Controllers\NotasController.cs" />
     <Compile Include="Controllers\ServicosController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
@@ -177,12 +178,14 @@
     <Compile Include="Models\Evento.cs" />
     <Compile Include="Models\Funcionario.cs" />
     <Compile Include="Models\Localidade.cs" />
+    <Compile Include="Models\Mensagem.cs" />
     <Compile Include="Models\Notas.cs" />
     <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\TipoUtilizador.cs" />
     <Compile Include="Models\Utilizador.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AddressService.cs" />
+    <Compile Include="Services\MensagensService.cs" />
     <Compile Include="Services\ServicosService.cs" />
     <Compile Include="Services\ClientesService.cs" />
     <Compile Include="Services\DepartamentosService.cs" />
@@ -649,6 +652,7 @@
     <Content Include="Views\Notas\Create.cshtml" />
     <Content Include="Views\Notas\Edit.cshtml" />
     <Content Include="Views\Notas\Delete.cshtml" />
+    <Content Include="Views\Mensagens\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
