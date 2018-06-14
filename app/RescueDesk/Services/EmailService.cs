@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Net.Mail;
 using System.Net;
+using RescueDesk.Models;
 
 namespace RescueDesk.Services
 {
@@ -23,6 +24,18 @@ namespace RescueDesk.Services
             };
             mail.From = fromAddress;
             smtp.Send(mail);
+        }
+
+        public void EnviarEmailRegisto(Utilizador utilizador, string link)
+        {
+            var mail = new MailMessage();
+
+            mail.Body = "Bla Bla Bla " + link + " bla bla bla";
+            mail.Subject = "Register";
+            mail.To.Add(new MailAddress(utilizador.email));
+
+            EmailService emailSvc = new EmailService();
+            emailSvc.EnviarEmail(mail);
         }
     }
 }

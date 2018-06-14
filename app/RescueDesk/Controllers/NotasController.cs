@@ -11,14 +11,21 @@ namespace RescueDesk.Controllers
     [Authorize] // Todas as acções deste controlador estão disponiveis para os tipos de utlizador (apenas tem que fazer login)
     public class NotasController : Controller
     {
+        private Utilizador ObterUtilizador()
+        {
+            string userName = ControllerContext.HttpContext.User.Identity.Name;
+            UtilizadorService UtilizadorService = new UtilizadorService();
+            return UtilizadorService.ObterUtilizadorByEmail(userName);
+        }
+
         // GET: Notas
         public ActionResult Index()
         {
             NotasService servico = new NotasService();
 
-            return View(servico.ObterNotas());
+            return View(servico.ObterNotas(this.ObterUtilizador()));
         }
-        
+
         // GET: Notas/Details/5
         public ActionResult Details(int id)
         {
@@ -38,7 +45,8 @@ namespace RescueDesk.Controllers
         public ActionResult Create(Notas nota)
         {
             NotasService servico = new NotasService();
-            if (servico.CreateNota(nota))
+           
+            if (servico.CreateNota(nota, this.ObterUtilizador()))
             {
                 return this.RedirectToAction("Index");
             }
@@ -54,7 +62,7 @@ namespace RescueDesk.Controllers
         {
             NotasService servico = new NotasService();
 
-            return PartialView(servico.ObterNota(id));
+            return PartialView(servico.ObterNota(id, this.ObterUtilizador()));
         }
 
         // POST: Notas/Edit/5
@@ -62,7 +70,7 @@ namespace RescueDesk.Controllers
         public ActionResult Edit(Notas nota)
         {
             NotasService servico = new NotasService();
-            if (servico.UpdateNota(nota))
+            if (servico.UpdateNota(nota, this.ObterUtilizador()))
             {
                 return this.RedirectToAction("Index");
             }
@@ -77,7 +85,7 @@ namespace RescueDesk.Controllers
         {
             NotasService servico = new NotasService();
 
-            return PartialView(servico.ObterNota(id));
+            return PartialView(servico.ObterNota(id, this.ObterUtilizador()));
 
         }
 
@@ -86,7 +94,7 @@ namespace RescueDesk.Controllers
         public ActionResult DeleteConfirmed(int idnota)
         {
             NotasService servico = new NotasService();
-            if (servico.DeleteNota(idnota))
+            if (servico.DeleteNota(idnota, this.ObterUtilizador()))
             {
                 return this.RedirectToAction("Index");
             }

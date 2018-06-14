@@ -175,6 +175,7 @@
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Departamento.cs" />
     <Compile Include="Models\enums\prioridade.cs" />
+    <Compile Include="Models\enums\TipoUtilizadorEnum.cs" />
     <Compile Include="Models\Evento.cs" />
     <Compile Include="Models\Funcionario.cs" />
     <Compile Include="Models\Localidade.cs" />
@@ -199,6 +200,7 @@
     <Compile Include="Utils\Criptografia.cs" />
     <Compile Include="Utils\Database.cs" />
     <Compile Include="Utils\ViewHelper.cs" />
+    <Compile Include="ViewModels\ClienteViewModel.cs" />
     <Compile Include="ViewModels\ConfirmRegistoViewModel.cs" />
     <Compile Include="ViewModels\FuncionarioViewModel.cs" />
   </ItemGroup>

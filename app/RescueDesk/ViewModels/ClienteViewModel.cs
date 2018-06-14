@@ -7,12 +7,12 @@ using System.Web.Mvc;
 
 namespace RescueDesk.ViewModels
 {
-    public class FuncionarioViewModel
+    public class ClienteViewModel
     {
-        public Funcionario Funcionario { get; set; }
+        public Cliente Cliente { get; set; }
         public Utilizador Utilizador { get; set; }
         public List<SelectListItem> Enderecos { get; set; }
-        public List<SelectListItem> Departamentos { get; set; }
-        public List<SelectListItem> TipoUtilizador { get; set; }
+
+        public bool CriarUtilizador { get; set; }
     }
 }

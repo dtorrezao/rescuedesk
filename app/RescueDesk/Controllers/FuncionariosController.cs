@@ -15,11 +15,15 @@ namespace RescueDesk.Controllers
     [Authorize(Roles = "Administrador")]
     public class FuncionariosController : Controller
     {
+        FuncionariosService servico = new FuncionariosService();
+        UtilizadorService usrService = new UtilizadorService();
+        AddressService address = new AddressService();
+        DepartamentosService dptService = new DepartamentosService();
+        TipoUtilizadorService tipoUtilizadorService = new TipoUtilizadorService();
+
         // GET: Funcionarios
         public ActionResult Index()
         {
-            FuncionariosService servico = new FuncionariosService();
-
             return View(servico.ObterFuncionarios());
         }
 
@@ -32,16 +36,12 @@ namespace RescueDesk.Controllers
         // GET: Funcionarios/Create
         public ActionResult Create()
         {
-            FuncionariosService servico = new FuncionariosService();
-            UtilizadorService usrService = new UtilizadorService();
-            AddressService address = new AddressService();
-            DepartamentosService dptService = new DepartamentosService();
-
             FuncionarioViewModel vm = new FuncionarioViewModel();
             vm.Funcionario = servico.ObterFuncionarioDefault();
             vm.Utilizador = usrService.ObterUtilizadorDefault();
             vm.Enderecos = new List<SelectListItem>() { new SelectListItem() { Text = "Selecione uma localidade" } };
             vm.Departamentos = ListaDepartmentos(dptService);
+            vm.TipoUtilizador = ListaTipoUtilizador(tipoUtilizadorService);
             return View(vm);
         }
 
@@ -61,14 +61,16 @@ namespace RescueDesk.Controllers
                 }
             }
 
-            FuncionariosService servico = new FuncionariosService();
-            UtilizadorService usrService = new UtilizadorService();
+     
             if (usrService.CreateUtilizador(func.Utilizador))
             {
                 func.Funcionario.idUtilizador = func.Utilizador.idUtilizador;
                 if (servico.CreateFuncionario(func.Funcionario))
                 {
-                    this.EnviarEmailRegisto(func.Utilizador);
+                    EmailService emailSvc = new EmailService();
+                    var link = "http://" + Request.Url.Authority + Url.Action("ConfirmarRegisto", "Funcionarios", new { hash = Criptografia.HashString(func.Utilizador.email) });
+
+                    emailSvc.EnviarEmailRegisto(func.Utilizador, link);
 
                     return this.RedirectToAction("Index");
                 }
@@ -77,18 +79,6 @@ namespace RescueDesk.Controllers
             return RedirectToAction("Create");
         }
 
-        private void EnviarEmailRegisto(Utilizador utilizador)
-        {
-            var mail = new MailMessage();
-            var link = "http://" + Request.Url.Authority + Url.Action("ConfirmarRegisto", "Funcionarios", new { hash = Criptografia.HashString(utilizador.email) });
-
-            mail.Body = "Bla Bla Bla " + link + " bla bla bla";
-            mail.Subject = "Register";
-            mail.To.Add(new MailAddress(utilizador.email));
-
-            EmailService emailSvc = new EmailService();
-            emailSvc.EnviarEmail(mail);
-        }
 
         public ActionResult ConfirmarRegisto(string hash)
         {
@@ -121,11 +111,6 @@ namespace RescueDesk.Controllers
 
         public ActionResult Edit(int id)
         {
-            FuncionariosService servico = new FuncionariosService();
-            UtilizadorService usrService = new UtilizadorService();
-            AddressService address = new AddressService();
-            DepartamentosService dptService = new DepartamentosService();
-
             FuncionarioViewModel vm = new FuncionarioViewModel();
             vm.Funcionario = servico.ObterFuncionario(id);
             vm.Utilizador = usrService.ObterUtilizador(vm.Funcionario.idUtilizador);
@@ -134,6 +119,8 @@ namespace RescueDesk.Controllers
 
             vm.Enderecos = new List<SelectListItem>() { new SelectListItem() { Value = vm.Funcionario.codpostal, Text = string.Format("{0} - {1}", localidade.codpostal, localidade.nomeLocalidade), Selected = true } };
             vm.Departamentos = ListaDepartmentos(dptService);
+            vm.TipoUtilizador = ListaTipoUtilizador(tipoUtilizadorService);
+
             return View(vm);
         }
 
@@ -152,8 +139,6 @@ namespace RescueDesk.Controllers
                 }
             }
 
-            FuncionariosService servico = new FuncionariosService();
-            UtilizadorService usrService = new UtilizadorService();
             if (usrService.UpdateUtilizador(func.Utilizador))
             {
                 func.Funcionario.idUtilizador = func.Utilizador.idUtilizador;
@@ -169,12 +154,23 @@ namespace RescueDesk.Controllers
         private List<SelectListItem> ListaDepartmentos(DepartamentosService dptService)
         {
             //listar moradas disponiveis
-            var AvailableAddress = new List<SelectListItem>();
+            var List = new List<SelectListItem>();
             foreach (var item in dptService.ObterDepartamentos())
             {
-                AvailableAddress.Add(new SelectListItem() { Text = item.dept, Value = item.iddept.ToString() });
+                List.Add(new SelectListItem() { Text = item.dept, Value = item.iddept.ToString() });
             }
-            return AvailableAddress;
+            return List;
+        }
+
+        private List<SelectListItem> ListaTipoUtilizador(TipoUtilizadorService utilizadorService)
+        {
+            //listar moradas disponiveis
+            var ListTipoUser = new List<SelectListItem>();
+            foreach (var item in utilizadorService.ObterTipos())
+            {
+                ListTipoUser.Add(new SelectListItem() { Text = item.tipouser, Value = item.idtipo.ToString() });
+            }
+            return ListTipoUser;
         }
     }
 }
