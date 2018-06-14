@@ -6,7 +6,7 @@ using System.Web;
 
 namespace RescueDesk.Models
 {
-    public class Notas
+    public class Nota
     {
         [DisplayName("ID")]
         public int idnota { get; set; }

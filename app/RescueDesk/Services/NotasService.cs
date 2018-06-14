@@ -9,9 +9,9 @@ namespace RescueDesk.Services
     {
         private MySqlConnection Conn = new MySqlConnection(Utils.ConnectionString());
 
-        public List<Notas> ObterNotas(Utilizador utilizador)
+        public List<Nota> ObterNotas(Utilizador utilizador)
         {
-            List<Notas> Notas = new List<Notas>();
+            List<Nota> Notas = new List<Nota>();
             this.Conn.Open();
 
             string query = "SELECT * FROM notas WHERE idUtilizador= " + utilizador.idUtilizador;
@@ -28,13 +28,13 @@ namespace RescueDesk.Services
             this.Conn.Close();
             foreach (DataRow linha in dados1.Rows)
             {
-                Notas nota = ParseNota(linha);
+                Nota nota = ParseNota(linha);
                 Notas.Add(nota);
             }
             return Notas;
         }
 
-        public bool CreateNota(Notas nota, Utilizador utilizador)
+        public bool CreateNota(Nota nota, Utilizador utilizador)
         {
             nota.idUtilizador = utilizador.idUtilizador;
 
@@ -48,7 +48,7 @@ namespace RescueDesk.Services
             return resultados > 0;
         }
 
-        public Notas ObterNota(int id, Utilizador utilizador)
+        public Nota ObterNota(int id, Utilizador utilizador)
         {
             this.Conn.Open();
             MySqlDataAdapter cmd1 = new MySqlDataAdapter("Select * from notas where idnota='" + id.ToString() + "' AND idUtilizador= "+utilizador.idUtilizador, this.Conn);
@@ -57,13 +57,13 @@ namespace RescueDesk.Services
             this.Conn.Close();
             foreach (DataRow linha in dados1.Rows)
             {
-                Notas nota = ParseNota(linha);
+                Nota nota = ParseNota(linha);
                 return nota;
             }
             return null;
         }
 
-        public bool UpdateNota(Notas nota, Utilizador utilizador)
+        public bool UpdateNota(Nota nota, Utilizador utilizador)
         {
             string query = "UPDATE `notas` ";
             query += "SET `titulo` = '" + nota.titulo + "', " +
@@ -85,9 +85,9 @@ namespace RescueDesk.Services
             return resultados > 0;
         }
 
-        private static Notas ParseNota(DataRow linha)
+        private static Nota ParseNota(DataRow linha)
         {
-            Notas notas = new Notas();
+            Nota notas = new Nota();
             notas.idnota = int.Parse(linha["idnota"].ToString());
             notas.titulo = linha["titulo"].ToString();
             notas.corpo = linha["corpo"].ToString();

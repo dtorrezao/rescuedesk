@@ -1,9 +1,8 @@
-﻿@model RescueDesk.Models.Notas
-
+﻿@model RescueDesk.Models.Nota
 @{
     Layout = null;
     ViewBag.Title = "Notas";
-    ViewBag.SubTitle = "Criar Notas";
+    ViewBag.SubTitle = "Criar Nota";
 }
 
 @using (Html.BeginForm())
@@ -22,29 +21,24 @@
         @Html.HiddenFor(model => model.idnota)
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="row">
-            <div class="col col-md-2" style="margin-right: -44px; margin-left: 4px">
+            <div class="col col-md-1">
                 <label for="@Html.NameFor(model=>model.titulo)" class=" form-control-label" style="line-height: 38px">@Html.DisplayNameFor(model => model.titulo):</label>
             </div>
-            <div class="col col-md-7">
-                @Html.EditorFor(model => model.titulo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza uma breve descrição do serviço..." } })
+            <div class="col col-md-11">
+                @Html.EditorFor(model => model.titulo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o título da nota..." } })
                 @Html.ValidationMessageFor(model => model.titulo, "", new { @class = "text-danger" })
             </div>
-            <div class="col col-md-1" style="margin-right: -12px; margin-left: -8px">
-                <label for="@Html.NameFor(model=>model.corpo)" class=" form-control-label" style="line-height: 38px">@Html.DisplayNameFor(model => model.corpo):</label>
-            </div>
-            <div class="col col-md-2" style="margin-left: 2px;">
-                @Html.EditorFor(model => model.corpo, new { htmlAttributes = new { @class = "form-control", @style = "width: 160px", @placeholder = "do serviço..." } })
+            <div class="col col-md-12">
+                @Html.TextAreaFor(model => model.corpo, new { @class = "form-control", @rows = "15", @placeholder = "Escreva aqui a sua nota..." })
                 @Html.ValidationMessageFor(model => model.corpo, "", new { @class = "text-danger" })
             </div>
         </div>
-
     </div>
     <div class="modal-footer">
         <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>&nbsp; Guardar</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal"> <i class="fa fa-times"></i>&nbsp;Cancelar</button>
     </div>
 }
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

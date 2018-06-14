@@ -37,12 +37,12 @@ namespace RescueDesk.Controllers
         {
             NotasService servico = new NotasService();
 
-            return PartialView(new Notas() { });
+            return PartialView(new Nota() { });
         }
 
         // POST: Notas/Create
         [HttpPost]
-        public ActionResult Create(Notas nota)
+        public ActionResult Create(Nota nota)
         {
             NotasService servico = new NotasService();
            
@@ -67,7 +67,7 @@ namespace RescueDesk.Controllers
 
         // POST: Notas/Edit/5
         [HttpPost]
-        public ActionResult Edit(Notas nota)
+        public ActionResult Edit(Nota nota)
         {
             NotasService servico = new NotasService();
             if (servico.UpdateNota(nota, this.ObterUtilizador()))

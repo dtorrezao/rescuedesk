@@ -1,73 +1,47 @@
-﻿@model IEnumerable<RescueDesk.Models.Notas>
-
+﻿@model IEnumerable<RescueDesk.Models.Nota>
 @{
     ViewBag.Title = "Notas";
-    ViewBag.FAIcon = "fa-file-text";
+    ViewBag.FAIcon = "fa fa-pencil-square-o";
     ViewBag.SubTitle = "Criar";
     ViewBag.AddUrl = Url.Action("Create");
 }
 <div class="animated fadeIn">
     <div class="row">
         <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    <table id="bootstrap-data-table" class="table table-striped table-bordered" style="font-size:14px">
-                        <thead>
-                            <tr>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.idnota)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.titulo)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.corpo)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.idUtilizador)
-                                </th>
-                                <th class="no-sort"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.idnota)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.titulo)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.corpo)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.idUtilizador)
-                                    </td>
-                                    <td>
-                                        <a href="@Url.Action("Edit", new { id = item.idnota })"                                           
-                                           title="Editar"
-                                           data-ajax="true"
-                                           data-ajax-method="GET"
-                                           data-ajax-mode="after"
-                                           data-ajax-update="#modal-body"
-                                           class="btn btn-link minus-padd modal-link"><i class="fa fa-pencil fa-add"></i></a>
-                                        <a href="@Url.Action("Delete", new { id = item.idnota })"
-                                           title="Eliminar"
-                                           data-ajax="true"
-                                           data-ajax-method="GET"
-                                           data-ajax-mode="after"
-                                           data-ajax-update="#modal-body"
-                                           class="btn btn-link minus-padd modal-link"><i class="fa fa-trash-o fa-red"></i></a>
-                                           
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">
+                                @Html.DisplayFor(modelItem => item.titulo)
+                                <bold>
+                                    <a href="@Url.Action("Delete", new { id = item.idnota })"
+                                       title="Eliminar"
+                                       data-ajax="true"
+                                       data-ajax-method="GET"
+                                       data-ajax-mode="after"
+                                       data-ajax-update="#modal-body"
+                                       class="btn btn-link minus-padd modal-link badge badge float-right mt-1"
+                                       style="margin-right: -10px;margin-left: -2px"><i class="fa fa-trash-o fa-red"></i></a>
+                                    <a href="@Url.Action("Edit", new { id = item.idnota })"
+                                       title="Editar"
+                                       data-ajax="true"
+                                       data-ajax-method="GET"
+                                       data-ajax-mode="after"
+                                       data-ajax-update="#modal-body"
+                                       class="btn btn-link minus-padd modal-link badge badge float-right mt-1"><i class="fa fa-pencil fa-add"></i></a>
+                                </bold>
+                            </strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="col col-md-12">
+                                <p class="card-text">@Html.DisplayFor(modelItem => item.corpo)</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            }
         </div>
     </div>
 </div>

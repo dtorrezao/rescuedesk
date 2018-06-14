@@ -180,7 +180,7 @@
     <Compile Include="Models\Funcionario.cs" />
     <Compile Include="Models\Localidade.cs" />
     <Compile Include="Models\Mensagem.cs" />
-    <Compile Include="Models\Notas.cs" />
+    <Compile Include="Models\Nota.cs" />
     <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\TipoUtilizador.cs" />
     <Compile Include="Models\Utilizador.cs" />
