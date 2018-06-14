@@ -13,11 +13,12 @@ namespace RescueDesk.Services
 
         private MySqlConnection Conn = new MySqlConnection(Utils.ConnectionString());
 
-        public List<Mensagem> ObterMensagens()
+        public List<Mensagem> ObterMensagens(Utilizador utilizador)
         {
             List<Mensagem> Mensagens = new List<Mensagem>();
             this.Conn.Open();
-            MySqlDataAdapter cmd1 = new MySqlDataAdapter("SELECT * FROM mensagens", this.Conn);
+            string query = "SELECT * FROM mensagens WHERE emissor= " + utilizador.idUtilizador;
+            MySqlDataAdapter cmd1 = new MySqlDataAdapter(query, this.Conn);
             DataTable dados1 = new DataTable();
             cmd1.Fill(dados1);
             this.Conn.Close();
@@ -29,11 +30,11 @@ namespace RescueDesk.Services
             return Mensagens;
         }
 
-        public bool CreateMensagem(Mensagem mensagem)
+        public bool CreateMensagem(Mensagem mensagem , Utilizador utilizador)
         {
             string query = "INSERT INTO `mensagens` " +
-               " (`idmensagem`, `assunto`, `corpo`, `emissor`, `recetor`, `dtenviado`, `lido`) " +
-               "VALUES(null,'" + mensagem.assunto + "', '" + mensagem.corpo + "', '" + mensagem.emissor.ToString() + "', '" + mensagem.recetor.ToString() + "', '" + mensagem.emissor.ToString() + "')";
+               " (`idmensagem`, `assunto`, `corpo`, `emissor`, `recetor`, `dtenviado`) " +
+               "VALUES(null,'" + mensagem.assunto + "', '" + mensagem.corpo + "', '" + utilizador.idUtilizador + "', '" + /*mensagem.recetor.ToString()*/ 15 + "', '" + mensagem.dtenviado.ToString("yyyy-MM-dd hh:mm:ss") + "')";
             this.Conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, this.Conn);
             int resultados = cmd.ExecuteNonQuery();

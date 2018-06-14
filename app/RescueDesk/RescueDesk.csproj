@@ -655,6 +655,7 @@
     <Content Include="Views\Notas\Edit.cshtml" />
     <Content Include="Views\Notas\Delete.cshtml" />
     <Content Include="Views\Mensagens\Index.cshtml" />
+    <Content Include="Views\Mensagens\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -10,12 +10,19 @@ namespace RescueDesk.Controllers
 {
     public class MensagensController : Controller
     {
+        private Utilizador ObterUtilizador()
+        {
+            string userName = ControllerContext.HttpContext.User.Identity.Name;
+            UtilizadorService UtilizadorService = new UtilizadorService();
+            return UtilizadorService.ObterUtilizadorByEmail(userName);
+        }
+
         // GET: Mensagens
         public ActionResult Index()
         {
             MensagensService servico = new MensagensService();
 
-            return View(servico.ObterMensagens());
+            return View(servico.ObterMensagens(this.ObterUtilizador()));
         }
 
         // GET: Mensagens/Details/5
@@ -37,7 +44,7 @@ namespace RescueDesk.Controllers
         public ActionResult Create(Mensagem mensagem)
         {
             MensagensService servico = new MensagensService();
-            if (servico.CreateMensagem(mensagem))
+            if (servico.CreateMensagem(mensagem, this.ObterUtilizador()))
             {
                 return this.RedirectToAction("Index");
             }
