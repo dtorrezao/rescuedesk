@@ -10,14 +10,36 @@ namespace RescueDesk.Services
 {
     public class MensagensService
     {
+        public int TipoMensagem;
 
         private MySqlConnection Conn = new MySqlConnection(Utils.ConnectionString());
 
-        public List<Mensagem> ObterMensagens(Utilizador utilizador)
+        public List<Mensagem> ObterMensagens(Utilizador utilizador, bool obterEnviadas, bool obterRecebidas)
         {
             List<Mensagem> Mensagens = new List<Mensagem>();
             this.Conn.Open();
-            string query = "SELECT * FROM mensagens WHERE emissor= " + utilizador.idUtilizador;
+            string query = "SELECT * FROM mensagens ";
+
+            if (obterEnviadas || obterRecebidas)
+            {
+                query += " WHERE";
+
+                if (obterEnviadas)
+                {
+                    query += " emissor = " + utilizador.idUtilizador;
+                }
+
+                if (obterEnviadas && obterRecebidas)
+                {
+                    query += " OR";
+                }
+
+                if (obterRecebidas)
+                {
+                    query += " recetor = " + utilizador.idUtilizador;
+                }
+            }
+
             MySqlDataAdapter cmd1 = new MySqlDataAdapter(query, this.Conn);
             DataTable dados1 = new DataTable();
             cmd1.Fill(dados1);
@@ -30,7 +52,7 @@ namespace RescueDesk.Services
             return Mensagens;
         }
 
-        public bool CreateMensagem(Mensagem mensagem , Utilizador utilizador)
+        public bool CreateMensagem(Mensagem mensagem, Utilizador utilizador)
         {
             string query = "INSERT INTO `mensagens` " +
                " (`idmensagem`, `assunto`, `corpo`, `emissor`, `recetor`, `dtenviado`) " +

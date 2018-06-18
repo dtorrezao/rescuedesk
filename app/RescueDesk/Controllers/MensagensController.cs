@@ -22,7 +22,22 @@ namespace RescueDesk.Controllers
         {
             MensagensService servico = new MensagensService();
 
-            return View(servico.ObterMensagens(this.ObterUtilizador()));
+            return View(servico.ObterMensagens(this.ObterUtilizador(), true, true));
+        }
+
+        // GET: Mensagens
+        public ActionResult Enviadas()
+        {
+            MensagensService servico = new MensagensService();
+
+            return View("Index", servico.ObterMensagens(this.ObterUtilizador(), true, false));
+        }
+
+        public ActionResult Recebidas()
+        {
+            MensagensService servico = new MensagensService();
+
+            return View("Index", servico.ObterMensagens(this.ObterUtilizador(), false, true));
         }
 
         // GET: Mensagens/Details/5

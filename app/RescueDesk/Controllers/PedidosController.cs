@@ -11,12 +11,45 @@ namespace RescueDesk.Controllers
     [Authorize] // Todas as acções deste controlador estão disponiveis para os tipos de utlizador (apenas tem que fazer login)
     public class PedidosController : Controller
     {
+        private Utilizador ObterUtilizador()
+        {
+            string userName = ControllerContext.HttpContext.User.Identity.Name;
+            UtilizadorService UtilizadorService = new UtilizadorService();
+            return UtilizadorService.ObterUtilizadorByEmail(userName);
+        }
+
         // GET: Pedidos
         public ActionResult Index()
         {
             PedidosService servico = new PedidosService();
 
-            return View(servico.ObterPedidos());
+            return View(servico.ObterPedidos(this.ObterUtilizador()));
+        }
+
+        public ActionResult ListarPendidosPendentes()
+        {
+            PedidosService servico = new PedidosService();
+
+            return View(servico.ObterPedidosPendentes(this.ObterUtilizador()));
+        }
+        public ActionResult AtribuirFuncionario(int id)
+        {
+            PedidosService servico = new PedidosService();
+
+            return View(servico.ObterPedido(id));
+        }
+        [HttpPost]
+        public ActionResult AtribuirFuncionario(Pedido pedido)
+        {
+            PedidosService servico = new PedidosService();
+            if (servico.UpdatePedido(pedido))
+            {
+                return this.RedirectToAction("Index");
+            }
+            else
+            {
+                return View(pedido);
+            }
         }
 
         public ActionResult Create()

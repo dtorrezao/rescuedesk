@@ -13,13 +13,19 @@ namespace RescueDesk.Services
     {
         private MySqlConnection Conn = new MySqlConnection(Utils.ConnectionString());
 
-        public List<Pedido> ObterPedidos()
+        public List<Pedido> ObterPedidos(Utilizador utilizador)
         {
             List<Pedido> pedidos = new List<Pedido>();
             this.Conn.Open();
 
-            string query = "SELECT * FROM `pedidos`";
-            
+            string query = "SELECT * FROM pedidos p " +
+                "INNER join funcionarios f on f.idfuncionario = p.idfuncionario ";                
+
+            if (utilizador.idtipo != (int)TipoUtilizadorEnum.Administrador)
+            {
+                query += " where f.idutilizador= '" + utilizador.idUtilizador +"'";
+            }
+
             MySqlDataAdapter cmd1 = new MySqlDataAdapter(query, this.Conn);
             DataTable dados1 = new DataTable();
             cmd1.Fill(dados1);
