@@ -52,6 +52,16 @@ namespace RescueDesk.Services
             return Mensagens;
         }
 
+        internal void UpdateMensagem(Mensagem msg)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal Mensagem ObterMensagem(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool CreateMensagem(Mensagem mensagem, Utilizador utilizador)
         {
             string query = "INSERT INTO `mensagens` " +

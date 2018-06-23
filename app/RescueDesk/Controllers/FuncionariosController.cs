@@ -30,7 +30,17 @@ namespace RescueDesk.Controllers
         // GET: Funcionarios/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            FuncionarioViewModel vm = new FuncionarioViewModel();
+            vm.Funcionario = servico.ObterFuncionario(id);
+            vm.Utilizador = usrService.ObterUtilizador(vm.Funcionario.idUtilizador);
+
+            var localidade = address.ObterLocalidade(vm.Funcionario.codpostal);
+
+            vm.Enderecos = new List<SelectListItem>() { new SelectListItem() { Value = vm.Funcionario.codpostal, Text = string.Format("{0} - {1}", localidade.codpostal, localidade.nomeLocalidade), Selected = true } };
+            vm.Departamentos = ListaDepartmentos(dptService);
+            vm.TipoUtilizador = ListaTipoUtilizador(tipoUtilizadorService);
+
+            return View(vm);
         }
 
         // GET: Funcionarios/Create
@@ -39,7 +49,7 @@ namespace RescueDesk.Controllers
             FuncionarioViewModel vm = new FuncionarioViewModel();
             vm.Funcionario = servico.ObterFuncionarioDefault();
             vm.Utilizador = usrService.ObterUtilizadorDefault();
-            vm.Enderecos = new List<SelectListItem>() { new SelectListItem() { Text = "Selecione uma localidade" } };
+            vm.Enderecos = new List<SelectListItem>() { new SelectListItem() { Text = "Introduza o seu código postal..." } };
             vm.Departamentos = ListaDepartmentos(dptService);
             vm.TipoUtilizador = ListaTipoUtilizador(tipoUtilizadorService);
             return View(vm);
@@ -61,7 +71,7 @@ namespace RescueDesk.Controllers
                 }
             }
 
-     
+
             if (usrService.CreateUtilizador(func.Utilizador))
             {
                 func.Funcionario.idUtilizador = func.Utilizador.idUtilizador;
@@ -107,6 +117,21 @@ namespace RescueDesk.Controllers
             }
 
             return View();
+        }
+
+        public ActionResult EditByIdUtilizador(int id)
+        {
+            FuncionarioViewModel vm = new FuncionarioViewModel();
+            vm.Funcionario = servico.ObterFuncionarioByIdUtilizador(id);
+            vm.Utilizador = usrService.ObterUtilizador(vm.Funcionario.idUtilizador);
+
+            var localidade = address.ObterLocalidade(vm.Funcionario.codpostal);
+
+            vm.Enderecos = new List<SelectListItem>() { new SelectListItem() { Value = vm.Funcionario.codpostal, Text = string.Format("{0} - {1}", localidade.codpostal, localidade.nomeLocalidade), Selected = true } };
+            vm.Departamentos = ListaDepartmentos(dptService);
+            vm.TipoUtilizador = ListaTipoUtilizador(tipoUtilizadorService);
+
+            return View("Edit", vm);
         }
 
         public ActionResult Edit(int id)

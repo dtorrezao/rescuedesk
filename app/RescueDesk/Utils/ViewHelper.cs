@@ -1,4 +1,5 @@
 ﻿using RescueDesk.Models;
+using RescueDesk.Models.enums;
 using RescueDesk.Services;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,27 @@ namespace RescueDesk.Utils
 {
     public static class ViewHelper
     {
+        public static bool IsInGroup(TipoUtilizadorEnum[] tiposAutorizados)
+        {
+            string userName = HttpContext.Current.User.Identity.Name;
+            UtilizadorService UtilizadorService = new UtilizadorService();
+
+            Utilizador utilizador = UtilizadorService.ObterUtilizadorByEmail(userName);
+
+            return tiposAutorizados.Any(x => (int)x == utilizador.idtipo);
+        }
+
+        public static bool IsAdmin()
+        {
+            return ViewHelper.IsInGroup(new TipoUtilizadorEnum[] { TipoUtilizadorEnum.Administrador });
+        }
+
+        public static bool IsFuncionario()
+        {
+            return ViewHelper.IsInGroup(new TipoUtilizadorEnum[] { TipoUtilizadorEnum.Funcionário });
+        }
+
+
         public static string IsActivePage(string actionName, string controllerName)
         {
             //https://stackoverflow.com/questions/18248547/get-controller-and-action-name-from-within-controller

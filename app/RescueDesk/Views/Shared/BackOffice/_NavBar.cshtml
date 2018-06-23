@@ -1,4 +1,5 @@
 ﻿@using RescueDesk.Utils
+@using RescueDesk.Models.enums
 
 <aside id="left-panel" class="left-panel">
     <nav class="navbar navbar-expand-sm navbar-default">
@@ -15,47 +16,62 @@
                     <a href="@Url.Action( "Index", "Home")"> <i class="menu-icon fa fa-dashboard"></i>Painel de Controlo</a>
                 </li>
                 <li class="menu-item @ViewHelper.IsActivePage( "Index", "Pedidos")">
-                    <a href="@Url.Action( "Index", "Pedidos")"> <i class="menu-icon fa fa-file-text"></i>Pedidos </a>
+                    <a href="@Url.Action( "ListarMeusPedidos", "Pedidos")"> <i class="menu-icon fa fa-file-text"></i>Os Meus Pedidos </a>
                 </li>
+                @if (ViewHelper.IsAdmin())
+                {
+                    <li class="menu-item @ViewHelper.IsActivePage( "Index", "Pedidos")">
+                        <a href="@Url.Action( "ListarPedidosPendentes", "Pedidos")"> <i class="menu-icon fa fa-file-text"></i>Pedidos Pendentes</a>
+                    </li>
+                }
                 <li class="menu-item">
                     <a href=#> <i class="menu-icon fa fa-bar-chart-o"></i>Relatórios</a>
                 </li>
                 <li class="menu-item-has-children dropdown @ViewHelper.IsActivePage("Contact", "Home")">
                     <a href=# class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-envelope"></i>Mensagens</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="fa fa-inbox"></i><a href="@Url.Action("Recebidas", "Mensagens")">Caixa de Entrada</a></li>
+                        <li><i class="fa fa-inbox"></i><a href="@Url.Action("Inbox", "Mensagens")">Caixa de Entrada</a></li>
                         <li><i class="fa fa-upload"></i><a href="@Url.Action("Enviadas", "Mensagens")">Correio Enviado</a></li>
                     </ul>
                 </li>
                 <li class="menu-item">
                     <a href=@Url.Action("Calendario", "Home")> <i class="menu-icon fa fa-calendar"></i>Calendário</a>
                 </li>
-                <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-list-ul"></i>Gestão de Dados</a>
-                    <ul class="sub-menu children dropdown-menu">
-                        <li class="menu-item  @ViewHelper.IsActivePage("Index", "Clientes")">
-                            <i class="menu-icon fa fa-users"></i><a href="@Url.Action("Index", "Clientes")" aria-haspopup="true" aria-expanded="false">Clientes</a>
-                        </li>
-                        <li class="menu-item @ViewHelper.IsActivePage("Index", "Departamentos")">
-                            <i class="menu-icon fa fa-sitemap"></i><a href="@Url.Action( "Index", "Departamentos")" aria-haspopup="true" aria-expanded="false">Departamentos</a>
-                        </li>
-                        <li class="menu-item @ViewHelper.IsActivePage("Index", "Funcionarios")">
-                            <i class="menu-icon fa fa-suitcase"></i><a href="@Url.Action( "Index", "Funcionarios")" aria-haspopup="true" aria-expanded="false">Funcionários</a>
-                        </li>
-                        <li class="menu-item" @ViewHelper.IsActivePage("Index", "Localidades")>
-                            <i class="menu-icon fa fa-map-marker"></i><a href="@Url.Action( "Index", "Localidades")" aria-haspopup="true" aria-expanded="false"> Localidades</a>
-                        </li>
-                        <li class="menu-item" @ViewHelper.IsActivePage("Index", "Pedidos")>
-                            <i class="menu-icon fa fa-file-text"></i><a href="@Url.Action( "Index", "Pedidos")" aria-haspopup="true" aria-expanded="false"> Pedidos</a>
-                        </li>
-                        <li class="menu-item" @ViewHelper.IsActivePage("Index", "Utilizadores")>
-                            <i class="menu-icon fa fa-users"></i><a href="@Url.Action( "Index", "Utilizadores")" aria-haspopup="true" aria-expanded="false"> Utilizadores</a>
-                        </li>
-                        <li class="menu-item @ViewHelper.IsActivePage("Index", "Servicos")">
-                            <i class="menu-icon fa fa-wrench"></i><a href="@Url.Action("Index", "Servicos")" aria-haspopup="true" aria-expanded="false">Serviços</a>
-                        </li>
-                    </ul>
-                </li>
+                @if (ViewHelper.IsInGroup(new TipoUtilizadorEnum[] { TipoUtilizadorEnum.Administrador, TipoUtilizadorEnum.Funcionário }))
+                {
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-list-ul"></i>Gestão de Dados</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li class="menu-item  @ViewHelper.IsActivePage("Index", "Clientes")">
+                                <i class="menu-icon fa fa-users"></i><a href="@Url.Action("Index", "Clientes")" aria-haspopup="true" aria-expanded="false">Clientes</a>
+                            </li>
+                            <li class="menu-item @ViewHelper.IsActivePage("Index", "Departamentos")">
+                                <i class="menu-icon fa fa-sitemap"></i><a href="@Url.Action( "Index", "Departamentos")" aria-haspopup="true" aria-expanded="false">Departamentos</a>
+                            </li>
+                            @if (ViewHelper.IsAdmin())
+                            {
+                                <li class="menu-item @ViewHelper.IsActivePage("Index", "Funcionarios")">
+                                    <i class="menu-icon fa fa-suitcase"></i><a href="@Url.Action("Index", "Funcionarios")" aria-haspopup="true" aria-expanded="false">Funcionários</a>
+                                </li>
+                            }
+                            <li class="menu-item" @ViewHelper.IsActivePage("Index", "Localidades")>
+                                <i class="menu-icon fa fa-map-marker"></i><a href="@Url.Action( "Index", "Localidades")" aria-haspopup="true" aria-expanded="false"> Localidades</a>
+                            </li>
+                            <li class="menu-item" @ViewHelper.IsActivePage("Index", "Pedidos")>
+                                <i class="menu-icon fa fa-file-text"></i><a href="@Url.Action( "Index", "Pedidos")" aria-haspopup="true" aria-expanded="false"> Pedidos</a>
+                            </li>
+                            @if (ViewHelper.IsAdmin())
+                            {
+                                <li class="menu-item" @ViewHelper.IsActivePage("Index", "Utilizadores")>
+                                    <i class="menu-icon fa fa-users"></i><a href="@Url.Action("Index", "Utilizadores")" aria-haspopup="true" aria-expanded="false"> Utilizadores</a>
+                                </li>
+                            }
+                            <li class="menu-item @ViewHelper.IsActivePage("Index", "Servicos")">
+                                <i class="menu-icon fa fa-wrench"></i><a href="@Url.Action("Index", "Servicos")" aria-haspopup="true" aria-expanded="false">Serviços</a>
+                            </li>
+                        </ul>
+                    </li>
+                }
                 <li class="menu-item">
                     <a href=@Url.Action("Index", "Notas")> <i class="menu-icon fa fa-pencil-square-o"></i>Notas</a>
                 </li>

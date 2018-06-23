@@ -28,7 +28,7 @@ namespace RescueDesk.Models
         [DisplayName("Tipo")]
         public int idtipo { get; set; }
 
-        [DisplayName("Tipo")]
+        [DisplayName("Tipo de Utilizador")]
         public string tipoUtilizador { get; set; }
 
         [DisplayName("Ativo")]

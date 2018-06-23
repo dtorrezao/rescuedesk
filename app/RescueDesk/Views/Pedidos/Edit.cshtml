@@ -1,10 +1,9 @@
 ﻿@model RescueDesk.Models.Pedido
-
+@using RescueDesk.Utils
 @{
     ViewBag.Title = "Pedido";
     ViewBag.SubTitle = "Editar";
 }
-
 <div class="col-lg-12">
     @using (Html.BeginForm())
     {
@@ -16,7 +15,7 @@
                 <div class="form-group">
                     <label for="@Html.NameFor(x=>x.idpedido)" class=" form-control-label">@Html.DisplayNameFor(model => model.idpedido)</label>
                     @Html.DisplayFor(model => model.idpedido, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
-                    @Html.ValidationMessageFor(model => model.descricao, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.idpedido, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
                     <label for="@Html.NameFor(x=>x.assunto)" class=" form-control-label">@Html.DisplayNameFor(model => model.assunto)</label>
@@ -28,50 +27,71 @@
                     @Html.EditorFor(model => model.descricao, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza a descrição do problema..." } })
                     @Html.ValidationMessageFor(model => model.descricao, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-group">
-                    <label for="@Html.NameFor(x=>x.idatividade)" class=" form-control-label">@Html.DisplayNameFor(model => model.idatividade)</label>
-                    @Html.EditorFor(model => model.idatividade, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
-                    @Html.ValidationMessageFor(model => model.idatividade, "", new { @class = "text-danger" })
-                </div>
+                @if (ViewHelper.IsAdmin() || ViewHelper.IsFuncionario())
+                {
+                    <div class="form-group">
+                        <label for="@Html.NameFor(x=>x.idatividade)" class=" form-control-label">@Html.DisplayNameFor(model => model.idatividade)</label>
+                        @Html.EditorFor(model => model.idatividade, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
+                        @Html.ValidationMessageFor(model => model.idatividade, "", new { @class = "text-danger" })
+                    </div>
+                }
+                else
+                {
+                    @Html.HiddenFor(model => model.idatividade)
+                }
+
                 <div class="form-group">
                     <label for="@Html.NameFor(x=>x.dtpedido)" class=" form-control-label">@Html.DisplayNameFor(model => model.dtpedido)</label>
-                    @Html.EditorFor(model => model.dtpedido, new { htmlAttributes = new { @class = "form-control date", @placeholder = "..." } })
+                    @Html.EditorFor(model => model.dtpedido, new { htmlAttributes = new { @class = "form-control date", @placeholder = "...", disabled="disabled" } })
                     @Html.ValidationMessageFor(model => model.dtpedido, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-group">
-                    <label for="@Html.NameFor(x=>x.dtlido)" class=" form-control-label">@Html.DisplayNameFor(model => model.dtlido)</label>
-                    @Html.EditorFor(model => model.dtlido, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
-                    @Html.ValidationMessageFor(model => model.dtlido, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    <label for="@Html.NameFor(x=>x.dtmarcado)" class=" form-control-label">@Html.DisplayNameFor(model => model.dtmarcado)</label>
-                    @Html.EditorFor(model => model.dtmarcado, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
-                    @Html.ValidationMessageFor(model => model.dtmarcado, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    <label for="@Html.NameFor(x=>x.prioridade)" class=" form-control-label">@Html.DisplayNameFor(model => model.prioridade)</label>
-                    @Html.EnumDropDownListFor(model => model.prioridade, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
-                    @Html.ValidationMessageFor(model => model.prioridade, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    <label for="@Html.NameFor(x=>x.dtresolvido)" class=" form-control-label">@Html.DisplayNameFor(model => model.dtresolvido)</label>
-                    @Html.EditorFor(model => model.dtresolvido, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
-                    @Html.ValidationMessageFor(model => model.dtresolvido, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    <label for="@Html.NameFor(x=>x.nrcontribuinte)" class=" form-control-label">@Html.DisplayNameFor(model => model.nrcontribuinte)</label>
-                    @Html.EditorFor(model => model.nrcontribuinte, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
-                    @Html.ValidationMessageFor(model => model.nrcontribuinte, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    <label for="@Html.NameFor(x=>x.idfuncionario)" class=" form-control-label">@Html.DisplayNameFor(model => model.idfuncionario)</label>
-                    @Html.EditorFor(model => model.idfuncionario, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
-                    @Html.ValidationMessageFor(model => model.idfuncionario, "", new { @class = "text-danger" })
-                </div>
+
+                @if (ViewHelper.IsAdmin() || ViewHelper.IsFuncionario())
+                {
+                    <div class="form-group">
+                        <label for="@Html.NameFor(x=>x.dtlido)" class=" form-control-label">@Html.DisplayNameFor(model => model.dtlido)</label>
+                        @Html.EditorFor(model => model.dtlido, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
+                        @Html.ValidationMessageFor(model => model.dtlido, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label for="@Html.NameFor(x=>x.dtmarcado)" class=" form-control-label">@Html.DisplayNameFor(model => model.dtmarcado)</label>
+                        @Html.EditorFor(model => model.dtmarcado, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
+                        @Html.ValidationMessageFor(model => model.dtmarcado, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label for="@Html.NameFor(x=>x.prioridade)" class=" form-control-label">@Html.DisplayNameFor(model => model.prioridade)</label>
+                        @Html.EnumDropDownListFor(model => model.prioridade, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
+                        @Html.ValidationMessageFor(model => model.prioridade, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label for="@Html.NameFor(x=>x.dtresolvido)" class=" form-control-label">@Html.DisplayNameFor(model => model.dtresolvido)</label>
+                        @Html.EditorFor(model => model.dtresolvido, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
+                        @Html.ValidationMessageFor(model => model.dtresolvido, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="@Html.NameFor(x => x.nrcontribuinte)" class=" form-control-label">@Html.DisplayNameFor(model => model.nrcontribuinte)</label>
+                        @Html.EditorFor(model => model.nrcontribuinte, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
+                        @Html.ValidationMessageFor(model => model.nrcontribuinte, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label for="@Html.NameFor(x=>x.idfuncionario)" class=" form-control-label">@Html.DisplayNameFor(model => model.idfuncionario)</label>
+                        @Html.EditorFor(model => model.idfuncionario, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
+                        @Html.ValidationMessageFor(model => model.idfuncionario, "", new { @class = "text-danger" })
+                    </div>
+                }
+                else
+                {
+                    @Html.HiddenFor(model => model.dtlido)
+                    @Html.HiddenFor(model => model.dtmarcado)
+                    @Html.HiddenFor(model => model.prioridade)
+                    @Html.HiddenFor(model => model.dtresolvido)
+                    @Html.HiddenFor(model => model.nrcontribuinte)
+                    @Html.HiddenFor(model => model.idfuncionario)
+                }
                 <div class="form-group">
                     <label for="@Html.NameFor(x=>x.obs)" class=" form-control-label">@Html.DisplayNameFor(model => model.obs)</label>
-                    @Html.EditorFor(model => model.obs, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
-                    @Html.TextAreaFor(model => model.obs, new {  @class = "form-control", @placeholder = "..." })
+                    @Html.TextAreaFor(model => model.obs, new { @class = "form-control", @placeholder = "..." })
                     @Html.ValidationMessageFor(model => model.obs, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -86,7 +106,6 @@
         </div>
     }
 </div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

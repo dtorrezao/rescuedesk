@@ -13,17 +13,21 @@ namespace RescueDesk.Services
     {
         private MySqlConnection Conn = new MySqlConnection(Utils.ConnectionString());
 
-        public List<Pedido> ObterPedidos(Utilizador utilizador)
+        public List<Pedido> ObterPedidos(Utilizador utilizador, bool apenasOsDoUtilizador = false)
         {
             List<Pedido> pedidos = new List<Pedido>();
             this.Conn.Open();
 
             string query = "SELECT * FROM pedidos p " +
-                "INNER join funcionarios f on f.idfuncionario = p.idfuncionario ";                
+                "LEFT join funcionarios f on f.idfuncionario = p.idfuncionario ";
 
-            if (utilizador.idtipo != (int)TipoUtilizadorEnum.Administrador)
+            if (utilizador.idtipo == (int)TipoUtilizadorEnum.Cliente)
             {
-                query += " where f.idutilizador= '" + utilizador.idUtilizador +"'";
+                query += " where p.nrcontribuinte= '" + utilizador.nrcontribuinte + "'";
+            }
+            else if (utilizador.idtipo != (int)TipoUtilizadorEnum.Administrador || apenasOsDoUtilizador)
+            {
+                query += " where f.idutilizador= '" + utilizador.idUtilizador + "'";
             }
 
             MySqlDataAdapter cmd1 = new MySqlDataAdapter(query, this.Conn);
@@ -39,6 +43,29 @@ namespace RescueDesk.Services
 
         }
 
+        public List<Pedido> ObterPedidosPendentes(Utilizador utilizador)
+        {
+            List<Pedido> pedidos = new List<Pedido>();
+            this.Conn.Open();
+
+            string query = "SELECT * FROM pedidos p " +
+                "LEFT JOIN funcionarios f on f.idfuncionario = p.idfuncionario " +
+                " WHERE p.idfuncionario is null";
+
+            MySqlDataAdapter cmd1 = new MySqlDataAdapter(query, this.Conn);
+            DataTable dados1 = new DataTable();
+            cmd1.Fill(dados1);
+            this.Conn.Close();
+            foreach (DataRow linha in dados1.Rows)
+            {
+                Pedido pedido = ParsePedido(linha);
+                pedidos.Add(pedido);
+            }
+            return pedidos;
+
+        }
+
+
 
         public Pedido ObterPedidoDefault()
         {
@@ -52,9 +79,9 @@ namespace RescueDesk.Services
         {
             string query = "INSERT INTO `pedidos` " +
                " (`idpedido`, `assunto`, `descricao`, `idatividade`, `dtpedido`, `dtlido`, `dtmarcado`, `prioridade`, `dtresolvido`, `nrcontribuinte`, `idfuncionario`, `obs`) " +
-               "VALUES(NULL, '" + pedido.assunto + "', '" + pedido.descricao + "', '" + pedido.idatividade.ToString() + "', '" + pedido.dtpedido.ToString("yyyy-MM-dd hh:mm:ss") + "', " +
-               "'" + pedido.dtlido.ToString("yyyy-MM-dd hh:mm:ss") + "', '" + pedido.dtmarcado.ToString("yyyy-MM-dd hh:mm:ss") + "', '" + pedido.prioridade.ToString() + "', " +
-               "'" + pedido.dtresolvido.ToString("yyyy-MM-dd hh:mm:ss") + "', '" + pedido.nrcontribuinte + "' ,'" + pedido.idfuncionario + "', '" + pedido.obs + "')";
+               "VALUES(NULL, '" + pedido.assunto + "', '" + pedido.descricao + "', NULL, '" + pedido.dtpedido.ToString("yyyy-MM-dd hh:mm:ss") + "', " +
+               "NULL, NULL, '" + pedido.prioridade.ToString() + "', " +
+               "NULL, '" + pedido.nrcontribuinte + "' ,NULL, '" + pedido.obs + "')";
             this.Conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, this.Conn);
             int resultados = cmd.ExecuteNonQuery();
@@ -65,21 +92,42 @@ namespace RescueDesk.Services
         public bool UpdatePedido(Pedido pedido)
         {
             string query = "UPDATE `pedidos` ";
-            query += "SET `assunto` = '" + pedido.assunto + "', " +
-                "`descricao` =  '" + pedido.descricao + "', " +
-                "`idatividade` =  '" + pedido.idatividade + "', " +
-                "`dtpedido` =  '" + pedido.dtpedido.ToString("yyyy-MM-dd hh:mm:ss") + "'," +
-                " `dtlido` = '" + pedido.dtlido.ToString("yyyy-MM-dd hh:mm:ss") + "'," +
-                " `dtmarcado` = '" + pedido.dtmarcado.ToString("yyyy-MM-dd hh:mm:ss") + "'," +
-                "`prioridade` = '" + pedido.prioridade.ToString() + "'," +
-                " `dtresolvido` = '" + pedido.dtresolvido.ToString("yyyy-MM-dd hh:mm:ss") + "'," +
-                " `nrcontribuinte` = '" + pedido.nrcontribuinte + "'," +
-                " `idfuncionario` = '" + pedido.idfuncionario + "', " +
-                "`obs` = '" + pedido.obs + "' " +
-                "WHERE `pedidos`.`idpedido` = '" + pedido.idpedido.ToString() + "'";
+            query += "SET ";
+            query += "`assunto` = '" + pedido.assunto + "', ";
+            query += "`descricao` =  '" + pedido.descricao + "', ";
+            if (pedido.idatividade != null)
+            {
+                query += "`idatividade` =  '" + pedido.idatividade + "', ";
+            }
+            query += "`dtpedido` =  '" + pedido.dtpedido.ToString("yyyy-MM-dd hh:mm:ss") + "',";
+
+            if (pedido.dtlido != null)
+            {
+                query += " `dtlido` = '" + pedido.dtlido.Value.ToString("yyyy-MM-dd hh:mm:ss") + "',";
+            }
+            if (pedido.dtmarcado != null)
+            {
+                query += " `dtmarcado` = '" + pedido.dtmarcado.Value.ToString("yyyy-MM-dd hh:mm:ss") + "',";
+            }
+            if (pedido.prioridade != null)
+            {
+                query += "`prioridade` = '" + pedido.prioridade.ToString() + "',";
+            }
+            if (pedido.dtresolvido != null)
+            {
+                query += " `dtresolvido` = '" + pedido.dtresolvido.Value.ToString("yyyy-MM-dd hh:mm:ss") + "',";
+            }
+            query += " `nrcontribuinte` = '" + pedido.nrcontribuinte + "',";
+
+            if (pedido.idfuncionario != null)
+            {
+                query += " `idfuncionario` = '" + pedido.idfuncionario + "', ";
+            }
+            query += "`obs` = '" + pedido.obs + "' ";
+            query += "WHERE `pedidos`.`idpedido` = '" + pedido.idpedido.ToString() + "'";
             this.Conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, this.Conn);
-            int resultados=cmd.ExecuteNonQuery();
+            int resultados = cmd.ExecuteNonQuery();
             this.Conn.Close();
             return resultados > 0;
         }
@@ -90,14 +138,38 @@ namespace RescueDesk.Services
             pedido.idpedido = int.Parse(linha["idpedido"].ToString());
             pedido.assunto = linha["assunto"].ToString();
             pedido.descricao = linha["descricao"].ToString();
-            pedido.idatividade = int.Parse(linha["idatividade"].ToString());
             pedido.dtpedido = DateTime.Parse(linha["dtpedido"].ToString());
-            pedido.dtlido = DateTime.Parse(linha["dtlido"].ToString());
-            pedido.dtmarcado = DateTime.Parse(linha["dtmarcado"].ToString());
-            pedido.prioridade = (prioridade)Enum.Parse(typeof(prioridade), linha["prioridade"].ToString());
-            pedido.dtresolvido = DateTime.Parse(linha["dtresolvido"].ToString());
             pedido.nrcontribuinte = int.Parse(linha["nrcontribuinte"].ToString());
-            pedido.idfuncionario = int.Parse(linha["idfuncionario"].ToString());
+
+            if (!string.IsNullOrEmpty(linha["idatividade"].ToString()))
+            {
+                pedido.idatividade = int.Parse(linha["idatividade"].ToString());
+            }
+
+            if (!string.IsNullOrEmpty(linha["dtmarcado"].ToString()))
+            {
+                pedido.dtmarcado = DateTime.Parse(linha["dtmarcado"].ToString());
+            }
+
+            if (!string.IsNullOrEmpty(linha["dtlido"].ToString()))
+            {
+                pedido.dtlido = DateTime.Parse(linha["dtlido"].ToString());
+            }
+
+            if (!string.IsNullOrEmpty(linha["dtresolvido"].ToString()))
+            {
+                pedido.dtlido = DateTime.Parse(linha["dtresolvido"].ToString());
+            }
+
+            if (!string.IsNullOrEmpty(linha["prioridade"].ToString()))
+            {
+                pedido.prioridade = (prioridade)Enum.Parse(typeof(prioridade), linha["prioridade"].ToString());
+            }
+            if (!string.IsNullOrEmpty(linha["idfuncionario"].ToString()))
+            {
+                pedido.idfuncionario = int.Parse(linha["idfuncionario"].ToString());
+            }
+
             pedido.obs = linha["obs"].ToString();
             return pedido;
         }

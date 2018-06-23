@@ -1,10 +1,12 @@
 ﻿@model IEnumerable<RescueDesk.Models.Pedido>
-
+@using RescueDesk.Utils
 @{
     ViewBag.Title = "Pedidos";
     ViewBag.FAIcon = "fa-file-text";
     ViewBag.SubTitle = "";
     ViewBag.AddUrl = Url.Action("Create");
+
+    bool eAdmin = (bool)ViewBag.eAdmin;
 }
 <div class="animated fadeIn">
     <div class="row">
@@ -20,9 +22,13 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.assunto)
                                 </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.idatividade)
-                                </th>
+                                @if (ViewHelper.IsAdmin() || ViewHelper.IsFuncionario())
+                                {
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.idatividade)
+                                    </th>
+                                }
+
                                 <th>
                                     @Html.DisplayNameFor(model => model.dtpedido)
                                 </th>
@@ -47,51 +53,54 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.idpedido)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.assunto)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.idatividade)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.dtpedido)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.dtlido)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.dtmarcado)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.prioridade)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.dtresolvido)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.idfuncionario)
-                                </td>
-                                <td>
-                                    <a href="@Url.Action("Edit", new { id = item.idpedido }) "class="btn btn-link minus-padd" title="Editar"><i class="fa fa-pencil"></i></a>
-                                    @*<a href="@Url.Action("Delete", new { id = item.nrcontribuinte }) " class="btn btn-danger">Eliminar</a>*@
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.idpedido)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.assunto)
+                                    </td>
+                                    @if (ViewHelper.IsAdmin() || ViewHelper.IsFuncionario())
+                                    {
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.idatividade)
+                                        </td>
+                                    }
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.dtpedido)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.dtlido)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.dtmarcado)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.prioridade)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.dtresolvido)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.idfuncionario)
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("Edit", new { id = item.idpedido }) " class="btn btn-link minus-padd" title="Editar"><i class="fa fa-pencil"></i></a>
+                                        @if (item.idfuncionario == null && eAdmin)
+                                        {
+                                            <a href="@Url.Action("Encaminhar", new { id = item.idpedido }) " class="btn btn-link minus-padd modal-link" title="Encaminhar"><i class="fa fa-pencil"></i></a>
+                                        }
+                                        @*<a href="@Url.Action("Delete", new { id = item.nrcontribuinte }) " class="btn btn-danger">Eliminar</a>*@
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>
-
     </div>
 </div>
-
 @section scripts{
-
 
 }

@@ -17,21 +17,21 @@ namespace RescueDesk.Models
         [DisplayName("Descrição")]
         public string descricao { get; set; }
         [DisplayName("IDServiço")]
-        public int idatividade { get; set; }
+        public int? idatividade { get; set; }
         [DisplayName("Pedido")]
         public DateTime dtpedido { get; set; }
         [DisplayName("Lido")]
-        public DateTime dtlido { get; set; }
+        public DateTime? dtlido { get; set; }
         [DisplayName("Marcação")]
-        public DateTime dtmarcado { get; set; }
+        public DateTime? dtmarcado { get; set; }
         [DisplayName("Prioridade")]
-        public prioridade prioridade { get; set; }
+        public prioridade? prioridade { get; set; }
         [DisplayName("Resolvido")]
-        public DateTime dtresolvido { get; set; }
+        public DateTime? dtresolvido { get; set; }
         [DisplayName("Nº Contribuinte")]
         public int nrcontribuinte { get; set; }
         [DisplayName("IDFuncionário")]
-        public int idfuncionario { get; set; }
+        public int? idfuncionario { get; set; }
         [DisplayName("Observações")]
         public string obs { get; set; }
     }

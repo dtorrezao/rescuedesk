@@ -1,4 +1,6 @@
-﻿using RescueDesk.Models;
+﻿using Newtonsoft.Json;
+using RescueDesk.Models;
+using RescueDesk.Models.enums;
 using RescueDesk.Services;
 using RescueDesk.Utils;
 using System;
@@ -17,11 +19,58 @@ namespace RescueDesk.Controllers
         // GET: Utilizadores
         public ActionResult Index()
         {
-            UtilizadorService UtilizadorService = new UtilizadorService();
-
-            return View(UtilizadorService.ObterUtilizadores());
+            return View();
         }
 
+        public static readonly string[] ChavesMestre = new string[] { "keyUsers" };
+        public string ObterUtilizadores()
+        {
+            UtilizadorService UtilizadorService = new UtilizadorService();
+            List<Utilizador> utilizadores = new List<Utilizador>();
+
+            ////https://www.devmedia.com.br/cache-no-asp-net/6704
+            System.Web.Caching.Cache dadosCache = HttpRuntime.Cache;
+            if (dadosCache.Get("Utilizadores") == null)
+            {
+                dadosCache.Insert(ChavesMestre[0], DateTime.Now);
+                utilizadores.Clear();
+                utilizadores = UtilizadorService.ObterUtilizadores();
+                System.Web.Caching.CacheDependency cd = new System.Web.Caching.CacheDependency(null, ChavesMestre);
+                dadosCache.Insert("Utilizadores", utilizadores, cd);
+            }
+            else
+            {
+                utilizadores.Clear();
+                utilizadores = dadosCache.Get("Utilizadores") as List<Utilizador>;
+            }
+
+            //// Faz Pesquisa
+            string searchParam = Request.Params["search[value]"].ToLower();
+            if (!string.IsNullOrEmpty(searchParam))
+            {
+                utilizadores = utilizadores.Where(x => x.nome.ToLower().Contains(searchParam) 
+                || x.idUtilizador.ToString().Contains(searchParam) 
+                || x.email.ToLower().Contains(searchParam)).ToList();
+            }
+
+            //// Faz Paginação
+            List<Utilizador> reducedlocalidades = utilizadores.Skip(int.Parse(Request.Params["start"])).Take(int.Parse(Request.Params["length"])).ToList();
+            var chk = new
+            {
+                draw = Request.Params["draw"],
+                //Data representa um array com as colunas (Ncolunas = quantidade de items devolvidos
+                data = reducedlocalidades.Select(x =>
+                    new string[] {
+                        x.idUtilizador.ToString(),
+                        x.nome.ToString(),
+                        x.email.ToString(),
+                        x.tipoUtilizador.ToString(),
+                    }),
+                recordsTotal = utilizadores.Count(),
+                recordsFiltered = utilizadores.Count()
+            };
+            return JsonConvert.SerializeObject(chk);
+        }
         /////
         [AllowAnonymous]
         public ActionResult Login()
@@ -67,6 +116,34 @@ namespace RescueDesk.Controllers
             FormsAuthentication.SignOut();
 
             return RedirectToAction("Index", "Home");
+        }
+
+
+        private Utilizador ObterUtilizador()
+        {
+            string userName = ControllerContext.HttpContext.User.Identity.Name;
+            UtilizadorService UtilizadorService = new UtilizadorService();
+
+            Utilizador utilizador = UtilizadorService.ObterUtilizadorByEmail(userName);
+            ViewBag.eAdmin = utilizador.idtipo == (int)TipoUtilizadorEnum.Administrador;
+
+            return utilizador;
+
+        }
+
+        [AllowAnonymous]
+        public ActionResult Perfil()
+        {
+            var user = ObterUtilizador();
+
+            if (user.idtipo == (int)TipoUtilizadorEnum.Cliente)
+            {
+                return RedirectToAction("Edit", "Clientes", new { id = user.nrcontribuinte });
+            }
+            else
+            {
+                return RedirectToAction("EditByIdUtilizador", "Funcionarios", new { id = user.idUtilizador });
+            }
         }
     }
 }

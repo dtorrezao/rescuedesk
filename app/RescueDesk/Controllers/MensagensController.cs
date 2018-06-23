@@ -33,7 +33,7 @@ namespace RescueDesk.Controllers
             return View("Index", servico.ObterMensagens(this.ObterUtilizador(), true, false));
         }
 
-        public ActionResult Recebidas()
+        public ActionResult Inbox()
         {
             MensagensService servico = new MensagensService();
 
@@ -43,15 +43,33 @@ namespace RescueDesk.Controllers
         // GET: Mensagens/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            MensagensService servico = new MensagensService();
+
+            Mensagem msg = servico.ObterMensagem(id);
+            msg.lido = true;
+            servico.UpdateMensagem(msg);
+
+            return View(msg);
         }
 
         // GET: Mensagens/Create
         public ActionResult Create()
         {
             MensagensService servico = new MensagensService();
-
+            UtilizadorService service = new UtilizadorService();
+            ViewBag.ListaUtilizadores = this.ListaUtilizadores(service);
             return PartialView(new Mensagem() { });
+        }
+
+        private List<SelectListItem> ListaUtilizadores(UtilizadorService servico)
+        {
+            //listar moradas disponiveis
+            var lista = new List<SelectListItem>();
+            foreach (var item in servico.ObterUtilizadores())
+            {
+                lista.Add(new SelectListItem() { Text = string.Format("{0} - {1}", item.nome, item.email), Value = item.idUtilizador.ToString() });
+            }
+            return lista;
         }
 
         // POST: Mensagens/Create
@@ -59,35 +77,16 @@ namespace RescueDesk.Controllers
         public ActionResult Create(Mensagem mensagem)
         {
             MensagensService servico = new MensagensService();
+            mensagem.dtenviado = DateTime.Now;
+            mensagem.emissor = this.ObterUtilizador().idUtilizador;
+
             if (servico.CreateMensagem(mensagem, this.ObterUtilizador()))
             {
-                return this.RedirectToAction("Index");
+                return this.RedirectToAction("Inbox");
             }
             else
             {
                 return View(mensagem);
-            }
-        }
-
-        // GET: Mensagens/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Mensagens/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
             }
         }
 

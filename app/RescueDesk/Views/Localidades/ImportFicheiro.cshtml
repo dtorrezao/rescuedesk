@@ -22,8 +22,17 @@
     }
     <div class="modal-body">
         <div class="row ">
-            <div class="col col-md-12" style="margin-right:-32px">
-                <input type="file" name="file" id="ficheiro" />
+            <div class="col col-md-12" style="margin-bottom:-14px">
+                <div class="alert alert-light" role="alert">
+                    Os <a href="https://www.ctt.pt/feapl_2/app/restricted/postalCodeSearch/postalCodeDownloadFiles.jspx" title="Download Códigos Postais CTT" class="alert-link">CTT</a> disponibilizam-lhe um ficheiro com os códigos postais mais recentes.
+                </div>
+            </div>
+            <div class="col col-md-12" style="text-align:center">
+                <label for="file-upload" class="btn btn-success" style="width:65%; margin-bottom:0px">
+                    Escolher ficheiro...
+                </label>
+                <input id="file-upload" type="file" style="display:none" />
+                <small class="form-text text-muted">Nota: A submissão de um ficheiro tão grande poderá demorar algum tempo...</small>
             </div>
         </div>
 

@@ -1,4 +1,5 @@
 ﻿using RescueDesk.Models;
+using RescueDesk.Models.enums;
 using RescueDesk.Services;
 using RescueDesk.Utils;
 using RescueDesk.ViewModels;
@@ -35,71 +36,112 @@ namespace RescueDesk.Controllers
             cvm.Utilizador = usrService.ObterUtilizadorDefault();
 
             cvm.Enderecos = new List<SelectListItem>() {
-                new SelectListItem() { Text = "Selecione uma localidade" }
+                new SelectListItem() { Text = "Introduza o seu código postal..." }
             };
 
             return View(cvm);
         }
 
         [HttpPost]
-        public ActionResult Create(ClienteViewModel vm)
+        public ActionResult Create(ClienteViewModel vm, HttpPostedFileBase foto)
         {
-            if (vm.CriarUtilizador)
-            {
-                vm.Utilizador = new Utilizador()
-                {
-                    ativo = true,
-                    idtipo = 3,
-                    nrcontribuinte = vm.Cliente.nrcontribuinte, 
-                    email = vm.Cliente.email,
-                };
-
-                usrService.CreateUtilizador(vm.Utilizador);
-               
-                EmailService emailSvc = new EmailService();
-                var link = "http://" + Request.Url.Authority + Url.Action("ConfirmarRegisto", "Funcionarios", new { hash = Criptografia.HashString(vm.Utilizador.email) });
-
-                emailSvc.EnviarEmailRegisto(vm.Utilizador, link);
-            }
-
             ClientesService servico = new ClientesService();
-            if (servico.CreateCliente(vm.Cliente))
+
+            if (foto != null)
             {
-                return this.RedirectToAction("Index");
+                if (foto.ContentLength > 0)
+                {
+                    var fileName = System.IO.Path.GetFileName(foto.FileName);
+                    var path = System.IO.Path.Combine(Server.MapPath("~/images/"), fileName);
+                    foto.SaveAs(path);
+
+                    vm.Utilizador.foto = "/images/" + fileName;
+                }
             }
-            else
+
+            if (usrService.CreateUtilizador(vm.Utilizador))
             {
-                return View(vm);
+                vm.Cliente.nrcontribuinte = vm.Utilizador.nrcontribuinte;
+                if (servico.CreateCliente(vm.Cliente))
+                {
+                    if (vm.CriarUtilizador)
+                    {
+                        vm.Utilizador = new Utilizador()
+                        {
+                            ativo = true,
+                            idtipo = 3,
+                            nrcontribuinte = vm.Cliente.nrcontribuinte,
+                            email = vm.Cliente.email,
+                        };
+
+                        usrService.CreateUtilizador(vm.Utilizador);
+
+                        EmailService emailSvc = new EmailService();
+                        var link = "http://" + Request.Url.Authority + Url.Action("ConfirmarRegisto", "Funcionarios", new { hash = Criptografia.HashString(vm.Utilizador.email) });
+
+                        emailSvc.EnviarEmailRegisto(vm.Utilizador, link);
+                    }
+
+                    return this.RedirectToAction("Index");
+                }
             }
+            return View(vm);
         }
 
+        [AllowAnonymous]
         public ActionResult Edit(int id)
         {
             ClientesService servico = new ClientesService();
 
             ClienteViewModel cvm = new ClienteViewModel();
-            cvm.Cliente = servico.ObterClienteDefault();
-            cvm.Utilizador = usrService.ObterUtilizadorDefault();
+            cvm.Cliente = servico.ObterCliente(id);
+            cvm.Utilizador = usrService.ObterUtilizadorByEmail(cvm.Cliente.email);
 
-            cvm.Enderecos = new List<SelectListItem>() {
-                new SelectListItem() { Text = "Selecione uma localidade" }
-            };
+            var localidade = address.ObterLocalidade(cvm.Cliente.codpostal);
+            cvm.CriarUtilizador = cvm.Utilizador != null;
+
+            cvm.Enderecos = new List<SelectListItem>() { new SelectListItem() { Value = cvm.Cliente.codpostal, Text = string.Format("{0} - {1}", localidade.codpostal, localidade.nomeLocalidade), Selected = true } };
 
             return View(cvm);
         }
 
         [HttpPost]
-        public ActionResult Edit(Cliente cliente)
+        [AllowAnonymous]
+        public ActionResult Edit(ClienteViewModel cvm, HttpPostedFileBase foto)
         {
             ClientesService servico = new ClientesService();
-            if (servico.UpdateCliente(cliente))
+            UtilizadorService UtilizadorService = new UtilizadorService();
+
+            string userName = ControllerContext.HttpContext.User.Identity.Name;
+            Utilizador utilizador = UtilizadorService.ObterUtilizadorByEmail(userName);
+
+            if (foto != null)
             {
-                return this.RedirectToAction("Index");
+                if (foto.ContentLength > 0)
+                {
+                    var fileName = System.IO.Path.GetFileName(foto.FileName);
+                    var path = System.IO.Path.Combine(Server.MapPath("~/images/"), fileName);
+                    foto.SaveAs(path);
+
+                    cvm.Utilizador.foto = "/images/" + fileName;
+                }
             }
-            else
+
+            if (usrService.UpdateUtilizador(cvm.Utilizador))
             {
-                return View(cliente);
+                cvm.Cliente.nrcontribuinte = cvm.Utilizador.nrcontribuinte;
+
+                if (servico.UpdateCliente(cvm.Cliente))
+                {
+                    if (utilizador.idtipo == (int)TipoUtilizadorEnum.Cliente)
+                    {
+                        return this.RedirectToAction("Index", "Home");
+                    }
+                    return this.RedirectToAction("Index");
+                }
             }
+
+            return View(cvm);
         }
 
         // GET: Default/Details/5
@@ -108,7 +150,15 @@ namespace RescueDesk.Controllers
 
             ClientesService servico = new ClientesService();
 
-            return View(servico.ObterCliente(id));
+            ClienteViewModel cvm = new ClienteViewModel();
+            cvm.Cliente = servico.ObterClienteDefault();
+            cvm.Utilizador = usrService.ObterUtilizadorDefault();
+
+            cvm.Enderecos = new List<SelectListItem>() {
+                new SelectListItem() { Text = "Introduza o seu código postal..." }
+            };
+
+            return View(cvm);
         }
 
         private void ListaUtilizadores(UtilizadorService utilizadorService)

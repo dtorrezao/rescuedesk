@@ -1,4 +1,5 @@
 ﻿using RescueDesk.Models;
+using RescueDesk.Models.enums;
 using RescueDesk.Services;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,11 @@ namespace RescueDesk.Controllers
         {
             string userName = ControllerContext.HttpContext.User.Identity.Name;
             UtilizadorService UtilizadorService = new UtilizadorService();
-            return UtilizadorService.ObterUtilizadorByEmail(userName);
+
+            Utilizador utilizador = UtilizadorService.ObterUtilizadorByEmail(userName);
+            ViewBag.eAdmin = utilizador.idtipo == (int)TipoUtilizadorEnum.Administrador;
+
+            return utilizador;
         }
 
         // GET: Pedidos
@@ -23,15 +28,25 @@ namespace RescueDesk.Controllers
         {
             PedidosService servico = new PedidosService();
 
-            return View(servico.ObterPedidos(this.ObterUtilizador()));
+            return View("Index", servico.ObterPedidos(this.ObterUtilizador()));
         }
 
-        public ActionResult ListarPendidosPendentes()
+        public ActionResult ListarMeusPedidos()
         {
             PedidosService servico = new PedidosService();
 
-            return View(servico.ObterPedidosPendentes(this.ObterUtilizador()));
+            return View("Index", servico.ObterPedidos(this.ObterUtilizador(), true));
         }
+
+        [Authorize(Roles = "Administrador")]
+        public ActionResult ListarPedidosPendentes()
+        {
+            PedidosService servico = new PedidosService();
+
+            return View("Index", servico.ObterPedidosPendentes(this.ObterUtilizador()));
+        }
+
+
         public ActionResult AtribuirFuncionario(int id)
         {
             PedidosService servico = new PedidosService();
@@ -55,8 +70,15 @@ namespace RescueDesk.Controllers
         public ActionResult Create()
         {
             PedidosService servico = new PedidosService();
+            Pedido pedido = servico.ObterPedidoDefault();
 
-            return View(servico.ObterPedidoDefault());
+            if (RescueDesk.Utils.ViewHelper.IsInGroup(new TipoUtilizadorEnum[] { TipoUtilizadorEnum.Cliente }))
+            {
+                Utilizador utilizador = ObterUtilizador();
+                pedido.nrcontribuinte = utilizador.nrcontribuinte.Value;
+            }
+
+            return View(pedido);
         }
 
         [HttpPost]
@@ -64,6 +86,56 @@ namespace RescueDesk.Controllers
         {
             PedidosService servico = new PedidosService();
             if (servico.CreatePedido(pedido))
+            {
+                return this.RedirectToAction("ListarMeusPedidos");
+            }
+            else
+            {
+                return View(pedido);
+            }
+        }
+
+
+        public ActionResult Encaminhar(int id)
+        {
+            PedidosService servico = new PedidosService();
+            ServicosService servicosService = new ServicosService();
+            FuncionariosService funcionarios = new FuncionariosService();
+
+            ViewBag.TiposActividade = this.ListaTiposActividade(servicosService);
+            ViewBag.ListaFuncionarios = this.ListaFuncionarios(funcionarios);
+
+            return View(servico.ObterPedido(id));
+        }
+
+        private List<SelectListItem> ListaTiposActividade(ServicosService servico)
+        {
+            //listar moradas disponiveis
+            var lista = new List<SelectListItem>();
+            foreach (var item in servico.ObterServicos())
+            {
+                lista.Add(new SelectListItem() { Text = item.descricao, Value = item.idatividade.ToString() });
+            }
+            return lista;
+        }
+
+        private List<SelectListItem> ListaFuncionarios(FuncionariosService servico)
+        {
+            //listar moradas disponiveis
+            var lista = new List<SelectListItem>();
+            foreach (var item in servico.ObterFuncionarios())
+            {
+                lista.Add(new SelectListItem() { Text = item.nome, Value = item.idfuncionario.ToString() });
+            }
+            return lista;
+        }
+
+        [HttpPost]
+        public ActionResult Encaminhar(Pedido pedido)
+        {
+            PedidosService servico = new PedidosService();
+            pedido.dtlido = DateTime.Now;
+            if (servico.UpdatePedido(pedido))
             {
                 return this.RedirectToAction("Index");
             }

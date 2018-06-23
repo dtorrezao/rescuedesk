@@ -17,7 +17,7 @@ namespace RescueDesk.Services
         {
             List<Funcionario> funcionarios = new List<Funcionario>();
             this.conn.Open();
-            
+
             //QUERY//
             string query = "SELECT funcionarios.*, email, localidade, dept " +
                            "FROM funcionarios " +
@@ -52,7 +52,7 @@ namespace RescueDesk.Services
             string query = "INSERT INTO `funcionarios` " +
                " (`idfuncionario`, `nome`, `morada`, `codpostal`, `iddept`, `cargo`, `contacto`, `idutilizador`, `ativo`, `ultlogin`, `obs`) " +
                " VALUES (NULL, '" + funcionario.nome + "', '" + funcionario.morada + "', '" + funcionario.codpostal + "', '" + funcionario.iddept + "' , '" +
-               "" + funcionario.cargo + "', '" + funcionario.contacto + "', '" + funcionario.idUtilizador + "', '" + (funcionario.ativo ? "1" : "0") + "' , '" +funcionario.ultlogin.ToString("yyyy-MM-dd hh:mm:ss") + "' , '" + funcionario.obs + "')";
+               "" + funcionario.cargo + "', '" + funcionario.contacto + "', '" + funcionario.idUtilizador + "', '" + (funcionario.ativo ? "1" : "0") + "' , '" + funcionario.ultlogin.ToString("yyyy-MM-dd hh:mm:ss") + "' , '" + funcionario.obs + "')";
             this.conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, this.conn);
             int resultados = cmd.ExecuteNonQuery();
@@ -89,6 +89,28 @@ namespace RescueDesk.Services
             this.conn.Close();
             return resultados > 0;
 
+        }
+
+        public Funcionario ObterFuncionarioByIdUtilizador(int idUser)
+        {
+            this.conn.Open();
+            string query = "SELECT funcionarios.*, email, localidade, dept " +
+                           "FROM funcionarios " +
+                           "INNER JOIN utilizadores AS ut ON ut.idUtilizador = funcionarios.idUtilizador " +
+                           "INNER JOIN localidades ON localidades.codpostal = funcionarios.codpostal " +
+                           "INNER JOIN departamentos AS dept ON dept.iddept = funcionarios.iddept ";
+            query += "WHERE ut.idUtilizador = '" + idUser.ToString() + "'";
+
+            MySqlDataAdapter cmd1 = new MySqlDataAdapter(query, this.conn);
+            DataTable dados1 = new DataTable();
+            cmd1.Fill(dados1);
+            this.conn.Close();
+            foreach (DataRow linha in dados1.Rows)
+            {
+                Funcionario funcionario = ParseFuncionarios(linha);
+                return funcionario;
+            }
+            return null;
         }
 
         public Funcionario ObterFuncionario(int id)
@@ -129,7 +151,7 @@ namespace RescueDesk.Services
             funcionario.idUtilizador = int.Parse(linha["idUtilizador"].ToString());
             funcionario.email = linha["email"].ToString();
             funcionario.ativo = bool.Parse(linha["ativo"].ToString());
-            funcionario.ultlogin= DateTime.Parse(linha["ultlogin"].ToString());
+            funcionario.ultlogin = DateTime.Parse(linha["ultlogin"].ToString());
             funcionario.obs = linha["obs"].ToString();
             return funcionario;
         }

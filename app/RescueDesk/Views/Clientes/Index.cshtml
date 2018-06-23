@@ -3,9 +3,10 @@
 @{
     ViewBag.Title = "Clientes";
     ViewBag.FAIcon = "fa-users";
-    ViewBag.SubTitle = "";
+    ViewBag.SubTitle = "Criar";
     ViewBag.AddUrl = Url.Action("Create");
 }
+
 <div class="animated fadeIn">
     <div class="row">
         <div class="col-md-12">
@@ -46,8 +47,8 @@
                                         @Html.DisplayFor(modelItem => item.contacto)
                                     </td>
                                     <td align="center">
-                                        <a href="@Url.Action("Edit", new { id = item.nrcontribuinte })" class="btn btn-link minus-padd" title="Editar"><i class="fa fa-pencil fa-add"></i></a>
-                                        <a href="@Url.Action("Details", new { id = item.nrcontribuinte })" class="btn btn-link minus-padd" title="Detalhes"><i class="fa fa-ellipsis-h fa-add"></i></a>
+                                        <a href="@Url.Action("Edit", new { id = item.nrcontribuinte })" class="btn btn-link minus-padd modal-link" title="Editar"><i class="fa fa-pencil fa-add"></i></a>
+                                        <a href="@Url.Action("Details", new { id = item.nrcontribuinte })" class="btn btn-link minus-padd modal-link" title="Detalhes"><i class="fa fa-ellipsis-h fa-add"></i></a>
                                     </td>
                                 </tr>
                             }
@@ -59,7 +60,6 @@
 
     </div>
 </div>
-
 @section scripts{
 
 

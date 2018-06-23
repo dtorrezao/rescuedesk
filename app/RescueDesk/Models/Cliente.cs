@@ -9,7 +9,7 @@ namespace RescueDesk.Models
     public class Cliente
     {
         [DisplayName("Nº Contribuinte")]
-        public int nrcontribuinte { get; set; }
+        public int? nrcontribuinte { get; set; }
         [DisplayName("Nome")]
         public string nome { get; set; }
         [DisplayName("Morada")]
@@ -17,7 +17,7 @@ namespace RescueDesk.Models
         [DisplayName("Código Postal")]
         public string codpostal { get; set; }
         [DisplayName("Contacto")]
-        public int contacto { get; set; }
+        public int? contacto { get; set; }
         [DisplayName("Email")]
         [DataType(DataType.EmailAddress)]
         public string email { get; set; }
