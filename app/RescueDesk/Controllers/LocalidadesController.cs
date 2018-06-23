@@ -189,7 +189,40 @@ namespace RescueDesk.Controllers
             }
 
             //// Faz Paginação
+
+            if (Request.Params["order[0][dir]"] == "asc")
+            {
+                switch (Request.Params["order[0][column]"])
+                {
+                    case "0":
+                        localidades = localidades.OrderBy(x => x.codpostal).ToList();
+                        break;
+
+                    case "1":
+                        localidades = localidades.OrderBy(x => x.nomeLocalidade).ToList();
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                switch (Request.Params["order[0][column]"])
+                {
+                    case "0":
+                        localidades = localidades.OrderByDescending(x => x.codpostal).ToList();
+                        break;
+                    case "1":
+                        localidades = localidades.OrderByDescending(x => x.nomeLocalidade).ToList();
+                        break;
+
+                    default:
+                        break;
+                }
+            }
             List<Localidade> reducedlocalidades = localidades.Skip(int.Parse(Request.Params["start"])).Take(int.Parse(Request.Params["length"])).ToList();
+
             var chk = new
             {
                 draw = Request.Params["draw"],

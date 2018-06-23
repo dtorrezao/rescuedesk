@@ -48,13 +48,63 @@ namespace RescueDesk.Controllers
             string searchParam = Request.Params["search[value]"].ToLower();
             if (!string.IsNullOrEmpty(searchParam))
             {
-                utilizadores = utilizadores.Where(x => x.nome.ToLower().Contains(searchParam) 
-                || x.idUtilizador.ToString().Contains(searchParam) 
+                utilizadores = utilizadores.Where(x => x.nome.ToLower().Contains(searchParam)
+                || x.idUtilizador.ToString().Contains(searchParam)
                 || x.email.ToLower().Contains(searchParam)).ToList();
             }
 
             //// Faz Paginação
+
+            if (Request.Params["order[0][dir]"] == "asc")
+            {
+                switch (Request.Params["order[0][column]"])
+                {
+                    case "0":
+                        utilizadores = utilizadores.OrderBy(x => x.idUtilizador).ToList();
+                        break;
+
+                    case "1":
+                        utilizadores = utilizadores.OrderBy(x => x.nome).ToList();
+                        break;
+
+                    case "2":
+                        utilizadores = utilizadores.OrderBy(x => x.email).ToList();
+                        break;
+
+                    case "3":
+                        utilizadores = utilizadores.OrderBy(x => x.tipoUtilizador).ToList();
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                switch (Request.Params["order[0][column]"])
+                {
+                    case "0":
+                        utilizadores = utilizadores.OrderByDescending(x => x.idUtilizador).ToList();
+                        break;
+                    case "1":
+                        utilizadores = utilizadores.OrderByDescending(x => x.nome).ToList();
+                        break;
+
+                    case "2":
+                        utilizadores = utilizadores.OrderByDescending(x => x.email).ToList();
+                        break;
+
+                    case "3":
+                        utilizadores = utilizadores.OrderByDescending(x => x.tipoUtilizador).ToList();
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
             List<Utilizador> reducedlocalidades = utilizadores.Skip(int.Parse(Request.Params["start"])).Take(int.Parse(Request.Params["length"])).ToList();
+
             var chk = new
             {
                 draw = Request.Params["draw"],
