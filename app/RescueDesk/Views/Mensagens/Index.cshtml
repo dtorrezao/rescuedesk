@@ -5,6 +5,8 @@
     ViewBag.FAIcon = "fa-file-text";
     ViewBag.SubTitle = "Criar";
     ViewBag.AddUrl = Url.Action("Create");
+
+    int mensagem = ViewBag.mensagem;
 }
 <div class="animated fadeIn">
     <div class="row">
@@ -15,25 +17,25 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.idmensagem)
-                                </th>
-                                <th>
                                     @Html.DisplayNameFor(model => model.assunto)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.corpo)
                                 </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.emissor)
-                                </th>
+                                @if (mensagem==1)
+                                {
                                 <th>
                                     @Html.DisplayNameFor(model => model.recetor)
                                 </th>
+                                }
+                                      @if (mensagem==1)
+                                {
+                                <th>
+                                    @Html.DisplayNameFor(model => model.emissor)
+                                </th>
+                                }
                                 <th>
                                     @Html.DisplayNameFor(model => model.dtenviado)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.lido)
                                 </th>
                                 <th class="no-sort"></th>
                             </tr>
@@ -42,9 +44,6 @@
                             @foreach (var item in Model)
                             {
                             <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.idmensagem)
-                                </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.assunto)
                                 </td>
@@ -59,9 +58,6 @@
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.dtenviado)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.lido)
                                 </td>
                                 <td>
                                     <a href="@Url.Action("Details", new { id = item.idmensagem })"

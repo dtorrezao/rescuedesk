@@ -14,7 +14,7 @@ namespace RescueDesk.Controllers
         {
             string userName = ControllerContext.HttpContext.User.Identity.Name;
             UtilizadorService UtilizadorService = new UtilizadorService();
-            return UtilizadorService.ObterUtilizadorByEmail(userName);
+            return UtilizadorService.ObterUtilizadorByEmail(userName);      
         }
 
         // GET: Mensagens
@@ -29,14 +29,14 @@ namespace RescueDesk.Controllers
         public ActionResult Enviadas()
         {
             MensagensService servico = new MensagensService();
-
+            ViewBag.mensagem = 1;
             return View("Index", servico.ObterMensagens(this.ObterUtilizador(), true, false));
         }
 
         public ActionResult Inbox()
         {
             MensagensService servico = new MensagensService();
-
+            ViewBag.mensagem = 2;
             return View("Index", servico.ObterMensagens(this.ObterUtilizador(), false, true));
         }
 

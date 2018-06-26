@@ -89,7 +89,7 @@ namespace RescueDesk.Controllers
             return RedirectToAction("Create");
         }
 
-
+        [AllowAnonymous]
         public ActionResult ConfirmarRegisto(string hash)
         {
             ConfirmRegistoViewModel viewModel = new ConfirmRegistoViewModel();

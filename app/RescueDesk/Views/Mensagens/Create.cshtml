@@ -34,7 +34,7 @@
                     <label for="@Html.NameFor(model=>model.corpo)" class=" form-control-label">@Html.DisplayNameFor(model => model.corpo):</label>
                 </div>
                 <div class="col col-md-12">
-                    @Html.EditorFor(model => model.corpo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Corpo da mensagem..." } })
+                    @Html.TextAreaFor(model => model.corpo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Corpo da mensagem..." } })
                     @Html.ValidationMessageFor(model => model.corpo, "", new { @class = "text-danger" })
                 </div>
             </div>
