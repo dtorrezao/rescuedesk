@@ -47,7 +47,7 @@ namespace RescueDesk.Controllers
 
             Mensagem msg = servico.ObterMensagem(id);
             msg.lido = true;
-            servico.UpdateMensagem(msg);
+            servico.UpdateMensagem(msg,msg.lido);
 
             return View(msg);
         }
