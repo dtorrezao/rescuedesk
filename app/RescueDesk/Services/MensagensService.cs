@@ -52,14 +52,31 @@ namespace RescueDesk.Services
             return Mensagens;
         }
 
-        internal void UpdateMensagem(Mensagem msg)
+        public bool UpdateMensagem(Mensagem mensagem , bool msg)
         {
-            throw new NotImplementedException();
+            string query = "UPDATE `mensagens`";
+            query += "SET `lido` = '" + msg + "' " +
+                 " WHERE `mensagens`.`idmensagem` = '" + mensagem.idmensagem.ToString() + "'";
+            this.Conn.Open();
+            MySqlCommand cmd = new MySqlCommand(query, this.Conn);
+            int resultados = cmd.ExecuteNonQuery();
+            this.Conn.Close();
+            return resultados > 0;
         }
 
-        internal Mensagem ObterMensagem(int id)
+        public Mensagem ObterMensagem(int id)
         {
-            throw new NotImplementedException();
+            this.Conn.Open();
+            MySqlDataAdapter cmd1 = new MySqlDataAdapter("Select * from mensagens where idmensagem='" + id.ToString() + "'", this.Conn);
+            DataTable dados1 = new DataTable();
+            cmd1.Fill(dados1);
+            this.Conn.Close();
+            foreach (DataRow linha in dados1.Rows)
+            {
+                Mensagem mensagem = ParseMensagem(linha);
+                return mensagem;
+            }
+            return null;
         }
 
         public bool CreateMensagem(Mensagem mensagem, Utilizador utilizador)
