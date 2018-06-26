@@ -13,22 +13,41 @@ namespace RescueDesk.Services
     {
         private MySqlConnection Conn = new MySqlConnection(Utils.ConnectionString());
 
-        public List<Pedido> ObterPedidos(Utilizador utilizador, bool apenasOsDoUtilizador = false)
+        public List<Pedido> ObterPedidos(Utilizador utilizador, bool apenasOsDoUtilizador = false, bool ObterResolvidos = false)
         {
             List<Pedido> pedidos = new List<Pedido>();
             this.Conn.Open();
 
-            string query = "SELECT * FROM pedidos p " +
-                "LEFT join funcionarios f on f.idfuncionario = p.idfuncionario ";
+            string query = "SELECT p.*, ta.atividade, f.nome FROM pedidos p " +
+                "LEFT join funcionarios f on f.idfuncionario = p.idfuncionario " +
+                "INNER JOIN tipoatividade ta ON ta.idatividade = p.idatividade ";
+
+            bool whereClause = false;
 
             if (utilizador.idtipo == (int)TipoUtilizadorEnum.Cliente)
             {
                 query += " where p.nrcontribuinte= '" + utilizador.nrcontribuinte + "'";
+                whereClause = true;
             }
             else if (utilizador.idtipo != (int)TipoUtilizadorEnum.Administrador || apenasOsDoUtilizador)
             {
                 query += " where f.idutilizador= '" + utilizador.idUtilizador + "'";
+                whereClause = true;
             }
+
+            if (ObterResolvidos)
+            {
+                if (whereClause)
+                {
+                    query += " AND dtresolvido is NULL";
+                }
+                else
+                {
+                    query += " WHERE dtresolvido is NULL";
+                }
+            }
+
+            query += " ORDER by  dtresolvido ASC, prioridade asc";
 
             MySqlDataAdapter cmd1 = new MySqlDataAdapter(query, this.Conn);
             DataTable dados1 = new DataTable();
@@ -144,6 +163,7 @@ namespace RescueDesk.Services
             if (!string.IsNullOrEmpty(linha["idatividade"].ToString()))
             {
                 pedido.idatividade = int.Parse(linha["idatividade"].ToString());
+                pedido.atividade = linha["atividade"].ToString();
             }
 
             if (!string.IsNullOrEmpty(linha["dtmarcado"].ToString()))
@@ -158,7 +178,7 @@ namespace RescueDesk.Services
 
             if (!string.IsNullOrEmpty(linha["dtresolvido"].ToString()))
             {
-                pedido.dtlido = DateTime.Parse(linha["dtresolvido"].ToString());
+                pedido.dtresolvido = DateTime.Parse(linha["dtresolvido"].ToString());
             }
 
             if (!string.IsNullOrEmpty(linha["prioridade"].ToString()))
@@ -168,6 +188,7 @@ namespace RescueDesk.Services
             if (!string.IsNullOrEmpty(linha["idfuncionario"].ToString()))
             {
                 pedido.idfuncionario = int.Parse(linha["idfuncionario"].ToString());
+                pedido.funcionario = linha["nome"].ToString();
             }
 
             pedido.obs = linha["obs"].ToString();
@@ -177,7 +198,8 @@ namespace RescueDesk.Services
         public Pedido ObterPedido(int id)
         {
             this.Conn.Open();
-            MySqlDataAdapter cmd1 = new MySqlDataAdapter("Select * from pedidos where idpedido='" + id.ToString() + "'", this.Conn);
+            MySqlDataAdapter cmd1 = new MySqlDataAdapter("Select * " +
+                "from pedidos where idpedido='" + id.ToString() + "' ", this.Conn);
             DataTable dados1 = new DataTable();
             cmd1.Fill(dados1);
             this.Conn.Close();

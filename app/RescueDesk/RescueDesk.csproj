@@ -286,6 +286,7 @@
     <Content Include="fonts\themify.ttf" />
     <Content Include="fonts\themify.woff" />
     <Content Include="images\admin.jpg" />
+    <Content Include="images\loading.gif" />
     <Content Include="images\logo.png" />
     <Content Include="images\logo2.png" />
     <Content Include="images\placeholder.png" />

@@ -2,6 +2,7 @@
     ViewBag.Title = "Calendário";
 }
 <div id='calendar'></div>
+<br />
 @section Scripts {
     <script>
     $(document).ready(function () {
@@ -13,7 +14,7 @@
                 right: 'month,agendaWeek,agendaDay,listWeek'
             },
             footer: {
-                left: 'addEventButton',
+                //left: 'addEventButton',
             },
             businessHours: {
                 dow: [1, 2, 3, 4, 5], // Monday - Thursday
@@ -37,11 +38,11 @@
             //},
             eventLimit: true,
             events: "@Url.Action("GetEvents")",
-            customButtons: {
-                addEventButton: {
-                    text: 'Adicionar Evento',
-                }
-            }
+            //customButtons: {
+            //    addEventButton: {
+            //        text: 'Adicionar Evento',
+            //    }
+            //}
         });
     });
     </script>

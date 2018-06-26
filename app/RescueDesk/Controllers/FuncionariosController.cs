@@ -152,6 +152,11 @@ namespace RescueDesk.Controllers
         [HttpPost]
         public ActionResult Edit(FuncionarioViewModel func, HttpPostedFileBase foto)
         {
+            if (Request.Form["Funcionario.ativo"] == "on")
+            {
+                func.Funcionario.ativo = true;
+            }
+
             if (foto != null)
             {
                 if (foto.ContentLength > 0)
@@ -193,7 +198,10 @@ namespace RescueDesk.Controllers
             var ListTipoUser = new List<SelectListItem>();
             foreach (var item in utilizadorService.ObterTipos())
             {
-                ListTipoUser.Add(new SelectListItem() { Text = item.tipouser, Value = item.idtipo.ToString() });
+                if (item.idtipo != (int)Models.enums.TipoUtilizadorEnum.Cliente)
+                {
+                    ListTipoUser.Add(new SelectListItem() { Text = item.tipouser, Value = item.idtipo.ToString() });
+                }
             }
             return ListTipoUser;
         }

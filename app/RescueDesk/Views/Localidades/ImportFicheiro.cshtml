@@ -28,11 +28,13 @@
                 </div>
             </div>
             <div class="col col-md-12" style="text-align:center">
-                <label for="file-upload" class="btn btn-success" style="width:65%; margin-bottom:0px">
+                <label id="labelForFile" for="file" class="btn btn-success" style="width:65%; margin-bottom:0px">
                     Escolher ficheiro...
                 </label>
-                <input id="file-upload" type="file" style="display:none" />
-                <small class="form-text text-muted">Nota: A submissão de um ficheiro tão grande poderá demorar algum tempo...</small>
+                <input id="file" name="file" type="file" accept=".txt" style="display:none" />
+                <small id="legenda" class="form-text text-muted">Nota: A submissão de um ficheiro tão grande poderá demorar algum tempo...</small>
+
+                <img src="~/images/loading.gif" id="loading" style="display:none;"/>
             </div>
         </div>
 
@@ -46,3 +48,28 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+    <script>
+        jQuery(document).ready(function () {
+            $("#file").change(function (e) {
+                var fileName = '';
+                if (this.files && this.files.length > 1)
+                    fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);
+                else
+                    fileName = e.target.value.split('\\').pop();
+
+               
+                if (fileName)
+                    $("#labelForFile").text(fileName);
+            });
+
+            $("form").submit(function (event) {
+                debugger;
+                $("#labelForFile").hide();
+                $("#file").hide();
+                $("#legenda").hide();
+                $("#loading").show();
+            });
+
+        });
+    </script>

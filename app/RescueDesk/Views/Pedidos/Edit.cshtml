@@ -9,6 +9,7 @@
     {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.idpedido)
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="card">
             <div class="card-body card-block">
@@ -42,7 +43,7 @@
 
                 <div class="form-group">
                     <label for="@Html.NameFor(x=>x.dtpedido)" class=" form-control-label">@Html.DisplayNameFor(model => model.dtpedido)</label>
-                    @Html.EditorFor(model => model.dtpedido, new { htmlAttributes = new { @class = "form-control date", @placeholder = "...", disabled="disabled" } })
+                    @Html.EditorFor(model => model.dtpedido, new { htmlAttributes = new { @class = "form-control date", @placeholder = "...", disabled = "disabled" } })
                     @Html.ValidationMessageFor(model => model.dtpedido, "", new { @class = "text-danger" })
                 </div>
 
@@ -63,7 +64,22 @@
                         @Html.EnumDropDownListFor(model => model.prioridade, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
                         @Html.ValidationMessageFor(model => model.prioridade, "", new { @class = "text-danger" })
                     </div>
+                    @Html.HiddenFor(model => model.dtresolvido)
                     <div class="form-group">
+                        <label class="checkboxAlter">
+                            @if (Model.Resolvido)
+                            {
+                                @Html.EditorFor(model => model.Resolvido, new { htmlAttributes = new { @disabled = "disabled" } });
+                                <span class="checkmark"></span>
+
+                            }
+                            else
+                            {
+                                @Html.EditorFor(model => model.Resolvido)
+                                <span class="checkmark"></span>
+                            }
+                        </label>
+
                         <label for="@Html.NameFor(x=>x.dtresolvido)" class=" form-control-label">@Html.DisplayNameFor(model => model.dtresolvido)</label>
                         @Html.EditorFor(model => model.dtresolvido, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
                         @Html.ValidationMessageFor(model => model.dtresolvido, "", new { @class = "text-danger" })

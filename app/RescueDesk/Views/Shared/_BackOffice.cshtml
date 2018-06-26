@@ -79,6 +79,7 @@
     <script>
         $(function () {
             $('body').on('click', ".modal-link", function (e) {
+                $(".modal-content").empty();
                 e.preventDefault();
                 $(this).attr("data-target", '#modal-container');
                 $(this).attr("data-toggle", 'modal');

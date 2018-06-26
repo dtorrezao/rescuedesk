@@ -154,10 +154,11 @@ namespace RescueDesk.Controllers
 
                     addressService.UpdateLocalidades(localidadesAActualizar);
                     addressService.CreateLocalidades(localidadesAInserir);
+
                 }
             }
 
-            return View();
+            return RedirectToAction("Index");
         }
 
         public string ObterLocalidades()

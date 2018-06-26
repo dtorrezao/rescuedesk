@@ -25,7 +25,7 @@
                 <label for="@Html.NameFor(model=>model.titulo)" class=" form-control-label" style="line-height: 38px">@Html.DisplayNameFor(model => model.titulo):</label>
             </div>
             <div class="col col-md-11">
-                @Html.EditorFor(model => model.titulo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o título da nota..." } })
+                @Html.EditorFor(model => model.titulo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o título da nota...", @autocomplete = "off" } })
                 @Html.ValidationMessageFor(model => model.titulo, "", new { @class = "text-danger" })
             </div>
             <div class="col col-md-12">

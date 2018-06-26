@@ -96,7 +96,7 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
                     <label for="@Html.NameFor(model=>model.Funcionario.codpostal)" class=" form-control-label" style="line-height:30px">@Html.DisplayNameFor(model => model.Funcionario.codpostal):</label>
                 </div>
                 <div class="col col-md-9">
-                    @Html.DropDownListFor(model => model.Funcionario.codpostal, Model.Enderecos, new { @class = "form-control localidadesDropdown", @style="width:615px"})
+                    @Html.DropDownListFor(model => model.Funcionario.codpostal, Model.Enderecos, new { @class = "form-control localidadesDropdown", @style = "width:615px" })
                     @Html.ValidationMessageFor(model => model.Funcionario.codpostal, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -109,7 +109,11 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
                     @Html.ValidationMessageFor(model => model.Utilizador.idtipo, "", new { @class = "text-danger" })
                 </div>
                 <div class="col col-md-1" style="padding-top: 2px">
-                    <label class="switch switch-text switch-primary switch-pill"><input type="checkbox" class="switch-input" checked="true"> <span data-on="On" data-off="Off" class="switch-label"></span> <span class="switch-handle"></span></label>
+                    <label class="switch switch-text switch-primary switch-pill">
+                        <input type="checkbox" class="switch-input" checked="true">
+                        <span data-on="Ativo" data-off="Inativo" class="switch-label"></span>
+                        <span class="switch-handle"></span>
+                    </label>
                 </div>
             </div>
             <div class="col col-md-12" style="padding-top:10px">
@@ -117,7 +121,7 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
                     <label for="@Html.NameFor(model=>model.Funcionario.obs)" class=" form-control-label" style="line-height:30px">@Html.DisplayNameFor(model => model.Funcionario.obs):</label>
                 </div>
                 <div class="col col-md-12">
-                    @Html.TextAreaFor(model => model.Funcionario.obs, new { @class = "form-control", @rows="7", @placeholder = "Ex: segundo contacto, segunda morada, outras observações..." })
+                    @Html.TextAreaFor(model => model.Funcionario.obs, new { @class = "form-control", @rows = "7", @placeholder = "Ex: segundo contacto, segunda morada, outras observações..." })
                     @Html.ValidationMessageFor(model => model.Funcionario.obs, "", new { @class = "text-danger" })
                 </div>
             </div>

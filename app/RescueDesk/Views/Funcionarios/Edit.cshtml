@@ -109,7 +109,11 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
                     @Html.ValidationMessageFor(model => model.Utilizador.idtipo, "", new { @class = "text-danger" })
                 </div>
                 <div class="col col-md-1" style="padding-top: 2px">
-                    <label class="switch switch-text switch-primary switch-pill"><input type="checkbox" class="switch-input" checked="true"> <span data-on="On" data-off="Off" class="switch-label"></span> <span class="switch-handle"></span></label>
+                    <label class="switch switch-text switch-primary switch-pill">
+                        <input type="checkbox" class="switch-input" name="@Html.NameFor(x=>x.Funcionario.ativo)" checked="@Model.Funcionario.ativo">
+                        <span data-on="Ativo" data-off="Inativo" class="switch-label"></span>
+                        <span class="switch-handle"></span>
+                    </label>
                 </div>
             </div>
             <div class="col col-md-12" style="padding-top:10px">
@@ -136,6 +140,7 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
 <script>
     jQuery(document).ready(function () {
         jQuery(".autoComplete").chosen({});
+
     });
 
     $('.localidadesDropdown').ajaxChosen({

@@ -1,9 +1,10 @@
 ﻿@model IEnumerable<RescueDesk.Models.Pedido>
 @using RescueDesk.Utils
+
 @{
     ViewBag.Title = "Pedidos";
     ViewBag.FAIcon = "fa-file-text";
-    ViewBag.SubTitle = "";
+    ViewBag.SubTitle = "Criar";
     ViewBag.AddUrl = Url.Action("Create");
 
     bool eAdmin = (bool)ViewBag.eAdmin;
@@ -19,35 +20,34 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.idpedido)
                                 </th>
-                                <th>
+                                <th class="no-sort">
                                     @Html.DisplayNameFor(model => model.assunto)
+                                </th>
+                                <th style="width: 15%">
+                                    @Html.DisplayNameFor(model => model.dtpedido)
+                                </th>
+                                <th class="no-sort" style="width: 5%">
+                                    @Html.DisplayNameFor(model => model.dtlido)
+                                </th>
+                                <th class="no-sort" style="width: 5%">
+                                    @Html.DisplayNameFor(model => model.dtmarcado)
+                                </th>
+                                <th class="no-sort" style="width: 5%">
+                                    @Html.DisplayNameFor(model => model.dtresolvido)
                                 </th>
                                 @if (ViewHelper.IsAdmin() || ViewHelper.IsFuncionario())
                                 {
                                     <th>
-                                        @Html.DisplayNameFor(model => model.idatividade)
+                                        @Html.DisplayNameFor(model => model.atividade)
                                     </th>
                                 }
-
-                                <th>
-                                    @Html.DisplayNameFor(model => model.dtpedido)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.dtlido)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.dtmarcado)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.prioridade)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.dtresolvido)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.idfuncionario)
-                                </th>
-                                <th class="no-sort"></th>
+                                @if (ViewHelper.IsAdmin() || ViewHelper.IsFuncionario())
+                                {
+                                    <th style="width: 10%">
+                                        @Html.DisplayNameFor(model => model.prioridade)
+                                    </th>
+                                }
+                                <th class="no-sort" style="width: 10%"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -60,37 +60,58 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.assunto)
                                     </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.dtpedido, "{0:dd/MM/yyyy}")
+                                    </td>
+                                    <td>
+                                        @if (item.dtlido == null)
+                                        {
+                                            <a class="btn btn-link" style="padding-top: 0px; padding-bottom: 0px; margin-left: 2%"><i class="fa fa-times-circle fa-red"></i></a>
+                                        }
+                                        else
+                                        {
+                                            <a class="btn btn-link" title="@Html.DisplayFor(modelItem => item.dtlido)" style="padding-top: 0px; padding-bottom: 0px; margin-left: 2%"><i class="fa fa-check-circle fa-green"></i></a>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.dtmarcado == null)
+                                        {
+                                            <a class="btn btn-link" style="padding-top: 0px; padding-bottom: 0px; margin-left: 18%"><i class="fa fa-times-circle fa-red"></i></a>
+                                        }
+                                        else
+                                        {
+                                            <a class="btn btn-link" title="@Html.DisplayFor(modelItem => item.dtmarcado)" style="padding-top: 0px; padding-bottom: 0px; margin-left: 18%"><i class="fa fa-check-circle fa-green"></i></a>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.dtresolvido == null)
+                                        {
+                                            <a class="btn btn-link" style="padding-top: 0px; padding-bottom: 0px; margin-left: 14px"><i class="fa fa-times-circle fa-red"></i></a>
+                                        }
+                                        else
+                                        {
+                                            <a class="btn btn-link" title="@Html.DisplayFor(modelItem => item.dtresolvido)" style="padding-top: 0px; padding-bottom: 0px; margin-left: 14px"><i class="fa fa-check-circle fa-green"></i></a>
+                                        }
+                                    </td>
                                     @if (ViewHelper.IsAdmin() || ViewHelper.IsFuncionario())
                                     {
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.idatividade)
+                                            @Html.DisplayFor(modelItem => item.atividade)
                                         </td>
                                     }
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.dtpedido)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.dtlido)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.dtmarcado)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.prioridade)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.dtresolvido)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.idfuncionario)
-                                    </td>
-                                    <td>
-                                        <a href="@Url.Action("Edit", new { id = item.idpedido }) " class="btn btn-link minus-padd" title="Editar"><i class="fa fa-pencil"></i></a>
+                                    @if (ViewHelper.IsAdmin() || ViewHelper.IsFuncionario())
+                                    {
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.prioridade)
+                                        </td>
+                                    }
+                                    <td align="center">
+                                        <a href="@Url.Action("Edit", new { id = item.idpedido })" class="btn btn-link minus-padd" title="Editar"><i class="fa fa-pencil"></i></a>
+                                        <a href="@Url.Action("", new { id = item.idpedido })" class="btn btn-link minus-padd modal-link" title="Detalhes"><i class="fa fa-info-circle"></i></a>
                                         @if (item.idfuncionario == null && eAdmin)
                                         {
-                                            <a href="@Url.Action("Encaminhar", new { id = item.idpedido }) " class="btn btn-link minus-padd modal-link" title="Encaminhar"><i class="fa fa-pencil"></i></a>
+                                            <a href="@Url.Action("Encaminhar", new { id = item.idpedido })" class="btn btn-link minus-padd modal-link" title="Encaminhar"><i class="fa fa-forward"></i></a>
                                         }
-                                        @*<a href="@Url.Action("Delete", new { id = item.nrcontribuinte }) " class="btn btn-danger">Eliminar</a>*@
                                     </td>
                                 </tr>
                             }

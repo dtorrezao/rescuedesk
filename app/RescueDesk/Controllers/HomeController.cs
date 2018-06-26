@@ -41,7 +41,7 @@ namespace RescueDesk.Controllers
         {
             var pedidosservice = new PedidosService();
 
-            var pedidop = pedidosservice.ObterPedidos(this.ObterUtilizador());
+            var pedidop = pedidosservice.ObterPedidos(this.ObterUtilizador(), true, true);
             List<Evento> eventos = pedidop.Where(x => x.dtmarcado != null).Select(x => new Evento() { title = x.idpedido.ToString(), start = x.dtmarcado.Value }).ToList();
             return JsonConvert.SerializeObject(eventos);
         }

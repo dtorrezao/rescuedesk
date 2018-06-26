@@ -23,6 +23,14 @@
         color: #8f222d;
     }
 
+.fa-green {
+    color: #28a745;
+}
+
+    .fa-green:hover {
+        color: #1e7e34;
+    }
+
 .card-body .row label {
     line-height: 35px;
 }
