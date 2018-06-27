@@ -29,7 +29,7 @@ namespace RescueDesk.Controllers
         public ActionResult Enviadas()
         {
             MensagensService servico = new MensagensService();
-            ViewBag.mensagem = 1;
+            ViewBag.mensagem = 1;                 
             return View("Index", servico.ObterMensagens(this.ObterUtilizador(), true, false));
         }
 
@@ -48,7 +48,7 @@ namespace RescueDesk.Controllers
             Mensagem msg = servico.ObterMensagem(id);
             msg.lido = true;
             servico.UpdateMensagem(msg,msg.lido);
-
+            ViewBag.vmensagem = 1;
             return View(msg);
         }
 

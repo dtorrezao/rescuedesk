@@ -1,7 +1,98 @@
-﻿
+﻿@model RescueDesk.Models.Mensagem
+
 @{
-    ViewBag.Title = "Details";
+    Layout = null;
+    ViewBag.Title = "Mensagem";
+    ViewBag.SubTitle = "Mensagem";
+    int vmensagem = ViewBag.vmensagem;
 }
 
-<h2>Details</h2>
+@using (Html.BeginForm(
+actionName: "Details",
+controllerName: "Mensagens",
+routeValues: null,
+method: FormMethod.Post,
+htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
+{
+    if (!string.IsNullOrEmpty((string)ViewBag.SubTitle))
+    {
+        <div class="modal-header">
+            <h5 class="modal-title" id="staticModalLabel">@ViewBag.SubTitle</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+        <div class="modal-body">
+            @Html.HiddenFor(model => model.idmensagem)
+            @Html.HiddenFor(model => model.assunto)
+            @Html.HiddenFor(model => model.corpo)
+            @Html.HiddenFor(model => model.recetor)
+            @Html.HiddenFor(model => model.emissor)
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+                 @if (vmensagem == 1)
+                 {
+                            <div class="row">
+                                <div class="col col-md-12 form-group">
+                                    <div class="col col-md-2">
+                                        <label for="@Html.NameFor(model => model.recetor)" class=" form-control-label">Recetor:</label>
+                                    </div>
+                                    <div class="col col-md-10">
+                                        @Html.EditorFor(model => model.recetor, new { htmlAttributes = new { @disabled = "", @class = "form-control", @autocomplete = "off" } })
+                                        @Html.ValidationMessageFor(model => model.recetor, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>       
+                   }
+
+                  @if (vmensagem == 2)
+                  {
+                            <div class="row">
+                                <div class="col col-md-12 form-group">
+                                    <div class="col col-md-2">
+                                        <label for="@Html.NameFor(model => model.emissor)" class=" form-control-label">Emissor:</label>
+                                    </div>
+                                    <div class="col col-md-10">
+                                        @Html.EditorFor(model => model.emissor, new { htmlAttributes = new { @disabled = "", @class = "form-control", @autocomplete = "off" } })
+                                        @Html.ValidationMessageFor(model => model.emissor, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>                     
+                   }
+
+            <div class="row">
+                <div class="col col-md-12 form-group">
+                    <div class="col col-md-2">
+                        <label for="@Html.NameFor(model =>model.assunto)" class=" form-control-label">@Html.DisplayNameFor(model => model.assunto):</label>
+                    </div>
+                    <div class="col col-md-10">
+                        @Html.EditorFor(model => model.assunto, new { htmlAttributes = new { @disabled = "", @class = "form-control", @autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.assunto, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col col-md-12 form-group">
+                    <div class="col col-md-2">
+                        <label for="@Html.NameFor(model=>model.corpo)" class=" form-control-label">@Html.DisplayNameFor(model => model.corpo):</label>
+                    </div>
+                    <div class="col col-md-10">
+                        @Html.TextAreaFor(model => model.corpo, new { @disabled = "" ,@class = "form-control", @rows = "10" })
+                        @Html.ValidationMessageFor(model => model.corpo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+<script>
+    jQuery(document).ready(function () {
+        jQuery(".autoComplete").chosen({});
+        $('.autoComplete').prop('disabled', true).trigger("chosen:updated");
+    });
+
+</script>

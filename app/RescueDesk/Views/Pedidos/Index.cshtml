@@ -106,7 +106,14 @@
                                         </td>
                                     }
                                     <td align="center">
-                                        <a href="@Url.Action("Edit", new { id = item.idpedido })" class="btn btn-link minus-padd" title="Editar"><i class="fa fa-pencil"></i></a>
+                                        <a href="@Url.Action("Edit", new { id = item.idpedido })" 
+                                       title="Editar"
+                                       data-ajax="true"
+                                       data-ajax-method="GET"
+                                       data-ajax-mode="after"
+                                       data-ajax-update="#modal-body"
+                                       class="btn btn-link minus-padd modal-link"><i class="fa fa-pencil fa-add"></i></a>
+
                                         <a href="@Url.Action("", new { id = item.idpedido })" class="btn btn-link minus-padd modal-link" title="Detalhes"><i class="fa fa-info-circle"></i></a>
                                         @if (item.idfuncionario == null && eAdmin)
                                         {

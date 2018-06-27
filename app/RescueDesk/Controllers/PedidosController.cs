@@ -162,7 +162,13 @@ namespace RescueDesk.Controllers
         public ActionResult Edit(int id)
         {
             PedidosService servico = new PedidosService();
+            ServicosService servicosService = new ServicosService();
+            FuncionariosService funcionarios = new FuncionariosService();
+            ClientesService clientes = new ClientesService();
 
+            ViewBag.ListaClientes = this.ListaClientes(clientes);
+            ViewBag.TiposActividade = this.ListaTiposActividade(servicosService);
+            ViewBag.ListaFuncionarios = this.ListaFuncionarios(funcionarios);
             return View(servico.ObterPedido(id));
         }
 
@@ -170,6 +176,8 @@ namespace RescueDesk.Controllers
         public ActionResult Edit(Pedido pedido)
         {
             PedidosService servico = new PedidosService();
+ 
+
             if (servico.UpdatePedido(pedido))
             {
                 return this.RedirectToAction("Index");

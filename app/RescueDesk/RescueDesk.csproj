@@ -659,9 +659,9 @@
     <Content Include="Views\Mensagens\Create.cshtml" />
     <Content Include="Views\Funcionarios\Details.cshtml" />
     <Content Include="Views\Pedidos\Encaminhar.cshtml" />
-    <Content Include="Views\Mensagens\Details.cshtml" />
     <Content Include="Views\Utilizadores\Registo.cshtml" />
     <Content Include="Views\Home\ConfirmarRegisto.cshtml" />
+    <Content Include="Views\Mensagens\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

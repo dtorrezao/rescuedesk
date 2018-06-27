@@ -1,8 +1,12 @@
 ﻿@model RescueDesk.Models.Pedido
 @using RescueDesk.Utils
 @{
+    Layout = null;
     ViewBag.Title = "Pedido";
     ViewBag.SubTitle = "Editar";
+    List<SelectListItem> actividades = (List<SelectListItem>)ViewBag.TiposActividade;
+    List<SelectListItem> funcionarios = (List<SelectListItem>)ViewBag.ListaFuncionarios;
+    List<SelectListItem> clientes = (List<SelectListItem>)ViewBag.ListaClientes;
 }
 <div class="col-lg-12">
     @using (Html.BeginForm())
@@ -30,11 +34,11 @@
                 </div>
                 @if (ViewHelper.IsAdmin() || ViewHelper.IsFuncionario())
                 {
-                    <div class="form-group">
-                        <label for="@Html.NameFor(x=>x.idatividade)" class=" form-control-label">@Html.DisplayNameFor(model => model.idatividade)</label>
-                        @Html.EditorFor(model => model.idatividade, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
-                        @Html.ValidationMessageFor(model => model.idatividade, "", new { @class = "text-danger" })
-                    </div>
+                <div class="form-group">
+                    <label for="@Html.NameFor(x=>x.idatividade)" class=" form-control-label">@Html.DisplayNameFor(model => model.idatividade)</label>
+                    @Html.DropDownListFor(model => model.idatividade, actividades, new { @class = "form-control autoComplete" })
+                    @Html.ValidationMessageFor(model => model.idatividade, "", new { @class = "text-danger" })
+                </div>
                 }
                 else
                 {
@@ -43,27 +47,22 @@
 
                 <div class="form-group">
                     <label for="@Html.NameFor(x=>x.dtpedido)" class=" form-control-label">@Html.DisplayNameFor(model => model.dtpedido)</label>
-                    @Html.EditorFor(model => model.dtpedido, new { htmlAttributes = new { @class = "form-control date", @placeholder = "...", disabled = "disabled" } })
+                    @Html.EditorFor(model => model.dtpedido, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control", @placeholder = "..." } })
                     @Html.ValidationMessageFor(model => model.dtpedido, "", new { @class = "text-danger" })
                 </div>
 
                 @if (ViewHelper.IsAdmin() || ViewHelper.IsFuncionario())
                 {
                     <div class="form-group">
-                        <label for="@Html.NameFor(x=>x.dtlido)" class=" form-control-label">@Html.DisplayNameFor(model => model.dtlido)</label>
-                        @Html.EditorFor(model => model.dtlido, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
-                        @Html.ValidationMessageFor(model => model.dtlido, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="form-group">
                         <label for="@Html.NameFor(x=>x.dtmarcado)" class=" form-control-label">@Html.DisplayNameFor(model => model.dtmarcado)</label>
-                        @Html.EditorFor(model => model.dtmarcado, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
+                        @Html.EditorFor(model => model.dtmarcado, new { htmlAttributes = new { @class = "form-control date", @placeholder = "...", @autocomplete = "off" } })
                         @Html.ValidationMessageFor(model => model.dtmarcado, "", new { @class = "text-danger" })
                     </div>
-                    <div class="form-group">
-                        <label for="@Html.NameFor(x=>x.prioridade)" class=" form-control-label">@Html.DisplayNameFor(model => model.prioridade)</label>
-                        @Html.EnumDropDownListFor(model => model.prioridade, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
-                        @Html.ValidationMessageFor(model => model.prioridade, "", new { @class = "text-danger" })
-                    </div>
+                <div class="form-group">
+                    <label for="@Html.NameFor(x=>x.prioridade)" class=" form-control-label">@Html.DisplayNameFor(model => model.prioridade)</label>
+                    @Html.EnumDropDownListFor(model => model.prioridade, new { @class = "form-control autoComplete", @placeholder = "..." })
+                    @Html.ValidationMessageFor(model => model.prioridade, "", new { @class = "text-danger" })
+                </div>
                     @Html.HiddenFor(model => model.dtresolvido)
                     <div class="form-group">
                         <label class="checkboxAlter">
@@ -81,20 +80,26 @@
                         </label>
 
                         <label for="@Html.NameFor(x=>x.dtresolvido)" class=" form-control-label">@Html.DisplayNameFor(model => model.dtresolvido)</label>
-                        @Html.EditorFor(model => model.dtresolvido, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
+                        @Html.EditorFor(model => model.dtresolvido, new { htmlAttributes = new { @class = "form-control date", @placeholder = "..." } })
                         @Html.ValidationMessageFor(model => model.dtresolvido, "", new { @class = "text-danger" })
                     </div>
 
-                    <div class="form-group">
-                        <label for="@Html.NameFor(x => x.nrcontribuinte)" class=" form-control-label">@Html.DisplayNameFor(model => model.nrcontribuinte)</label>
-                        @Html.EditorFor(model => model.nrcontribuinte, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
-                        @Html.ValidationMessageFor(model => model.nrcontribuinte, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="form-group">
-                        <label for="@Html.NameFor(x=>x.idfuncionario)" class=" form-control-label">@Html.DisplayNameFor(model => model.idfuncionario)</label>
-                        @Html.EditorFor(model => model.idfuncionario, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
-                        @Html.ValidationMessageFor(model => model.idfuncionario, "", new { @class = "text-danger" })
-                    </div>
+                      <div class="row">
+                            <div class="col col-md-12 form-group">
+                                <div class="col col-md-2">
+                                    <label for="@Html.NameFor(model => model.nrcontribuinte)" class=" form-control-label">Cliente:</label>
+                                </div>
+                                <div class="col col-md-10">
+                                    @Html.DropDownListFor(model => model.nrcontribuinte, clientes, new { @class = "form-control autoComplete", @placeholder = "Introduza o cliente..." })
+                                    @Html.ValidationMessageFor(model => model.nrcontribuinte, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                <div class="form-group">
+                    <label for="@Html.NameFor(x=>x.idfuncionario)" class=" form-control-label">@Html.DisplayNameFor(model => model.idfuncionario)</label>
+                    @Html.DropDownListFor(model => model.idfuncionario, funcionarios, new { @class = "form-control autoComplete" })
+                    @Html.ValidationMessageFor(model => model.idfuncionario, "", new { @class = "text-danger" })
+                </div>
                 }
                 else
                 {
@@ -122,6 +127,26 @@
         </div>
     }
 </div>
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+<script>
+    jQuery(document).ready(function () {
+        jQuery(".autoComplete").chosen({});
+    });
+
+    $.datetimepicker.setLocale('pt');
+
+    $('.date').datetimepicker({
+        format: 'd/m/Y H:i:s'
+    });
+
+    function getFormattedDate(date) {
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear().toString().slice(2);
+        return day + '-' + month + '-' + year;
+    }
+</script>
+
+
