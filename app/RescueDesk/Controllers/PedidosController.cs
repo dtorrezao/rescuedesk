@@ -104,11 +104,12 @@ namespace RescueDesk.Controllers
             PedidosService servico = new PedidosService();
             ServicosService servicosService = new ServicosService();
             FuncionariosService funcionarios = new FuncionariosService();
-
+            Pedido pedido = servico.ObterPedido(id);
             ViewBag.TiposActividade = this.ListaTiposActividade(servicosService);
-            ViewBag.ListaFuncionarios = this.ListaFuncionarios(funcionarios);
 
-            return View(servico.ObterPedido(id));
+            ViewBag.ListaFuncionarios = this.ListaFuncionarios(funcionarios, pedido.idfuncionario.Value);
+
+            return View(pedido);
         }
 
         private List<SelectListItem> ListaTiposActividade(ServicosService servico)
@@ -122,11 +123,11 @@ namespace RescueDesk.Controllers
             return lista;
         }
 
-        private List<SelectListItem> ListaFuncionarios(FuncionariosService servico)
+        private List<SelectListItem> ListaFuncionarios(FuncionariosService servico, int funcionarioId)
         {
             //listar moradas disponiveis
             var lista = new List<SelectListItem>();
-            foreach (var item in servico.ObterFuncionarios())
+            foreach (var item in servico.ObterFuncionarios().Where(x => x.ativo || x.idfuncionario == funcionarioId))
             {
                 lista.Add(new SelectListItem() { Text = item.nome, Value = item.idfuncionario.ToString() });
             }
@@ -168,15 +169,17 @@ namespace RescueDesk.Controllers
 
             ViewBag.ListaClientes = this.ListaClientes(clientes);
             ViewBag.TiposActividade = this.ListaTiposActividade(servicosService);
-            ViewBag.ListaFuncionarios = this.ListaFuncionarios(funcionarios);
-            return View(servico.ObterPedido(id));
+
+            Pedido pedido = servico.ObterPedido(id);
+            ViewBag.ListaFuncionarios = this.ListaFuncionarios(funcionarios, pedido.idfuncionario.Value);
+            return View(pedido);
         }
 
         [HttpPost]
         public ActionResult Edit(Pedido pedido)
         {
             PedidosService servico = new PedidosService();
- 
+
 
             if (servico.UpdatePedido(pedido))
             {
