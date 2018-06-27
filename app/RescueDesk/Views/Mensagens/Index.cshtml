@@ -28,7 +28,7 @@
                                     @Html.DisplayNameFor(model => model.recetor)
                                 </th>
                                 }
-                                      @if (mensagem==1)
+                                      @if (mensagem==2)
                                 {
                                 <th>
                                     @Html.DisplayNameFor(model => model.emissor)
@@ -50,12 +50,18 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.corpo)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.emissor)
-                                </td>
-                                <td>
+                                      @if (mensagem==1)
+                                {
+                                <th>
                                     @Html.DisplayFor(modelItem => item.recetor)
-                                </td>
+                                </th>
+                                }
+                                      @if (mensagem==2)
+                                {
+                                <th>
+                                    @Html.DisplayFor(modelItem => item.emissor)
+                                </th>
+                                }
                                 <td>
                                     @Html.DisplayFor(modelItem => item.dtenviado)
                                 </td>

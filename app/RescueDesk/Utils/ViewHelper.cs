@@ -36,7 +36,7 @@ namespace RescueDesk.Utils
                 list.Add(new MensagemViewModel()
                 {
                     Utilizador = UtilizadorService.ObterUtilizador(item.emissor),
-                    Corpo = item.corpo.Substring(0, 20) + "...",
+                    Assunto = item.assunto/*.Substring(0, 20) + "..."*/,
                     DataEnviada = item.dtenviado,
                     Link = item.idmensagem.ToString()
                 });

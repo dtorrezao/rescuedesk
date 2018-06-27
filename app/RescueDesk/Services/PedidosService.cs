@@ -119,8 +119,6 @@ namespace RescueDesk.Services
             {
                 query += "`idatividade` =  '" + pedido.idatividade + "', ";
             }
-            query += "`dtpedido` =  '" + pedido.dtpedido.ToString("yyyy-MM-dd hh:mm:ss") + "',";
-
             if (pedido.dtlido != null)
             {
                 query += " `dtlido` = '" + pedido.dtlido.Value.ToString("yyyy-MM-dd hh:mm:ss") + "',";

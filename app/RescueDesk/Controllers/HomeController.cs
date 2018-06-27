@@ -84,7 +84,7 @@ namespace RescueDesk.Controllers
 
             List<Evento> eventos = pedidop.Where(x => x.dtmarcado != null).Select(x => new Evento()
             {
-                title = x.idpedido.ToString(),
+                title = x.assunto.ToString(),
                 start = x.dtmarcado.Value,
                 end = CalcularPeso(x.dtmarcado.Value, tiposServico[x.idatividade.Value])
             }).ToList();
