@@ -17,7 +17,7 @@ namespace RescueDesk.Controllers
     [Authorize(Roles = "Administrador")]
     public class UtilizadoresController : Controller
     {
-         static string mensagem;
+        static string mensagem;
 
         UtilizadorService usrService = new UtilizadorService();
         TipoUtilizadorService tipoUtilizadorService = new TipoUtilizadorService();
@@ -146,24 +146,31 @@ namespace RescueDesk.Controllers
 
             UtilizadorService UtilizadorService = new UtilizadorService();
 
-            string hashedPwd = Criptografia.HashString(model.password);
-
-            if (UtilizadorService.VerificaUtilizador(model.email, hashedPwd))
+            if (!string.IsNullOrEmpty(model.password))
             {
-                FormsAuthentication.SetAuthCookie(model.email, false);
-                if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
-                    && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+                string hashedPwd = Criptografia.HashString(model.password);
+
+                if (UtilizadorService.VerificaUtilizador(model.email, hashedPwd))
                 {
-                    return Redirect(returnUrl);
+                    FormsAuthentication.SetAuthCookie(model.email, false);
+                    if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
+                        && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Home");
+                    ModelState.AddModelError("", "Password ou utilizador incorrecto");
                 }
             }
             else
             {
-                ModelState.AddModelError("", "Password ou utilizador incorrecto");
+                ModelState.AddModelError("", "Password é necessária para poder autenticar");
             }
             //}
 
