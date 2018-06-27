@@ -121,11 +121,11 @@ namespace RescueDesk.Services
             }
             if (pedido.dtlido != null)
             {
-                query += " `dtlido` = '" + pedido.dtlido.Value.ToString("yyyy-MM-dd hh:mm:ss") + "',";
+                query += " `dtlido` = '" + pedido.dtlido.Value.ToString("yyyy-MM-dd HH:mm:ss") + "',";
             }
             if (pedido.dtmarcado != null)
             {
-                query += " `dtmarcado` = '" + pedido.dtmarcado.Value.ToString("yyyy-MM-dd hh:mm:ss") + "',";
+                query += " `dtmarcado` = '" + pedido.dtmarcado.Value.ToString("yyyy-MM-dd HH:mm:ss") + "',";
             }
             if (pedido.prioridade != null)
             {
@@ -133,7 +133,7 @@ namespace RescueDesk.Services
             }
             if (pedido.dtresolvido != null)
             {
-                query += " `dtresolvido` = '" + pedido.dtresolvido.Value.ToString("yyyy-MM-dd hh:mm:ss") + "',";
+                query += " `dtresolvido` = '" + pedido.dtresolvido.Value.ToString("yyyy-MM-dd HH:mm:ss") + "',";
             }
             query += " `nrcontribuinte` = '" + pedido.nrcontribuinte + "',";
 
