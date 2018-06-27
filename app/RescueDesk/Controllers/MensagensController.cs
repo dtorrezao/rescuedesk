@@ -44,11 +44,21 @@ namespace RescueDesk.Controllers
         public ActionResult Details(int id)
         {
             MensagensService servico = new MensagensService();
-
             Mensagem msg = servico.ObterMensagem(id);
             msg.lido = true;
             servico.UpdateMensagem(msg,msg.lido);
-            ViewBag.vmensagem = 1;
+
+            Utilizador utilizador = this.ObterUtilizador();
+
+            if (msg.emissor == utilizador.idUtilizador)
+            {
+                ViewBag.vmensagem = 1;
+            }
+            else
+            {
+                ViewBag.vmensagem = 2;
+            }
+
             return View(msg);
         }
 

@@ -8,6 +8,11 @@ namespace RescueDesk.Models
 {
     public class Mensagem
     {
+        [DisplayName("Recetor")]
+        public string recetorEmail { get; set; }
+        [DisplayName("Emissor")]
+        public string emissorEmail { get; set; }
+
         [DisplayName("ID")]
         public int idmensagem { get; set; }
         [DisplayName("Assunto")]

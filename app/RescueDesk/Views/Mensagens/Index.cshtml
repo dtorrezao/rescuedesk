@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<RescueDesk.Models.Mensagem>
-
 @{
     ViewBag.Title = "Mensagens";
     ViewBag.FAIcon = "fa-file-text";
@@ -22,17 +21,17 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.corpo)
                                 </th>
-                                @if (mensagem==1)
+                                @if (mensagem == 1)
                                 {
-                                <th>
-                                    @Html.DisplayNameFor(model => model.recetor)
-                                </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.recetorEmail)
+                                    </th>
                                 }
-                                      @if (mensagem==2)
+                                @if (mensagem == 2)
                                 {
-                                <th>
-                                    @Html.DisplayNameFor(model => model.emissor)
-                                </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.emissor)
+                                    </th>
                                 }
                                 <th>
                                     @Html.DisplayNameFor(model => model.dtenviado)
@@ -43,46 +42,45 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.assunto)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.corpo)
-                                </td>
-                                      @if (mensagem==1)
-                                {
-                                <th>
-                                    @Html.DisplayFor(modelItem => item.recetor)
-                                </th>
-                                }
-                                      @if (mensagem==2)
-                                {
-                                <th>
-                                    @Html.DisplayFor(modelItem => item.emissor)
-                                </th>
-                                }
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.dtenviado)
-                                </td>
-                                <td>
-                                    <a href="@Url.Action("Details", new { id = item.idmensagem })"
-                                       title="Detalhes"
-                                       data-ajax="true"
-                                       data-ajax-method="GET"
-                                       data-ajax-mode="after"
-                                       data-ajax-update="#modal-body"
-                                       class="btn btn-link minus-padd modal-link"><i class="fa fa-info-circle fa-add"></i></a>
-                                    <a href="@Url.Action("Delete", new { id = item.idmensagem })"
-                                       title="Eliminar"
-                                       data-ajax="true"
-                                       data-ajax-method="GET"
-                                       data-ajax-mode="after"
-                                       data-ajax-update="#modal-body"
-                                       class="btn btn-link minus-padd modal-link"><i class="fa fa-trash-o fa-red"></i></a>
-
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.assunto)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.corpo)
+                                    </td>
+                                    @if (mensagem == 1)
+                                    {
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.recetorEmail)
+                                        </td>
+                                    }
+                                    @if (mensagem == 2)
+                                    {
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.emissorEmail)
+                                        </td>
+                                    }
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.dtenviado)
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("Details", new { id = item.idmensagem })"
+                                           title="Detalhes"
+                                           data-ajax="true"
+                                           data-ajax-method="GET"
+                                           data-ajax-mode="after"
+                                           data-ajax-update="#modal-body"
+                                           class="btn btn-link minus-padd modal-link"><i class="fa fa-info-circle fa-add"></i></a>
+                                        <a href="@Url.Action("Delete", new { id = item.idmensagem })"
+                                           title="Eliminar"
+                                           data-ajax="true"
+                                           data-ajax-method="GET"
+                                           data-ajax-mode="after"
+                                           data-ajax-update="#modal-body"
+                                           class="btn btn-link minus-padd modal-link"><i class="fa fa-trash-o fa-red"></i></a>
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>

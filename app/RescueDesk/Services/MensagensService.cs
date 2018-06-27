@@ -18,7 +18,9 @@ namespace RescueDesk.Services
         {
             List<Mensagem> Mensagens = new List<Mensagem>();
             this.Conn.Open();
-            string query = "SELECT * FROM mensagens ";
+            string query = "SELECT uEmissor.email EmissorEmail, uReceptor.email RecetorEmail, m. *FROM mensagens m";
+            query += " INNER join utilizadores uEmissor on m.emissor = uEmissor.idUtilizador";
+            query += " INNER join utilizadores uReceptor on m.recetor = uReceptor.idUtilizador";
 
             if (obterEnviadas || obterRecebidas)
             {
@@ -52,10 +54,10 @@ namespace RescueDesk.Services
             return Mensagens;
         }
 
-        public bool UpdateMensagem(Mensagem mensagem , bool msg)
+        public bool UpdateMensagem(Mensagem mensagem, bool msg)
         {
             string query = "UPDATE `mensagens`";
-            query += "SET `lido` = '" + (msg ? 1:0).ToString() + "' " +
+            query += "SET `lido` = '" + (msg ? 1 : 0).ToString() + "' " +
                  " WHERE `mensagens`.`idmensagem` = '" + mensagem.idmensagem.ToString() + "'";
             this.Conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, this.Conn);
@@ -67,7 +69,13 @@ namespace RescueDesk.Services
         public Mensagem ObterMensagem(int id)
         {
             this.Conn.Open();
-            MySqlDataAdapter cmd1 = new MySqlDataAdapter("Select * from mensagens where idmensagem='" + id.ToString() + "'", this.Conn);
+
+            string query = "SELECT uEmissor.email EmissorEmail, uReceptor.email RecetorEmail, m. *FROM mensagens m";
+            query += " INNER join utilizadores uEmissor on m.emissor = uEmissor.idUtilizador";
+            query += " INNER join utilizadores uReceptor on m.recetor = uReceptor.idUtilizador";
+            query += " where idmensagem = '" + id.ToString() + "'";
+
+            MySqlDataAdapter cmd1 = new MySqlDataAdapter(query, this.Conn);
             DataTable dados1 = new DataTable();
             cmd1.Fill(dados1);
             this.Conn.Close();
@@ -98,7 +106,9 @@ namespace RescueDesk.Services
             mensagem.assunto = linha["assunto"].ToString();
             mensagem.corpo = linha["corpo"].ToString();
             mensagem.emissor = int.Parse(linha["emissor"].ToString());
+            mensagem.emissorEmail = linha["EmissorEmail"].ToString();
             mensagem.recetor = int.Parse(linha["recetor"].ToString());
+            mensagem.recetorEmail = linha["RecetorEmail"].ToString();
             mensagem.dtenviado = DateTime.Parse(linha["dtenviado"].ToString());
             mensagem.lido = bool.Parse(linha["lido"].ToString());
 
