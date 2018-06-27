@@ -12,7 +12,7 @@ namespace RescueDesk.Models
         public int idmensagem { get; set; }
         [DisplayName("Assunto")]
         public string assunto { get; set; }
-        [DisplayName("Corpo da Mensagem")]
+        [DisplayName("Mensagem")]
         public string corpo { get; set; }
         [DisplayName("Emissor")]
         public int emissor { get; set; }
