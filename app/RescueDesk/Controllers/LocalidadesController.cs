@@ -161,6 +161,7 @@ namespace RescueDesk.Controllers
             return RedirectToAction("Index");
         }
 
+        [AllowAnonymous]
         public string ObterLocalidades()
         {
             AddressService addressService = new AddressService();
@@ -239,7 +240,7 @@ namespace RescueDesk.Controllers
             return JsonConvert.SerializeObject(chk);
         }
 
-
+        [AllowAnonymous]
         public string ObterLocalidadesFiltradas()
         {
             AddressService addressService = new AddressService();

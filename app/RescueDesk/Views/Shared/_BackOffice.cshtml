@@ -116,31 +116,43 @@
         function CheckFormImage(e,form) {
             e.preventDefault(); //Stop the submit for now
             //Replace with your selector to find the file input in your form
-            var fileInput = $("input[type=file]")[0],
-                file = fileInput.files && fileInput.files[0];
 
-            if (file) {
-                var img = new Image();
+            var fileInput = $("input[type=file]")[0];
 
-                img.src = window.URL.createObjectURL(file);
+            if (fileInput)
+            {
+                var file = fileInput.files && fileInput.files[0];
+                if (file) {
+                    var img = new Image();
 
-                img.onload = function () {
-                    var width = img.naturalWidth,
-                        height = img.naturalHeight;
+                    img.src = window.URL.createObjectURL(file);
 
-                    window.URL.revokeObjectURL(img.src);
+                    img.onload = function () {
+                        var width = img.naturalWidth,
+                            height = img.naturalHeight;
 
-                    if (img.naturalWidth > 0 &&
-                        img.naturalHeight > 0 &&
-                        (img.naturalWidth / img.naturalHeight) < 1.10) {
-                        form.submit();
-                    }
-                    else {
-                        alert("Selecione uma imagem quadrada (1x1)!");
-                    }
-                };
+                        window.URL.revokeObjectURL(img.src);
+
+                        if (img.naturalWidth > 0 &&
+                            img.naturalHeight > 0 &&
+                            (img.naturalWidth / img.naturalHeight) < 1.10)
+                        {
+                            form.submit();
+                        }
+                        else
+                        {
+                            alert("Selecione uma imagem quadrada (1x1)!");
+                        }
+                    };
+                }
+                else
+                {
+                    //No file was input or browser doesn't support client side reading
+                    form.submit();
+                }
             }
-            else { //No file was input or browser doesn't support client side reading
+            else {
+                //No file was input or browser doesn't support client side reading
                 form.submit();
             }
         }
@@ -152,7 +164,7 @@
         }, {
             loadingImg: 'images/loading.gif'
             });
-        
+
         $("form.hasImage").submit(function (e) {
             CheckFormImage(e, this);
         });

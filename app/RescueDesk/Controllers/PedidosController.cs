@@ -71,6 +71,9 @@ namespace RescueDesk.Controllers
         {
             PedidosService servico = new PedidosService();
             Pedido pedido = servico.ObterPedidoDefault();
+            ClientesService clientes = new ClientesService();
+
+            ViewBag.ListaClientes = this.ListaClientes(clientes);
 
             if (RescueDesk.Utils.ViewHelper.IsInGroup(new TipoUtilizadorEnum[] { TipoUtilizadorEnum.Cliente }))
             {
@@ -126,6 +129,17 @@ namespace RescueDesk.Controllers
             foreach (var item in servico.ObterFuncionarios())
             {
                 lista.Add(new SelectListItem() { Text = item.nome, Value = item.idfuncionario.ToString() });
+            }
+            return lista;
+        }
+
+        private List<SelectListItem> ListaClientes(ClientesService servico)
+        {
+            //listar moradas disponiveis
+            var lista = new List<SelectListItem>();
+            foreach (var item in servico.ObterClientes())
+            {
+                lista.Add(new SelectListItem() { Text = string.Format("{0} - {1}", item.nrcontribuinte, item.nome), Value = item.nrcontribuinte.ToString() });
             }
             return lista;
         }

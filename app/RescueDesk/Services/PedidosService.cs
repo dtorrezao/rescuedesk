@@ -13,14 +13,15 @@ namespace RescueDesk.Services
     {
         private MySqlConnection Conn = new MySqlConnection(Utils.ConnectionString());
 
+        string selectQuery = "SELECT p.*, ta.atividade, f.nome FROM pedidos p " +
+                "LEFT join funcionarios f on f.idfuncionario = p.idfuncionario " +
+                "LEFT JOIN tipoatividade ta ON ta.idatividade = p.idatividade ";
         public List<Pedido> ObterPedidos(Utilizador utilizador, bool apenasOsDoUtilizador = false, bool ObterResolvidos = false)
         {
             List<Pedido> pedidos = new List<Pedido>();
             this.Conn.Open();
 
-            string query = "SELECT p.*, ta.atividade, f.nome FROM pedidos p " +
-                "LEFT join funcionarios f on f.idfuncionario = p.idfuncionario " +
-                "INNER JOIN tipoatividade ta ON ta.idatividade = p.idatividade ";
+            string query = selectQuery;
 
             bool whereClause = false;
 
@@ -67,9 +68,9 @@ namespace RescueDesk.Services
             List<Pedido> pedidos = new List<Pedido>();
             this.Conn.Open();
 
-            string query = "SELECT * FROM pedidos p " +
-                "LEFT JOIN funcionarios f on f.idfuncionario = p.idfuncionario " +
-                " WHERE p.idfuncionario is null";
+
+            string query = selectQuery;
+            query += " WHERE p.idfuncionario is null";
 
             MySqlDataAdapter cmd1 = new MySqlDataAdapter(query, this.Conn);
             DataTable dados1 = new DataTable();
@@ -163,9 +164,12 @@ namespace RescueDesk.Services
             if (!string.IsNullOrEmpty(linha["idatividade"].ToString()))
             {
                 pedido.idatividade = int.Parse(linha["idatividade"].ToString());
-                pedido.atividade = linha["atividade"].ToString();
             }
 
+            if (!string.IsNullOrEmpty(linha["atividade"].ToString()))
+            {
+                pedido.atividade = linha["atividade"].ToString();
+            }
             if (!string.IsNullOrEmpty(linha["dtmarcado"].ToString()))
             {
                 pedido.dtmarcado = DateTime.Parse(linha["dtmarcado"].ToString());
@@ -198,8 +202,10 @@ namespace RescueDesk.Services
         public Pedido ObterPedido(int id)
         {
             this.Conn.Open();
-            MySqlDataAdapter cmd1 = new MySqlDataAdapter("Select * " +
-                "from pedidos where idpedido='" + id.ToString() + "' ", this.Conn);
+
+            string query = selectQuery;
+            query += " where idpedido='" + id.ToString() + "' ";
+            MySqlDataAdapter cmd1 = new MySqlDataAdapter(query, this.Conn);
             DataTable dados1 = new DataTable();
             cmd1.Fill(dados1);
             this.Conn.Close();

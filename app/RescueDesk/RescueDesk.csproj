@@ -200,6 +200,8 @@
     <Compile Include="Utils\Criptografia.cs" />
     <Compile Include="Utils\Database.cs" />
     <Compile Include="Utils\ViewHelper.cs" />
+    <Compile Include="ViewModels\MensagemViewModel.cs" />
+    <Compile Include="ViewModels\RegistoClienteViewModel.cs" />
     <Compile Include="ViewModels\ClienteViewModel.cs" />
     <Compile Include="ViewModels\ConfirmRegistoViewModel.cs" />
     <Compile Include="ViewModels\FuncionarioViewModel.cs" />
@@ -290,6 +292,7 @@
     <Content Include="images\logo.png" />
     <Content Include="images\logo2.png" />
     <Content Include="images\placeholder.png" />
+    <Content Include="images\profile_photo\default_img.jpg" />
     <Content Include="images\signature.png" />
     <Content Include="images\twitter_corner_black.png" />
     <Content Include="images\twitter_corner_blue.png" />
@@ -660,6 +663,8 @@
     <Content Include="Views\Funcionarios\Details.cshtml" />
     <Content Include="Views\Pedidos\Encaminhar.cshtml" />
     <Content Include="Views\Mensagens\Details.cshtml" />
+    <Content Include="Views\Utilizadores\Registo.cshtml" />
+    <Content Include="Views\Home\ConfirmarRegisto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

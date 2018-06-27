@@ -125,7 +125,6 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
 <script>
     jQuery(document).ready(function () {
         jQuery(".autoComplete").chosen({});
-    });
 
     $('.localidadesDropdown').ajaxChosen({
         dataType: 'json',
@@ -138,12 +137,12 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
     $("form.hasImage").submit(function (e) {
         CheckFormImage(e,this);
     });
+    });
 
 
 </script>
-
-@*<div class="form-group">
-        <label for="@Html.NameFor(x=>x.CriarUtilizador)" class=" form-control-label">@Html.DisplayNameFor(model => model.CriarUtilizador)</label>
-        @Html.EditorFor(model => model.CriarUtilizador, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
-        @Html.ValidationMessageFor(model => model.CriarUtilizador, "", new { @class = "text-danger" })
-    </div>*@
+<style>
+    img#fotoImg {
+        width: 150px;
+    }
+</style>

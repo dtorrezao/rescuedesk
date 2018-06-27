@@ -52,39 +52,40 @@ namespace RescueDesk.Controllers
                 if (foto.ContentLength > 0)
                 {
                     var fileName = System.IO.Path.GetFileName(foto.FileName);
-                    var path = System.IO.Path.Combine(Server.MapPath("~/images/"), fileName);
+                    var extention = System.IO.Path.GetExtension(foto.FileName);
+                    var path = System.IO.Path.Combine(Server.MapPath("~/images/profile_photo/"), vm.Cliente.email + extention);
                     foto.SaveAs(path);
 
-                    vm.Utilizador.foto = "/images/" + fileName;
+                    vm.Utilizador.foto = "/images/profile_photo/" + vm.Cliente.email + extention;
                 }
             }
 
-            if (usrService.CreateUtilizador(vm.Utilizador))
+
+            if (servico.CreateCliente(vm.Cliente))
             {
-                vm.Cliente.nrcontribuinte = vm.Utilizador.nrcontribuinte;
-                if (servico.CreateCliente(vm.Cliente))
+                if (vm.CriarUtilizador)
                 {
-                    if (vm.CriarUtilizador)
+                    vm.Utilizador = new Utilizador()
                     {
-                        vm.Utilizador = new Utilizador()
-                        {
-                            ativo = true,
-                            idtipo = 3,
-                            nrcontribuinte = vm.Cliente.nrcontribuinte,
-                            email = vm.Cliente.email,
-                        };
+                        ativo = true,
+                        idtipo = 3,
+                        nrcontribuinte = vm.Cliente.nrcontribuinte,
+                        email = vm.Cliente.email,
+                    };
 
-                        usrService.CreateUtilizador(vm.Utilizador);
-
+                    usrService.CreateUtilizador(vm.Utilizador);
+                    if (usrService.CreateUtilizador(vm.Utilizador))
+                    {
                         EmailService emailSvc = new EmailService();
                         var link = "http://" + Request.Url.Authority + Url.Action("ConfirmarRegisto", "Funcionarios", new { hash = Criptografia.HashString(vm.Utilizador.email) });
 
                         emailSvc.EnviarEmailRegisto(vm.Utilizador, link);
                     }
-
-                    return this.RedirectToAction("Index");
                 }
+
+                return this.RedirectToAction("Index");
             }
+
             return View(vm);
         }
 
@@ -99,8 +100,14 @@ namespace RescueDesk.Controllers
 
             var localidade = address.ObterLocalidade(cvm.Cliente.codpostal);
             cvm.CriarUtilizador = cvm.Utilizador != null;
-
-            cvm.Enderecos = new List<SelectListItem>() { new SelectListItem() { Value = cvm.Cliente.codpostal, Text = string.Format("{0} - {1}", localidade.codpostal, localidade.nomeLocalidade), Selected = true } };
+            if (localidade == null)
+            {
+                cvm.Enderecos = new List<SelectListItem>() { new SelectListItem() { Text = "Introduza o seu código postal..." } };
+            }
+            else
+            {
+                cvm.Enderecos = new List<SelectListItem>() { new SelectListItem() { Value = cvm.Cliente.codpostal, Text = string.Format("{0} - {1}", localidade.codpostal, localidade.nomeLocalidade), Selected = true } };
+            }
 
             return View(cvm);
         }
@@ -120,18 +127,26 @@ namespace RescueDesk.Controllers
                 if (foto.ContentLength > 0)
                 {
                     var fileName = System.IO.Path.GetFileName(foto.FileName);
-                    var path = System.IO.Path.Combine(Server.MapPath("~/images/"), fileName);
+                    var extention = System.IO.Path.GetExtension(foto.FileName);
+                    var path = System.IO.Path.Combine(Server.MapPath("~/images/profile_photo/"), cvm.Cliente.email + extention);
                     foto.SaveAs(path);
 
-                    cvm.Utilizador.foto = "/images/" + fileName;
+                    cvm.Utilizador.foto = "/images/profile_photo/" + cvm.Cliente.email + extention;
                 }
             }
 
-            if (usrService.UpdateUtilizador(cvm.Utilizador))
+            if (servico.UpdateCliente(cvm.Cliente))
             {
-                cvm.Cliente.nrcontribuinte = cvm.Utilizador.nrcontribuinte;
-
-                if (servico.UpdateCliente(cvm.Cliente))
+                cvm.Utilizador.nrcontribuinte = cvm.Cliente.nrcontribuinte;
+                if (cvm.Utilizador.password != null && usrService.UpdateUtilizador(cvm.Utilizador))
+                {
+                    if (utilizador.idtipo == (int)TipoUtilizadorEnum.Cliente)
+                    {
+                        return this.RedirectToAction("Index", "Home");
+                    }
+                    return this.RedirectToAction("Index");
+                }
+                else
                 {
                     if (utilizador.idtipo == (int)TipoUtilizadorEnum.Cliente)
                     {
@@ -151,12 +166,19 @@ namespace RescueDesk.Controllers
             ClientesService servico = new ClientesService();
 
             ClienteViewModel cvm = new ClienteViewModel();
-            cvm.Cliente = servico.ObterClienteDefault();
-            cvm.Utilizador = usrService.ObterUtilizadorDefault();
+            cvm.Cliente = servico.ObterCliente(id);
+            cvm.Utilizador = usrService.ObterUtilizadorByEmail(cvm.Cliente.email);
 
-            cvm.Enderecos = new List<SelectListItem>() {
-                new SelectListItem() { Text = "Introduza o seu código postal..." }
-            };
+            var localidade = address.ObterLocalidade(cvm.Cliente.codpostal);
+            cvm.CriarUtilizador = cvm.Utilizador != null;
+            if (localidade == null)
+            {
+                cvm.Enderecos = new List<SelectListItem>() { new SelectListItem() { Text = "Introduza o seu código postal..." } };
+            }
+            else
+            {
+                cvm.Enderecos = new List<SelectListItem>() { new SelectListItem() { Value = cvm.Cliente.codpostal, Text = string.Format("{0} - {1}", localidade.codpostal, localidade.nomeLocalidade), Selected = true } };
+            }
 
             return View(cvm);
         }

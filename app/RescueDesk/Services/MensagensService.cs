@@ -55,7 +55,7 @@ namespace RescueDesk.Services
         public bool UpdateMensagem(Mensagem mensagem , bool msg)
         {
             string query = "UPDATE `mensagens`";
-            query += "SET `lido` = '" + msg + "' " +
+            query += "SET `lido` = '" + (msg ? 1:0).ToString() + "' " +
                  " WHERE `mensagens`.`idmensagem` = '" + mensagem.idmensagem.ToString() + "'";
             this.Conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, this.Conn);
@@ -83,7 +83,7 @@ namespace RescueDesk.Services
         {
             string query = "INSERT INTO `mensagens` " +
                " (`idmensagem`, `assunto`, `corpo`, `emissor`, `recetor`, `dtenviado`) " +
-               "VALUES(null,'" + mensagem.assunto + "', '" + mensagem.corpo + "', '" + utilizador.idUtilizador + "', '" + /*mensagem.recetor.ToString()*/ 15 + "', '" + mensagem.dtenviado.ToString("yyyy-MM-dd hh:mm:ss") + "')";
+               "VALUES(null,'" + mensagem.assunto + "', '" + mensagem.corpo + "', '" + utilizador.idUtilizador + "', '" + mensagem.recetor.ToString() + "', '" + mensagem.dtenviado.ToString("yyyy-MM-dd hh:mm:ss") + "')";
             this.Conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, this.Conn);
             int resultados = cmd.ExecuteNonQuery();

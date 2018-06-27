@@ -3,6 +3,7 @@ using RescueDesk.Models;
 using RescueDesk.Models.enums;
 using RescueDesk.Services;
 using RescueDesk.Utils;
+using RescueDesk.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,13 @@ namespace RescueDesk.Controllers
     [Authorize(Roles = "Administrador")]
     public class UtilizadoresController : Controller
     {
+         static string mensagem;
+
+        UtilizadorService usrService = new UtilizadorService();
+        TipoUtilizadorService tipoUtilizadorService = new TipoUtilizadorService();
+
+        AddressService address = new AddressService();
+
         // GET: Utilizadores
         public ActionResult Index()
         {
@@ -125,6 +133,7 @@ namespace RescueDesk.Controllers
         [AllowAnonymous]
         public ActionResult Login()
         {
+            ViewBag.Mensagem = mensagem;
             return View();
         }
 
@@ -132,6 +141,7 @@ namespace RescueDesk.Controllers
         [AllowAnonymous]
         public ActionResult Login(Utilizador model, string returnUrl)
         {
+            mensagem = "";
             // https://www.codeproject.com/articles/578374/aplusbeginner-splustutorialplusonpluscustomplusf
 
             UtilizadorService UtilizadorService = new UtilizadorService();
@@ -168,6 +178,58 @@ namespace RescueDesk.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [AllowAnonymous]
+        public ActionResult Registo()
+        {
+            mensagem = "";
+
+            ClientesService servico = new ClientesService();
+
+            RegistoClienteViewModel cvm = new RegistoClienteViewModel();
+            cvm.Cliente = servico.ObterClienteDefault();
+            cvm.Utilizador = usrService.ObterUtilizadorDefault();
+
+            cvm.Enderecos = new List<SelectListItem>() {
+                new SelectListItem() { Text = "Introduza o seu código postal..." }
+            };
+
+            return View(cvm);
+        }
+
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Registo(RegistoClienteViewModel vm, string returnUrl)
+        {
+            ClientesService servico = new ClientesService();
+            if (servico.CreateCliente(vm.Cliente))
+            {
+                vm.Utilizador = new Utilizador()
+                {
+                    ativo = true,
+                    idtipo = 3,
+                    nrcontribuinte = vm.Cliente.nrcontribuinte,
+                    email = vm.Cliente.email,
+                    password = vm.Password,
+                    nome = vm.Cliente.nome,
+                    foto = "/images/profile_photo/default_img.jpg"
+                };
+
+                if (usrService.CreateUtilizador(vm.Utilizador))
+                {
+                    EmailService emailSvc = new EmailService();
+                    var link = "http://" + Request.Url.Authority + Url.Action("ConfirmarRegisto", "Home", new { hash = Criptografia.HashString(vm.Utilizador.email) });
+
+                    emailSvc.EnviarEmailRegisto(vm.Utilizador, link);
+
+                    mensagem = "Foi lhe enviado um email de confirmação, por favor confira o seu email.";
+
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+
+            return View(vm);
+        }
 
         private Utilizador ObterUtilizador()
         {

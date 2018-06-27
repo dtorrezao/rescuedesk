@@ -62,7 +62,7 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
             </div>
             <div class="col col-md-4" style="padding-left:5%">
                 <label for="foto">
-                    <img id="fotoImg" class="rounded-circle mx-auto d-block" src="images/default_img.jpg" alt="Foto de Perfil" title="Escolha a sua foto de perfil">
+                    <img id="fotoImg" class="rounded-circle mx-auto d-block" src="@Model.Utilizador.foto" alt="Foto de Perfil" title="Escolha a sua foto de perfil">
                 </label>
                 <input id="foto" name="foto" type="file" onchange="changeImg(this, '#fotoImg');" />
             </div>
@@ -110,7 +110,14 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
                 </div>
                 <div class="col col-md-1" style="padding-top: 2px">
                     <label class="switch switch-text switch-primary switch-pill">
-                        <input type="checkbox" class="switch-input" checked="true" disabled="disabled">
+                        @if (Model.Funcionario.ativo)
+                        {
+                            <input type="checkbox" class="switch-input" checked="checked" disabled="disabled">
+                        }
+                        else
+                        {
+                            <input type="checkbox" class="switch-input" disabled="disabled">
+                        }
                         <span data-on="Ativo" data-off="Inativo" class="switch-label"></span>
                         <span class="switch-handle"></span>
                     </label>
@@ -156,3 +163,8 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
 
 
 </script>
+<style>
+    img#fotoImg {
+        width: 150px;
+    }
+</style>

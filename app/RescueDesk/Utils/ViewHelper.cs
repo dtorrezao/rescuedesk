@@ -1,6 +1,7 @@
 ﻿using RescueDesk.Models;
 using RescueDesk.Models.enums;
 using RescueDesk.Services;
+using RescueDesk.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,39 @@ namespace RescueDesk.Utils
 {
     public static class ViewHelper
     {
+        public static int ObterContagemMensagens()
+        {
+            string userName = HttpContext.Current.User.Identity.Name;
+            MensagensService service = new MensagensService();
+            UtilizadorService UtilizadorService = new UtilizadorService();
+            Utilizador utilizador = UtilizadorService.ObterUtilizadorByEmail(userName);
+            return service.ObterMensagens(utilizador, false, true).Where(x => !x.lido).Count();
+        }
+
+        public static List<MensagemViewModel> ObterMensagens(int qtdMsg)
+        {
+            var list = new List<MensagemViewModel>();
+
+            string userName = HttpContext.Current.User.Identity.Name;
+            MensagensService service = new MensagensService();
+            UtilizadorService UtilizadorService = new UtilizadorService();
+            Utilizador utilizador = UtilizadorService.ObterUtilizadorByEmail(userName);
+            var mensagens = service.ObterMensagens(utilizador, false, true).Where(x => !x.lido).Take(qtdMsg);
+
+            
+            foreach (var item in mensagens)
+            {
+                list.Add(new MensagemViewModel()
+                {
+                    Utilizador = UtilizadorService.ObterUtilizador(item.emissor),
+                    Corpo = item.corpo.Substring(0, 20) + "...",
+                    DataEnviada = item.dtenviado,
+                    Link = item.idmensagem.ToString()
+                });
+            }
+
+            return list;
+        }
         public static bool IsInGroup(TipoUtilizadorEnum[] tiposAutorizados)
         {
             string userName = HttpContext.Current.User.Identity.Name;

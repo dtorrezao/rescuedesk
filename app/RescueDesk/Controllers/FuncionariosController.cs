@@ -63,11 +63,12 @@ namespace RescueDesk.Controllers
             {
                 if (foto.ContentLength > 0)
                 {
-                    var fileName = Path.GetFileName(foto.FileName);
-                    var path = Path.Combine(Server.MapPath("~/images/"), fileName);
+                    var fileName = System.IO.Path.GetFileName(foto.FileName);
+                    var extention = System.IO.Path.GetExtension(foto.FileName);
+                    var path = System.IO.Path.Combine(Server.MapPath("~/images/profile_photo/"), func.Utilizador.email + extention);
                     foto.SaveAs(path);
 
-                    func.Utilizador.foto = "/images/" + fileName;
+                    func.Utilizador.foto = "/images/profile_photo/" + func.Utilizador.email + extention;
                 }
             }
 
@@ -97,7 +98,7 @@ namespace RescueDesk.Controllers
             return View(viewModel);
         }
 
-        [HttpPost]
+        [HttpPost, AllowAnonymous]
         [ActionName("ConfirmarRegisto")]
         public ActionResult ConfirmarRegistoA(ConfirmRegistoViewModel utilizador)
         {
@@ -112,10 +113,18 @@ namespace RescueDesk.Controllers
                     user.password = utilizador.Password;
                     usrService.ChangePassword(user);
 
+                    FuncionariosService funcionariosService = new FuncionariosService();
+                    var funcionario = funcionariosService.ObterFuncionarioByIdUtilizador(user.idUtilizador);
+                    funcionario.ativo = true;
+                    funcionariosService.UpdateFuncionario(funcionario);
+
                     return RedirectToAction("Index");
                 }
+                else
+                {
+                    ViewBag.Mensagem = "Passwords não coincidem";
+                }
             }
-
             return View();
         }
 
@@ -161,11 +170,12 @@ namespace RescueDesk.Controllers
             {
                 if (foto.ContentLength > 0)
                 {
-                    var fileName = Path.GetFileName(foto.FileName);
-                    var path = Path.Combine(Server.MapPath("~/images/"), fileName);
+                    var fileName = System.IO.Path.GetFileName(foto.FileName);
+                    var extention = System.IO.Path.GetExtension(foto.FileName);
+                    var path = System.IO.Path.Combine(Server.MapPath("~/images/profile_photo/"), func.Utilizador.email + extention);
                     foto.SaveAs(path);
 
-                    func.Utilizador.foto = "/images/" + fileName;
+                    func.Utilizador.foto = "/images/profile_photo/" + func.Utilizador.email + extention;
                 }
             }
 

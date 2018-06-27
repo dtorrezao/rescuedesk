@@ -105,7 +105,7 @@ namespace RescueDesk.Services
         {
             string query = "UPDATE utilizadores " +
                            "SET foto = '" + utilizador.foto + "' " +
-                           "WHERE idUtilizador ='" + utilizador.idUtilizador + "'";
+                           " WHERE idUtilizador ='" + utilizador.idUtilizador + "'";
             this.Conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, this.Conn);
             int resultados = cmd.ExecuteNonQuery();
@@ -163,7 +163,7 @@ namespace RescueDesk.Services
 
             if (linha.Table.Columns.Contains("Ativo"))
             {
-                utilizador.ativo = int.Parse(linha["Ativo"].ToString())==1?true:false;
+                utilizador.ativo = int.Parse(linha["Ativo"].ToString()) == 1 ? true : false;
             }
 
             return utilizador;

@@ -5,6 +5,7 @@
     Layout = null;
     ViewBag.Title = "Pedidos";
     ViewBag.SubTitle = "Criar Pedido";
+    List<SelectListItem> clientes = (List<SelectListItem>)ViewBag.ListaClientes;
 }
 
 @using (Html.BeginForm(
@@ -32,13 +33,31 @@ method: FormMethod.Post))
         @Html.HiddenFor(model => model.idfuncionario)
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @if (ViewHelper.IsAdmin() || ViewHelper.IsFuncionario())
+        {
+            <div class="row">
+                <div class="col col-md-12 form-group">
+                    <div class="col col-md-2">
+                        <label for="@Html.NameFor(model => model.nrcontribuinte)" class=" form-control-label">Cliente:</label>
+                    </div>
+                    <div class="col col-md-10">
+                        @Html.DropDownListFor(model => model.nrcontribuinte, clientes, new { @class = "form-control autoComplete", @placeholder = "Introduza o cliente..." })
+                        @Html.ValidationMessageFor(model => model.nrcontribuinte, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            @Html.HiddenFor(model => model.nrcontribuinte)
+        }
         <div class="row">
             <div class="col col-md-12 form-group">
                 <div class="col col-md-2">
                     <label for="@Html.NameFor(model =>model.assunto)" class=" form-control-label">@Html.DisplayNameFor(model => model.assunto):</label>
                 </div>
                 <div class="col col-md-10">
-                    @Html.EditorFor(model => model.assunto, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o assunto do pedido..." } })
+                    @Html.EditorFor(model => model.assunto, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o assunto do pedido...", @autocomplete = "off" } })
                     @Html.ValidationMessageFor(model => model.assunto, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -52,34 +71,27 @@ method: FormMethod.Post))
                 </div>
             </div>
         </div>
-
         @if (ViewHelper.IsAdmin() || ViewHelper.IsFuncionario())
         {
-            <div class="col col-md-12 form-group">
-                <label for="@Html.NameFor(model => model.nrcontribuinte)" class=" form-control-label">@Html.DisplayNameFor(model => model.nrcontribuinte)</label>
-                @Html.EditorFor(model => model.nrcontribuinte, new { htmlAttributes = new { @class = "form-control", @placeholder = "..." } })
-                @Html.ValidationMessageFor(model => model.nrcontribuinte, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="col col-md-12">
+                    <div class="col col-md-2">
+                        <label for="@Html.NameFor(model=>model.obs)" class=" form-control-label">@Html.DisplayNameFor(model => model.obs):</label>
+                    </div>
+                    <div class="col col-md-10">
+                        @Html.TextAreaFor(model => model.obs, new { @class = "form-control", @placeholder = "Ex: anomalia no pedido, outras observações...", @rows = "7" })
+                        @Html.ValidationMessageFor(model => model.obs, "", new { @class = "text-danger" })
+                    </div>
+                </div>
             </div>
         }
         else
         {
-            @Html.HiddenFor(model => model.nrcontribuinte)
-
+            @Html.HiddenFor(model => model.obs)
         }
-        <div class="row">
-            <div class="col col-md-12">
-                <div class="col col-md-2">
-                    <label for="@Html.NameFor(model=>model.obs)" class=" form-control-label">@Html.DisplayNameFor(model => model.obs):</label>
-                </div>
-                <div class="col col-md-10">
-                    @Html.TextAreaFor(model => model.obs, new { @class = "form-control", @placeholder = "Ex: segundo contacto, segunda morada, outras observações...", @rows = "7" })
-                    @Html.ValidationMessageFor(model => model.obs, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
     </div>
     <div class="modal-footer">
-        <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>&nbsp; Criar</button>
+        <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle"></i>&nbsp; Criar</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal"> <i class="fa fa-times"></i>&nbsp;Cancelar</button>
     </div>
 }

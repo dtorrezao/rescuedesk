@@ -13,8 +13,8 @@
         @using (Html.BeginForm())
         {
             @Html.ValidationSummary(true)
-            @ViewBag.Mensagem
             @Html.HiddenFor(x => x.Hash)
+            @ViewBag.Mensagem
             <div class="form-group">
                 @Html.LabelFor(x => x.Username)
                 @Html.TextBoxFor(x => x.Username, new { @class = "form-control", @placeholder = "Insira o Username..." })

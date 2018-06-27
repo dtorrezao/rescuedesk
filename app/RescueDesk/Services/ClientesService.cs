@@ -40,8 +40,37 @@ namespace RescueDesk.Services
         {
             string query = "INSERT INTO `clientes` " +
                 " (`nrcontribuinte`, `nome`, `morada`, `codpostal`, `contacto`, `email`, `obs`)" +
-                " VALUES('" + cliente.nrcontribuinte + "', '" + cliente.nome + "', '" + cliente.morada + "', '" + cliente.codpostal + "', '" + cliente.contacto + "'," +
-                "'" + cliente.email + "', '" + cliente.obs + "')";
+                " VALUES('" + cliente.nrcontribuinte + "', '" + cliente.nome + "', ";
+
+            if (string.IsNullOrEmpty(cliente.morada))
+            {
+                query += "NULL,";
+            }
+            else
+            {
+                query += "'" + cliente.morada + "',";
+            }
+
+            if (string.IsNullOrEmpty(cliente.codpostal))
+            {
+                query += "NULL,";
+            }
+            else
+            {
+                query += "'" + cliente.codpostal + "',";
+            }
+
+            if (!cliente.contacto.HasValue)
+            {
+                query += "NULL,";
+            }
+            else
+            {
+                query += "'" + cliente.contacto + "',";
+            }
+
+            query += "'" + cliente.email + "', '" + cliente.obs + "')";
+
             this.Conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, this.Conn);
             int resultados = cmd.ExecuteNonQuery();
@@ -56,7 +85,10 @@ namespace RescueDesk.Services
             cliente.nome = linha["nome"].ToString();
             cliente.morada = linha["morada"].ToString();
             cliente.codpostal = linha["codpostal"].ToString();
-            cliente.contacto = int.Parse(linha["contacto"].ToString());
+            if (!string.IsNullOrEmpty(linha["contacto"].ToString()))
+            {
+                cliente.contacto = int.Parse(linha["contacto"].ToString());
+            }
             cliente.email = linha["email"].ToString();
             cliente.obs = linha["obs"].ToString();
             return cliente;
