@@ -23,11 +23,6 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
         </div>
     }
     <div class="modal-body">
-        @Html.HiddenFor(model => model.Utilizador.password)
-        @Html.HiddenFor(model => model.Utilizador.idUtilizador)
-        @Html.HiddenFor(model => model.Utilizador.foto)
-        @Html.HiddenFor(model => model.Funcionario.idUtilizador)
-        @Html.HiddenFor(model => model.Funcionario.idfuncionario)
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="row">
@@ -37,7 +32,7 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
                         <label for="@Html.NameFor(model=>model.Funcionario.nome)" class="form-control-label" style="line-height:36px">@Html.DisplayNameFor(model => model.Funcionario.nome):</label>
                     </div>
                     <div class="col col-md-10">
-                        @Html.EditorFor(model => model.Funcionario.nome, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o seu primeiro e último nome..." } })
+                        @Html.EditorFor(model => model.Funcionario.nome, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o seu primeiro e último nome...", @autocomplete="off" } })
                         @Html.ValidationMessageFor(model => model.Funcionario.nome, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -46,7 +41,7 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
                         <label for="@Html.NameFor(model=>model.Utilizador.email)" class=" form-control-label" style="line-height:36px">@Html.DisplayNameFor(model => model.Utilizador.email):</label>
                     </div>
                     <div class="col col-md-10">
-                        @Html.EditorFor(model => model.Utilizador.email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o seu email..." } })
+                        @Html.EditorFor(model => model.Utilizador.email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o seu email...", @autocomplete = "off" } })
                         @Html.ValidationMessageFor(model => model.Utilizador.email, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -55,14 +50,14 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
                         <label for="@Html.NameFor(model=>model.Funcionario.contacto)" class=" form-control-label" style="line-height:36px">@Html.DisplayNameFor(model => model.Funcionario.contacto):</label>
                     </div>
                     <div class="col col-md-10">
-                        @Html.TextBoxFor(model => model.Funcionario.contacto, new { @class = "form-control", @placeholder = "Introduza o seu contacto..." })
+                        @Html.TextBoxFor(model => model.Funcionario.contacto, new { @class = "form-control", @placeholder = "Introduza o seu contacto...", @autocomplete = "off" })
                         @Html.ValidationMessageFor(model => model.Funcionario.contacto, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
             <div class="col col-md-4" style="padding-left:5%">
                 <label for="foto">
-                    <img id="fotoImg" class="rounded-circle mx-auto d-block" src="images/default_img.jpg" alt="Foto de Perfil" title="Escolha a sua foto de perfil">
+                    <img id="fotoImg" class="rounded-circle mx-auto d-block" src="~/images/profile_photo/default_img.jpg" alt="Foto de Perfil" title="Escolha a sua foto de perfil">
                 </label>
                 <input id="foto" name="foto" type="file" onchange="changeImg(this, '#fotoImg');" />
             </div>
@@ -71,7 +66,7 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
                     <label for="@Html.NameFor(model=>model.Funcionario.cargo)" class=" form-control-label" style="line-height:36px">@Html.DisplayNameFor(model => model.Funcionario.cargo):</label>
                 </div>
                 <div class="col col-md-5" style="margin-left:20px; margin-right: -15px">
-                    @Html.EditorFor(model => model.Funcionario.cargo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o seu cargo..." } })
+                    @Html.EditorFor(model => model.Funcionario.cargo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o seu cargo...", @autocomplete = "off" } })
                     @Html.ValidationMessageFor(model => model.Funcionario.cargo, "", new { @class = "text-danger" })
                 </div>
                 <div class="col col-md-2" style="margin-right: -6px">
@@ -87,7 +82,7 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
                     <label for="@Html.NameFor(model=>model.Funcionario.morada)" class=" form-control-label" style="line-height:36px">@Html.DisplayNameFor(model => model.Funcionario.morada):</label>
                 </div>
                 <div class="col col-md-10">
-                    @Html.EditorFor(model => model.Funcionario.morada, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza a sua morada...", @style = "width:652px" } })
+                    @Html.EditorFor(model => model.Funcionario.morada, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza a sua morada...", @style = "width:652px", @autocomplete = "off" } })
                     @Html.ValidationMessageFor(model => model.Funcionario.morada, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -108,9 +103,9 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
                     @Html.DropDownListFor(model => model.Utilizador.idtipo, Model.TipoUtilizador, new { @class = "form-control autoComplete" })
                     @Html.ValidationMessageFor(model => model.Utilizador.idtipo, "", new { @class = "text-danger" })
                 </div>
-                <div class="col col-md-1" style="padding-top: 2px">
+                <div class="col col-md-1" style="padding-top: 2px; margin-left: -10px">
                     <label class="switch switch-text switch-primary switch-pill">
-                        <input type="checkbox" class="switch-input" checked="true">
+                        <input type="checkbox" class="switch-input" checked="checked">
                         <span data-on="Ativo" data-off="Inativo" class="switch-label"></span>
                         <span class="switch-handle"></span>
                     </label>
@@ -128,7 +123,7 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
         </div>
     </div>
     <div class="modal-footer">
-        <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>&nbsp; Guardar</button>
+        <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle"></i>&nbsp; Criar</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal"> <i class="fa fa-times"></i>&nbsp;Cancelar</button>
     </div>
 }
@@ -153,6 +148,11 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
     $("form.hasImage").submit(function (e) {
         CheckFormImage(e,this);
     });
-
-
 </script>
+
+<style>
+    img#fotoImg {
+        width: 158px;
+        max-width: 158px;
+    }
+</style>

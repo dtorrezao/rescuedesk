@@ -58,7 +58,7 @@ namespace RescueDesk.Services
             return new Utilizador()
             {
                 idtipo = 2,
-                foto = "default.jpg",
+                foto = "/images/profile_photo/default_img.jpg",
                 password = "",
             };
         }

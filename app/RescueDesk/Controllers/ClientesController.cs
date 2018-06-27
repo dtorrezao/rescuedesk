@@ -59,6 +59,10 @@ namespace RescueDesk.Controllers
                     vm.Utilizador.foto = "/images/profile_photo/" + vm.Cliente.email + extention;
                 }
             }
+            else
+            {
+                vm.Utilizador.foto = "/images/profile_photo/default_img.jpg";
+            }
 
 
             if (servico.CreateCliente(vm.Cliente))
@@ -71,13 +75,14 @@ namespace RescueDesk.Controllers
                         idtipo = 3,
                         nrcontribuinte = vm.Cliente.nrcontribuinte,
                         email = vm.Cliente.email,
+                        foto = vm.Utilizador.foto
                     };
 
-                    usrService.CreateUtilizador(vm.Utilizador);
+                    //usrService.CreateUtilizador(vm.Utilizador);
                     if (usrService.CreateUtilizador(vm.Utilizador))
                     {
                         EmailService emailSvc = new EmailService();
-                        var link = "http://" + Request.Url.Authority + Url.Action("ConfirmarRegisto", "Funcionarios", new { hash = Criptografia.HashString(vm.Utilizador.email) });
+                        var link = "http://" + Request.Url.Authority + Url.Action("ConfirmarRegisto", "Home", new { hash = Criptografia.HashString(vm.Utilizador.email) });
 
                         emailSvc.EnviarEmailRegisto(vm.Utilizador, link);
                     }
@@ -162,7 +167,6 @@ namespace RescueDesk.Controllers
         // GET: Default/Details/5
         public ActionResult Details(int id)
         {
-
             ClientesService servico = new ClientesService();
 
             ClienteViewModel cvm = new ClienteViewModel();

@@ -38,7 +38,7 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
                         <label for="@Html.NameFor(model=>model.Cliente.nrcontribuinte)" class="form-control-label" style="line-height:36px">@Html.DisplayNameFor(model => model.Cliente.nrcontribuinte):</label>
                     </div>
                     <div class="col col-md-8">
-                        @Html.EditorFor(model => model.Cliente.nrcontribuinte, new { htmlAttributes = new { @disabled = "", @class = "form-control", @placeholder = "Introduza o seu número de contribuinte...", @style = "width: 334px" } })
+                        @Html.EditorFor(model => model.Cliente.nrcontribuinte, new { htmlAttributes = new { @disabled = "", @class = "form-control", @style = "width: 334px" } })
                         @Html.ValidationMessageFor(model => model.Cliente.nrcontribuinte, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -47,7 +47,7 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
                         <label for="@Html.NameFor(model=>model.Cliente.nome)" class=" form-control-label" style="line-height:36px">@Html.DisplayNameFor(model => model.Cliente.nome):</label>
                     </div>
                     <div class="col col-md-10">
-                        @Html.EditorFor(model => model.Cliente.nome, new { htmlAttributes = new { @disabled = "", @class = "form-control", @placeholder = "Introduza o seu primeiro e último nome..." } })
+                        @Html.EditorFor(model => model.Cliente.nome, new { htmlAttributes = new { @disabled = "", @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Cliente.nome, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -56,7 +56,7 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
                         <label for="@Html.NameFor(model=>model.Cliente.contacto)" class=" form-control-label" style="line-height:36px">@Html.DisplayNameFor(model => model.Cliente.contacto):</label>
                     </div>
                     <div class="col col-md-10">
-                        @Html.TextBoxFor(model => model.Cliente.contacto, new { @disabled = "", @class = "form-control", @placeholder = "Introduza o seu contacto..." })
+                        @Html.TextBoxFor(model => model.Cliente.contacto, new { @disabled = "", @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.Cliente.contacto, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -64,7 +64,6 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
             @if (Model.CriarUtilizador)
             {
                 <div class="col col-md-4" style="padding-left:5%">
-
                     <label for="foto">
                         <img id="fotoImg" class="rounded-circle mx-auto d-block" src="@Model.Utilizador.foto" alt="Foto de Perfil" title="Escolha a sua foto de perfil">
                     </label>
@@ -79,13 +78,12 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
                     @Html.EditorFor(model => model.Cliente.email, new { htmlAttributes = new { @disabled = "", @class = "form-control", @placeholder = "Introduza o seu email...", @style = "width:387px" } })
                     @Html.ValidationMessageFor(model => model.Cliente.email, "", new { @class = "text-danger" })
                 </div>
-                <div class="col col-md-3" style="line-height:36px; margin-left:32px; margin-right:-78px">
+                <div class="col col-md-3" style="line-height:36px; margin-left: 80px; margin-right:-76px">
                     Tem Utilizador:
                 </div>
-                <div class="col col-md-1" style="padding-top: 10px">
+                <div class="col col-md-1" style="padding-top: 6px">
                     <label class="checkboxAlter">
-                            @Html.EditorFor(model => model.CriarUtilizador, new { htmlAttributes = new { @disabled = "disabled" } })
-
+                        @Html.EditorFor(model => model.CriarUtilizador, new { htmlAttributes = new { @disabled = "disabled" } })
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -95,7 +93,7 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
                     <label for="@Html.NameFor(model=>model.Cliente.morada)" class=" form-control-label" style="line-height:36px">@Html.DisplayNameFor(model => model.Cliente.morada):</label>
                 </div>
                 <div class="col col-md-10">
-                    @Html.EditorFor(model => model.Cliente.morada, new { htmlAttributes = new { @disabled = "", @class = "form-control", @placeholder = "Introduza a sua morada...", @style = "width:652px" } })
+                    @Html.EditorFor(model => model.Cliente.morada, new { htmlAttributes = new { @disabled = "", @class = "form-control", @style = "width:652px" } })
                     @Html.ValidationMessageFor(model => model.Cliente.morada, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -144,11 +142,15 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
         CheckFormImage(e,this);
     });
 
-
+    function disableBtn() {
+        document.getElementById("foto").disabled = true;
+    }
+    
 </script>
 
 <style>
     img#fotoImg {
-        width: 150px;
+        width: 158px;
+        max-width: 158px;
     }
 </style>

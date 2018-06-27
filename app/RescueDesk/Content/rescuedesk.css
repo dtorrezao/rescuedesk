@@ -122,9 +122,9 @@ a.btn.disabled i {
 /* Style the checkmark/indicator */
 .checkboxAlter .checkmark:after {
     left: 9px;
-    top: 5px;
-    width: 5px;
-    height: 10px;
+    top: 4px;
+    width: 8px;
+    height: 14px;
     border: solid white;
     border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);

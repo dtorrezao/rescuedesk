@@ -33,7 +33,7 @@ namespace RescueDesk.Services
             string body = string.Format("Olá {0}! Bem vindo ao RescueDesk. \r\n Clique aqui ({1}) para confirmar a sua conta.", utilizador.nome, link);
 
             mail.Body = body;
-            mail.Subject = "Novo Registo";
+            mail.Subject = "RescueDesk - Novo Registo";
             mail.To.Add(new MailAddress(utilizador.email));
 
             EmailService emailSvc = new EmailService();

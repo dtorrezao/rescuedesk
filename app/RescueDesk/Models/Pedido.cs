@@ -36,6 +36,7 @@ namespace RescueDesk.Models
                 return descricao;
             }
         }
+
         [DisplayName("IDServiço")]
         public int? idatividade { get; set; }
         [DisplayName("Serviço")]
