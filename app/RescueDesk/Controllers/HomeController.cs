@@ -36,7 +36,7 @@ namespace RescueDesk.Controllers
             vm.FuncionarioMaisPedidosLabels = new string[] { "January", "February", "March", "April", "May", "June", "July" };
 
             vm.ProfileCard = new ProfileCardViewModel();
-            vm.ProfileCard.Nome = "Pedro";
+            vm.ProfileCard.Nome = "David";
             vm.ProfileCard.Posicao = "Programador";
             vm.ProfileCard.Foto = "/images/admin.jpg";
 

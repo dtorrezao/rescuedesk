@@ -44,7 +44,7 @@
                         <p class="red">You have @ViewHelper.ObterContagemMensagens() Mails</p>
                         @foreach (var item in ViewHelper.ObterMensagens(5))
                         {
-                            <a class="dropdown-item media bg-flat-color-1" href="@Url.Action("Details","Mensagens",new { id = item.Link })">
+                            <a class="dropdown-item media bg-flat-color-1 modal-link" href="@Url.Action("Details","Mensagens",new { id = item.Link })">
                                 <span class="photo media-left"><img src="@item.Utilizador.foto"></span>
                                 <span class="message media-body">
                                     <span class="name float-left">@item.Utilizador.nome</span>

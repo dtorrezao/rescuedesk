@@ -47,7 +47,7 @@
                                         @Html.DisplayFor(modelItem => item.assunto)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.corpo)
+                                        @Html.DisplayFor(modelItem => item.mensagemAbreviado)
                                     </td>
                                     @if (mensagem == 1)
                                     {
@@ -72,13 +72,7 @@
                                            data-ajax-mode="after"
                                            data-ajax-update="#modal-body"
                                            class="btn btn-link minus-padd modal-link"><i class="fa fa-info-circle fa-add"></i></a>
-                                        <a href="@Url.Action("Delete", new { id = item.idmensagem })"
-                                           title="Eliminar"
-                                           data-ajax="true"
-                                           data-ajax-method="GET"
-                                           data-ajax-mode="after"
-                                           data-ajax-update="#modal-body"
-                                           class="btn btn-link minus-padd modal-link"><i class="fa fa-trash-o fa-red"></i></a>
+                        
                                     </td>
                                 </tr>
                             }

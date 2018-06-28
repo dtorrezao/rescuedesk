@@ -19,9 +19,27 @@ namespace RescueDesk.Models
         public string assunto { get; set; }
         [DisplayName("Mensagem")]
         public string corpo { get; set; }
-        [DisplayName("Emissor")]
+        
+
+        public string mensagemAbreviado
+        {
+            get
+            {
+                int qtdCaracteres = 60;
+                if (corpo.Length > qtdCaracteres)
+                {
+                    string myString = corpo.Substring(0, qtdCaracteres);
+              
+
+                    return myString + "...";
+                }
+
+                return corpo;
+            }
+        }
+        [DisplayName("Para")]
         public int emissor { get; set; }
-        [DisplayName("Recetor")]
+        [DisplayName("De")]
         public int recetor { get; set; }
         //[DisplayName("Email")]
         //[DataType(DataType.EmailAddress)]

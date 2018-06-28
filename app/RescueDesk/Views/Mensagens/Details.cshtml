@@ -37,11 +37,11 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
                             <div class="row">
                                 <div class="col col-md-12 form-group">
                                     <div class="col col-md-2">
-                                        <label for="@Html.NameFor(model => model.recetor)" class=" form-control-label">Recetor:</label>
+                                        <label for="@Html.NameFor(model => model.recetorEmail)" class=" form-control-label">Recetor:</label>
                                     </div>
                                     <div class="col col-md-10">
-                                        @Html.EditorFor(model => model.recetor, new { htmlAttributes = new { @disabled = "", @class = "form-control", @autocomplete = "off" } })
-                                        @Html.ValidationMessageFor(model => model.recetor, "", new { @class = "text-danger" })
+                                        @Html.EditorFor(model => model.recetorEmail, new { htmlAttributes = new { @disabled = "", @class = "form-control", @autocomplete = "off" } })
+                                        @Html.ValidationMessageFor(model => model.recetorEmail, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                             </div>       
