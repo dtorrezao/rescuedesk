@@ -67,7 +67,6 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
                     <label for="foto">
                         <img id="fotoImg" class="rounded-circle mx-auto d-block" src="@Model.Utilizador.foto" alt="Foto de Perfil" title="Escolha a sua foto de perfil">
                     </label>
-                    <input id="foto" name="foto" type="file" onchange="changeImg(this, '#fotoImg');" />
                 </div>
             }
             <div class="col col-md-12">

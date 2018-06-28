@@ -78,7 +78,6 @@ namespace RescueDesk.Controllers
                         foto = vm.Utilizador.foto
                     };
 
-                    //usrService.CreateUtilizador(vm.Utilizador);
                     if (usrService.CreateUtilizador(vm.Utilizador))
                     {
                         EmailService emailSvc = new EmailService();
@@ -105,6 +104,10 @@ namespace RescueDesk.Controllers
 
             var localidade = address.ObterLocalidade(cvm.Cliente.codpostal);
             cvm.CriarUtilizador = cvm.Utilizador != null;
+            if (cvm.Utilizador == null)
+            {
+                cvm.Utilizador = usrService.ObterUtilizadorDefault();
+            }
             if (localidade == null)
             {
                 cvm.Enderecos = new List<SelectListItem>() { new SelectListItem() { Text = "Introduza o seu código postal..." } };
@@ -142,23 +145,41 @@ namespace RescueDesk.Controllers
 
             if (servico.UpdateCliente(cvm.Cliente))
             {
-                cvm.Utilizador.nrcontribuinte = cvm.Cliente.nrcontribuinte;
-                if (cvm.Utilizador.password != null && usrService.UpdateUtilizador(cvm.Utilizador))
+                if (cvm.Utilizador.idUtilizador == 0)
                 {
-                    if (utilizador.idtipo == (int)TipoUtilizadorEnum.Cliente)
+                    //Utilizador não existe ainda é necessario criar
+                    cvm.Utilizador = new Utilizador()
                     {
-                        return this.RedirectToAction("Index", "Home");
+                        ativo = true,
+                        idtipo = 3,
+                        nrcontribuinte = cvm.Cliente.nrcontribuinte,
+                        email = cvm.Cliente.email,
+                        foto = cvm.Utilizador.foto,
+                        nome = cvm.Cliente.nome
+                    };
+
+                    if (usrService.CreateUtilizador(cvm.Utilizador))
+                    {
+                        EmailService emailSvc = new EmailService();
+                        var link = "http://" + Request.Url.Authority + Url.Action("ConfirmarRegisto", "Home", new { hash = Criptografia.HashString(cvm.Utilizador.email) });
+
+                        emailSvc.EnviarEmailRegisto(cvm.Utilizador, link);
                     }
-                    return this.RedirectToAction("Index");
                 }
                 else
                 {
-                    if (utilizador.idtipo == (int)TipoUtilizadorEnum.Cliente)
+                    if (cvm.Utilizador.password != null)
                     {
-                        return this.RedirectToAction("Index", "Home");
+                        usrService.UpdateUtilizador(cvm.Utilizador);
                     }
+                }
+
+                if (utilizador.idtipo == (int)TipoUtilizadorEnum.Administrador)
+                {
                     return this.RedirectToAction("Index");
                 }
+
+                return this.RedirectToAction("Index", "Home");
             }
 
             return View(cvm);

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace RescueDesk.Controllers
 {
@@ -117,7 +118,7 @@ namespace RescueDesk.Controllers
                     var funcionario = funcionariosService.ObterFuncionarioByIdUtilizador(user.idUtilizador);
                     funcionario.ativo = true;
                     funcionariosService.UpdateFuncionario(funcionario);
-
+                    FormsAuthentication.SetAuthCookie(utilizador.Username, true);
                     return RedirectToAction("Index");
                 }
                 else

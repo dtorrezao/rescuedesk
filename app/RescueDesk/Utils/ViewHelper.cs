@@ -11,6 +11,16 @@ namespace RescueDesk.Utils
 {
     public static class ViewHelper
     {
+        public static int ObterContagemPedidosPendentes()
+        {
+            string userName = HttpContext.Current.User.Identity.Name;
+            UtilizadorService UtilizadorService = new UtilizadorService();
+            Utilizador utilizador = UtilizadorService.ObterUtilizadorByEmail(userName);
+            PedidosService servico = new PedidosService();
+            var pedidos = servico.ObterPedidosPendentes(utilizador);
+            return pedidos.Count();
+        }
+
         public static int ObterContagemMensagens()
         {
             string userName = HttpContext.Current.User.Identity.Name;
@@ -30,13 +40,14 @@ namespace RescueDesk.Utils
             Utilizador utilizador = UtilizadorService.ObterUtilizadorByEmail(userName);
             var mensagens = service.ObterMensagens(utilizador, false, true).Where(x => !x.lido).Take(qtdMsg);
 
-            
+
             foreach (var item in mensagens)
             {
+                string assunto = item.assunto.Length < 20 ? item.assunto : item.assunto.Substring(0, 20) + "...";
                 list.Add(new MensagemViewModel()
                 {
                     Utilizador = UtilizadorService.ObterUtilizador(item.emissor),
-                    Assunto = item.assunto/*.Substring(0, 20) + "..."*/,
+                    Assunto = assunto,
                     DataEnviada = item.dtenviado,
                     Link = item.idmensagem.ToString()
                 });

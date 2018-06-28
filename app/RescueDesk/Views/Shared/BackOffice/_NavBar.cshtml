@@ -15,13 +15,13 @@
                 <li class="menu-item @ViewHelper.IsActivePage("Index", "Home")">
                     <a href="@Url.Action( "Index", "Home")"> <i class="menu-icon fa fa-dashboard"></i>Painel de Controlo</a>
                 </li>
-                <li class="menu-item @ViewHelper.IsActivePage( "Index", "Pedidos")">
+                <li class="menu-item @ViewHelper.IsActivePage( "ListarMeusPedidos", "Pedidos")">
                     <a href="@Url.Action( "ListarMeusPedidos", "Pedidos")"> <i class="menu-icon fa fa-file-text"></i>Os Meus Pedidos </a>
                 </li>
                 @if (ViewHelper.IsAdmin())
                 {
-                    <li class="menu-item @ViewHelper.IsActivePage( "Index", "Pedidos")">
-                        <a href="@Url.Action( "ListarPedidosPendentes", "Pedidos")"> <i class="menu-icon fa fa-file-text"></i>Pedidos Pendentes</a>
+                    <li class="menu-item @ViewHelper.IsActivePage( "ListarPedidosPendentes", "Pedidos")">
+                        <a href="@Url.Action( "ListarPedidosPendentes", "Pedidos")"> <i class="menu-icon fa fa-file-text"></i>Pedidos Pendentes<span class="badge badge-primary">@ViewHelper.ObterContagemPedidosPendentes()</span></a>
                     </li>
                 }
                 <li class="menu-item">

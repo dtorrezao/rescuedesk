@@ -17,7 +17,30 @@ namespace RescueDesk.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            DashboardViewModel vm = new DashboardViewModel();
+
+            vm.PedidosPorMes = 1000;
+            vm.PedidosPorMesData = new int[] { 50, 59, 84, 84, 51, 55, 40 };
+            vm.PedidosPorMesLabels = new string[] { "January", "February", "March", "April", "May", "June", "July" };
+
+            vm.ClienteMaisPedidos = "1000";
+            vm.ClienteMaisPedidosData = new int[] { 50, 59, 84, 84, 51, 55, 40 };
+            vm.ClienteMaisPedidosLabels = new string[] { "January", "February", "March", "April", "May", "June", "July" };
+
+            vm.ServicoMaisPedidos = "1000";
+            vm.ServicoMaisPedidosData = new int[] { 50, 59, 84, 84, 51, 55, 40 };
+            vm.ServicoMaisPedidosLabels = new string[] { "January", "February", "March", "April", "May", "June", "July" };
+
+            vm.FuncionarioMaisPedidos = "1000";
+            vm.FuncionarioMaisPedidosData = new int[] { 50, 59, 84, 84, 51, 55, 40 };
+            vm.FuncionarioMaisPedidosLabels = new string[] { "January", "February", "March", "April", "May", "June", "July" };
+
+            vm.ProfileCard = new ProfileCardViewModel();
+            vm.ProfileCard.Nome = "Pedro";
+            vm.ProfileCard.Posicao = "Programador";
+            vm.ProfileCard.Foto = "/images/admin.jpg";
+
+            return View(vm);
         }
 
         public ActionResult About()
@@ -84,11 +107,38 @@ namespace RescueDesk.Controllers
 
             List<Evento> eventos = pedidop.Where(x => x.dtmarcado != null).Select(x => new Evento()
             {
-                title = x.assunto.ToString(),
+                title = string.Format("[#{0}] - {1}", x.idpedido, x.assunto.ToString()),
                 start = x.dtmarcado.Value,
-                end = CalcularPeso(x.dtmarcado.Value, tiposServico[x.idatividade.Value])
+                end = CalcularPeso(x.dtmarcado.Value, tiposServico[x.idatividade.Value]),
+                backgroundColor = ObterCor(x)
             }).ToList();
             return JsonConvert.SerializeObject(eventos);
+        }
+
+        private string ObterCor(Pedido pedidop)
+        {
+            string cor;
+            //url = "http://www.google.com", backgroundColor = "#378006"
+            switch (pedidop.prioridade)
+            {
+                case Models.enums.prioridade.Alta:
+                    cor = "#ffa500";
+                    break;
+                case Models.enums.prioridade.Baixa:
+                    cor = "#FFFF00";
+                    break;
+                case Models.enums.prioridade.Critica:
+                    cor = "#FF0000";
+                    break;
+                case Models.enums.prioridade.Media:
+                    cor = "#016ca1";
+                    break;
+                default:
+                    cor = "#FFFFFF";
+                    break;
+            }
+
+            return cor;
         }
 
         private DateTime CalcularPeso(DateTime value, Servico servico)

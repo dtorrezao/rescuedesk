@@ -200,7 +200,9 @@
     <Compile Include="Utils\Criptografia.cs" />
     <Compile Include="Utils\Database.cs" />
     <Compile Include="Utils\ViewHelper.cs" />
+    <Compile Include="ViewModels\DashboardViewModel.cs" />
     <Compile Include="ViewModels\MensagemViewModel.cs" />
+    <Compile Include="ViewModels\ProfileCardViewModel.cs" />
     <Compile Include="ViewModels\RegistoClienteViewModel.cs" />
     <Compile Include="ViewModels\ClienteViewModel.cs" />
     <Compile Include="ViewModels\ConfirmRegistoViewModel.cs" />

@@ -152,6 +152,20 @@ namespace RescueDesk.Controllers
 
                 if (UtilizadorService.VerificaUtilizador(model.email, hashedPwd))
                 {
+                    Utilizador utilizador = UtilizadorService.ObterUtilizadorByEmail(model.email);
+                    if (utilizador.idtipo != (int)TipoUtilizadorEnum.Cliente)
+                    {
+                        FuncionariosService funcionariosService = new FuncionariosService();
+
+                        Funcionario funcionario = funcionariosService.ObterFuncionarioByIdUtilizador(utilizador.idUtilizador);
+
+                        if (!funcionario.ativo)
+                        {
+                            ModelState.AddModelError("", "Utilizador Inactivo, contacte o Administrador");
+                            return View(model);
+                        }
+                    }
+
                     FormsAuthentication.SetAuthCookie(model.email, false);
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
