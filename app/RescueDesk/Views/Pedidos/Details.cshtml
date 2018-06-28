@@ -6,6 +6,7 @@
     ViewBag.Title = "Pedido";
     ViewBag.SubTitle = "Pedido";
     List<SelectListItem> actividades = (List<SelectListItem>)ViewBag.TiposActividade;
+    List<SelectListItem> funcionarios = (List<SelectListItem>)ViewBag.ListaFuncionarios;
     List<SelectListItem> clientes = (List<SelectListItem>)ViewBag.ListaClientes;
 }
 
@@ -134,24 +135,23 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
             </div>
             <div class="col col-md-12 form-group">
                 <div class="col col-md-2">
-                    <label for="@Html.NameFor(model =>model.funcionario)" class=" form-control-label">@Html.DisplayNameFor(model => model.funcionario):</label>
+                    <label for="@Html.NameFor(x=>x.idfuncionario)" class=" form-control-label">@Html.DisplayNameFor(model => model.idfuncionario)</label>
                 </div>
                 <div class="col col-md-10">
-                    @Html.EditorFor(model => model.funcionario, new { htmlAttributes = new { @disabled = "", @class = "form-control", @autocomplete = "off" } })
-                    @Html.ValidationMessageFor(model => model.funcionario, "", new { @class = "text-danger" })
+                    @Html.DropDownListFor(model => model.idfuncionario, funcionarios, new { @disabled = "", @class = "form-control autoComplete" })
+                    @Html.ValidationMessageFor(model => model.idfuncionario, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <div class="col col-md-12 form-group">
-                <div class="col col-md-2">
-                    <label for="@Html.NameFor(model=>model.obs)" class=" form-control-label">@Html.DisplayNameFor(model => model.obs):</label>
-                </div>
-                <div class="col col-md-10">
-                    @Html.TextAreaFor(model => model.obs, new { @disabled = "", @class = "form-control", @rows = "5" })
-                    @Html.ValidationMessageFor(model => model.obs, "", new { @class = "text-danger" })
-                </div>
+            <div class="col col-md-2">
+                <label for="@Html.NameFor(model=>model.obs)" class=" form-control-label">@Html.DisplayNameFor(model => model.obs):</label>
+            </div>
+            <div class="col col-md-10">
+                @Html.TextAreaFor(model => model.obs, new { @disabled = "", @class = "form-control", @rows = "5" })
+                @Html.ValidationMessageFor(model => model.obs, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
+
 }
 
 @section Scripts {

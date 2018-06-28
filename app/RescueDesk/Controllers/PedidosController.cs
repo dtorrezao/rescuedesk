@@ -219,11 +219,11 @@ namespace RescueDesk.Controllers
             PedidosService servico = new PedidosService();
             ServicosService servicosService = new ServicosService();
             ClientesService clientes = new ClientesService();
-
+            FuncionariosService funcionarios = new FuncionariosService();
             ViewBag.ListaClientes = this.ListaClientes(clientes);
             ViewBag.TiposActividade = this.ListaTiposActividade(servicosService);
-
             Pedido pedido = servico.ObterPedido(id);
+            ViewBag.ListaFuncionarios = this.ListaFuncionarios(funcionarios, pedido.idfuncionario.Value);
             return View(pedido);
         }
 
