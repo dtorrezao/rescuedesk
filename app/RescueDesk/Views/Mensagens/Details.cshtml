@@ -29,38 +29,39 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
             @Html.HiddenFor(model => model.corpo)
             @Html.HiddenFor(model => model.recetor)
             @Html.HiddenFor(model => model.emissor)
+            @Html.HiddenFor(model => model.dtenviado)
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                 @if (vmensagem == 1)
-                 {
-                            <div class="row">
-                                <div class="col col-md-12 form-group">
-                                    <div class="col col-md-2">
-                                        <label for="@Html.NameFor(model => model.recetorEmail)" class=" form-control-label">Recetor:</label>
-                                    </div>
-                                    <div class="col col-md-10">
-                                        @Html.EditorFor(model => model.recetorEmail, new { htmlAttributes = new { @disabled = "", @class = "form-control", @autocomplete = "off" } })
-                                        @Html.ValidationMessageFor(model => model.recetorEmail, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>       
-                   }
+            @if (vmensagem == 1)
+    {
+        <div class="row">
+            <div class="col col-md-12 form-group">
+                <div class="col col-md-2">
+                    <label for="@Html.NameFor(model => model.recetorEmail)" class=" form-control-label">Recetor:</label>
+                </div>
+                <div class="col col-md-10">
+                    @Html.EditorFor(model => model.recetorEmail, new { htmlAttributes = new { @disabled = "", @class = "form-control", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.recetorEmail, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+}
 
-                  @if (vmensagem == 2)
-                  {
-                            <div class="row">
-                                <div class="col col-md-12 form-group">
-                                    <div class="col col-md-2">
-                                        <label for="@Html.NameFor(model => model.emissorEmail)" class=" form-control-label">Emissor:</label>
-                                    </div>
-                                    <div class="col col-md-10">
-                                        @Html.EditorFor(model => model.emissorEmail, new { htmlAttributes = new { @disabled = "", @class = "form-control", @autocomplete = "off" } })
-                                        @Html.ValidationMessageFor(model => model.emissorEmail, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>                     
-                   }
+            @if (vmensagem == 2)
+    {
+        <div class="row">
+            <div class="col col-md-12 form-group">
+                <div class="col col-md-2">
+                    <label for="@Html.NameFor(model => model.emissorEmail)" class=" form-control-label">Emissor:</label>
+                </div>
+                <div class="col col-md-10">
+                    @Html.EditorFor(model => model.emissorEmail, new { htmlAttributes = new { @disabled = "", @class = "form-control", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.emissorEmail, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+}
 
             <div class="row">
                 <div class="col col-md-12 form-group">
@@ -77,8 +78,17 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
                         <label for="@Html.NameFor(model=>model.corpo)" class=" form-control-label">@Html.DisplayNameFor(model => model.corpo):</label>
                     </div>
                     <div class="col col-md-10">
-                        @Html.TextAreaFor(model => model.corpo, new { @disabled = "" ,@class = "form-control", @rows = "10" })
+                        @Html.TextAreaFor(model => model.corpo, new { @disabled = "", @class = "form-control", @rows = "10" })
                         @Html.ValidationMessageFor(model => model.corpo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col col-md-12 form-group">
+                    <div class="col col-md-2">
+                        <label for="@Html.NameFor(model =>model.dtenviado)" class=" form-control-label">@Html.DisplayNameFor(model => model.dtenviado):</label>
+                    </div>
+                    <div class="col col-md-10">
+                        @Html.EditorFor(model => model.dtenviado, new { htmlAttributes = new { @disabled = "", @class = "form-control", @autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.dtenviado, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>

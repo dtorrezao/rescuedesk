@@ -664,6 +664,7 @@
     <Content Include="Views\Utilizadores\Registo.cshtml" />
     <Content Include="Views\Home\ConfirmarRegisto.cshtml" />
     <Content Include="Views\Mensagens\Details.cshtml" />
+    <Content Include="Views\Pedidos\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

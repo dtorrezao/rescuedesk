@@ -212,6 +212,21 @@ namespace RescueDesk.Controllers
                 return RedirectToAction("Delete", new { id = idpedido });
             }
         }
+
+
+        public ActionResult Details(int id)
+        {
+            PedidosService servico = new PedidosService();
+            ServicosService servicosService = new ServicosService();
+            ClientesService clientes = new ClientesService();
+
+            ViewBag.ListaClientes = this.ListaClientes(clientes);
+            ViewBag.TiposActividade = this.ListaTiposActividade(servicosService);
+
+            Pedido pedido = servico.ObterPedido(id);
+            return View(pedido);
+        }
+
     }
 
 }

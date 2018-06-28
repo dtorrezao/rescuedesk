@@ -1,0 +1,170 @@
+﻿@model RescueDesk.Models.Pedido
+@using RescueDesk.Utils
+
+@{
+    Layout = null;
+    ViewBag.Title = "Pedido";
+    ViewBag.SubTitle = "Pedido";
+    List<SelectListItem> actividades = (List<SelectListItem>)ViewBag.TiposActividade;
+    List<SelectListItem> clientes = (List<SelectListItem>)ViewBag.ListaClientes;
+}
+
+@using (Html.BeginForm(
+actionName: "Details",
+controllerName: "Pedidos",
+routeValues: null,
+method: FormMethod.Post,
+htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
+{
+    if (!string.IsNullOrEmpty((string)ViewBag.SubTitle))
+    {
+        <div class="modal-header">
+            <h5 class="modal-title" id="staticModalLabel">@ViewBag.SubTitle</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
+    <div class="modal-body">
+        @Html.HiddenFor(model => model.idpedido)
+        @Html.HiddenFor(model => model.assunto)
+        @Html.HiddenFor(model => model.descricao)
+        @Html.HiddenFor(model => model.idatividade)
+        @Html.HiddenFor(model => model.dtpedido)
+        @Html.HiddenFor(model => model.dtlido)
+        @Html.HiddenFor(model => model.dtmarcado)
+        @Html.HiddenFor(model => model.prioridade)
+        @Html.HiddenFor(model => model.dtresolvido)
+        @Html.HiddenFor(model => model.nrcontribuinte)
+        @Html.HiddenFor(model => model.funcionario)
+        @Html.HiddenFor(model => model.obs)
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col col-md-12 form-group">
+                <div class="col col-md-2">
+                    <label for="@Html.NameFor(model =>model.idpedido)" class=" form-control-label">@Html.DisplayNameFor(model => model.idpedido):</label>
+                </div>
+                <div class="col col-md-10">
+                    @Html.EditorFor(model => model.idpedido, new { htmlAttributes = new { @disabled = "", @class = "form-control", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.idpedido, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col col-md-12 form-group">
+                <div class="col col-md-2">
+                    <label for="@Html.NameFor(model =>model.assunto)" class=" form-control-label">@Html.DisplayNameFor(model => model.assunto):</label>
+                </div>
+                <div class="col col-md-10">
+                    @Html.EditorFor(model => model.assunto, new { htmlAttributes = new { @disabled = "", @class = "form-control", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.assunto, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col col-md-12 form-group">
+                <div class="col col-md-2">
+                    <label for="@Html.NameFor(model=>model.descricao)" class=" form-control-label">@Html.DisplayNameFor(model => model.descricao):</label>
+                </div>
+                <div class="col col-md-10">
+                    @Html.TextAreaFor(model => model.descricao, new { @disabled = "", @class = "form-control", @rows = "5" })
+                    @Html.ValidationMessageFor(model => model.descricao, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col col-md-12 form-group">
+                <div class="col col-md-2">
+                    <label for="@Html.NameFor(x=>x.idatividade)" class=" form-control-label">@Html.DisplayNameFor(model => model.idatividade)</label>
+                </div>
+                <div class="col col-md-10">
+                    @Html.DropDownListFor(model => model.idatividade, actividades, new { @disabled = "", @class = "form-control autoComplete" })
+                    @Html.ValidationMessageFor(model => model.idatividade, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col col-md-12 form-group">
+                <div class="col col-md-2">
+                    <label for="@Html.NameFor(model =>model.dtpedido)" class=" form-control-label">@Html.DisplayNameFor(model => model.dtpedido):</label>
+                </div>
+                <div class="col col-md-10">
+                    @Html.EditorFor(model => model.dtpedido, new { htmlAttributes = new { @disabled = "", @class = "form-control", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.dtpedido, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col col-md-12 form-group">
+                <div class="col col-md-2">
+                    <label for="@Html.NameFor(model =>model.dtlido)" class=" form-control-label">@Html.DisplayNameFor(model => model.dtlido):</label>
+                </div>
+                <div class="col col-md-10">
+                    @Html.EditorFor(model => model.dtlido, new { htmlAttributes = new { @disabled = "", @class = "form-control", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.dtlido, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col col-md-12 form-group">
+                <div class="col col-md-2">
+                    <label for="@Html.NameFor(model =>model.dtmarcado)" class=" form-control-label">@Html.DisplayNameFor(model => model.dtmarcado):</label>
+                </div>
+                <div class="col col-md-10">
+                    @Html.EditorFor(model => model.dtmarcado, new { htmlAttributes = new { @disabled = "", @class = "form-control", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.dtmarcado, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col col-md-12 form-group">
+                <div class="col col-md-2">
+                    <label for="@Html.NameFor(x=>x.prioridade)" class=" form-control-label">@Html.DisplayNameFor(model => model.prioridade)</label>
+                </div>
+                <div class="col col-md-10">
+                    @Html.EnumDropDownListFor(model => model.prioridade, new { @disabled = "", @class = "form-control autoComplete" })
+                    @Html.ValidationMessageFor(model => model.prioridade, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col col-md-12 form-group">
+                <div class="col col-md-2">
+                    <label for="@Html.NameFor(x=>x.Resolvido)" class=" form-control-label">@Html.DisplayNameFor(model => model.Resolvido)</label>
+                </div>
+                <div class="col col-md-10">
+                    @Html.EditorFor(model => model.Resolvido, new { htmlAttributes = new { @disabled = "disabled" } })
+                    <span class="checkmark"></span>
+                </div>
+            </div>
+            <div class="col col-md-12 form-group">
+                <div class="col col-md-2">
+                    <label for="@Html.NameFor(x=>x.nrcontribuinte)" class=" form-control-label">@Html.DisplayNameFor(model => model.idatividade)</label>
+                </div>
+                <div class="col col-md-10">
+                    @Html.DropDownListFor(model => model.nrcontribuinte, clientes, new { @disabled = "", @class = "form-control autoComplete" })
+                    @Html.ValidationMessageFor(model => model.nrcontribuinte, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col col-md-12 form-group">
+                <div class="col col-md-2">
+                    <label for="@Html.NameFor(model =>model.funcionario)" class=" form-control-label">@Html.DisplayNameFor(model => model.funcionario):</label>
+                </div>
+                <div class="col col-md-10">
+                    @Html.EditorFor(model => model.funcionario, new { htmlAttributes = new { @disabled = "", @class = "form-control", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.funcionario, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col col-md-12 form-group">
+                <div class="col col-md-2">
+                    <label for="@Html.NameFor(model=>model.obs)" class=" form-control-label">@Html.DisplayNameFor(model => model.obs):</label>
+                </div>
+                <div class="col col-md-10">
+                    @Html.TextAreaFor(model => model.obs, new { @disabled = "", @class = "form-control", @rows = "5" })
+                    @Html.ValidationMessageFor(model => model.obs, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+<script>
+    jQuery(document).ready(function () {
+        jQuery(".autoComplete").chosen({});
+        $('.autoComplete').prop('disabled', true).trigger("chosen:updated");
+    });
+
+</script>
+
+
+
