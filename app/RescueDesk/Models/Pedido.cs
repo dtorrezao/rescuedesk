@@ -37,7 +37,6 @@ namespace RescueDesk.Models
             }
         }
 
-        [DisplayName("IDServiço")]
         public int? idatividade { get; set; }
         [DisplayName("Serviço")]
         public string atividade { get; set; }
@@ -69,7 +68,6 @@ namespace RescueDesk.Models
         }
         [DisplayName("Nº Contribuinte")]
         public int nrcontribuinte { get; set; }
-        [DisplayName("IDFuncionário")]
         public int? idfuncionario { get; set; }
         [DisplayName("Funcionário")]
         public string funcionario { get; set; }
