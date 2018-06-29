@@ -1,4 +1,5 @@
 ﻿using RescueDesk.Models;
+using RescueDesk.Models.enums;
 using RescueDesk.Services;
 using RescueDesk.Utils;
 using RescueDesk.ViewModels;
@@ -16,7 +17,7 @@ namespace RescueDesk.Controllers
     [Authorize(Roles = "Administrador,Funcionário")]
     public class FuncionariosController : Controller
     {
-        
+
         FuncionariosService servico = new FuncionariosService();
         UtilizadorService usrService = new UtilizadorService();
         AddressService address = new AddressService();
@@ -168,6 +169,11 @@ namespace RescueDesk.Controllers
         [HttpPost]
         public ActionResult Edit(FuncionarioViewModel func, HttpPostedFileBase foto)
         {
+            UtilizadorService UtilizadorService = new UtilizadorService();
+
+            string userName = ControllerContext.HttpContext.User.Identity.Name;
+            Utilizador utilizador = UtilizadorService.ObterUtilizadorByEmail(userName);
+
             if (Request.Form["Funcionario.ativo"] == "on")
             {
                 func.Funcionario.ativo = true;
@@ -191,14 +197,19 @@ namespace RescueDesk.Controllers
                 func.Funcionario.idUtilizador = func.Utilizador.idUtilizador;
                 if (servico.UpdateFuncionario(func.Funcionario))
                 {
+                    if (utilizador.idtipo == (int)TipoUtilizadorEnum.Administrador)
+                    {
+                        return this.RedirectToAction("Index");
+                    }
                     return this.RedirectToAction("Index", "Home");
                 }
             }
 
+
             return RedirectToAction("Edit", new { id = func.Funcionario.idfuncionario });
         }
 
-    
+
         private List<SelectListItem> ListaDepartmentos(DepartamentosService dptService)
         {
             //listar moradas disponiveis

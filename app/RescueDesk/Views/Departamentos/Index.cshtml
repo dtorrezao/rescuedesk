@@ -1,12 +1,12 @@
 ﻿@model IEnumerable<RescueDesk.Models.Departamento>
-
+@using RescueDesk.Utils
 @{
     ViewBag.Title = "Departamentos";
     ViewBag.FAIcon = "fa-sitemap";
     ViewBag.SubTitle = "Criar";
     ViewBag.AddUrl = Url.Action("Create");
-}
 
+}
 <div class="animated fadeIn">
     <div class="row">
         <div class="col-md-12">
@@ -29,23 +29,25 @@
                                         @Html.DisplayFor(modelItem => item.dept)
                                     </td>
                                     <td align="center">
-                                        <a href="@Url.Action("Edit", new { id = item.iddept })" 
-                                           title="Editar"
-                                           data-ajax="true"
-                                           data-ajax-method="GET"
-                                           data-ajax-mode="after"
-                                           data-ajax-update="#modal-body"
-                                           class="btn btn-link minus-padd modal-link"><i class="fa fa-pencil fa-add"></i></a>
-
-                                        <a href="@Url.Action("Delete", new { id = item.iddept })"
-                                           title="Eliminar"
-                                           data-ajax="true"
-                                           data-ajax-method="GET"
-                                           data-ajax-mode="after"
-                                           data-ajax-update="#modal-body"
-                                           class="btn btn-link minus-padd modal-link @if (!item.PodeEliminar) { <text> disabled</text> }">
-                                           <i class="fa fa-trash-o fa-red"></i>
-                                        </a>
+                                        @if (ViewHelper.IsAdmin())
+                                        {
+                                            <a href="@Url.Action("Edit", new { id = item.iddept })"
+                                               title="Editar"
+                                               data-ajax="true"
+                                               data-ajax-method="GET"
+                                               data-ajax-mode="after"
+                                               data-ajax-update="#modal-body"
+                                               class="btn btn-link minus-padd modal-link"><i class="fa fa-pencil fa-add"></i></a>
+                                            <a href="@Url.Action("Delete", new { id = item.iddept })"
+                                               title="Eliminar"
+                                               data-ajax="true"
+                                               data-ajax-method="GET"
+                                               data-ajax-mode="after"
+                                               data-ajax-update="#modal-body"
+                                               class="btn btn-link minus-padd modal-link @if (!item.PodeEliminar) { <text> disabled</text> }">
+                                                <i class="fa fa-trash-o fa-red"></i>
+                                            </a>
+                                        }
                                     </td>
                                 </tr>
                             }

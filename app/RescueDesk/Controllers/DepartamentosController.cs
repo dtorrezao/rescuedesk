@@ -27,6 +27,7 @@ namespace RescueDesk.Controllers
         }
 
         // GET: Departamentos/Create
+        [Authorize(Roles = "Administrador")]
         public ActionResult Create()
         {
             DepartamentosService servico = new DepartamentosService();
@@ -50,7 +51,7 @@ namespace RescueDesk.Controllers
         }
 
         // GET: Departamentos/Edit/5
-
+        [Authorize(Roles = "Administrador")]
         public ActionResult Edit(int id)
         {
             DepartamentosService servico = new DepartamentosService();
@@ -74,6 +75,7 @@ namespace RescueDesk.Controllers
         }
 
         // GET: Departamentos/Delete/5
+        [Authorize(Roles = "Administrador")]
         public ActionResult Delete(int id)
         {
             DepartamentosService servico = new DepartamentosService();
