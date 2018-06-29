@@ -13,9 +13,10 @@ using System.Web.Security;
 
 namespace RescueDesk.Controllers
 {
-    [Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "Administrador,Funcionário")]
     public class FuncionariosController : Controller
     {
+        
         FuncionariosService servico = new FuncionariosService();
         UtilizadorService usrService = new UtilizadorService();
         AddressService address = new AddressService();
@@ -23,12 +24,14 @@ namespace RescueDesk.Controllers
         TipoUtilizadorService tipoUtilizadorService = new TipoUtilizadorService();
 
         // GET: Funcionarios
+        [Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
             return View(servico.ObterFuncionarios());
         }
 
         // GET: Funcionarios/Details/5
+        [Authorize(Roles = "Administrador")]
         public ActionResult Details(int id)
         {
             FuncionarioViewModel vm = new FuncionarioViewModel();
@@ -45,6 +48,7 @@ namespace RescueDesk.Controllers
         }
 
         // GET: Funcionarios/Create
+        [Authorize(Roles = "Administrador")]
         public ActionResult Create()
         {
             FuncionarioViewModel vm = new FuncionarioViewModel();
@@ -57,6 +61,7 @@ namespace RescueDesk.Controllers
         }
 
         // POST: Departamentos/Create
+        [Authorize(Roles = "Administrador")]
         [HttpPost]
         public ActionResult Create(FuncionarioViewModel func, HttpPostedFileBase foto)
         {
@@ -144,6 +149,7 @@ namespace RescueDesk.Controllers
             return View("Edit", vm);
         }
 
+        [Authorize(Roles = "Administrador")]
         public ActionResult Edit(int id)
         {
             FuncionarioViewModel vm = new FuncionarioViewModel();
@@ -185,13 +191,14 @@ namespace RescueDesk.Controllers
                 func.Funcionario.idUtilizador = func.Utilizador.idUtilizador;
                 if (servico.UpdateFuncionario(func.Funcionario))
                 {
-                    return this.RedirectToAction("Index");
+                    return this.RedirectToAction("Index", "Home");
                 }
             }
 
             return RedirectToAction("Edit", new { id = func.Funcionario.idfuncionario });
         }
 
+    
         private List<SelectListItem> ListaDepartmentos(DepartamentosService dptService)
         {
             //listar moradas disponiveis

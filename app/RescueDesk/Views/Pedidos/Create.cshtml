@@ -31,6 +31,8 @@ method: FormMethod.Post))
         @Html.HiddenFor(model => model.dtresolvido)
         @Html.HiddenFor(model => model.idatividade)
         @Html.HiddenFor(model => model.idfuncionario)*@
+        @Html.HiddenFor(model => model.dtpedido)
+
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @if (ViewHelper.IsAdmin() || ViewHelper.IsFuncionario())

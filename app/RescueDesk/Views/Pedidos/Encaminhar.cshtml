@@ -25,98 +25,108 @@ method: FormMethod.Post))
             </button>
         </div>
     }
-    <div class="modal-body">
-        @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.idpedido)
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="row">
-            <div class="col col-md-12 form-group">
-                <div class="col col-md-1" style="margin-right: -30px">
-                    <label for="@Html.NameFor(model => model.idpedido)" class=" form-control-label" style="line-height:32px">@Html.DisplayNameFor(model => model.idpedido):</label>
+        <div class="modal-body">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.idpedido)
+            @Html.HiddenFor(model => model.nrcontribuinte)
+            @Html.HiddenFor(model => model.assunto)
+            @Html.HiddenFor(model => model.descricao)
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="col col-md-12 form-group">
+                    <div class="col col-md-1" style="margin-right: -30px">
+                        <label for="@Html.NameFor(model => model.idpedido)" class=" form-control-label" style="line-height:32px">@Html.DisplayNameFor(model => model.idpedido):</label>
+                    </div>
+                    <div class="col col-md-2">
+                        @Html.EditorFor(model => model.idpedido, new { htmlAttributes = new { @disabled = "disabled", @class = "input-sm form-control-sm form-control", @style = "text-align: end" } })
+                        @Html.ValidationMessageFor(model => model.idpedido, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col col-md-2" style="margin-right: -52px; margin-left: 209px">
+                        <label for="@Html.NameFor(model => model.dtpedido)" class=" form-control-label" style="line-height:32px">@Html.DisplayNameFor(model => model.dtpedido) a:</label>
+                    </div>
+                    <div class="col col-md-5">
+                        @Html.EditorFor(model => model.dtpedido, new { htmlAttributes = new { @disabled = "disabled", @class = "input-sm form-control-sm form-control", @style = "text-align: end" } })
+                        @Html.ValidationMessageFor(model => model.dtpedido, "", new { @class = "text-danger" })
+                    </div>
                 </div>
+                @if (ViewHelper.IsAdmin())
+        {
+            <div class="col col-md-12 form-group" style="margin-top: -10px">
                 <div class="col col-md-2">
-                    @Html.EditorFor(model => model.idpedido, new { htmlAttributes = new { @disabled = "disabled", @class = "input-sm form-control-sm form-control", @style = "text-align: end" } })
-                    @Html.ValidationMessageFor(model => model.idpedido, "", new { @class = "text-danger" })
+                    <label for="@Html.NameFor(model => model.nrcontribuinte)" class=" form-control-label" style="line-height:28px">Cliente:</label>
                 </div>
-                <div class="col col-md-2" style="margin-right: -52px; margin-left: 209px">
-                    <label for="@Html.NameFor(model => model.dtpedido)" class=" form-control-label" style="line-height:32px">@Html.DisplayNameFor(model => model.dtpedido) a:</label>
-                </div>
-                <div class="col col-md-5">
-                    @Html.EditorFor(model => model.dtpedido, new { htmlAttributes = new { @disabled = "disabled", @class = "input-sm form-control-sm form-control", @style = "text-align: end" } })
-                    @Html.ValidationMessageFor(model => model.dtpedido, "", new { @class = "text-danger" })
+                <div class="col col-md-10" style="margin-left: -32px">
+                    @Html.DropDownListFor(model => model.nrcontribuinte, clientes, new { @disabled = "", @class = "form-control autoCompleteDisabled", @style = "width: 641px" })
+                    @Html.ValidationMessageFor(model => model.nrcontribuinte, "", new { @class = "text-danger" })
                 </div>
             </div>
-            @if (ViewHelper.IsAdmin())
-            {
-                <div class="col col-md-12 form-group" style="margin-top: -10px">
-                    <div class="col col-md-2">
-                        <label for="@Html.NameFor(model => model.nrcontribuinte)" class=" form-control-label" style="line-height:28px">Cliente:</label>
-                    </div>
-                    <div class="col col-md-10" style="margin-left: -32px">
-                        @Html.DropDownListFor(model => model.nrcontribuinte, clientes, new { @disabled = "", @class = "form-control autoCompleteDisabled", @style = "width: 641px" })
-                        @Html.ValidationMessageFor(model => model.nrcontribuinte, "", new { @class = "text-danger" })
-                    </div>
+            <div class="col col-md-12 form-group" style="margin-top: -10px">
+                <div class="col col-md-2">
+                    <label for="@Html.NameFor(model =>model.assunto)" class=" form-control-label" style="line-height:36px">@Html.DisplayNameFor(model => model.assunto):</label>
                 </div>
-                <div class="col col-md-12 form-group" style="margin-top: -10px">
-                    <div class="col col-md-2">
-                        <label for="@Html.NameFor(model =>model.assunto)" class=" form-control-label" style="line-height:36px">@Html.DisplayNameFor(model => model.assunto):</label>
-                    </div>
-                    <div class="col col-md-10" style="margin-left: -32px">
-                        @Html.EditorFor(model => model.assunto, new { htmlAttributes = new { @disabled="", @class = "form-control", @placeholder = "Introduza o assunto do pedido...", @autocomplete = "off", @style = "width: 641px" } })
-                        @Html.ValidationMessageFor(model => model.assunto, "", new { @class = "text-danger" })
-                    </div>
+                <div class="col col-md-10" style="margin-left: -32px">
+                    @Html.EditorFor(model => model.assunto, new { htmlAttributes = new { @disabled = "", @class = "form-control", @placeholder = "Introduza o assunto do pedido...", @autocomplete = "off", @style = "width: 641px" } })
+                    @Html.ValidationMessageFor(model => model.assunto, "", new { @class = "text-danger" })
                 </div>
-                <div class="col col-md-12 form-group" style="margin-top: -10px">
-                    <div class="col col-md-2">
-                        <label for="@Html.NameFor(model =>model.idatividade)" class=" form-control-label" style="line-height:28px">@Html.DisplayNameFor(model => model.atividade):</label>
-                    </div>
-                    <div class="col col-md-10" style="margin-left: -32px">
-                        @Html.DropDownListFor(model => model.idatividade, atividades, new { @class = "form-control autoComplete", @style = "width: 641px" })
-                        @Html.ValidationMessageFor(model => model.idatividade, "", new { @class = "text-danger" })
-                    </div>
+            </div>
+            <div class="col col-md-12 form-group" style="margin-top: -10px">
+                <div class="col col-md-2">
+                    <label for="@Html.NameFor(model =>model.idatividade)" class=" form-control-label" style="line-height:28px">@Html.DisplayNameFor(model => model.atividade):</label>
                 </div>
-                <div class="col col-md-12 form-group" style="margin-top: -10px">
-                    <div class="col col-md-2">
-                        <label for="@Html.NameFor(model =>model.idfuncionario)" class=" form-control-label" style="line-height:28px">@Html.DisplayNameFor(model => model.funcionario):</label>
-                    </div>
-                    <div class="col col-md-10" style="margin-left: -32px">
-                        @Html.DropDownListFor(model => model.idfuncionario, funcionarios, new { @class = "form-control autoComplete", @style = "width: 641px" })
-                        @Html.ValidationMessageFor(model => model.idfuncionario, "", new { @class = "text-danger" })
-                    </div>
+                <div class="col col-md-10" style="margin-left: -32px">
+                    @Html.DropDownListFor(model => model.idatividade, atividades, new { @class = "form-control autoComplete", @style = "width: 641px" })
+                    @Html.ValidationMessageFor(model => model.idatividade, "", new { @class = "text-danger" })
                 </div>
-                <div class="col col-md-12 form-group" style="margin-top: -10px">
-                    <div class="col col-md-2">
-                        <label for="@Html.NameFor(model =>model.prioridade)" class=" form-control-label" style="line-height:28px">@Html.DisplayNameFor(model => model.prioridade):</label>
+            </div>
+            <div class="col col-md-12 form-group" style="margin-top: -10px">
+                <div class="col col-md-2">
+                    <label for="@Html.NameFor(model =>model.idfuncionario)" class=" form-control-label" style="line-height:28px">@Html.DisplayNameFor(model => model.funcionario):</label>
+                </div>
+                <div class="col col-md-10" style="margin-left: -32px">
+                    @Html.DropDownListFor(model => model.idfuncionario, funcionarios, new { @class = "form-control autoComplete", @style = "width: 641px" })
+                    @Html.ValidationMessageFor(model => model.idfuncionario, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col col-md-12 form-group" style="margin-top: -10px">
+                <div class="col col-md-2">
+                    <label for="@Html.NameFor(model =>model.prioridade)" class=" form-control-label" style="line-height:28px">@Html.DisplayNameFor(model => model.prioridade):</label>
 
-                    </div>
-                    <div class="col col-md-10" style="margin-left: -32px">
-                        @Html.EnumDropDownListFor(model => model.prioridade, new { @class = "form-control autoComplete", @style = "width: 641px" })
-                        @Html.ValidationMessageFor(model => model.prioridade, "", new { @class = "text-danger" })
-                    </div>
                 </div>
-                <div class="col col-md-12 form-group" style="margin-top: -10px">
-                    <div class="col col-md-2">
-                        <label for="@Html.NameFor(model =>model.dtmarcado)" class=" form-control-label" style="line-height:28px">@Html.DisplayNameFor(model => model.dtmarcado):</label>
-                    </div>
-                    <div class="col col-md-5" style="margin-left: -32px">
-                        @Html.EditorFor(model => model.dtmarcado, new { htmlAttributes = new { @class = "input-sm form-control-sm form-control date", @placeholder = "Introduza data de marcação...", @autocomplete = "off",
-                       @style = "width: 641px" } })
-                        @Html.ValidationMessageFor(model => model.dtmarcado, "", new { @class = "text-danger" })
-                    </div>
+                <div class="col col-md-10" style="margin-left: -32px">
+                    @Html.EnumDropDownListFor(model => model.prioridade, new { @class = "form-control autoComplete", @style = "width: 641px" })
+                    @Html.ValidationMessageFor(model => model.prioridade, "", new { @class = "text-danger" })
                 </div>
-            }
-            else
+            </div>
+            <div class="col col-md-12 form-group" style="margin-top: -10px">
+                <div class="col col-md-2">
+                    <label for="@Html.NameFor(model =>model.dtmarcado)" class=" form-control-label" style="line-height:28px">@Html.DisplayNameFor(model => model.dtmarcado):</label>
+                </div>
+                <div class="col col-md-5" style="margin-left: -32px">
+                    @Html.EditorFor(model => model.dtmarcado, new
             {
-                @Html.HiddenFor(model => model.nrcontribuinte)
-                @Html.HiddenFor(model => model.assunto)
-                @Html.HiddenFor(model => model.idfuncionario)
-                @Html.HiddenFor(model => model.idatividade)
-                @Html.HiddenFor(model => model.prioridade)
-                @Html.HiddenFor(model => model.dtmarcado)
-            }
-            
+                htmlAttributes = new
+                {
+                    @class = "input-sm form-control-sm form-control date",
+                    @placeholder = "Introduza data de marcação...",
+                    @autocomplete = "off",
+                    @style = "width: 641px"
+                }
+            })
+                    @Html.ValidationMessageFor(model => model.dtmarcado, "", new { @class = "text-danger" })
+                </div>
+            </div>
+}
+else
+{
+        @Html.HiddenFor(model => model.idfuncionario)
+        @Html.HiddenFor(model => model.idatividade)
+        @Html.HiddenFor(model => model.prioridade)
+        @Html.HiddenFor(model => model.dtmarcado)
+}
+
+            </div>
         </div>
-    </div>
 
     <div class="modal-footer">
         <button type="submit" class="btn btn-primary"><i class="fa fa-location-arrow"></i>&nbsp; Encaminhar</button>

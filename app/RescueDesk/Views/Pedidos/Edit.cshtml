@@ -53,7 +53,7 @@ method: FormMethod.Post))
                         <label for="@Html.NameFor(model => model.nrcontribuinte)" class=" form-control-label" style="line-height:28px">Cliente:</label>
                     </div>
                     <div class="col col-md-10" style="margin-left: -32px">
-                        @Html.DropDownListFor(model => model.nrcontribuinte, clientes, new { @class = "form-control autoComplete", @style= "width: 641px" })
+                        @Html.DropDownListFor(model => model.nrcontribuinte, clientes, new { @class = "form-control autoComplete", @style = "width: 641px" })
                         @Html.ValidationMessageFor(model => model.nrcontribuinte, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -82,15 +82,30 @@ method: FormMethod.Post))
             </div>
             @if (ViewHelper.IsAdmin())
             {
-                <div class="col col-md-12 form-group">
-                    <div class="col col-md-2">
-                        <label for="@Html.NameFor(model =>model.idfuncionario)" class=" form-control-label" style="line-height:28px; margin-right: -32px">@Html.DisplayNameFor(model => model.funcionario):</label>
+                if (Model.funcionario == null)
+                {
+                    <div class="col col-md-12 form-group">
+                        <div class="col col-md-2">
+                            <label for="@Html.NameFor(model =>model.idfuncionario)" class=" form-control-label" style="line-height:28px; margin-right: -32px">@Html.DisplayNameFor(model => model.funcionario):</label>
+                        </div>
+                        <div class="col col-md-10" style="margin-left: -32px">
+                            @Html.EditorFor(model => model.idfuncionario, new { htmlAttributes = new { @disabled = "disabled", @class = "input-sm form-control-sm form-control", @style = "width: 641px" } })
+                            @Html.ValidationMessageFor(model => model.idfuncionario, "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                    <div class="col col-md-10" style="margin-left: -32px">
-                        @Html.DropDownListFor(model => model.idfuncionario, funcionarios, new { @class = "form-control autoComplete", @style = "width: 641px" })
-                        @Html.ValidationMessageFor(model => model.idfuncionario, "", new { @class = "text-danger" })
+                }
+                else
+                {
+                    <div class="col col-md-12 form-group">
+                        <div class="col col-md-2">
+                            <label for="@Html.NameFor(model =>model.idfuncionario)" class=" form-control-label" style="line-height:28px; margin-right: -32px">@Html.DisplayNameFor(model => model.funcionario):</label>
+                        </div>
+                        <div class="col col-md-10" style="margin-left: -32px">
+                            @Html.DropDownListFor(model => model.idfuncionario, funcionarios, new { @class = "form-control autoComplete", @style = "width: 641px" })
+                            @Html.ValidationMessageFor(model => model.idfuncionario, "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>
+                }
             }
             else
             {
@@ -129,8 +144,16 @@ method: FormMethod.Post))
                         <label for="@Html.NameFor(model =>model.dtmarcado)" class=" form-control-label" style="line-height:28px">@Html.DisplayNameFor(model => model.dtmarcado):</label>
                     </div>
                     <div class="col col-md-5" style="margin-left: -32px">
-                        @Html.EditorFor(model => model.dtmarcado, new { htmlAttributes = new { @class = "input-sm form-control-sm form-control date", @placeholder = "Introduza data de marcação...", @autocomplete = "off",
-                       @style = "text-align: end" } })
+                        @Html.EditorFor(model => model.dtmarcado, new
+                        {
+                            htmlAttributes = new
+                            {
+                                @class = "input-sm form-control-sm form-control date",
+                                @placeholder = "Introduza data de marcação...",
+                                @autocomplete = "off",
+                                @style = "text-align: end"
+                            }
+                        })
                         @Html.ValidationMessageFor(model => model.dtmarcado, "", new { @class = "text-danger" })
                     </div>
                     <div class="col col-md-2" style="margin-right: -46px; ; margin-left: 34px">

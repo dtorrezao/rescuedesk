@@ -96,15 +96,20 @@ namespace RescueDesk.Services
 
         public bool UpdateCliente(Cliente cliente)
         {
-
             string query = "UPDATE `clientes` ";
             query += "SET `nome` =  '" + cliente.nome + "', " +
-                "`morada` =  '" + cliente.morada + "', " +
-                "`codpostal` =  '" + cliente.codpostal + "'," +
-                " `contacto` = '" + cliente.contacto + "'," +
-                " `email` = '" + cliente.email + "'," +
-                "`obs` = '" + cliente.obs + "' " +
-                "WHERE `clientes`.`nrcontribuinte` = '" + cliente.nrcontribuinte.ToString() + "'";
+                "`morada` =  '" + cliente.morada + "', ";
+            if (cliente.codpostal != "Introduza o seu código postal...")
+            {
+                query += "`codpostal` =  '" + cliente.codpostal + "',";
+
+
+            }
+
+            query += " `contacto` = '" + cliente.contacto + "'," +
+            " `email` = '" + cliente.email + "'," +
+            " `obs` = '" + cliente.obs + "' " +
+            "WHERE `clientes`.`nrcontribuinte` = '" + cliente.nrcontribuinte.ToString() + "'";
             this.Conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, this.Conn);
             int resultados = cmd.ExecuteNonQuery();
