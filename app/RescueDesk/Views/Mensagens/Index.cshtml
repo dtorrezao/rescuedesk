@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<RescueDesk.Models.Mensagem>
 @{
     ViewBag.Title = "Mensagens";
-    ViewBag.FAIcon = "fa-file-text";
-    ViewBag.SubTitle = "Criar";
+    ViewBag.FAIcon = "fa-envelope";
+    ViewBag.SubTitle = "Escrever";
     ViewBag.AddUrl = Url.Action("Create");
 
     int mensagem = ViewBag.mensagem;
@@ -12,67 +12,67 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <table id="bootstrap-data-table" class="table table-striped table-bordered" style="font-size:14px">
+                    <table id="bootstrap-data-table-pedidos" class="table table-striped table-bordered" style="font-size:14px">
                         <thead>
                             <tr>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.assunto)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.corpo)
-                                </th>
                                 @if (mensagem == 1)
                                 {
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.recetorEmail)
+                                    <th style="width:20%">
+                                        Para
                                     </th>
                                 }
                                 @if (mensagem == 2)
                                 {
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.emissor)
+                                    <th style="width:20%">
+                                        De
                                     </th>
                                 }
                                 <th>
+                                    Mensagem
+                                </th>
+                                <th style="width:5%">
                                     @Html.DisplayNameFor(model => model.dtenviado)
                                 </th>
-                                <th class="no-sort"></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.assunto)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.mensagemAbreviado)
-                                    </td>
+                                <tr href="@Url.Action("Details", new { id = item.idmensagem })"
+                                    data-ajax="true"
+                                    data-ajax-method="GET"
+                                    data-ajax-mode="after"
+                                    data-ajax-update="#modal-body"
+                                    class="modal-link">
                                     @if (mensagem == 1)
                                     {
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.recetorEmail)
+                                            <strong style="font-weight:400">
+                                                @Html.DisplayFor(modelItem => item.recetorEmail)
+                                            </strong>
                                         </td>
                                     }
                                     @if (mensagem == 2)
                                     {
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.emissorEmail)
+                                            <strong style="font-weight:400">
+                                                @Html.DisplayFor(modelItem => item.emissorEmail)
+                                            </strong>
                                         </td>
                                     }
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.dtenviado)
-                                    </td>
-                                    <td>
-                                        <a href="@Url.Action("Details", new { id = item.idmensagem })"
-                                           title="Detalhes"
-                                           data-ajax="true"
-                                           data-ajax-method="GET"
-                                           data-ajax-mode="after"
-                                           data-ajax-update="#modal-body"
-                                           class="btn btn-link minus-padd modal-link"><i class="fa fa-info-circle fa-add"></i></a>
-                        
+                                        <td>
+                                            <b>
+                                                @Html.DisplayFor(modelItem => item.assunto)
+                                            </b>
+                                            -
+                                            <strong style="font-weight:400">
+                                                @Html.DisplayFor(modelItem => item.mensagemAbreviado)
+                                            </strong>
+                                        </td>
+                                    <td align="center">
+                                        <strong style="font-weight:lighter">
+                                            @Html.DisplayFor(modelItem => item.dtenviado)
+                                        </strong>
                                     </td>
                                 </tr>
                             }

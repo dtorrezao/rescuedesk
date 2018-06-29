@@ -2,28 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using RescueDesk.Models;
 
 namespace RescueDesk.ViewModels
 {
     public class DashboardViewModel
     {
-        public int PedidosPorMes { get; set; }
-        public string ClienteMaisPedidos { get; set; }
-        public string ServicoMaisPedidos { get; set; }
-        public string FuncionarioMaisPedidos { get; set; }
-
-        public int[] PedidosPorMesData { get; set; }
-        public string[] PedidosPorMesLabels { get;  set; }
-
-        public int[] ClienteMaisPedidosData { get; set; }
-        public string[] ClienteMaisPedidosLabels { get; set; }
-
-        public int[] ServicoMaisPedidosData { get; set; }
-        public string[] ServicoMaisPedidosLabels { get; set; }
-
-        public int[] FuncionarioMaisPedidosData { get; set; }
-        public string[] FuncionarioMaisPedidosLabels { get; set; }
-
+        public ChartViewModel PedidosPorMes { get; set; }
+        public ChartViewModel ClienteMaisPedidos { get; set; }
+        public ChartViewModel ServicoMaisPedidos { get; set; }
+        public ChartViewModel FuncionarioMaisPedidos { get; set; }
         public ProfileCardViewModel ProfileCard { get;  set; }
+        public List<Pedido> PedidosTop5 { get; internal set; }
     }
 }

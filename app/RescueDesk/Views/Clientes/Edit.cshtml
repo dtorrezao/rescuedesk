@@ -82,7 +82,7 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
                     <label class="checkboxAlter">
                         @if (Model.CriarUtilizador)
                         {
-                            @Html.EditorFor(model => model.CriarUtilizador, new { htmlAttributes = new { @disabled = "disabled" } });
+                            @Html.EditorFor(model => model.CriarUtilizador, new { htmlAttributes = new { @disabled = "disabled" } })
                             <span class="checkmark"></span>
                         }
                         else

@@ -186,6 +186,7 @@
     <Compile Include="Models\Utilizador.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AddressService.cs" />
+    <Compile Include="Services\DashboardService.cs" />
     <Compile Include="Services\MensagensService.cs" />
     <Compile Include="Services\ServicosService.cs" />
     <Compile Include="Services\ClientesService.cs" />
@@ -202,6 +203,7 @@
     <Compile Include="Utils\ViewHelper.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
     <Compile Include="ViewModels\MensagemViewModel.cs" />
+    <Compile Include="ViewModels\PedidosPorMesViewModel.cs" />
     <Compile Include="ViewModels\ProfileCardViewModel.cs" />
     <Compile Include="ViewModels\RegistoClienteViewModel.cs" />
     <Compile Include="ViewModels\ClienteViewModel.cs" />

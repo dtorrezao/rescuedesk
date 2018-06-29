@@ -45,6 +45,10 @@ namespace RescueDesk.Controllers
         {
             MensagensService servico = new MensagensService();
             Mensagem msg = servico.ObterMensagem(id);
+            UtilizadorService service = new UtilizadorService();
+
+            ViewBag.ListaUtilizadores = this.ListaUtilizadores(service);
+
             msg.lido = true;
             servico.UpdateMensagem(msg,msg.lido);
 

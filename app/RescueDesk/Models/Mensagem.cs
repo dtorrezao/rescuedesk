@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -25,7 +26,7 @@ namespace RescueDesk.Models
         {
             get
             {
-                int qtdCaracteres = 60;
+                int qtdCaracteres = 110;
                 if (corpo.Length > qtdCaracteres)
                 {
                     string myString = corpo.Substring(0, qtdCaracteres);
@@ -37,14 +38,17 @@ namespace RescueDesk.Models
                 return corpo;
             }
         }
-        [DisplayName("Para")]
+        [DisplayName("Emissor")]
+        [DataType(DataType.EmailAddress)]
         public int emissor { get; set; }
-        [DisplayName("De")]
+        [DisplayName("Recetor")]
+        [DataType(DataType.EmailAddress)]
         public int recetor { get; set; }
         //[DisplayName("Email")]
         //[DataType(DataType.EmailAddress)]
         //public string email { get; set; }
-        [DisplayName("Data de Envio")]
+        [DisplayName("Enviado")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yy}")]
         public DateTime dtenviado { get; set; }
         [DisplayName("Lido")]
         public bool lido { get; set; }

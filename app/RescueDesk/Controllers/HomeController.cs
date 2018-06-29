@@ -18,28 +18,19 @@ namespace RescueDesk.Controllers
         public ActionResult Index()
         {
             DashboardViewModel vm = new DashboardViewModel();
-
-            vm.PedidosPorMes = 1000;
-            vm.PedidosPorMesData = new int[] { 50, 59, 84, 84, 51, 55, 40 };
-            vm.PedidosPorMesLabels = new string[] { "January", "February", "March", "April", "May", "June", "July" };
-
-            vm.ClienteMaisPedidos = "1000";
-            vm.ClienteMaisPedidosData = new int[] { 50, 59, 84, 84, 51, 55, 40 };
-            vm.ClienteMaisPedidosLabels = new string[] { "January", "February", "March", "April", "May", "June", "July" };
-
-            vm.ServicoMaisPedidos = "1000";
-            vm.ServicoMaisPedidosData = new int[] { 50, 59, 84, 84, 51, 55, 40 };
-            vm.ServicoMaisPedidosLabels = new string[] { "January", "February", "March", "April", "May", "June", "July" };
-
-            vm.FuncionarioMaisPedidos = "1000";
-            vm.FuncionarioMaisPedidosData = new int[] { 50, 59, 84, 84, 51, 55, 40 };
-            vm.FuncionarioMaisPedidosLabels = new string[] { "January", "February", "March", "April", "May", "June", "July" };
+            DashboardService service = new DashboardService();
+            vm.PedidosPorMes = service.ObterPedidosPorMes();
+            vm.ClienteMaisPedidos = service.ObterClienteMaisPedidos();
+            vm.ServicoMaisPedidos = service.ObterServicoMaisPedidos();
+            vm.FuncionarioMaisPedidos = service.ObterFuncionarioMaisPedidos();
 
             vm.ProfileCard = new ProfileCardViewModel();
             vm.ProfileCard.Nome = "David";
             vm.ProfileCard.Posicao = "Programador";
             vm.ProfileCard.Foto = "/images/admin.jpg";
 
+            PedidosService servico = new PedidosService();
+            vm.PedidosTop5 = servico.ObterPedidosPendentes(this.ObterUtilizador()).Take(5).ToList();
             return View(vm);
         }
 
@@ -110,7 +101,8 @@ namespace RescueDesk.Controllers
                 title = string.Format("[#{0}] - {1}", x.idpedido, x.assunto.ToString()),
                 start = x.dtmarcado.Value,
                 end = CalcularPeso(x.dtmarcado.Value, tiposServico[x.idatividade.Value]),
-                backgroundColor = ObterCor(x)
+                backgroundColor = ObterCor(x),
+                textColor = ObterTextColor(x)
             }).ToList();
             return JsonConvert.SerializeObject(eventos);
         }
@@ -122,19 +114,45 @@ namespace RescueDesk.Controllers
             switch (pedidop.prioridade)
             {
                 case Models.enums.prioridade.Alta:
-                    cor = "#ffa500";
+                    cor = "#ff4e00";
                     break;
                 case Models.enums.prioridade.Baixa:
-                    cor = "#FFFF00";
+                    cor = "#3c8ada";
                     break;
                 case Models.enums.prioridade.Critica:
-                    cor = "#FF0000";
+                    cor = "#b60000";
                     break;
                 case Models.enums.prioridade.Media:
-                    cor = "#016ca1";
+                    cor = "#fff600";
                     break;
                 default:
                     cor = "#FFFFFF";
+                    break;
+            }
+
+            return cor;
+        }
+
+        private string ObterTextColor(Pedido pedidop)
+        {
+            string cor;
+            //url = "http://www.google.com", backgroundColor = "#378006"
+            switch (pedidop.prioridade)
+            {
+                case Models.enums.prioridade.Alta:
+                    cor = "#FFFFFF";
+                    break;
+                case Models.enums.prioridade.Baixa:
+                    cor = "#FFFFFF";
+                    break;
+                case Models.enums.prioridade.Critica:
+                    cor = "#FFFFFF";
+                    break;
+                case Models.enums.prioridade.Media:
+                    cor = "#000000";
+                    break;
+                default:
+                    cor = "#000000";
                     break;
             }
 
@@ -152,5 +170,6 @@ namespace RescueDesk.Controllers
             UtilizadorService UtilizadorService = new UtilizadorService();
             return UtilizadorService.ObterUtilizadorByEmail(userName);
         }
+
     }
 }

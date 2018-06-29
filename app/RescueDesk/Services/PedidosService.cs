@@ -48,7 +48,7 @@ namespace RescueDesk.Services
                 }
             }
 
-            query += " ORDER by  dtresolvido ASC, prioridade asc";
+            query += " ORDER by  dtresolvido ASC, prioridade asc, dtpedido ASC";
 
             MySqlDataAdapter cmd1 = new MySqlDataAdapter(query, this.Conn);
             DataTable dados1 = new DataTable();

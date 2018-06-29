@@ -42,6 +42,8 @@ namespace RescueDesk.Services
                 }
             }
 
+            query += " ORDER BY dtenviado DESC";
+
             MySqlDataAdapter cmd1 = new MySqlDataAdapter(query, this.Conn);
             DataTable dados1 = new DataTable();
             cmd1.Fill(dados1);

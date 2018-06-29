@@ -47,7 +47,7 @@
                                         @Html.DisplayNameFor(model => model.prioridade)
                                     </th>
                                 }
-                                <th class="no-sort" style="width: 10%"></th>
+                                <th class="no-sort" style="width: 12%"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,13 +55,20 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.idpedido)
+                                        <strong style="font-weight:lighter">
+                                            @Html.DisplayFor(modelItem => item.idpedido)
+                                        </strong>
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.assunto)
+                                        <strong style="font-weight:500">
+
+                                            @Html.DisplayFor(modelItem => item.assunto)
+                                        </strong>
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.dtpedido, "{0:dd/MM/yyyy}")
+                                    <td align="center">
+                                        <strong style="font-weight:lighter">
+                                            @Html.DisplayFor(modelItem => item.dtpedido)
+                                        </strong>
                                     </td>
                                     <td>
                                         @if (item.dtlido == null)
@@ -96,36 +103,41 @@
                                     @if (ViewHelper.IsAdmin() || ViewHelper.IsFuncionario())
                                     {
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.atividade)
+                                            <strong style="font-weight:lighter">
+                                                @Html.DisplayFor(modelItem => item.atividade)
+                                            </strong>
                                         </td>
                                     }
                                     @if (ViewHelper.IsAdmin() || ViewHelper.IsFuncionario())
                                     {
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.prioridade)
+                                            <strong style="font-weight:lighter">
+                                                @Html.DisplayFor(modelItem => item.prioridade)
+                                            </strong>
                                         </td>
                                     }
-                                        <td align="center">
-                                            <a href="@Url.Action("Edit", new { id = item.idpedido })"
-                                               title="Editar"
-                                               data-ajax="true"
-                                               data-ajax-method="GET"
-                                               data-ajax-mode="after"
-                                               data-ajax-update="#modal-body"
-                                               class="btn btn-link minus-padd modal-link"><i class="fa fa-pencil fa-add"></i></a>
-                                            @if (item.idfuncionario == null && eAdmin)
-    {
-                                        <a href="@Url.Action("Encaminhar", new { id = item.idpedido })" class="btn btn-link minus-padd modal-link" title="Encaminhar"><i class="fa fa-forward"></i></a>
-}
+                                    <td align="center">
+                                        <a href="@Url.Action("Edit", new { id = item.idpedido })"
+                                           title="Editar"
+                                           data-ajax="true"
+                                           data-ajax-method="GET"
+                                           data-ajax-mode="after"
+                                           data-ajax-update="#modal-body"
+                                           class="btn btn-link minus-padd modal-link @if (item.Resolvido) { <text> disabled</text> }"><i class="fa fa-pencil fa-add"></i></a>
 
-                                            <a href="@Url.Action("Details", new { id = item.idpedido })"
-                                               title="Editar"
-                                               data-ajax="true"
-                                               data-ajax-method="GET"
-                                               data-ajax-mode="after"
-                                               data-ajax-update="#modal-body"
-                                               class="btn btn-link minus-padd modal-link"><i class="fa fa-info-circle fa-add"></i></a>
-                                        </td>
+                                        <a href="@Url.Action("Details", new { id = item.idpedido })"
+                                           title="Editar"
+                                           data-ajax="true"
+                                           data-ajax-method="GET"
+                                           data-ajax-mode="after"
+                                           data-ajax-update="#modal-body"
+                                           class="btn btn-link minus-padd modal-link"><i class="fa fa-info-circle fa-add"></i></a>
+
+                                        @if (item.idfuncionario == null && eAdmin)
+                                        {
+                                            <a href="@Url.Action("Encaminhar", new { id = item.idpedido })" class="btn btn-link minus-padd modal-link" title="Encaminhar"><i class="fa fa-forward fa-add"></i></a>
+                                        }
+                                    </td>
                                 </tr>
                             }
                         </tbody>

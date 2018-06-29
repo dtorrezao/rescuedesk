@@ -41,11 +41,11 @@
                         <span class="count bg-primary">@ViewHelper.ObterContagemMensagens()</span>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="message">
-                        <p class="red">You have @ViewHelper.ObterContagemMensagens() Mails</p>
+                        <p class="red">Tem @ViewHelper.ObterContagemMensagens() Mensagens</p>
                         @foreach (var item in ViewHelper.ObterMensagens(5))
                         {
                             <a class="dropdown-item media bg-flat-color-1 modal-link" href="@Url.Action("Details","Mensagens",new { id = item.Link })">
-                                <span class="photo media-left"><img src="@item.Utilizador.foto"></span>
+                                <span class="photo media-left"><img class="rounded-circle mx-auto d-block" src="@item.Utilizador.foto"></span>
                                 <span class="message media-body">
                                     <span class="name float-left">@item.Utilizador.nome</span>
                                     <span class="time float-right">@item.DataEnviada</span>

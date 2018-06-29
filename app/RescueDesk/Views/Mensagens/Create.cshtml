@@ -16,46 +16,33 @@
             </button>
         </div>
     }
-        <div class="modal-body">
-            @Html.AntiForgeryToken()
-            @Html.HiddenFor(model => model.idmensagem)
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-
-            <div class="row">
-                <div class="col col-md-12 form-group">
-                    <div class="col col-md-2">
-                        <label for="@Html.NameFor(model => model.recetor)" class=" form-control-label">Recetor:</label>
-                    </div>
-                    <div class="col col-md-10">
-                        @Html.DropDownListFor(model => model.recetor, utilizadores, new { @class = "form-control autoComplete" })
-                        @Html.ValidationMessageFor(model => model.recetor, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+    <div class="modal-body">
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.idmensagem)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col col-md-1">
+                <label for="@Html.NameFor(model => model.recetor))" class="form-control-label" style="line-height: 28px; font-size: 15px">Para:</label>
             </div>
-            <div class="row">
-                <div class="col col-md-12 form-group">
-                    <div class="col col-md-2">
-                        <label for="@Html.NameFor(model =>model.assunto)" class=" form-control-label">@Html.DisplayNameFor(model => model.assunto):</label>
-                    </div>
-                    <div class="col col-md-10">
-                        @Html.EditorFor(model => model.assunto, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o assunto da mensagem...", @autocomplete = "off" } })
-                        @Html.ValidationMessageFor(model => model.assunto, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="col col-md-12 form-group">
-                    <div class="col col-md-2">
-                        <label for="@Html.NameFor(model=>model.corpo)" class=" form-control-label">@Html.DisplayNameFor(model => model.corpo):</label>
-                    </div>
-                    <div class="col col-md-10">
-                        @Html.TextAreaFor(model => model.corpo, new { @class = "form-control", @placeholder = "Escreva aqui o corpo da sua mensagem...", @rows = "10" })
-                        @Html.ValidationMessageFor(model => model.corpo, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+            <div class="col col-md-11">
+                @Html.DropDownListFor(model => model.recetor, utilizadores, new { @class = "form-control autoComplete" })
+                @Html.ValidationMessageFor(model => model.recetor, "", new { @class = "text-danger" })
+            </div>
+            <div class="col col-md-1">
+                <label for="@Html.NameFor(model =>model.assunto)" class="form-control-label" style="line-height: 38px; font-size: 15px">@Html.DisplayNameFor(model => model.assunto):</label>
+            </div>
+            <div class="col col-md-11">
+                @Html.EditorFor(model => model.assunto, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o assunto da mensagem...", @autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.assunto, "", new { @class = "text-danger" })
+            </div>
+            <div class="col col-md-12">
+                @Html.TextAreaFor(model => model.corpo, new { @class = "form-control", @placeholder = "Escreva aqui a sua mensagem...", @rows = "15" })
+                @Html.ValidationMessageFor(model => model.corpo, "", new { @class = "text-danger" })
             </div>
         </div>
+    </div>
     <div class="modal-footer">
-        <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>&nbsp; Guardar</button>
+        <button type="submit" class="btn btn-primary"><i class="fa fa-location-arrow"></i>&nbsp; Enviar</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal"> <i class="fa fa-times"></i>&nbsp;Cancelar</button>
     </div>
 }
@@ -63,10 +50,9 @@
     @Scripts.Render("~/bundles/jqueryval")
 }
 
-    <script>
+<script>
     jQuery(document).ready(function () {
         jQuery(".autoComplete").chosen({});
     });
-
-
-    </script>
+    
+</script>

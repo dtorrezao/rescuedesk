@@ -103,11 +103,12 @@ namespace RescueDesk.Controllers
         {
             PedidosService servico = new PedidosService();
             ServicosService servicosService = new ServicosService();
+            ClientesService clientes = new ClientesService();
             FuncionariosService funcionarios = new FuncionariosService();
             Pedido pedido = servico.ObterPedido(id);
             ViewBag.TiposActividade = this.ListaTiposActividade(servicosService);
-
-            ViewBag.ListaFuncionarios = this.ListaFuncionarios(funcionarios, pedido.idfuncionario.Value);
+            ViewBag.ListaClientes = this.ListaClientes(clientes);
+            ViewBag.ListaFuncionarios = this.ListaFuncionarios(funcionarios, pedido.idfuncionario.HasValue ? pedido.idfuncionario.Value : 0);
 
             return View(pedido);
         }
@@ -171,7 +172,7 @@ namespace RescueDesk.Controllers
             ViewBag.TiposActividade = this.ListaTiposActividade(servicosService);
 
             Pedido pedido = servico.ObterPedido(id);
-            ViewBag.ListaFuncionarios = this.ListaFuncionarios(funcionarios, pedido.idfuncionario.Value);
+            ViewBag.ListaFuncionarios = this.ListaFuncionarios(funcionarios, pedido.idfuncionario.HasValue ? pedido.idfuncionario.Value : 0);
             return View(pedido);
         }
 
@@ -223,7 +224,7 @@ namespace RescueDesk.Controllers
             ViewBag.ListaClientes = this.ListaClientes(clientes);
             ViewBag.TiposActividade = this.ListaTiposActividade(servicosService);
             Pedido pedido = servico.ObterPedido(id);
-            ViewBag.ListaFuncionarios = this.ListaFuncionarios(funcionarios, pedido.idfuncionario.Value);
+            ViewBag.ListaFuncionarios = this.ListaFuncionarios(funcionarios, pedido.idfuncionario.HasValue ? pedido.idfuncionario.Value : 0);
             return View(pedido);
         }
 
