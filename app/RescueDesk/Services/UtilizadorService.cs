@@ -41,7 +41,16 @@ namespace RescueDesk.Services
         public Utilizador ObterUtilizadorByEmail(string user)
         {
             this.Conn.Open();
-            MySqlDataAdapter cmd1 = new MySqlDataAdapter("Select * from utilizadores where email='" + user + "'", this.Conn);
+            string query = "Select u.*, tipouser, ";
+            query += "case WHEN f.nome is null then c.nome ELSE f.nome END AS nome,";
+            query += "CASE WHEN f.ativo IS NULL THEN 1 ELSE f.ativo END 'Ativo'";
+            query += " from utilizadores u";
+            query += " LEFT join funcionarios f on f.idUtilizador = u.idUtilizador";
+            query += " LEFT join clientes c on c.nrcontribuinte = u.nrcontribuinte";
+            query += " inner join tipoutilizador tu on u.idtipo = tu.idtipo";
+            query += " where u.email = '" + user + "'";
+
+            MySqlDataAdapter cmd1 = new MySqlDataAdapter(query, this.Conn);
             DataTable dados1 = new DataTable();
             cmd1.Fill(dados1);
             this.Conn.Close();

@@ -31,6 +31,14 @@
         color: #1e7e34;
     }
 
+.fa-gray {
+    color: #6c757d;
+}
+
+    .fa-gray:hover {
+        color: #000000;
+    }
+
 .card-body .row label {
     line-height: 35px;
 }

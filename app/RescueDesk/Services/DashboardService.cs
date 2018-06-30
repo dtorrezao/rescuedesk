@@ -150,10 +150,29 @@ namespace RescueDesk.Services
             cmd1.Fill(dados1);
             this.Conn.Close();
 
+            int qtdCaracteres = 20;
+
             Dictionary<string, int> qtds = new Dictionary<string, int>();
             foreach (DataRow linha in dados1.Rows)
             {
                 var nome = linha["nome"].ToString();
+                if (nome.Length > qtdCaracteres)
+                {
+                    string myString = nome.Substring(0, qtdCaracteres);
+
+                    if (myString.LastIndexOf(' ') != -1)
+                    {
+                        int index = myString.LastIndexOf(' ');
+
+                        string outputString = myString.Substring(0, index);
+
+                        nome = outputString + "...";
+                    }
+                    else
+                    {
+                        nome = myString + "...";
+                    }
+                }
                 var Qtd = linha["QTD"].ToString();
                 qtds.Add(nome, int.Parse(Qtd));
             }
@@ -172,18 +191,8 @@ namespace RescueDesk.Services
                 vm.Labels = new string[] { };
             }
 
-
             return vm;
         }
 
-        /*
-         *  
-            
-            
-            
-            
-            
-            
-*/
     }
 }

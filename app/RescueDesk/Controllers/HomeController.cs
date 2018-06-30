@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using RescueDesk.Models;
+using RescueDesk.Models.enums;
 using RescueDesk.Services;
 using RescueDesk.Utils;
 using RescueDesk.ViewModels;
@@ -17,6 +18,11 @@ namespace RescueDesk.Controllers
     {
         public ActionResult Index()
         {
+            UtilizadorService UtilizadorService = new UtilizadorService();
+
+            string userName = ControllerContext.HttpContext.User.Identity.Name;
+            Utilizador utilizador = UtilizadorService.ObterUtilizadorByEmail(userName);
+
             DashboardViewModel vm = new DashboardViewModel();
             DashboardService service = new DashboardService();
             vm.PedidosPorMes = service.ObterPedidosPorMes();
@@ -25,12 +31,38 @@ namespace RescueDesk.Controllers
             vm.FuncionarioMaisPedidos = service.ObterFuncionarioMaisPedidos();
 
             vm.ProfileCard = new ProfileCardViewModel();
-            vm.ProfileCard.Nome = "David";
-            vm.ProfileCard.Posicao = "Programador";
-            vm.ProfileCard.Foto = "/images/admin.jpg";
 
+            vm.ProfileCard.Nome = utilizador.nome;
+
+            int qtdCaracteres = 15;
+
+            if (utilizador.nome.Length > qtdCaracteres)
+            {
+                string myString = utilizador.nome.Substring(0, qtdCaracteres);
+
+                if (myString.LastIndexOf(' ') != -1)
+                {
+                    int index = myString.LastIndexOf(' ');
+
+                    string outputString = myString.Substring(0, index);
+
+                    vm.ProfileCard.Nome = outputString + "...";
+                }
+                else
+                {
+                    vm.ProfileCard.Nome = myString + "...";
+                }
+            }
+
+            vm.ProfileCard.Email = utilizador.email;
+            vm.ProfileCard.Foto = utilizador.foto;
+
+            MensagensService mensagens = new MensagensService();
             PedidosService servico = new PedidosService();
-            vm.PedidosTop5 = servico.ObterPedidosPendentes(this.ObterUtilizador()).Take(5).ToList();
+            vm.PedidosPendentesTop4 = servico.ObterPedidosPendentes(this.ObterUtilizador()).Take(4).ToList();
+            vm.MeusPedidosTop4 = servico.ObterPedidos(this.ObterUtilizador(), true).Take(4).ToList();
+            vm.MensagensTop4 = mensagens.ObterMensagens(this.ObterUtilizador(), false, true).Take(4).ToList();
+
             return View(vm);
         }
 

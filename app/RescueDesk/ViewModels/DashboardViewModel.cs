@@ -13,6 +13,8 @@ namespace RescueDesk.ViewModels
         public ChartViewModel ServicoMaisPedidos { get; set; }
         public ChartViewModel FuncionarioMaisPedidos { get; set; }
         public ProfileCardViewModel ProfileCard { get;  set; }
-        public List<Pedido> PedidosTop5 { get; internal set; }
+        public List<Pedido> PedidosPendentesTop4 { get; internal set; }
+        public List<Pedido> MeusPedidosTop4 { get; internal set; }
+        public List<Mensagem> MensagensTop4 { get; internal set; }
     }
 }

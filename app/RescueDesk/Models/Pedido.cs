@@ -14,6 +14,32 @@ namespace RescueDesk.Models
         public int idpedido { get; set; }
         [DisplayName("Assunto")]
         public string assunto { get; set; }
+
+        public string assuntoAbreviado
+        {
+            get
+            {
+                int qtdCaracteres = 20;
+                if (assunto.Length > qtdCaracteres)
+                {
+                    string myString = assunto.Substring(0, qtdCaracteres);
+                    
+                    if (myString.LastIndexOf(' ') != -1)
+                    {
+                        int index = myString.LastIndexOf(' ');
+
+                        string outputString = myString.Substring(0, index);
+
+                        return outputString + "...";
+                    }
+
+                    return myString + "...";
+                }
+
+                return assunto;
+            }
+        }
+        
         [DisplayName("Descrição")]
         public string descricao { get; set; }
 

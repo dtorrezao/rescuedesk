@@ -20,7 +20,6 @@ namespace RescueDesk.Models
         public string assunto { get; set; }
         [DisplayName("Mensagem")]
         public string corpo { get; set; }
-        
 
         public string mensagemAbreviado
         {
@@ -30,9 +29,19 @@ namespace RescueDesk.Models
                 if (corpo.Length > qtdCaracteres)
                 {
                     string myString = corpo.Substring(0, qtdCaracteres);
-              
 
-                    return myString + "...";
+                    if (myString.LastIndexOf(' ') != -1)
+                    {
+                        int index = myString.LastIndexOf(' ');
+
+                        string outputString = myString.Substring(0, index);
+
+                        return outputString + "...";
+                    }
+                    else
+                    {
+                        return myString + "...";
+                    }
                 }
 
                 return corpo;

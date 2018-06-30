@@ -1,144 +1,221 @@
-﻿@using Newtonsoft.Json
+﻿@model DashboardViewModel
+@using Newtonsoft.Json
 @using RescueDesk.ViewModels
 @using RescueDesk.Utils
-@model DashboardViewModel
+
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Painel de Controlo";
+    ViewBag.FAIcon = "fa-dashboard";
 }
 
-<div class="col-sm-6 col-lg-3">
-    <div class="card text-white bg-flat-color-1">
-        <div class="card-body pb-0">
-            <h4 class="mb-0">
-                <span class="count">@Model.PedidosPorMes.Qtd</span>
-            </h4>
-            <p class="text-light">Pedidos</p>
-            <div class="chart-wrapper px-0" style="height:70px;" height="70">
-                <canvas id="PedidosPorMes"></canvas>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="col-sm-6 col-lg-3">
-    <div class="card text-white bg-flat-color-2">
-        <div class="card-body pb-0">
-            <h4 class="mb-0">
-                <span class="count">@Model.ClienteMaisPedidos.Qtd</span>
-            </h4>
-            <p class="text-light">Clientes com Mais Pedidos</p>
-            <div class="chart-wrapper px-0" style="height:70px;" height="70">
-                <canvas id="ClienteMaisPedidos"></canvas>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="col-sm-6 col-lg-3">
-    <div class="card text-white bg-flat-color-3">
-        <div class="card-body pb-0">
-            <h4 class="mb-0">
-                <span class="count">@Model.ServicoMaisPedidos.Qtd</span>
-            </h4>
-            <p class="text-light">Serviço mais solicitados</p>
-            <div class="chart-wrapper px-0" style="height:70px;" height="70">
-                <canvas id="ServicoMaisPedidos"></canvas>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="col-sm-6 col-lg-3">
-    <div class="card text-white bg-flat-color-4">
-        <div class="card-body pb-0">
-            <h4 class="mb-0">
-                <span class="count">@Model.FuncionarioMaisPedidos.Qtd</span>
-            </h4>
-            <p class="text-light">Funcionários Mais Pedidos</p>
-            <div class="chart-wrapper px-3" style="height:70px;" height="70">
-                <canvas id="FuncionarioMaisPedidos"></canvas>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="col-md-4">
-    <aside class="profile-nav alt">
-        <section class="card">
-            <div class="card-header user-header alt bg-dark">
-                <div class="media">
-                    <a href="#">
-                        <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="@Model.ProfileCard.Foto">
+@if (ViewHelper.IsAdmin())
+{
+    <!--PEDIDOS POR MÊS-->
+    <div class="col-sm-6 col-lg-3">
+        <div class="card text-white bg-flat-color-5">
+            <div class="card-body pb-0">
+                <h4 class="mb-0">
+                    <span class="count">@Model.PedidosPorMes.Qtd</span>
+                    <a class="text-light" href="@Url.Action( "Index", "Pedidos")">
+                        <i class="fa fa-angle-right" style="float:right"></i>
                     </a>
-                    <div class="media-body">
-                        <h2 class="text-light display-6">@Model.ProfileCard.Nome</h2>
-                        <p>@Model.ProfileCard.Posicao</p>
+                </h4>
+                <p class="text-light" style="font-size: 15px;">Pedidos de Assistência</p>
+                <div class="chart-wrapper px-0" style="height:90px;" height="90">
+                    <canvas id="PedidosPorMes"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--CLIENTES COM MAIS PEDIDOS-->
+    <div class="col-sm-6 col-lg-3">
+        <div class="card text-white bg-flat-color-2">
+            <div class="card-body pb-0">
+                <h4 class="mb-0">
+                    <span>@Model.ClienteMaisPedidos.Qtd</span>
+                    <a class="text-light" href="@Url.Action( "Index", "Clientes")">
+                        <i class="fa fa-angle-right" style="float:right"></i>
+                    </a>
+                </h4>
+                <p class="text-light" style="font-size: 15px;">Cliente Com Mais Pedidos</p>
+                <div class="chart-wrapper px-0" style="height:90px;" height="90">
+                    <canvas id="ClienteMaisPedidos"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--SERVIÇO MAIS SOLICITADO-->
+    <div class="col-sm-6 col-lg-3">
+        <div class="card text-white bg-flat-color-3">
+            <div class="card-body pb-0">
+                <h4 class="mb-0">
+                    <span>@Model.ServicoMaisPedidos.Qtd</span>
+                    <a class="text-light" href="@Url.Action( "Index", "Servicos")">
+                        <i class="fa fa-angle-right" style="float:right"></i>
+                    </a>
+                </h4>
+                <p class="text-light" style="font-size: 15px;">Serviço Mais Solicitado</p>
+                <div class="chart-wrapper px-0" style="height:90px;" height="90">
+                    <canvas id="ServicoMaisPedidos"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--FUNCIONÁRIO COM MAIS PEDIDOS-->
+    <div class="col-sm-6 col-lg-3">
+        <div class="card text-white bg-flat-color-4">
+            <div class="card-body pb-0">
+                <h4 class="mb-0">
+                    <span>@Model.FuncionarioMaisPedidos.Qtd</span>
+                    <a class="text-light" href="@Url.Action( "Index", "Funcionarios")">
+                        <i class="fa fa-angle-right" style="float:right"></i>
+                    </a>
+                </h4>
+                <p class="text-light" style="font-size: 15px;">Funcionário Mais Solicitado</p>
+                <div class="chart-wrapper px-3" style="height:90px;" height="90">
+                    <canvas id="FuncionarioMaisPedidos"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<!--ANIMAÇÕES FUNCIONÁRIO-->
+@if (ViewHelper.IsFuncionario())
+{
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="stat-widget-one">
+                    <div class="stat-icon dib"><i class="ti-user text-primary border-primary"></i></div>
+                    <div class="stat-content dib">
+                        <div class="stat-text">Clientes</div>
+                        <div class="stat-digit count">@ViewHelper.ClientesContagem</div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="stat-widget-one">
+                    <div class="stat-icon dib"><i class="ti-file text-success border-success"></i></div>
+                    <div class="stat-content dib">
+                        <div class="stat-text">Pedidos</div>
+                        <div class="stat-digit count">@ViewHelper.PedidosContagem</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="stat-widget-one">
+                    <div class="stat-icon dib"><i class="ti-briefcase text-warning border-warning"></i></div>
+                    <div class="stat-content dib">
+                        <div class="stat-text">Funcionários</div>
+                        <div class="stat-digit count">@ViewHelper.FuncionariosContagem</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="stat-widget-one">
+                    <div class="stat-icon dib"><i class="ti-user text-danger border-danger"></i></div>
+                    <div class="stat-content dib">
+                        <div class="stat-text">Utilizadores</div>
+                        <div class="stat-digit count">@ViewHelper.UtilizadoresContagem</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<!--PERFIL-->
+<div class="col-md-4">
+    <aside class="profile-nav alt">
+        <section class="card">
+            <div class="card-header user-header alt bg-light">
+                <div class="media">
+                    <a href="#">
+                        <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px; border: 4px solid rgba(52, 58, 64, 0.5)" src="@Model.ProfileCard.Foto">
+                    </a>
+                    <div class="media-body">
+                        <h3 class="text-dark display-6">@Model.ProfileCard.Nome</h3>
+                        <p>@Model.ProfileCard.Email</p>
+                    </div>
+                </div>
+            </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
-                    <a href="#"> <i class="fa fa-envelope-o"></i> Mail Inbox <span class="badge badge-primary pull-right">10</span></a>
+                    <a class=" fa-gray" href="@Url.Action("Inbox", "Mensagens")"> <i class="fa fa-envelope-o" style="margin-right: 3px"></i>&nbsp;Mensagens<span class="badge badge-primary pull-right">@ViewHelper.ObterContagemMensagens()</span></a>
                 </li>
                 <li class="list-group-item">
-                    <a href="#"> <i class="fa fa-tasks"></i> Recent Activity <span class="badge badge-danger pull-right">15</span></a>
+                    <a class=" fa-gray" href="@Url.Action( "ListarMeusPedidos", "Pedidos")"> <i class="fa fa-file-text" style="margin-right: 5px"></i>&nbsp;Os Meus Pedidos<span class="badge badge-success pull-right">@ViewHelper.ObterContagemMeusPedidos()</span></a>
                 </li>
                 <li class="list-group-item">
-                    <a href="#"> <i class="fa fa-bell-o"></i> Notification <span class="badge badge-success pull-right">11</span></a>
+                    <a class=" fa-gray" href="@Url.Action("Calendario", "Home")"> <i class="fa fa-calendar" style="margin-right: 4px"></i>&nbsp;Calendário</a>
                 </li>
                 <li class="list-group-item">
-                    <a href="#"> <i class="fa fa-comments-o"></i> Message <span class="badge badge-warning pull-right r-activity">03</span></a>
+                    <a class=" fa-gray" href="@Url.Action("Index", "Notas")"> <i class="fa fa-pencil-square-o" style="margin-right: 3px"></i>&nbsp;Notas<span class="badge badge-warning pull-right r-activity">@ViewHelper.ObterContagemNotas()</span></a>
                 </li>
             </ul>
         </section>
     </aside>
 </div>
 
+<!--OS MEUS PEDIDOS-->
 <div class="col-md-8">
     <div class="card">
         <div class="card-header">
-            <strong class="card-title">Card with switch</strong>
+            <a href="@Url.Action( "ListarMeusPedidos", "Pedidos")" style="color:#000">
+                <strong class="card-title">Os Meus Pedidos<small><span class="badge badge-success float-right mt-1">@ViewHelper.ObterContagemMeusPedidos()</span></small></strong>
+            </a>
         </div>
-        <div class="card-body">
-            <table class="table table-striped table-bordered" style="font-size:14px">
+        <div class="card-body" style="height:256px">
+            <table class="table table-striped table-bordered" style="font-size:12px; margin-top: -8px;">
                 <thead>
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.PedidosTop5[0].idpedido)
+                            @Html.DisplayNameFor(model => model.MeusPedidosTop4[0].idpedido)
                         </th>
-                        <th class="no-sort">
-                            @Html.DisplayNameFor(model => model.PedidosTop5[0].assunto)
+                        <th>
+                            @Html.DisplayNameFor(model => model.MeusPedidosTop4[0].assunto)
                         </th>
-                        <th style="width: 15%">
-                            @Html.DisplayNameFor(model => model.PedidosTop5[0].dtpedido)
+                        <th style="width: 18%">
+                            @Html.DisplayNameFor(model => model.MeusPedidosTop4[0].dtpedido)
                         </th>
-                        <th class="no-sort" style="width: 5%">
-                            @Html.DisplayNameFor(model => model.PedidosTop5[0].dtlido)
+                        <th style="width: 5%">
+                            @Html.DisplayNameFor(model => model.MeusPedidosTop4[0].dtlido)
                         </th>
-                        <th class="no-sort" style="width: 5%">
-                            @Html.DisplayNameFor(model => model.PedidosTop5[0].dtmarcado)
+                        <th style="width: 5%">
+                            @Html.DisplayNameFor(model => model.MeusPedidosTop4[0].dtmarcado)
                         </th>
-                        <th class="no-sort" style="width: 5%">
-                            @Html.DisplayNameFor(model => model.PedidosTop5[0].dtresolvido)
+                        <th style="width: 5%">
+                            @Html.DisplayNameFor(model => model.MeusPedidosTop4[0].dtresolvido)
                         </th>
                         @if (ViewHelper.IsAdmin() || ViewHelper.IsFuncionario())
                         {
                             <th>
-                                @Html.DisplayNameFor(model => model.PedidosTop5[0].atividade)
+                                @Html.DisplayNameFor(model => model.MeusPedidosTop4[0].atividade)
                             </th>
                         }
-                        @if (ViewHelper.IsAdmin() || ViewHelper.IsFuncionario())
-                        {
-                            <th style="width: 10%">
-                                @Html.DisplayNameFor(model => model.PedidosTop5[0].prioridade)
-                            </th>
-                        }
-                        <th class="no-sort" style="width: 12%"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model.PedidosTop5)
+                    @foreach (var item in Model.MeusPedidosTop4)
                     {
                         <tr>
                             <td>
@@ -148,7 +225,6 @@
                             </td>
                             <td>
                                 <strong style="font-weight:500">
-
                                     @Html.DisplayFor(modelItem => item.assunto)
                                 </strong>
                             </td>
@@ -160,31 +236,31 @@
                             <td>
                                 @if (item.dtlido == null)
                                 {
-                                    <a class="btn btn-link" style="padding-top: 0px; padding-bottom: 0px; margin-left: 2%"><i class="fa fa-times-circle fa-red"></i></a>
+                                    <a class="btn btn-link" style="padding-top: 0px; padding-bottom: 0px; margin-left: 2%; font-size:small"><i class="fa fa-times-circle fa-red"></i></a>
                                 }
                                 else
                                 {
-                                    <a class="btn btn-link" title="@Html.DisplayFor(modelItem => item.dtlido)" style="padding-top: 0px; padding-bottom: 0px; margin-left: 2%"><i class="fa fa-check-circle fa-green"></i></a>
+                                    <a class="btn btn-link" title="@Html.DisplayFor(modelItem => item.dtlido)" style="padding-top: 0px; padding-bottom: 0px; margin-left: 2%; font-size:small"><i class="fa fa-check-circle fa-green"></i></a>
                                 }
                             </td>
                             <td>
                                 @if (item.dtmarcado == null)
                                 {
-                                    <a class="btn btn-link" style="padding-top: 0px; padding-bottom: 0px; margin-left: 18%"><i class="fa fa-times-circle fa-red"></i></a>
+                                    <a class="btn btn-link" style="padding-top: 0px; padding-bottom: 0px; margin-left: 14%; font-size:small"><i class="fa fa-times-circle fa-red"></i></a>
                                 }
                                 else
                                 {
-                                    <a class="btn btn-link" title="@Html.DisplayFor(modelItem => item.dtmarcado)" style="padding-top: 0px; padding-bottom: 0px; margin-left: 18%"><i class="fa fa-check-circle fa-green"></i></a>
+                                    <a class="btn btn-link" title="@Html.DisplayFor(modelItem => item.dtmarcado)" style="padding-top: 0px; padding-bottom: 0px; margin-left: 14%; font-size:small"><i class="fa fa-check-circle fa-green"></i></a>
                                 }
                             </td>
                             <td>
                                 @if (item.dtresolvido == null)
                                 {
-                                    <a class="btn btn-link" style="padding-top: 0px; padding-bottom: 0px; margin-left: 14px"><i class="fa fa-times-circle fa-red"></i></a>
+                                    <a class="btn btn-link" style="padding-top: 0px; padding-bottom: 0px; margin-left: 16%; font-size:small"><i class="fa fa-times-circle fa-red"></i></a>
                                 }
                                 else
                                 {
-                                    <a class="btn btn-link" title="@Html.DisplayFor(modelItem => item.dtresolvido)" style="padding-top: 0px; padding-bottom: 0px; margin-left: 14px"><i class="fa fa-check-circle fa-green"></i></a>
+                                    <a class="btn btn-link" title="@Html.DisplayFor(modelItem => item.dtresolvido)" style="padding-top: 0px; padding-bottom: 0px; margin-left: 16%; font-size:small"><i class="fa fa-check-circle fa-green"></i></a>
                                 }
                             </td>
                             @if (ViewHelper.IsAdmin() || ViewHelper.IsFuncionario())
@@ -195,33 +271,6 @@
                                     </strong>
                                 </td>
                             }
-                            @if (ViewHelper.IsAdmin() || ViewHelper.IsFuncionario())
-                            {
-                                <td>
-                                    <strong style="font-weight:lighter">
-                                        @Html.DisplayFor(modelItem => item.prioridade)
-                                    </strong>
-                                </td>
-                            }
-                            <td align="center">
-                                <a href="@Url.Action("Edit", new { id = item.idpedido })"
-                                   title="Editar"
-                                   data-ajax="true"
-                                   data-ajax-method="GET"
-                                   data-ajax-mode="after"
-                                   data-ajax-update="#modal-body"
-                                   class="btn btn-link minus-padd modal-link"><i class="fa fa-pencil fa-add"></i></a>
-
-                                <a href="@Url.Action("Details", new { id = item.idpedido })"
-                                   title="Editar"
-                                   data-ajax="true"
-                                   data-ajax-method="GET"
-                                   data-ajax-mode="after"
-                                   data-ajax-update="#modal-body"
-                                   class="btn btn-link minus-padd modal-link"><i class="fa fa-info-circle fa-add"></i></a>
-
-                                
-                            </td>
                         </tr>
                     }
 
@@ -231,172 +280,303 @@
     </div>
 </div>
 
-@*<div class="col-xl-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <h4 class="card-title mb-0">Traffic</h4>
-                        <div class="small text-muted">October 2017</div>
-                    </div>
-                    <!--/.col-->
-                    <div class="col-sm-8 hidden-sm-down">
-                        <button type="button" class="btn btn-primary float-right bg-flat-color-1"><i class="fa fa-cloud-download"></i></button>
-                        <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                            <div class="btn-group mr-3" data-toggle="buttons" aria-label="First group">
-                                <label class="btn btn-outline-secondary">
-                                    <input type="radio" name="options" id="option1"> Day
-                                </label>
-                                <label class="btn btn-outline-secondary active">
-                                    <input type="radio" name="options" id="option2" checked=""> Month
-                                </label>
-                                <label class="btn btn-outline-secondary">
-                                    <input type="radio" name="options" id="option3"> Year
-                                </label>
-                            </div>
-                        </div>
-                    </div><!--/.col-->
-
-                </div><!--/.row-->
-                <div class="chart-wrapper mt-4">
-                    <canvas id="trafficChart" style="height:200px;" height="200"></canvas>
-                </div>
-            </div>
-            <div class="card-footer">
-                <ul>
-                    <li>
-                        <div class="text-muted">Visits</div>
-                        <strong>29.703 Users (40%)</strong>
-                        <div class="progress progress-xs mt-2" style="height: 5px;">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 40%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </li>
-                    <li class="hidden-sm-down">
-                        <div class="text-muted">Unique</div>
-                        <strong>24.093 Users (20%)</strong>
-                        <div class="progress progress-xs mt-2" style="height: 5px;">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 20%;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="text-muted">Pageviews</div>
-                        <strong>78.706 Views (60%)</strong>
-                        <div class="progress progress-xs mt-2" style="height: 5px;">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </li>
-                    <li class="hidden-sm-down">
-                        <div class="text-muted">New Users</div>
-                        <strong>22.123 Users (80%)</strong>
-                        <div class="progress progress-xs mt-2" style="height: 5px;">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </li>
-                    <li class="hidden-sm-down">
-                        <div class="text-muted">Bounce Rate</div>
-                        <strong>40.15%</strong>
-                        <div class="progress progress-xs mt-2" style="height: 5px;">
-                            <div class="progress-bar" role="progressbar" style="width: 40%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+<!--MENSAGENS-->
+<div class="col-md-9">
+    <div class="card">
+        <div class="card-header">
+            <a href="@Url.Action("Inbox", "Mensagens")" style="color:#000">
+                <strong class="card-title">Caixa de Entrada<small><span class="badge badge-danger float-right mt-1">@ViewHelper.ObterContagemMensagens()</span></small></strong>
+            </a>
+        </div>
+        <div class="card-body" style="height:256px">
+            <table class="table table-striped table-bordered" style="font-size:12px; margin-top: -8px;">
+                <thead>
+                    <tr>
+                        <th style="width:20%">
+                            De
+                        </th>
+                        <th>
+                            Mensagem
+                        </th>
+                        <th style="width:5%">
+                            @Html.DisplayNameFor(model => model.MensagensTop4[0].dtenviado)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.MensagensTop4)
+                    {
+                        <tr>
+                            <td>
+                                <strong style="font-weight:400">
+                                    @Html.DisplayFor(modelItem => item.emissorEmail)
+                                </strong>
+                            </td>
+                            <td>
+                                <b>
+                                    @Html.DisplayFor(modelItem => item.assunto)
+                                </b>
+                                -
+                                <strong style="font-weight:400">
+                                    @Html.DisplayFor(modelItem => item.mensagemAbreviado)
+                                </strong>
+                            </td>
+                            <td align="center">
+                                <strong style="font-weight:lighter">
+                                    @Html.DisplayFor(modelItem => item.dtenviado)
+                                </strong>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
-    <div class="col-xl-3 col-lg-6">
-        <section class="card">
-            <div class="twt-feed blue-bg">
-                <div class="corner-ribon black-ribon">
-                    <i class="fa fa-twitter"></i>
-                </div>
-                <div class="fa fa-twitter wtt-mark"></div>
-                <div class="media">
-                    <a href="#">
-                        <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="images/admin.jpg">
-                    </a>
-                    <div class="media-body">
-                        <h2 class="text-white display-6">Jim Doe</h2>
-                        <p class="text-light">Project Manager</p>
-                    </div>
-                </div>
-            </div>
-            <div class="weather-category twt-category">
-                <ul>
-                    <li class="active">
-                        <h5>750</h5>
-                        Tweets
-                    </li>
-                    <li>
-                        <h5>865</h5>
-                        Following
-                    </li>
-                    <li>
-                        <h5>3645</h5>
-                        Followers
-                    </li>
-                </ul>
-            </div>
-            <div class="twt-write col-sm-12">
-                <textarea placeholder="Write your Tweet and Enter" rows="1" class="form-control t-text-area"></textarea>
-            </div>
-            <footer class="twt-footer">
-                <a href="#"><i class="fa fa-camera"></i></a>
-                <a href="#"><i class="fa fa-map-marker"></i></a>
-                New Castle, UK
-                <span class="pull-right">
-                    32
-                </span>
-            </footer>
-        </section>
-    </div>
+</div>
 
+<!--CARDS LATERAIS-->
+@if (ViewHelper.IsAdmin())
+{
     <div class="col-xl-3 col-lg-6">
-        <div class="card">
+        <div class="card card-lateral">
             <div class="card-body">
-                <div class="stat-widget-one">
-                    <div class="stat-icon dib"><i class="ti-money text-success border-success"></i></div>
-                    <div class="stat-content dib">
-                        <div class="stat-text">Total Profit</div>
-                        <div class="stat-digit">1,012</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-xl-3 col-lg-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="stat-widget-one">
+                <div class="stat-widget-one" style="margin-top: -2px">
                     <div class="stat-icon dib"><i class="ti-user text-primary border-primary"></i></div>
                     <div class="stat-content dib">
-                        <div class="stat-text">New Customer</div>
-                        <div class="stat-digit">961</div>
+                        <div class="stat-text">Clientes</div>
+                        <div class="stat-digit count">@ViewHelper.ClientesContagem</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-xl-3 col-lg-6">
-        <div class="card">
+        <div class="card card-lateral">
             <div class="card-body">
-                <div class="stat-widget-one">
-                    <div class="stat-icon dib"><i class="ti-layout-grid2 text-warning border-warning"></i></div>
+                <div class="stat-widget-one" style="margin-top: -2px">
+                    <div class="stat-icon dib"><i class="ti-briefcase text-warning border-warning"></i></div>
                     <div class="stat-content dib">
-                        <div class="stat-text">Active Projects</div>
-                        <div class="stat-digit">770</div>
+                        <div class="stat-text">Funcionários</div>
+                        <div class="stat-digit count">@ViewHelper.FuncionariosContagem</div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>*@
+    </div>
+    <div class="col-xl-3 col-lg-6">
+        <div class="card card-lateral">
+            <div class="card-body">
+                <div class="stat-widget-one" style="margin-top: -2px">
+                    <div class="stat-icon dib"><i class="ti-file text-success border-success"></i></div>
+                    <div class="stat-content dib">
+                        <div class="stat-text">Meus Pedidos</div>
+                        <div class="stat-digit count">@ViewHelper.PedidosContagem</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
+@if (ViewHelper.IsFuncionario() || ViewHelper.IsCliente())
+{
+    <div class="col-xl-3 col-lg-6">
+        <div class="card card-lateral">
+            <div class="card-body">
+                <div class="stat-widget-one" style="margin-top: -2px">
+                    <div class="stat-icon dib"><i class="ti-email text-primary border-primary"></i></div>
+                    <div class="stat-content dib">
+                        <div class="stat-text">Mensagens</div>
+                        <div class="stat-digit count">@ViewHelper.MensagensContagem</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6">
+        <div class="card card-lateral">
+            <div class="card-body">
+                <div class="stat-widget-one" style="margin-top: -2px">
+                    <div class="stat-icon dib"><i class="ti-file text-success border-success"></i></div>
+                    <div class="stat-content dib">
+                        <div class="stat-text">Meus Pedidos</div>
+                        <div class="stat-digit count">@ViewHelper.ObterContagemMeusPedidos()</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6">
+        <div class="card card-lateral">
+            <div class="card-body">
+                <div class="stat-widget-one" style="margin-top: -2px">
+                    <div class="stat-icon dib"><i class="ti-write text-warning border-warning"></i></div>
+                    <div class="stat-content dib">
+                        <div class="stat-text">Notas</div>
+                        <div class="stat-digit count">@ViewHelper.ObterContagemNotas()</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
+@if (ViewHelper.IsAdmin())
+{
+    <!--PEDIDOS PENDENTES-->
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <a href="@Url.Action("ListarPedidosPendentes", "Pedidos")" style="color:#000">
+                    <strong class="card-title">Pedidos Pendentes<small><span class="badge badge-primary float-right mt-1">@ViewHelper.ObterContagemPedidosPendentes()</span></small></strong>
+                </a>
+            </div>
+            <div class="card-body" style="height:256px">
+                <table class="table table-striped table-bordered" style="font-size:12px; margin-top: -8px;">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PedidosPendentesTop4[0].idpedido)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PedidosPendentesTop4[0].assunto)
+                            </th>
+                            <th style="width: 18%">
+                                @Html.DisplayNameFor(model => model.PedidosPendentesTop4[0].dtpedido)
+                            </th>
+                            <th style="width: 5%">
+                                @Html.DisplayNameFor(model => model.PedidosPendentesTop4[0].dtlido)
+                            </th>
+                            <th style="width: 5%">
+                                @Html.DisplayNameFor(model => model.PedidosPendentesTop4[0].dtmarcado)
+                            </th>
+                            <th style="width: 5%">
+                                @Html.DisplayNameFor(model => model.PedidosPendentesTop4[0].dtresolvido)
+                            </th>
+                            @if (ViewHelper.IsAdmin() || ViewHelper.IsFuncionario())
+                            {
+                                <th>
+                                    @Html.DisplayNameFor(model => model.PedidosPendentesTop4[0].atividade)
+                                </th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.PedidosPendentesTop4)
+                        {
+                            <tr>
+                                <td>
+                                    <strong style="font-weight:lighter">
+                                        @Html.DisplayFor(modelItem => item.idpedido)
+                                    </strong>
+                                </td>
+                                <td>
+                                    <strong style="font-weight:500">
+                                        @Html.DisplayFor(modelItem => item.assunto)
+                                    </strong>
+                                </td>
+                                <td align="center">
+                                    <strong style="font-weight:lighter">
+                                        @Html.DisplayFor(modelItem => item.dtpedido)
+                                    </strong>
+                                </td>
+                                <td>
+                                    @if (item.dtlido == null)
+                                    {
+                                        <a class="btn btn-link" style="padding-top: 0px; padding-bottom: 0px; margin-left: 2%; font-size:small"><i class="fa fa-times-circle fa-red"></i></a>
+                                    }
+                                    else
+                                    {
+                                        <a class="btn btn-link" title="@Html.DisplayFor(modelItem => item.dtlido)" style="padding-top: 0px; padding-bottom: 0px; margin-left: 2%; font-size:small"><i class="fa fa-check-circle fa-green"></i></a>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.dtmarcado == null)
+                                    {
+                                        <a class="btn btn-link" style="padding-top: 0px; padding-bottom: 0px; margin-left: 14%; font-size:small"><i class="fa fa-times-circle fa-red"></i></a>
+                                    }
+                                    else
+                                    {
+                                        <a class="btn btn-link" title="@Html.DisplayFor(modelItem => item.dtmarcado)" style="padding-top: 0px; padding-bottom: 0px; margin-left: 14%; font-size:small"><i class="fa fa-check-circle fa-green"></i></a>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.dtresolvido == null)
+                                    {
+                                        <a class="btn btn-link" style="padding-top: 0px; padding-bottom: 0px; margin-left: 16%; font-size:small"><i class="fa fa-times-circle fa-red"></i></a>
+                                    }
+                                    else
+                                    {
+                                        <a class="btn btn-link" title="@Html.DisplayFor(modelItem => item.dtresolvido)" style="padding-top: 0px; padding-bottom: 0px; margin-left: 16%; font-size:small"><i class="fa fa-check-circle fa-green"></i></a>
+                                    }
+                                </td>
+                                @if (ViewHelper.IsAdmin() || ViewHelper.IsFuncionario())
+                                {
+                                    <td>
+                                        <strong style="font-weight:lighter">
+                                            @Html.DisplayFor(modelItem => item.atividade)
+                                        </strong>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!--GESTÃO DE DADOS-->
+    <div class="col-md-4">
+        <aside class="profile-nav alt">
+            <section class="card">
+                <ul class="list-group list-group-flush" style="font-size:12px">
+                    <li class="list-group-item altura-height">
+                        <a class=" fa-gray" href="@Url.Action("Index", "Clientes")"> <i class="fa fa-users" style="margin-right: 4px"></i>&nbsp;Clientes<span class="badge badge-warning pull-right count">@ViewHelper.ClientesContagem</span></a>
+                    </li>
+                    <li class="list-group-item altura-height">
+                        <a class=" fa-gray" href="@Url.Action("Index", "Departamentos")"> <i class="fa fa-sitemap" style="margin-right: 5px"></i>&nbsp;Departamentos<span class="badge badge-warning pull-right count">@ViewHelper.DepartamentosContagem</span></a>
+                    </li>
+                    <li class="list-group-item altura-height">
+                        <a class=" fa-gray" href="@Url.Action("Index", "Funcionarios")"> <i class="fa fa-suitcase" style="margin-right: 5px"></i>&nbsp;Funcionários<span class="badge badge-warning pull-right count">@ViewHelper.FuncionariosContagem</span></a>
+                    </li>
+                    <li class="list-group-item altura-height">
+                        <a class=" fa-gray" href="@Url.Action("Index", "Localidades")"> <i class="fa fa-map-marker" style="margin-right: 6px"></i>&nbsp;Localidades<span class="badge badge-warning pull-right count">@ViewHelper.LocalidadesContagem</span></a>
+                    </li>
+                    <li class="list-group-item altura-height">
+                        <a class=" fa-gray" href="@Url.Action("Index", "Pedidos")"> <i class="fa fa-file-text" style="margin-right: 5px"></i>&nbsp;Pedidos<span class="badge badge-warning pull-right count">@ViewHelper.PedidosContagem</span></a>
+                    </li>
+                    <li class="list-group-item altura-height">
+                        <a class=" fa-gray" href="@Url.Action("Index", "Utilizadores")"> <i class="fa fa fa-users" style="margin-right: 3px"></i>&nbsp;Utilizadores<span class="badge badge-warning pull-right count">@ViewHelper.UtilizadoresContagem</span></a>
+                    </li>
+                    <li class="list-group-item altura-height">
+                        <a class=" fa-gray" href="@Url.Action("Index", "Servicos")"> <i class="fa fa-wrench" style="margin-right: 5px"></i>&nbsp;Serviços<span class="badge badge-warning pull-right count">@ViewHelper.ServicosContagem</span></a>
+                    </li>
+                </ul>
+            </section>
+        </aside>
+    </div>
+}
 
 @section Scripts {
     <script>
         (function ($) {
             "use strict";
+
+            // Counter Number
+            $('.count').each(function () {
+                $(this).prop('Counter', 0).animate({
+                    Counter: $(this).text()
+                }, {
+                        duration: 1500,
+                        easing: 'swing',
+                        step: function (now) {
+                            $(this).text(Math.ceil(now));
+                        }
+                    });
+            });
+
+            //PedidosPorMes
             var ctx = document.getElementById("PedidosPorMes");
             ctx.height = 150;
             var myChart1 = new Chart(ctx, {
@@ -406,7 +586,7 @@
                     type: 'line',
                     datasets: [{
                         data: @Html.Raw(JsonConvert.SerializeObject(Model.PedidosPorMes.Data)),
-                        label: 'Qtd de Pedidos Por Mês',
+                        label: 'Pedidos',
                         backgroundColor: 'transparent',
                         borderColor: 'rgba(255,255,255,.55)',
                     },]
@@ -451,6 +631,7 @@
                     },
                     elements: {
                         line: {
+                            tension: 0.00001,
                             borderWidth: 1
                         },
                         point: {
@@ -462,6 +643,7 @@
                 }
             });
 
+            //ClientesComMaisPedidos
             var cmp = document.getElementById("ClienteMaisPedidos");
             cmp.height = 150;
             var myChart2 = new Chart(cmp, {
@@ -471,7 +653,7 @@
                     type: 'line',
                     datasets: [{
                         data: @Html.Raw(JsonConvert.SerializeObject(Model.ClienteMaisPedidos.Data)),
-                        label: 'Cliente com mais Pedidos',
+                        label: 'Pedidos',
                         backgroundColor: 'transparent',
                         borderColor: 'rgba(255,255,255,.55)',
                     },]
@@ -527,6 +709,7 @@
                 }
             });
 
+            //ServiçoMaisSolicitado
             var smp = document.getElementById("ServicoMaisPedidos");
             smp.height = 150;
             var myChart3 = new Chart(smp, {
@@ -536,7 +719,7 @@
                     type: 'line',
                     datasets: [{
                         data: @Html.Raw(JsonConvert.SerializeObject(Model.ServicoMaisPedidos.Data)),
-                        label: 'Servico com Mais Pedidos',
+                        label: 'Pedidos',
                         backgroundColor: 'transparent',
                         borderColor: 'rgba(255,255,255,.55)',
                     },]
@@ -592,6 +775,7 @@
                 }
             });
 
+            //FuncionáriosComMaisPedidos
             var fmp = document.getElementById("FuncionarioMaisPedidos");
             fmp.height = 150;
             var myChart4 = new Chart(fmp, {
@@ -601,7 +785,7 @@
                     type: 'line',
                     datasets: [{
                         data: @Html.Raw(JsonConvert.SerializeObject(Model.FuncionarioMaisPedidos.Data)),
-                        label: 'Funcionario com Mais Pedidos',
+                        label: 'Pedidos',
                         backgroundColor: 'transparent',
                         borderColor: 'rgba(255,255,255,.55)',
                     },]
@@ -646,6 +830,7 @@
                     },
                     elements: {
                         line: {
+                            tension: 0.00001,
                             borderWidth: 1
                         },
                         point: {
@@ -664,5 +849,18 @@
 <style>
     .card.text-white {
         height: 175px;
+    }
+
+    .card h4 {
+        font-size: 1rem;
+    }
+
+    .altura-height {
+        height: 44.4px !important;
+    }
+
+    .card-lateral {
+        margin-bottom: 6px;
+        height: 98.3px;
     }
 </style>
