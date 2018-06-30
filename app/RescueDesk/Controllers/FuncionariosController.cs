@@ -201,6 +201,8 @@ namespace RescueDesk.Controllers
                     {
                         if (ViewHelper.PageAtiva == "Funcionários")
                         {
+                            ViewHelper.PageAtiva = "";
+
                             return this.RedirectToAction("Index");
                         }
                     }

@@ -1,6 +1,7 @@
 ﻿using RescueDesk.Models;
 using RescueDesk.Models.enums;
 using RescueDesk.Services;
+using RescueDesk.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +42,8 @@ namespace RescueDesk.Controllers
         [Authorize(Roles = "Administrador")]
         public ActionResult ListarPedidosPendentes()
         {
+            ViewHelper.PageAtiva = "PedidosPendentes";
+
             PedidosService servico = new PedidosService();
 
             return View("Index", servico.ObterPedidosPendentes(this.ObterUtilizador()));
@@ -153,7 +156,13 @@ namespace RescueDesk.Controllers
             pedido.dtlido = DateTime.Now;
             if (servico.UpdatePedido(pedido))
             {
-                return this.RedirectToAction("Index");
+                if (ViewHelper.PageAtiva == "PedidosPendentes")
+                {
+                    ViewHelper.PageAtiva = "";
+                    return this.RedirectToAction("ListarPedidosPendentes", "Pedidos");
+                }
+                return View(pedido);
+
             }
             else
             {

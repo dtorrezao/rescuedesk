@@ -134,7 +134,8 @@ namespace RescueDesk.Controllers
                 start = x.dtmarcado.Value,
                 end = CalcularPeso(x.dtmarcado.Value, tiposServico[x.idatividade.Value]),
                 backgroundColor = ObterCor(x),
-                textColor = ObterTextColor(x)
+                textColor = ObterTextColor(x),
+                borderColor = ObterBorderColor(x)
             }).ToList();
             return JsonConvert.SerializeObject(eventos);
         }
@@ -185,6 +186,32 @@ namespace RescueDesk.Controllers
                     break;
                 default:
                     cor = "#000000";
+                    break;
+            }
+
+            return cor;
+        }
+
+        private string ObterBorderColor(Pedido pedidop)
+        {
+            string cor;
+            //url = "http://www.google.com", backgroundColor = "#378006"
+            switch (pedidop.prioridade)
+            {
+                case Models.enums.prioridade.Alta:
+                    cor = "#8c2b00";
+                    break;
+                case Models.enums.prioridade.Baixa:
+                    cor = "#003e7d";
+                    break;
+                case Models.enums.prioridade.Critica:
+                    cor = "#810600";
+                    break;
+                case Models.enums.prioridade.Media:
+                    cor = "#959000";
+                    break;
+                default:
+                    cor = "#939393";
                     break;
             }
 

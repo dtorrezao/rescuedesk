@@ -8,6 +8,7 @@
     ViewBag.AddUrl = Url.Action("Create");
 
     bool eAdmin = (bool)ViewBag.eAdmin;
+    ViewHelper.PageAtiva = "Pedidos";
 }
 <div class="animated fadeIn">
     <div class="row">
@@ -62,7 +63,7 @@
                                     <td>
                                         <strong style="font-weight:500">
 
-                                            @Html.DisplayFor(modelItem => item.assunto)
+                                            @Html.DisplayFor(modelItem => item.assuntoAbreviado)
                                         </strong>
                                     </td>
                                     <td align="center">
