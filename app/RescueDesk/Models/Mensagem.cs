@@ -25,7 +25,7 @@ namespace RescueDesk.Models
         {
             get
             {
-                int qtdCaracteres = 110;
+                int qtdCaracteres = 80;
                 if (corpo.Length > qtdCaracteres)
                 {
                     string myString = corpo.Substring(0, qtdCaracteres);

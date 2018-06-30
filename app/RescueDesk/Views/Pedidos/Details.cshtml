@@ -1,6 +1,5 @@
 ﻿@model RescueDesk.Models.Pedido
 @using RescueDesk.Utils
-
 @{
     Layout = null;
     ViewBag.Title = "Pedido";
@@ -9,7 +8,6 @@
     List<SelectListItem> clientes = (List<SelectListItem>)ViewBag.ListaClientes;
     List<SelectListItem> funcionarios = (List<SelectListItem>)ViewBag.ListaFuncionarios;
 }
-
 @using (Html.BeginForm(
 actionName: "Details",
 controllerName: "Pedidos",
@@ -27,6 +25,7 @@ method: FormMethod.Post))
     }
     <div class="modal-body">
         @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.nrcontribuinte)
         @Html.HiddenFor(model => model.idpedido)
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="row">
@@ -46,8 +45,6 @@ method: FormMethod.Post))
                     @Html.ValidationMessageFor(model => model.dtpedido, "", new { @class = "text-danger" })
                 </div>
             </div>
-            @if (ViewHelper.IsAdmin())
-            {
                 <div class="col col-md-12 form-group" style="margin-top: -10px">
                     <div class="col col-md-2">
                         <label for="@Html.NameFor(model => model.nrcontribuinte)" class=" form-control-label" style="line-height:28px">Cliente:</label>
@@ -57,11 +54,7 @@ method: FormMethod.Post))
                         @Html.ValidationMessageFor(model => model.nrcontribuinte, "", new { @class = "text-danger" })
                     </div>
                 </div>
-            }
-            else
-            {
-                @Html.HiddenFor(model => model.nrcontribuinte)
-            }
+
             <div class="col col-md-12 form-group" style="margin-top: -10px">
                 <div class="col col-md-2">
                     <label for="@Html.NameFor(model =>model.assunto)" class=" form-control-label" style="line-height:36px">@Html.DisplayNameFor(model => model.assunto):</label>
@@ -173,7 +166,6 @@ method: FormMethod.Post))
         </div>
     </div>
 }
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

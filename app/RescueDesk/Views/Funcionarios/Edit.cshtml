@@ -1,5 +1,5 @@
 ﻿@model RescueDesk.ViewModels.FuncionarioViewModel
-
+@using RescueDesk.Utils
 @{
     Layout = null;
     ViewBag.Title = "Funcionários";
@@ -108,20 +108,23 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
                     @Html.DropDownListFor(model => model.Utilizador.idtipo, Model.TipoUtilizador, new { @class = "form-control autoComplete" })
                     @Html.ValidationMessageFor(model => model.Utilizador.idtipo, "", new { @class = "text-danger" })
                 </div>
+                @if (ViewHelper.IsAdmin())
+                {
                 <div class="col col-md-1" style="padding-top: 2px; margin-left: -10px">
                     <label class="switch switch-text switch-primary switch-pill">
                         @if (Model.Funcionario.ativo)
                         {
-                         <input type="checkbox" class="switch-input" name="@Html.NameFor(x=>x.Funcionario.ativo)" checked="@Model.Funcionario.ativo">
+                            <input type="checkbox" class="switch-input" name="@Html.NameFor(x=>x.Funcionario.ativo)" checked="@Model.Funcionario.ativo">
                         }
                         else
                         {
-                         <input type="checkbox" class="switch-input" name="@Html.NameFor(x=>x.Funcionario.ativo)" >
+                            <input type="checkbox" class="switch-input" name="@Html.NameFor(x=>x.Funcionario.ativo)">
                         }
                         <span data-on="Ativo" data-off="Inativo" class="switch-label"></span>
                         <span class="switch-handle"></span>
                     </label>
                 </div>
+                }
             </div>
             <div class="col col-md-12" style="padding-top:10px">
                 <div class="col col-md-12">
