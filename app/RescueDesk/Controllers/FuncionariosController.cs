@@ -199,8 +199,12 @@ namespace RescueDesk.Controllers
                 {
                     if (utilizador.idtipo == (int)TipoUtilizadorEnum.Administrador)
                     {
-                        return this.RedirectToAction("Index");
+                        if (ViewHelper.PageAtiva == "Funcionários")
+                        {
+                            return this.RedirectToAction("Index");
+                        }
                     }
+
                     return this.RedirectToAction("Index", "Home");
                 }
             }

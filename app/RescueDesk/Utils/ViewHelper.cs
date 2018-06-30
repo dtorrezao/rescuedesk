@@ -10,7 +10,9 @@ using System.Web;
 namespace RescueDesk.Utils
 {
     public static class ViewHelper
-    {        
+    {
+        public static string PageAtiva = "";
+
         public static int ObterContagemPedidosPendentes()
         {
             string userName = HttpContext.Current.User.Identity.Name;

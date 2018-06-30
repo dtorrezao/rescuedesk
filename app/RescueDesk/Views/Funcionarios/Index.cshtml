@@ -1,10 +1,13 @@
 ﻿@model IEnumerable<RescueDesk.Models.Funcionario>
+@using RescueDesk.Utils
 
 @{
     ViewBag.Title = "Funcionários";
     ViewBag.FAIcon = "fa-suitcase";
     ViewBag.SubTitle = "Criar";
     ViewBag.AddUrl = Url.Action("Create");
+
+    ViewHelper.PageAtiva = "Funcionários";
 }
 
 <div class="animated fadeIn">

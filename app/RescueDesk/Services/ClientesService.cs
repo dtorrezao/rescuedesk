@@ -99,11 +99,10 @@ namespace RescueDesk.Services
             string query = "UPDATE `clientes` ";
             query += "SET `nome` =  '" + cliente.nome + "', " +
                 "`morada` =  '" + cliente.morada + "', ";
+
             if (cliente.codpostal != "Introduza o seu código postal...")
             {
                 query += "`codpostal` =  '" + cliente.codpostal + "',";
-
-
             }
 
             query += " `contacto` = '" + cliente.contacto + "'," +
