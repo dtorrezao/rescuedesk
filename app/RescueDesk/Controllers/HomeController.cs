@@ -72,7 +72,7 @@ namespace RescueDesk.Controllers
 
             return View();
         }
-
+        
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

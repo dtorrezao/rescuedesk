@@ -278,5 +278,65 @@ namespace RescueDesk.Controllers
                 return RedirectToAction("EditByIdUtilizador", "Funcionarios", new { id = user.idUtilizador });
             }
         }
+
+        [AllowAnonymous]
+        public ActionResult RedefinirPass()
+        {
+            ConfirmRegistoViewModel viewModel = new ConfirmRegistoViewModel();
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult RedefinirPass(ConfirmRegistoViewModel vm)
+        {
+            EmailService emailSvc = new EmailService();
+
+            UtilizadorService UtilizadorService = new UtilizadorService();
+            Utilizador utilizador = UtilizadorService.ObterUtilizadorByEmail(vm.Username);
+
+            var link = "http://" + Request.Url.Authority + Url.Action("ConfirmarRedefinirPass", "Utilizadores", new { hash = Criptografia.HashString(vm.Username) });
+
+            emailSvc.EnviarEmailRecuperacao(utilizador, link);
+
+            mensagem = "Foi lhe enviado um email de confirmação, por favor confira o seu email.";
+
+            return RedirectToAction("Login");
+        }
+
+        [AllowAnonymous]
+        public ActionResult ConfirmarRedefinirPass(string hash)
+        {
+            ConfirmRegistoViewModel viewModel = new ConfirmRegistoViewModel();
+            viewModel.Hash = hash;
+            return View(viewModel);
+        }
+
+        [HttpPost, AllowAnonymous]
+        [ActionName("ConfirmarRedefinirPass")]
+        public ActionResult ConfirmarRedefinirPass(ConfirmRegistoViewModel utilizador)
+        {
+            string hashedUser = Criptografia.HashString(utilizador.Username);
+            if (utilizador.Hash == hashedUser)
+            {
+                if (utilizador.Password == utilizador.ConfirmPassword)
+                {
+                    UtilizadorService usrService = new UtilizadorService();
+                    var user = usrService.ObterUtilizadorByEmail(utilizador.Username);
+                    user.password = utilizador.Password;
+                    usrService.ChangePassword(user);
+
+                    FormsAuthentication.SetAuthCookie(utilizador.Username, true);
+
+                    return RedirectToAction("Index","Home");
+                }
+                else
+                {
+                    ViewBag.Mensagem = "Passwords não coincidem";
+                }
+            }
+
+            return View();
+        }
     }
 }

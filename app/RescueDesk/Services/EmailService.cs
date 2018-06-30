@@ -39,5 +39,20 @@ namespace RescueDesk.Services
             EmailService emailSvc = new EmailService();
             emailSvc.EnviarEmail(mail);
         }
+
+        public void EnviarEmailRecuperacao(Utilizador utilizador, string link)
+        {
+            var mail = new MailMessage();
+
+            // TODO: mudar
+            string body = string.Format("Olá {0}! Bem vindo ao RescueDesk. \r\n Clique aqui ({1}) para confirmar a sua conta.", utilizador.email, link);
+
+            mail.Body = body;
+            mail.Subject = "RescueDesk - Recuperar Senha";
+            mail.To.Add(new MailAddress(utilizador.email));
+
+            EmailService emailSvc = new EmailService();
+            emailSvc.EnviarEmail(mail);
+        }
     }
 }
