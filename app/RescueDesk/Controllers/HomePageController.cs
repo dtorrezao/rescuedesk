@@ -11,6 +11,7 @@ namespace RescueDesk.Controllers
         // GET: HomePage
         public ActionResult Index()
         {
+            
             return View();
         }
     }
