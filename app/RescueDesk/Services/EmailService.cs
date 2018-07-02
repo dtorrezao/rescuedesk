@@ -45,7 +45,7 @@ namespace RescueDesk.Services
             var mail = new MailMessage();
 
             // TODO: mudar
-            string body = string.Format("Olá {0}! Bem vindo ao RescueDesk. \r\n Clique aqui ({1}) para confirmar a sua conta.", utilizador.email, link);
+            string body = string.Format("Olá {0}! Bem vindo ao RescueDesk. \r\n Clique aqui ({1}) para alterar a sua password.", utilizador.email, link);
 
             mail.Body = body;
             mail.Subject = "RescueDesk - Recuperar Senha";
