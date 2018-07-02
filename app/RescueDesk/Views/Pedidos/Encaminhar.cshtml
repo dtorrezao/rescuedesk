@@ -94,7 +94,7 @@ method: FormMethod.Post))
 
                 </div>
                 <div class="col col-md-10" style="margin-left: -32px">
-                    @Html.EnumDropDownListFor(model => model.prioridade, "TESTE", new { @class = "form-control autoComplete", @style = "width: 641px" })
+                    @Html.EnumDropDownListFor(model => model.prioridade, new { @class = "form-control autoComplete", @style = "width: 641px" })
                     @Html.ValidationMessageFor(model => model.prioridade, "", new { @class = "text-danger" })
                 </div>
             </div>

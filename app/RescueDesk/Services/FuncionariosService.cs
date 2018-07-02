@@ -64,9 +64,12 @@ namespace RescueDesk.Services
         {
             string query = "UPDATE `funcionarios` ";
             query += "SET `nome` = '" + funcionario.nome + "', " +
-                "`morada` =  '" + funcionario.morada + "', " +
-                "`codpostal` =  '" + funcionario.codpostal + "', " +
-                "`iddept` =  '" + funcionario.iddept + "'," +
+                "`morada` =  '" + funcionario.morada + "', ";
+            if (funcionario.codpostal != "Introduza o seu código postal...")
+            {
+                query += "`codpostal` =  '" + funcionario.codpostal + "',";
+            }            
+              query += "`iddept` =  '" + funcionario.iddept + "'," +
                 " `cargo` = '" + funcionario.cargo + "'," +
                 " `contacto` = '" + funcionario.contacto + "'," +
                 //"`idutilizador` = '" + funcionario.idUtilizador + "'," +

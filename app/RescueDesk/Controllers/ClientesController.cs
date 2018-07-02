@@ -45,28 +45,28 @@ namespace RescueDesk.Controllers
         [HttpPost]
         public ActionResult Create(ClienteViewModel vm, HttpPostedFileBase foto)
         {
+            string foto_String = "/images/profile_photo/default_img.jpg";
             ClientesService servico = new ClientesService();
-
-            if (foto != null)
-            {
-                if (foto.ContentLength > 0)
-                {
-                    var fileName = System.IO.Path.GetFileName(foto.FileName);
-                    var extention = System.IO.Path.GetExtension(foto.FileName);
-                    var path = System.IO.Path.Combine(Server.MapPath("~/images/profile_photo/"), vm.Cliente.email + extention);
-                    foto.SaveAs(path);
-
-                    vm.Utilizador.foto = "/images/profile_photo/" + vm.Cliente.email + extention;
-                }
-            }
-            else
-            {
-                vm.Utilizador.foto = "/images/profile_photo/default_img.jpg";
-            }
-
 
             if (servico.CreateCliente(vm.Cliente))
             {
+                if (foto != null)
+                {
+                    if (foto.ContentLength > 0)
+                    {
+                        var fileName = System.IO.Path.GetFileName(foto.FileName);
+                        var extention = System.IO.Path.GetExtension(foto.FileName);
+                        var path = System.IO.Path.Combine(Server.MapPath("~/images/profile_photo/"), vm.Cliente.email + extention);
+                        foto.SaveAs(path);
+
+                        foto_String = "/images/profile_photo/" + vm.Cliente.email + extention;
+                    }
+                }
+                else
+                {
+                    foto_String = "/images/profile_photo/default_img.jpg";
+                }
+
                 if (vm.CriarUtilizador)
                 {
                     vm.Utilizador = new Utilizador()
@@ -75,7 +75,7 @@ namespace RescueDesk.Controllers
                         idtipo = 3,
                         nrcontribuinte = vm.Cliente.nrcontribuinte,
                         email = vm.Cliente.email,
-                        foto = vm.Utilizador.foto
+                        foto = foto_String
                     };
 
                     if (usrService.CreateUtilizador(vm.Utilizador))

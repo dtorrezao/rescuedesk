@@ -32,7 +32,7 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
                         <label for="@Html.NameFor(model=>model.Funcionario.nome)" class="form-control-label" style="line-height:36px">@Html.DisplayNameFor(model => model.Funcionario.nome):</label>
                     </div>
                     <div class="col col-md-10">
-                        @Html.EditorFor(model => model.Funcionario.nome, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o seu primeiro e último nome...", @autocomplete="off" } })
+                        @Html.EditorFor(model => model.Funcionario.nome, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o seu nome...", @autocomplete="off" } })
                         @Html.ValidationMessageFor(model => model.Funcionario.nome, "", new { @class = "text-danger" })
                     </div>
                 </div>
