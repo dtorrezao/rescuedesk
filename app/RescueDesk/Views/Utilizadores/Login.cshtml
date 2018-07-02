@@ -1,33 +1,33 @@
 ﻿@using RescueDesk.Models
 @model Utilizador
 @{
+    ViewBag.Title = "Login";
     Layout = "~/Views/Shared/BackOffice/_Login.cshtml";
 }
 <div class="login-content">
-    <div class="login-logo">
-        <a href="">
-            <img class="align-content" src="/images/logo.png" alt="">
-        </a>
-    </div>
     <div class="login-form">
+        <div class="login-logo">
+            <a href="@Url.Action("Index", "HomePage")">
+                <img class="align-content" src="/images/logo_shadow.png" alt="">
+            </a>
+        </div>
+        <hr style="width:80%"/>
         @using (Html.BeginForm())
         {
-            @ViewBag.Mensagem
             @Html.ValidationSummary(true)
             <div class="form-group">
                 @Html.LabelFor(x => x.email)
-                @Html.TextBoxFor(x => x.email, new { @class = "form-control", @placeholder = "Insira o Email..." })
+                @Html.TextBoxFor(x => x.email, new { @class = "form-control", @placeholder = "Insira o Email...", @autocomplete = "off" })
             </div>
             <div class="form-group">
                 @Html.LabelFor(x => x.password)
-                @Html.PasswordFor(x => x.password, new { @class = "form-control", @placeholder = "Insira a Password..." })
+                @Html.PasswordFor(x => x.password, new { @class = "form-control", @placeholder = "Insira a Password...", @autocomplete = "off" })
             </div>
-            <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Entrar</button>
+            <p class="error-message">@ViewBag.Mensagem</p>
+            <button style="border-radius:2px" type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Entrar</button>
             <div class="register-link m-t-15 text-center">
-                <p>Não tem uma conta ? <a href="@Url.Action("Registo")"> Registe-se aqui</a></p>
-            </div>
-            <div class="register-link m-t-15 text-center">
-                <p><a href="@Url.Action("RedefinirPass")">Esqueci-me da palavra-passe? </a></p>
+                <p style="margin-top: 10px;margin-bottom: 0">Não tem uma conta? <a href="@Url.Action("Registo")">Registe-se aqui!</a></p>
+                <p style="margin-bottom: 12px;"><a href="@Url.Action("RedefinirPass")">Esqueci-me da palavra-passe?</a></p>
             </div>
         }
     </div>

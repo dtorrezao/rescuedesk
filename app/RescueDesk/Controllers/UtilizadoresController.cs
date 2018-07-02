@@ -179,12 +179,14 @@ namespace RescueDesk.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Password ou utilizador incorrecto");
+                    //ModelState.AddModelError("", "Password ou utilizador incorrecto");
+                    ViewBag.Mensagem = "Utilizador ou palavra-passe incorretos";
                 }
             }
             else
             {
-                ModelState.AddModelError("", "Password é necessária para poder autenticar");
+                //ModelState.AddModelError("", "Password é necessária para poder autenticar");
+                ViewBag.Mensagem = "É necessária uma password para a autenticação";
             }
             //}
 
@@ -196,7 +198,7 @@ namespace RescueDesk.Controllers
         {
             FormsAuthentication.SignOut();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "HomePage");
         }
 
         [AllowAnonymous]
@@ -299,7 +301,7 @@ namespace RescueDesk.Controllers
 
             emailSvc.EnviarEmailRecuperacao(utilizador, link);
 
-            mensagem = "Foi lhe enviado um email de confirmação, por favor confira o seu email.";
+            ViewBag.Mensagem = "Foi lhe enviado um email de confirmação, por favor confira o seu email.";
 
             return RedirectToAction("Login");
         }
@@ -332,7 +334,7 @@ namespace RescueDesk.Controllers
                 }
                 else
                 {
-                    ViewBag.Mensagem = "Passwords não coincidem";
+                    ViewBag.Mensagem = "Password não coincide!";
                 }
             }
 

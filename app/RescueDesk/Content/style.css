@@ -1604,7 +1604,7 @@ header .form-inline {
 .login-form {
   background: #ffffff;
   padding: 30px 30px 20px;
-  border-radius: 2px; }
+  border-radius: 6px; }
 
 .login-form h4 {
   color: #878787;
@@ -1655,7 +1655,8 @@ header .form-inline {
   padding: 19px; }
 
 .register-link a {
-  color: #ff2e44; }
+    color: #0056b3;
+}
 
 .cpu-load {
   width: 100%;

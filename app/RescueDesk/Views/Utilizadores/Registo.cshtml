@@ -4,35 +4,33 @@
     ViewBag.Title = "Registo";
     Layout = "~/Views/Shared/BackOffice/_Login.cshtml";
 }
-
 <div class="login-content">
-    <div class="login-logo">
-        <a href="index.html">
-            <img class="align-content" src="/images/logo.png" alt="">
-        </a>
-    </div>
     <div class="login-form">
+        <div class="login-logo">
+            <a href="@Url.Action("Index", "HomePage")">
+                <img class="align-content" src="/images/logo_shadow.png" alt="">
+            </a>
+        </div>
+        <hr style="width:80%" />
         @using (Html.BeginForm())
         {
             @Html.ValidationSummary(true)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Cliente.nrcontribuinte, new { htmlAttributes = new { @class = "form-control"} })
-            @Html.TextBoxFor(model => model.Cliente.nrcontribuinte,new { @class = "form-control", @placeholder = "Introduza o seu número de contribuinte..." } )
-        </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.Cliente.email, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.EditorFor(model => model.Cliente.email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o seu email..." } })
             </div>
             <div class="form-group">
+                @Html.LabelFor(model => model.Cliente.nrcontribuinte, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBoxFor(model => model.Cliente.nrcontribuinte, new { @class = "form-control", @placeholder = "Introduza o seu número de contribuinte..." })
+            </div>
+            <div class="form-group">
                 @Html.LabelFor(model => model.Cliente.nome, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.EditorFor(model => model.Cliente.nome, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o seu primeiro e último nome..." } })
             </div>
-            <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Registar</button>
+            <button style="border-radius:2px" type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Registar</button>
             <div class="register-link m-t-15 text-center">
-                <p>Já tem uma conta ? <a href="@Url.Action("Login")"> Entre aqui</a></p>
+                <p style="margin-top: 10px;margin-bottom: 12px">Já tem uma conta? <a href="@Url.Action("Login")">Entre aqui!</a></p>
             </div>
         }
-
     </div>
 </div>

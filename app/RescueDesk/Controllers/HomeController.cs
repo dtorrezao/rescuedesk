@@ -113,7 +113,7 @@ namespace RescueDesk.Controllers
                 }
                 else
                 {
-                    ViewBag.Mensagem = "Passwords não coincidem";
+                    ViewBag.Mensagem = "Password não coincide!";
                 }
             }
 

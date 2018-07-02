@@ -161,12 +161,14 @@ namespace RescueDesk.Controllers
                     ViewHelper.PageAtiva = "";
                     return this.RedirectToAction("ListarPedidosPendentes", "Pedidos");
                 }
-                return View(pedido);
-
+                else
+                {
+                    return this.RedirectToAction("Index", "Pedidos");
+                }
             }
             else
             {
-                return View(pedido);
+                return this.RedirectToAction("Index", "Pedidos");
             }
         }
 
