@@ -93,7 +93,7 @@ namespace RescueDesk.Services
         {
             string query = "INSERT INTO `mensagens` " +
                " (`idmensagem`, `assunto`, `corpo`, `emissor`, `recetor`, `dtenviado`) " +
-               "VALUES(null,'" + mensagem.assunto + "', '" + mensagem.corpo + "', '" + utilizador.idUtilizador + "', '" + mensagem.recetor.ToString() + "', '" + mensagem.dtenviado.ToString("yyyy-MM-dd hh:mm:ss") + "')";
+               "VALUES(null,'" + mensagem.assunto + "', '" + mensagem.corpo + "', '" + utilizador.idUtilizador + "', '" + mensagem.recetor.ToString() + "', '" + mensagem.dtenviado.ToString("yyyy-MM-dd HH:mm:ss") + "')";
             this.Conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, this.Conn);
             int resultados = cmd.ExecuteNonQuery();

@@ -52,7 +52,7 @@ namespace RescueDesk.Services
             string query = "INSERT INTO `funcionarios` " +
                " (`idfuncionario`, `nome`, `morada`, `codpostal`, `iddept`, `cargo`, `contacto`, `idutilizador`, `ativo`, `ultlogin`, `obs`) " +
                " VALUES (NULL, '" + funcionario.nome + "', '" + funcionario.morada + "', '" + funcionario.codpostal + "', '" + funcionario.iddept + "' , '" +
-               "" + funcionario.cargo + "', '" + funcionario.contacto + "', '" + funcionario.idUtilizador + "', '" + (funcionario.ativo ? "1" : "0") + "' , '" + funcionario.ultlogin.ToString("yyyy-MM-dd hh:mm:ss") + "' , '" + funcionario.obs + "')";
+               "" + funcionario.cargo + "', '" + funcionario.contacto + "', '" + funcionario.idUtilizador + "', '" + (funcionario.ativo ? "1" : "0") + "' , '" + funcionario.ultlogin.ToString("yyyy-MM-dd HH:mm:ss") + "' , '" + funcionario.obs + "')";
             this.conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, this.conn);
             int resultados = cmd.ExecuteNonQuery();
@@ -71,7 +71,7 @@ namespace RescueDesk.Services
                 " `contacto` = '" + funcionario.contacto + "'," +
                 //"`idutilizador` = '" + funcionario.idUtilizador + "'," +
                 "`ativo` = '" + (funcionario.ativo ? "1" : "0") + "'," +
-                " `ultlogin` = '" + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss") + "'," +
+                " `ultlogin` = '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'," +
                 "`obs` = '" + funcionario.obs + "' " +
                 "WHERE `funcionarios`.`idfuncionario` = '" + funcionario.idfuncionario.ToString() + "'";
             this.conn.Open();

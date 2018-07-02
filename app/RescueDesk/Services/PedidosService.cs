@@ -99,7 +99,7 @@ namespace RescueDesk.Services
         {
             string query = "INSERT INTO `pedidos` " +
                " (`idpedido`, `assunto`, `descricao`, `idatividade`, `dtpedido`, `dtlido`, `dtmarcado`, `prioridade`, `dtresolvido`, `nrcontribuinte`, `idfuncionario`, `obs`) " +
-               "VALUES(NULL, '" + pedido.assunto + "', '" + pedido.descricao + "', NULL, '" + pedido.dtpedido.ToString("yyyy-MM-dd hh:mm:ss") + "', " +
+               "VALUES(NULL, '" + pedido.assunto + "', '" + pedido.descricao + "', NULL, '" + pedido.dtpedido.ToString("yyyy-MM-dd HH:mm:ss") + "', " +
                "NULL, NULL, '" + pedido.prioridade.ToString() + "', " +
                "NULL, '" + pedido.nrcontribuinte + "' ,NULL, '" + pedido.obs + "')";
             this.Conn.Open();
