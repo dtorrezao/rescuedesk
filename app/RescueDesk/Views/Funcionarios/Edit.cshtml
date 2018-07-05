@@ -47,7 +47,7 @@ htmlAttributes: new { @enctype = "multipart/form-data", @class = "hasImage" }))
                             <label for="@Html.NameFor(model=>model.Utilizador.email)" class=" form-control-label" style="line-height:36px">@Html.DisplayNameFor(model => model.Utilizador.email):</label>
                         </div>
                         <div class="col col-md-10">
-                            @Html.EditorFor(model => model.Utilizador.email, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control", @placeholder = "Introduza o seu email...", @autocomplete = "off" } })
+                            @Html.EditorFor(model => model.Utilizador.email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o seu email...", @autocomplete = "off" } })
                             @Html.ValidationMessageFor(model => model.Utilizador.email, "", new { @class = "text-danger" })
                         </div>
                     </div>

@@ -17,15 +17,15 @@
             @Html.ValidationSummary(true)
             <div class="form-group">
                 @Html.LabelFor(model => model.Cliente.email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.EditorFor(model => model.Cliente.email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o seu email..." } })
+                @Html.EditorFor(model => model.Cliente.email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o seu email..." }, @autocomplete = "off" })
             </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.Cliente.nrcontribuinte, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.TextBoxFor(model => model.Cliente.nrcontribuinte, new { @class = "form-control", @placeholder = "Introduza o seu número de contribuinte..." })
+                @Html.TextBoxFor(model => model.Cliente.nrcontribuinte, new { @class = "form-control", @placeholder = "Introduza o seu número de contribuinte...", @autocomplete = "off" })
             </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.Cliente.nome, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.EditorFor(model => model.Cliente.nome, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o seu nome..." } })
+                @Html.EditorFor(model => model.Cliente.nome, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduza o seu nome..." }, @autocomplete = "off" })
             </div>
             <button style="border-radius:2px" type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Registar</button>
             <div class="register-link m-t-15 text-center">

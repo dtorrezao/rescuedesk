@@ -17,15 +17,15 @@
             @Html.HiddenFor(x => x.Hash)
             <div class="form-group">
                 @Html.LabelFor(x => x.Username)
-                @Html.TextBoxFor(x => x.Username, new { @class = "form-control", @placeholder = "Insira o email..." })
+                @Html.TextBoxFor(x => x.Username, new { @class = "form-control", @placeholder = "Insira o email...", @autocomplete = "off" })
             </div>
             <div class="form-group">
                 @Html.LabelFor(x => x.Password)
-                @Html.PasswordFor(x => x.Password, new { @class = "form-control", @placeholder = "Escreva uma password..." })
+                @Html.PasswordFor(x => x.Password, new { @class = "form-control", @placeholder = "Escreva uma password...", @autocomplete = "off" })
             </div>
             <div class="form-group">
                 @Html.LabelFor(x => x.ConfirmPassword)
-                @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirme a password..." })
+                @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirme a password...", @autocomplete = "off" })
             </div>
             <p class="error-message">@ViewBag.Mensagem</p>
             <button style="border-radius:2px" type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Confirmar</button>

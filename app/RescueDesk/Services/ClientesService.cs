@@ -55,6 +55,10 @@ namespace RescueDesk.Services
             {
                 query += "NULL,";
             }
+            else if (cliente.codpostal == "Introduza o seu código postal...")
+            {
+                query += "NULL,";
+            }
             else
             {
                 query += "'" + cliente.codpostal + "',";
@@ -68,8 +72,16 @@ namespace RescueDesk.Services
             {
                 query += "'" + cliente.contacto + "',";
             }
+            if (string.IsNullOrEmpty(cliente.email))
+            {
+                query += "NULL,";
+            }
+            else
+            {
+                query += "'" + cliente.email + "',";
+            }
 
-            query += "'" + cliente.email + "', '" + cliente.obs + "')";
+            query += "'" + cliente.obs + "')";
 
             this.Conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, this.Conn);
