@@ -131,7 +131,7 @@ namespace RescueDesk.Utils
         static Utilizador utilizador = UtilizadorService.ObterUtilizadorByEmail(userName);
         
         static MensagensService mensagensService = new MensagensService();
-        public static int MensagensContagem = (mensagensService.ObterMensagens(utilizador, false, true).Count()) + (mensagensService.ObterMensagens(utilizador, true, false).Count());
+        public static int MensagensContagem = (mensagensService.ObterMensagens(utilizador, false, true).Count());
 
         static ClientesService clientesService = new ClientesService();
         public static int ClientesContagem = clientesService.ObterClientes().Count();

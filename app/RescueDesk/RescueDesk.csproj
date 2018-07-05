@@ -344,6 +344,12 @@
     <Content Include="images\logo_transparent.png" />
     <Content Include="images\placeholder.png" />
     <Content Include="images\profile_photo\default_img.jpg" />
+    <Content Include="images\profile_photo\kelaked%40taylorventuresllc.com.png" />
+    <Content Include="images\profile_photo\nulaka%40larjem.com.jpg" />
+    <Content Include="images\profile_photo\rescuedesk.aesm%40gmail.com.jpg" />
+    <Content Include="images\profile_photo\rexuce%40sfamo.com.jpg" />
+    <Content Include="images\profile_photo\viruc%40fxprix.com.jpg" />
+    <Content Include="images\profile_photo\yegoku%40o3enzyme.com.jpg" />
     <Content Include="images\signature.png" />
     <Content Include="images\twitter_corner_black.png" />
     <Content Include="images\twitter_corner_blue.png" />

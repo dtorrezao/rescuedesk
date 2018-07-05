@@ -91,6 +91,12 @@ namespace RescueDesk.Controllers
         public ActionResult Create(Pedido pedido)
         {
             PedidosService servico = new PedidosService();
+
+            if(pedido.prioridade == null)
+            {
+                pedido.prioridade = prioridade.Media;
+            }
+
             if (servico.CreatePedido(pedido))
             {
                 return this.RedirectToAction("ListarMeusPedidos");
@@ -239,7 +245,6 @@ namespace RescueDesk.Controllers
             ViewBag.ListaFuncionarios = this.ListaFuncionarios(funcionarios, pedido.idfuncionario.HasValue ? pedido.idfuncionario.Value : 0);
             return View(pedido);
         }
-
     }
 
 }

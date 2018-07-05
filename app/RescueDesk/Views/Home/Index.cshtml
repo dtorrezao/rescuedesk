@@ -6,7 +6,6 @@
 @{
     ViewBag.Title = "Painel de Controlo";
     ViewBag.FAIcon = "fa-dashboard";
-
     ViewHelper.PageAtiva = "Dashboard";
 }
 
@@ -196,7 +195,7 @@
                         <th>
                             @Html.DisplayNameFor(model => model.MeusPedidosTop4[0].assunto)
                         </th>
-                        <th style="width: 18%">
+                        <th style="width: 10%">
                             @Html.DisplayNameFor(model => model.MeusPedidosTop4[0].dtpedido)
                         </th>
                         <th style="width: 5%">
@@ -371,8 +370,8 @@
                 <div class="stat-widget-one" style="margin-top: -2px">
                     <div class="stat-icon dib"><i class="ti-file text-success border-success"></i></div>
                     <div class="stat-content dib">
-                        <div class="stat-text">Meus Pedidos</div>
-                        <div class="stat-digit count">@ViewHelper.PedidosContagem</div>
+                        <div class="stat-text">Pedidos Pendentes</div>
+                        <div class="stat-digit count">@ViewHelper.ObterContagemPedidosPendentes()</div>
                     </div>
                 </div>
             </div>
@@ -443,7 +442,7 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.PedidosPendentesTop4[0].assunto)
                             </th>
-                            <th style="width: 18%">
+                            <th style="width: 10%">
                                 @Html.DisplayNameFor(model => model.PedidosPendentesTop4[0].dtpedido)
                             </th>
                             <th style="width: 5%">
