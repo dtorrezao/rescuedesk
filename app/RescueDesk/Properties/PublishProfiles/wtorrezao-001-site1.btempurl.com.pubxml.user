@@ -56,10 +56,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="bin/RescueDesk.dll">
-      <publishTime>07/02/2018 11:53:44</publishTime>
+      <publishTime>07/04/2018 23:40:20</publishTime>
     </File>
     <File Include="bin/RescueDesk.pdb">
-      <publishTime>07/02/2018 11:53:44</publishTime>
+      <publishTime>07/04/2018 23:40:20</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>05/23/2018 23:27:31</publishTime>
@@ -167,7 +167,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="Content/bootstrap.css">
-      <publishTime>04/06/2018 17:56:13</publishTime>
+      <publishTime>06/04/2018 17:56:13</publishTime>
     </File>
     <File Include="Content/bootstrap.css.map">
       <publishTime>05/23/2018 23:27:32</publishTime>
@@ -391,6 +391,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/bootstrap/wells.less">
       <publishTime>06/11/2018 12:11:48</publishTime>
     </File>
+    <File Include="Content/chosen-sprite.png">
+      <publishTime>07/04/2018 23:38:26</publishTime>
+    </File>
     <File Include="Content/cs-skin-elastic.css">
       <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
@@ -428,49 +431,85 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/11/2018 12:11:48</publishTime>
     </File>
     <File Include="Content/HomePage/css/creative.css">
-      <publishTime>07/02/2018 11:22:20</publishTime>
+      <publishTime>02/07/2018 11:22:20</publishTime>
     </File>
     <File Include="Content/HomePage/css/creative.min.css">
       <publishTime>06/30/2018 19:58:15</publishTime>
     </File>
     <File Include="Content/HomePage/img/header.jpg">
-      <publishTime>07/02/2018 11:22:20</publishTime>
+      <publishTime>02/07/2018 11:22:20</publishTime>
     </File>
     <File Include="Content/HomePage/img/portfolio/fullsize/1.jpg">
-      <publishTime>06/30/2018 19:58:15</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/HomePage/img/portfolio/fullsize/2.jpg">
-      <publishTime>06/30/2018 19:58:15</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/HomePage/img/portfolio/fullsize/3.jpg">
-      <publishTime>06/30/2018 19:58:15</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/HomePage/img/portfolio/fullsize/4.jpg">
-      <publishTime>06/30/2018 19:58:15</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/HomePage/img/portfolio/fullsize/5.jpg">
-      <publishTime>06/30/2018 19:58:15</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/HomePage/img/portfolio/fullsize/6.jpg">
-      <publishTime>06/30/2018 19:58:15</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/HomePage/img/portfolio/fullsize/calendar.jpg">
+      <publishTime>07/04/2018 12:33:04</publishTime>
+    </File>
+    <File Include="Content/HomePage/img/portfolio/fullsize/dashboard.jpg">
+      <publishTime>07/04/2018 12:29:08</publishTime>
+    </File>
+    <File Include="Content/HomePage/img/portfolio/fullsize/forward.jpg">
+      <publishTime>07/04/2018 12:35:26</publishTime>
+    </File>
+    <File Include="Content/HomePage/img/portfolio/fullsize/management.jpg">
+      <publishTime>07/04/2018 12:37:23</publishTime>
+    </File>
+    <File Include="Content/HomePage/img/portfolio/fullsize/messages.jpg">
+      <publishTime>07/04/2018 12:39:24</publishTime>
+    </File>
+    <File Include="Content/HomePage/img/portfolio/fullsize/notes.jpg">
+      <publishTime>07/04/2018 12:41:54</publishTime>
     </File>
     <File Include="Content/HomePage/img/portfolio/thumbnails/1.jpg">
-      <publishTime>06/30/2018 19:58:15</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/HomePage/img/portfolio/thumbnails/2.jpg">
-      <publishTime>06/30/2018 19:58:15</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/HomePage/img/portfolio/thumbnails/3.jpg">
-      <publishTime>06/30/2018 19:58:15</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/HomePage/img/portfolio/thumbnails/4.jpg">
-      <publishTime>06/30/2018 19:58:15</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/HomePage/img/portfolio/thumbnails/5.jpg">
-      <publishTime>06/30/2018 19:58:15</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/HomePage/img/portfolio/thumbnails/6.jpg">
-      <publishTime>06/30/2018 19:58:15</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/HomePage/img/portfolio/thumbnails/calendar.jpg">
+      <publishTime>07/04/2018 12:33:04</publishTime>
+    </File>
+    <File Include="Content/HomePage/img/portfolio/thumbnails/dashboard.jpg">
+      <publishTime>07/04/2018 12:29:08</publishTime>
+    </File>
+    <File Include="Content/HomePage/img/portfolio/thumbnails/forward.jpg">
+      <publishTime>07/04/2018 12:35:26</publishTime>
+    </File>
+    <File Include="Content/HomePage/img/portfolio/thumbnails/management.jpg">
+      <publishTime>07/04/2018 12:37:23</publishTime>
+    </File>
+    <File Include="Content/HomePage/img/portfolio/thumbnails/messages.jpg">
+      <publishTime>07/04/2018 12:39:24</publishTime>
+    </File>
+    <File Include="Content/HomePage/img/portfolio/thumbnails/notes.jpg">
+      <publishTime>07/04/2018 12:41:54</publishTime>
     </File>
     <File Include="Content/HomePage/js/creative.js">
       <publishTime>06/30/2018 19:58:15</publishTime>
@@ -706,6 +745,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/HomePage/vendor/scrollreveal/scrollreveal.min.js">
       <publishTime>06/30/2018 19:58:15</publishTime>
     </File>
+    <File Include="Content/jquery.datetimepicker.min.css">
+      <publishTime>06/11/2018 12:11:48</publishTime>
+    </File>
     <File Include="Content/lib/chosen/chosen-sprite%402x.png">
       <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
@@ -734,10 +776,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="Content/rescuedesk.css">
-      <publishTime>07/02/2018 10:28:22</publishTime>
+      <publishTime>02/07/2018 10:28:22</publishTime>
     </File>
     <File Include="Content/style.css">
-      <publishTime>07/02/2018 11:22:20</publishTime>
+      <publishTime>02/07/2018 11:22:20</publishTime>
     </File>
     <File Include="Content/style.css.map">
       <publishTime>05/23/2018 23:27:32</publishTime>
@@ -782,7 +824,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2018 23:27:32</publishTime>
     </File>
     <File Include="favicon.ico">
-      <publishTime>05/23/2018 23:27:32</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="fonts/codropsicons/codropsicons.eot">
       <publishTime>05/23/2018 23:27:32</publishTime>
@@ -3194,22 +3236,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/12/2018 23:41:38</publishTime>
     </File>
     <File Include="images/login_wallpaper.jpg">
-      <publishTime>07/02/2018 11:22:20</publishTime>
+      <publishTime>02/07/2018 11:22:20</publishTime>
     </File>
     <File Include="images/logo.png">
       <publishTime>06/23/2018 15:36:59</publishTime>
     </File>
     <File Include="images/logo2.png">
-      <publishTime>05/23/2018 23:27:35</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="images/logo_dark.png">
-      <publishTime>07/02/2018 11:22:20</publishTime>
+      <publishTime>02/07/2018 11:22:20</publishTime>
     </File>
     <File Include="images/logo_shadow.png">
-      <publishTime>07/02/2018 11:22:20</publishTime>
+      <publishTime>02/07/2018 11:22:20</publishTime>
     </File>
     <File Include="images/logo_transparent.png">
-      <publishTime>07/02/2018 11:22:20</publishTime>
+      <publishTime>02/07/2018 11:22:20</publishTime>
     </File>
     <File Include="images/placeholder.png">
       <publishTime>05/23/2018 23:27:35</publishTime>
@@ -3230,7 +3272,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/11/2018 12:11:48</publishTime>
     </File>
     <File Include="rescuedesk.ico">
-      <publishTime>07/02/2018 11:22:20</publishTime>
+      <publishTime>02/07/2018 11:22:20</publishTime>
     </File>
     <File Include="Scripts/bootstrap-datepicker.js">
       <publishTime>06/11/2018 12:11:48</publishTime>
@@ -3249,6 +3291,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Scripts/chart-js/chartjs-init.js">
       <publishTime>05/23/2018 23:27:35</publishTime>
+    </File>
+    <File Include="Scripts/chosen/chosen.ajaxaddition.jquery.js">
+      <publishTime>06/12/2018 23:41:38</publishTime>
     </File>
     <File Include="Scripts/chosen/chosen.jquery.js">
       <publishTime>06/30/2018 04:37:41</publishTime>
@@ -3304,6 +3349,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/data-table/pdfmake.min.js">
       <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
+    <File Include="Scripts/data-table/Portuguese.json">
+      <publishTime>05/23/2018 23:27:35</publishTime>
+    </File>
     <File Include="Scripts/data-table/vfs_fonts.js">
       <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
@@ -3320,13 +3368,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/11/2018 12:11:48</publishTime>
     </File>
     <File Include="Scripts/jquery-1.10.2.js">
-      <publishTime>05/23/2018 23:27:35</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Scripts/jquery-1.10.2.min.js">
-      <publishTime>05/23/2018 23:27:35</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Scripts/jquery-1.10.2.min.map">
-      <publishTime>05/23/2018 23:27:35</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Scripts/jquery-2.1.4.min.js">
       <publishTime>05/23/2018 23:27:35</publishTime>
@@ -3347,6 +3395,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/11/2018 12:11:48</publishTime>
     </File>
     <File Include="Scripts/jquery-3.2.1.slim.min.map">
+      <publishTime>06/11/2018 12:11:48</publishTime>
+    </File>
+    <File Include="Scripts/jquery.datetimepicker.full.min.js">
       <publishTime>06/11/2018 12:11:48</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.js">
@@ -3920,25 +3971,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2018 23:27:35</publishTime>
     </File>
     <File Include="Views/Atividade/Create.cshtml">
-      <publishTime>05/23/2018 23:27:36</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/Atividade/Delete.cshtml">
-      <publishTime>05/23/2018 23:27:36</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/Atividade/Edit.cshtml">
-      <publishTime>05/23/2018 23:27:36</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/Atividade/Index.cshtml">
-      <publishTime>05/23/2018 23:27:36</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/Clientes/Create.cshtml">
-      <publishTime>06/27/2018 17:06:25</publishTime>
+      <publishTime>07/02/2018 15:25:23</publishTime>
     </File>
     <File Include="Views/Clientes/Details.cshtml">
       <publishTime>06/29/2018 10:09:13</publishTime>
     </File>
     <File Include="Views/Clientes/Edit.cshtml">
-      <publishTime>07/02/2018 11:29:17</publishTime>
+      <publishTime>07/02/2018 15:25:49</publishTime>
     </File>
     <File Include="Views/Clientes/Index.cshtml">
       <publishTime>06/27/2018 17:06:25</publishTime>
@@ -3956,19 +4007,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/30/2018 03:15:32</publishTime>
     </File>
     <File Include="Views/Funcionarios/ConfirmarRegisto.cshtml">
-      <publishTime>07/02/2018 11:22:20</publishTime>
+      <publishTime>02/07/2018 11:22:20</publishTime>
     </File>
     <File Include="Views/Funcionarios/Create.cshtml">
-      <publishTime>06/27/2018 17:06:25</publishTime>
+      <publishTime>07/02/2018 15:24:31</publishTime>
     </File>
     <File Include="Views/Funcionarios/Delete.cshtml">
-      <publishTime>05/23/2018 23:27:36</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/Funcionarios/Details.cshtml">
       <publishTime>06/27/2018 17:06:25</publishTime>
     </File>
     <File Include="Views/Funcionarios/Edit.cshtml">
-      <publishTime>06/30/2018 19:58:14</publishTime>
+      <publishTime>07/02/2018 15:24:17</publishTime>
     </File>
     <File Include="Views/Funcionarios/Index.cshtml">
       <publishTime>06/30/2018 03:32:11</publishTime>
@@ -3980,25 +4031,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/29/2018 11:05:50</publishTime>
     </File>
     <File Include="Views/Home/ConfirmarRegisto.cshtml">
-      <publishTime>07/02/2018 11:22:20</publishTime>
+      <publishTime>02/07/2018 11:22:20</publishTime>
     </File>
     <File Include="Views/Home/Contact.cshtml">
       <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>07/02/2018 11:22:20</publishTime>
+      <publishTime>02/07/2018 11:22:20</publishTime>
     </File>
     <File Include="Views/HomePage/Index.cshtml">
-      <publishTime>07/02/2018 11:22:20</publishTime>
+      <publishTime>07/04/2018 12:42:48</publishTime>
     </File>
     <File Include="Views/Localidades/Create.cshtml">
-      <publishTime>05/23/2018 23:27:36</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/Localidades/Delete.cshtml">
-      <publishTime>05/23/2018 23:27:36</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/Localidades/Edit.cshtml">
-      <publishTime>05/23/2018 23:27:36</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/Localidades/ImportFicheiro.cshtml">
       <publishTime>06/24/2018 12:16:48</publishTime>
@@ -4010,7 +4061,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/28/2018 20:43:01</publishTime>
     </File>
     <File Include="Views/Mensagens/Details.cshtml">
-      <publishTime>06/28/2018 20:52:15</publishTime>
+      <publishTime>07/02/2018 15:21:54</publishTime>
     </File>
     <File Include="Views/Mensagens/Index.cshtml">
       <publishTime>06/29/2018 00:52:39</publishTime>
@@ -4034,13 +4085,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Pedidos/Details.cshtml">
-      <publishTime>07/02/2018 11:29:17</publishTime>
+      <publishTime>07/02/2018 12:57:09</publishTime>
     </File>
     <File Include="Views/Pedidos/Edit.cshtml">
-      <publishTime>07/02/2018 11:29:17</publishTime>
+      <publishTime>07/04/2018 23:31:02</publishTime>
     </File>
     <File Include="Views/Pedidos/Encaminhar.cshtml">
-      <publishTime>07/02/2018 11:22:20</publishTime>
+      <publishTime>07/02/2018 14:41:36</publishTime>
     </File>
     <File Include="Views/Pedidos/Index.cshtml">
       <publishTime>06/30/2018 04:56:31</publishTime>
@@ -4061,10 +4112,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/08/2018 18:13:09</publishTime>
     </File>
     <File Include="Views/Shared/BackOffice/_Header.cshtml">
-      <publishTime>06/30/2018 03:08:06</publishTime>
+      <publishTime>07/02/2018 15:41:13</publishTime>
     </File>
     <File Include="Views/Shared/BackOffice/_Login.cshtml">
-      <publishTime>07/02/2018 11:22:20</publishTime>
+      <publishTime>02/07/2018 11:22:20</publishTime>
     </File>
     <File Include="Views/Shared/BackOffice/_NavBar.cshtml">
       <publishTime>06/29/2018 10:55:25</publishTime>
@@ -4073,46 +4124,46 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/Shared/_BackOffice.cshtml">
-      <publishTime>07/02/2018 11:22:20</publishTime>
+      <publishTime>02/07/2018 11:22:20</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
       <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Views/TipoUtilizador/Create.cshtml">
-      <publishTime>05/23/2018 23:27:36</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/TipoUtilizador/Delete.cshtml">
-      <publishTime>05/23/2018 23:27:36</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/TipoUtilizador/Edit.cshtml">
-      <publishTime>05/23/2018 23:27:36</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/TipoUtilizador/Index.cshtml">
-      <publishTime>05/23/2018 23:27:36</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/Utilizadores/ConfirmarRedefinirPass.cshtml">
-      <publishTime>07/02/2018 11:22:20</publishTime>
+      <publishTime>02/07/2018 11:22:20</publishTime>
     </File>
     <File Include="Views/Utilizadores/Create.cshtml">
-      <publishTime>05/23/2018 23:27:36</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/Utilizadores/Delete.cshtml">
-      <publishTime>05/28/2018 00:13:43</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/Utilizadores/Edit.cshtml">
-      <publishTime>05/28/2018 00:13:43</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/Utilizadores/Index.cshtml">
       <publishTime>06/06/2018 03:57:45</publishTime>
     </File>
     <File Include="Views/Utilizadores/Login.cshtml">
-      <publishTime>07/02/2018 11:22:20</publishTime>
+      <publishTime>02/07/2018 11:22:20</publishTime>
     </File>
     <File Include="Views/Utilizadores/RedefinirPass.cshtml">
-      <publishTime>07/02/2018 11:22:20</publishTime>
+      <publishTime>02/07/2018 11:22:20</publishTime>
     </File>
     <File Include="Views/Utilizadores/Registo.cshtml">
-      <publishTime>07/02/2018 11:22:20</publishTime>
+      <publishTime>07/02/2018 15:24:59</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>05/23/2018 23:27:36</publishTime>
@@ -4121,7 +4172,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2018 23:27:36</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/02/2018 11:53:47</publishTime>
+      <publishTime>02/07/2018 11:53:47</publishTime>
     </File>
   </ItemGroup>
 </Project>

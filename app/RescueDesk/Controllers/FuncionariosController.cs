@@ -125,7 +125,7 @@ namespace RescueDesk.Controllers
                     funcionario.ativo = true;
                     funcionariosService.UpdateFuncionario(funcionario);
                     FormsAuthentication.SetAuthCookie(utilizador.Username, true);
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {

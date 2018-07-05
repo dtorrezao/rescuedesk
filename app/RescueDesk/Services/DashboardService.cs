@@ -46,7 +46,7 @@ namespace RescueDesk.Services
             var vm = new ChartViewModel();
             vm.Qtd = qtds.Select(x => x.Value).Sum().ToString();
             vm.Data = qtds.Select(x => x.Value).ToArray();
-            vm.Labels = qtds.Select(x => Utils.UppercaseFirst(new DateTime(2000, x.Key, 1).ToString("MMMM", CultureInfo.CurrentCulture))).ToArray();
+            vm.Labels = qtds.Select(x => Utils.UppercaseFirst(new DateTime(2000, x.Key, 1).ToString("MMMM", new CultureInfo("pt-pt")))).ToArray();
 
             return vm;
         }

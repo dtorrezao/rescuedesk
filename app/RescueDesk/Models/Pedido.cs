@@ -93,14 +93,18 @@ namespace RescueDesk.Models
         [DisplayName("Serviço")]
         public string atividade { get; set; }
         [DisplayName("Pedido")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime dtpedido { get; set; }
         [DisplayName("Lido")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? dtlido { get; set; }
         [DisplayName("Marcado")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? dtmarcado { get; set; }
         [DisplayName("Prioridade")]
         public prioridade? prioridade { get; set; }
         [DisplayName("Resolvido")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? dtresolvido { get; set; }
 
         public bool Resolvido

@@ -57,7 +57,7 @@ namespace RescueDesk.Models
         //[DataType(DataType.EmailAddress)]
         //public string email { get; set; }
         [DisplayName("Enviado")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yy}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime dtenviado { get; set; }
         [DisplayName("Lido")]
         public bool lido { get; set; }

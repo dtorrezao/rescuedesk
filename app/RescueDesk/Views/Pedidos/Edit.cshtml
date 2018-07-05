@@ -54,7 +54,7 @@ method: FormMethod.Post))
                         <label for="@Html.NameFor(model => model.nrcontribuinte)" class=" form-control-label" style="line-height:28px">Cliente:</label>
                     </div>
                     <div class="col col-md-10" style="margin-left: -32px">
-                        @Html.DropDownListFor(model => model.nrcontribuinte, clientes, new { @class = "form-control autoComplete", @style = "width: 641px" })
+                        @Html.DropDownListFor(model => model.nrcontribuinte, clientes, new { @class = "form-control autoComplete", @style = "width: 641px !important" })
                         @Html.ValidationMessageFor(model => model.nrcontribuinte, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -237,3 +237,8 @@ method: FormMethod.Post))
         return day + '-' + month + '-' + year;
     }
 </script>
+<style>
+    #nrcontribuinte_chosen{
+        width: 50px !important;
+    }
+</style>

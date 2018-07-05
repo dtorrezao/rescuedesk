@@ -35,6 +35,7 @@ namespace RescueDesk.Models
         [DisplayName("Ativo")]
         public bool ativo { get; set; }
         [DisplayName("Último Login")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime ultlogin { get; set; }
         [DisplayName("Observações")]
         public string obs { get; set; }

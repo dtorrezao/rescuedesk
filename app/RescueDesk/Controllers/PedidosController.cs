@@ -183,6 +183,7 @@ namespace RescueDesk.Controllers
             ViewBag.TiposActividade = this.ListaTiposActividade(servicosService);
 
             Pedido pedido = servico.ObterPedido(id);
+            pedido.prioridade = pedido.prioridade ?? prioridade.Media;
             ViewBag.ListaFuncionarios = this.ListaFuncionarios(funcionarios, pedido.idfuncionario.HasValue ? pedido.idfuncionario.Value : 0);
             return View(pedido);
         }
