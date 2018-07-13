@@ -108,7 +108,7 @@
                     <div class="stat-icon dib"><i class="ti-file text-success border-success"></i></div>
                     <div class="stat-content dib">
                         <div class="stat-text">Pedidos</div>
-                        <div class="stat-digit count">@ViewHelper.PedidosContagem</div>
+                        <div class="stat-digit count">@ViewHelper.PedidosContagem()</div>
                     </div>
                 </div>
             </div>
@@ -388,7 +388,7 @@
                     <div class="stat-icon dib"><i class="ti-email text-primary border-primary"></i></div>
                     <div class="stat-content dib">
                         <div class="stat-text">Mensagens</div>
-                        <div class="stat-digit count">@ViewHelper.MensagensContagem</div>
+                        <div class="stat-digit count">@ViewHelper.MensagensContagem()</div>
                     </div>
                 </div>
             </div>
@@ -545,7 +545,7 @@
                         <a class=" fa-gray" href="@Url.Action("Index", "Localidades")"> <i class="fa fa-map-marker" style="margin-right: 6px"></i>&nbsp;Localidades<span class="badge badge-warning pull-right count">@ViewHelper.LocalidadesContagem</span></a>
                     </li>
                     <li class="list-group-item altura-height">
-                        <a class=" fa-gray" href="@Url.Action("Index", "Pedidos")"> <i class="fa fa-file-text" style="margin-right: 5px"></i>&nbsp;Pedidos<span class="badge badge-warning pull-right count">@ViewHelper.PedidosContagem</span></a>
+                        <a class=" fa-gray" href="@Url.Action("Index", "Pedidos")"> <i class="fa fa-file-text" style="margin-right: 5px"></i>&nbsp;Pedidos<span class="badge badge-warning pull-right count">@ViewHelper.PedidosContagem()</span></a>
                     </li>
                     <li class="list-group-item altura-height">
                         <a class=" fa-gray" href="@Url.Action("Index", "Utilizadores")"> <i class="fa fa fa-users" style="margin-right: 3px"></i>&nbsp;Utilizadores<span class="badge badge-warning pull-right count">@ViewHelper.UtilizadoresContagem</span></a>

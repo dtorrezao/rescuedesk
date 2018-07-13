@@ -78,7 +78,10 @@ namespace RescueDesk.Controllers
                     func.Utilizador.foto = "/images/profile_photo/" + func.Utilizador.email + extention;
                 }
             }
-
+            else
+            {
+                func.Utilizador.foto = "/images/profile_photo/default_img.jpg";
+            }
 
             if (usrService.CreateUtilizador(func.Utilizador))
             {

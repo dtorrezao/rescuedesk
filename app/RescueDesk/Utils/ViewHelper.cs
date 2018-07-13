@@ -126,12 +126,14 @@ namespace RescueDesk.Utils
             return user.foto ?? "/images/admin.jpg";
         }
 
-        static string userName = HttpContext.Current.User.Identity.Name;
         static UtilizadorService UtilizadorService = new UtilizadorService();
-        static Utilizador utilizador = UtilizadorService.ObterUtilizadorByEmail(userName);
-        
         static MensagensService mensagensService = new MensagensService();
-        public static int MensagensContagem = (mensagensService.ObterMensagens(utilizador, false, true).Count());
+        public static int MensagensContagem()
+        {
+            Utilizador utilizador = UtilizadorService.ObterUtilizadorByEmail(HttpContext.Current.User.Identity.Name);
+
+            return (mensagensService.ObterMensagens(utilizador, false, true).Count());
+        }
 
         static ClientesService clientesService = new ClientesService();
         public static int ClientesContagem = clientesService.ObterClientes().Count();
@@ -146,8 +148,11 @@ namespace RescueDesk.Utils
         public static int LocalidadesContagem = addressService.ObterLocalidades().Count();
 
         static PedidosService pedidosService = new PedidosService();
-        public static int PedidosContagem = pedidosService.ObterPedidos(utilizador).Count();
-
+        public static int PedidosContagem()
+        {
+            Utilizador utilizador = UtilizadorService.ObterUtilizadorByEmail(HttpContext.Current.User.Identity.Name);
+            return pedidosService.ObterPedidos(utilizador).Count();
+        }
         public static int UtilizadoresContagem = UtilizadorService.ObterUtilizadores().Count();
 
         static ServicosService servicosService = new ServicosService();

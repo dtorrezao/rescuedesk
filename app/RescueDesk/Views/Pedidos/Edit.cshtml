@@ -159,15 +159,15 @@ method: FormMethod.Post))
                     </div>
                     <div class="col col-md-5" style="margin-left: -32px">
                         @Html.EditorFor(model => model.dtmarcado, new
-                        {
-                            htmlAttributes = new
                             {
-                                @class = "input-sm form-control-sm form-control date",
-                                @placeholder = "Introduza data de marcação...",
-                                @autocomplete = "off",
-                                @style = "text-align: end"
-                            }
-                        })
+                                htmlAttributes = new
+                                {
+                                    @class = "input-sm form-control-sm form-control date",
+                                    @placeholder = "Introduza data de marcação...",
+                                    @autocomplete = "off",
+                                    @style = "text-align: end"
+                                }
+                            })
                         @Html.ValidationMessageFor(model => model.dtmarcado, "", new { @class = "text-danger" })
                     </div>
                     <div class="col col-md-2" style="margin-right: -46px; ; margin-left: 34px">
@@ -238,12 +238,14 @@ method: FormMethod.Post))
     }
 </script>
 <style>
-    #nrcontribuinte_chosen{
+    #nrcontribuinte_chosen {
         width: 641px !important;
     }
+
     #idfuncionario_chosen {
         width: 641px !important;
     }
+
     #idatividade_chosen {
         width: 641px !important;
     }

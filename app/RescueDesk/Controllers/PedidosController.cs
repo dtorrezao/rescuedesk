@@ -92,7 +92,7 @@ namespace RescueDesk.Controllers
         {
             PedidosService servico = new PedidosService();
 
-            if(pedido.prioridade == null)
+            if (pedido.prioridade == null)
             {
                 pedido.prioridade = prioridade.Media;
             }
@@ -198,7 +198,6 @@ namespace RescueDesk.Controllers
         public ActionResult Edit(Pedido pedido)
         {
             PedidosService servico = new PedidosService();
-
 
             if (servico.UpdatePedido(pedido))
             {

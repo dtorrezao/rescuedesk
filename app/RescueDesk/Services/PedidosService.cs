@@ -115,14 +115,17 @@ namespace RescueDesk.Services
             query += "SET ";
             query += "`assunto` = '" + pedido.assunto + "', ";
             query += "`descricao` =  '" + pedido.descricao + "', ";
+
             if (pedido.idatividade != null)
             {
                 query += "`idatividade` =  '" + pedido.idatividade + "', ";
             }
+
             if (pedido.dtlido != null)
             {
                 query += " `dtlido` = '" + pedido.dtlido.Value.ToString("yyyy-MM-dd HH:mm:ss") + "',";
             }
+
             if (pedido.dtmarcado != null)
             {
                 query += " `dtmarcado` = '" + pedido.dtmarcado.Value.ToString("yyyy-MM-dd HH:mm:ss") + "',";
@@ -131,10 +134,12 @@ namespace RescueDesk.Services
             {
                 query += "`prioridade` = '" + pedido.prioridade.ToString() + "',";
             }
+
             if (pedido.dtresolvido != null)
             {
                 query += " `dtresolvido` = '" + pedido.dtresolvido.Value.ToString("yyyy-MM-dd HH:mm:ss") + "',";
             }
+
             query += " `nrcontribuinte` = '" + pedido.nrcontribuinte + "',";
 
             if (pedido.idfuncionario != null)
